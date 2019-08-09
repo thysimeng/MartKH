@@ -8,14 +8,34 @@
             <div class="col">
                 <div class="card shadow">
                     <div class="card-header border-0">
-                        <div class="row align-items-center">
-                            <div class="col-8">
+                        <ul class="nav nav-tabs card-header-tabs" id="bologna-list" role="tablist">
+                                    <li class="nav-item col-3">
+                                      <a class="nav-link active" href="#description" role="tab" aria-controls="description" aria-selected="true">{{ __('Admin') }}</a>
+                                    </li>
+                                    <li class="nav-item col-3">
+                                      <a class="nav-link"  href="#history" role="tab" aria-controls="history" aria-selected="false">{{ __('User') }}</a>
+                                    </li>
+                                    <li class="nav-item col-3">
+                                      <a class="nav-link" href="#deals" role="tab" aria-controls="deals" aria-selected="false">{{ __('Franchise') }}</a>
+                                    </li>
+                                    <div class="col-3 text-right">
+                                            <a href="{{ route('user.create') }}" class="btn btn-sm btn-primary">{{ __('Add user') }}</a>
+                                    </div>
+                        </ul>
+                        {{-- <div class="row align-items-center">
+                            <div class="col-3">
                                 <h3 class="mb-0">{{ __('Users') }}</h3>
                             </div>
-                            <div class="col-4 text-right">
+                            <div class="col-3">
+                                <h3 class="mb-0">{{ __('Users') }}</h3>
+                            </div>
+                            <div class="col-3">
+                                <h3 class="mb-0">{{ __('Users') }}</h3>
+                            </div>
+                            <div class="col-3 text-right">
                                 <a href="{{ route('user.create') }}" class="btn btn-sm btn-primary">{{ __('Add user') }}</a>
                             </div>
-                        </div>
+                        </div> --}}
                     </div>
                     
                     <div class="col-12">

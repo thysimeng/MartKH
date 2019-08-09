@@ -15044,6 +15044,10 @@ button.bg-lighter:focus
     background-color: #cbd3da !important;
 }
 
+.bg-gradient-custom{
+    background: linear-gradient(left, #fd0202 0%, #881c1c 100%) !important;
+}
+
 .bg-gradient-primary
 {
     background: linear-gradient(87deg, #5e72e4 0, #825ee4 100%) !important;
@@ -15398,6 +15402,10 @@ button.section-darker:hover,
 button.section-darker:focus
 {
     background-color: black !important;
+}
+
+.bg-gradient-custom{
+    background: -webkit-linear-gradient(left, #fd0202 0, #881c1c 100%) !important;
 }
 
 .bg-gradient-primary
@@ -17584,6 +17592,7 @@ a.btn-icon-only
     padding-left: 0 !important;
 
     background-color: transparent;
+    background-image: -webkit-linear-gradient(left, #fd0202 0%, #881c1c 100%);
 }
 @media (min-width: 768px)
 {

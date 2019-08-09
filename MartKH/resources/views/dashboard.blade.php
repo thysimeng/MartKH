@@ -59,6 +59,7 @@
                 </div>
             </div>
         </div>
+
         <div class="row mt-5">
             <div class="col-xl-8 mb-5 mb-xl-0">
                 <div class="card shadow">
@@ -230,7 +231,7 @@
                                             <span class="mr-2">80%</span>
                                             <div>
                                                 <div class="progress">
-                                                <div class="progress-bar bg-gradient-primary" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%;"></div>
+                                                <div class="progress-bar bg-gradient-cu" role="progressbar" aria-valuenow="80" aria-valuemin="0" aria-valuemax="100" style="width: 80%;"></div>
                                                 </div>
                                             </div>
                                         </div>
@@ -277,7 +278,7 @@
                     </div>
                 </div>
             </div>
-        </div>
+        </div> 
 
         @include('layouts.footers.auth')
     </div>
