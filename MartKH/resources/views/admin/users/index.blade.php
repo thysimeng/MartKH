@@ -9,16 +9,29 @@
                 <div class="card shadow">
                     <div class="card-header border-0">
                         <ul class="nav nav-tabs card-header-tabs" id="bologna-list" role="tablist">
-                                    <li class="nav-item col-3">
-                                      <a class="nav-link active" href="#description" role="tab" aria-controls="description" aria-selected="true">{{ __('Admin') }}</a>
+                                    <li class="nav-item col-2">
+                                      <a class="nav-link active" href="#admin" role="tab" aria-controls="admin" aria-selected="true">{{ __('Admin') }}</a>
                                     </li>
-                                    <li class="nav-item col-3">
-                                      <a class="nav-link"  href="#history" role="tab" aria-controls="history" aria-selected="false">{{ __('User') }}</a>
+                                    <li class="nav-item col-2">
+                                      <a class="nav-link"  href="#user" role="tab" aria-controls="user" aria-selected="false">{{ __('User') }}</a>
                                     </li>
-                                    <li class="nav-item col-3">
-                                      <a class="nav-link" href="#deals" role="tab" aria-controls="deals" aria-selected="false">{{ __('Franchise') }}</a>
+                                    <li class="nav-item col-2">
+                                      <a class="nav-link" href="#franchise" role="tab" aria-controls="franchise" aria-selected="false">{{ __('Franchise') }}</a>
                                     </li>
-                                    <div class="col-3 text-right">
+
+                                    <form class="col-4">
+                                            <div class="form-group mb-4">
+                                                <div class="input-group input-group-alternative">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text"><i class="fas fa-search"></i></span>
+                                                    </div>
+                                                    <input class="form-control" placeholder="Search" type="text">
+                                                </div>
+                                            </div>
+                                    </form>
+                                        
+                                        
+                                    <div class="col-2 text-right">
                                             <a href="{{ route('user.create') }}" class="btn btn-sm btn-primary">{{ __('Add user') }}</a>
                                     </div>
                         </ul>
@@ -84,7 +97,7 @@
                                                             </button>
                                                         </form>    
                                                     @else
-                                                        <a class="dropdown-item" href="{{ route('profile.edit') }}">{{ __('Edit') }}</a>
+                                                        <a class="dropdown-item" href="{{ route('admin.profile.edit') }}">{{ __('Edit') }}</a>
                                                     @endif
                                                 </div>
                                             </div>

@@ -13,7 +13,8 @@
                 <div class="row">
                     <div class="col-6 collapse-brand">
                         <a href="{{ route('home') }}">
-                            <img src="{{ asset('argon') }}/img/brand/blue.png">
+                            {{-- <img src="{{ asset('argon') }}/img/brand/blue.png"> --}}
+                            MartKH
                         </a>
                     </div>
                     <div class="col-6 collapse-close">
@@ -45,7 +46,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link nav-link-icon" href="{{ route('profile.edit') }}">
+                    <a class="nav-link nav-link-icon" href="{{ route('admin.profile.edit') }}">
                         <i class="ni ni-single-02"></i>
                         <span class="nav-link-inner--text">{{ __('Profile') }}</span>
                     </a>
