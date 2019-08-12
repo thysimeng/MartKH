@@ -1,10 +1,12 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
 use App\User;
 use App\Http\Requests\UserRequest;
 use Illuminate\Support\Facades\Hash;
+use App\Http\Controllers\Controller;
+
 
 class UserController extends Controller
 {
@@ -40,7 +42,7 @@ class UserController extends Controller
     {
         $model->create($request->merge(['password' => Hash::make($request->get('password'))])->all());
 
-        return redirect()->route('admin.user.index')->withStatus(__('User successfully created.'));
+        return redirect()->route('user.index')->withStatus(__('User successfully created.'));
     }
 
     /**
@@ -68,7 +70,7 @@ class UserController extends Controller
                 ->except([$request->get('password') ? '' : 'password']
         ));
 
-        return redirect()->route('admin.user.index')->withStatus(__('User successfully updated.'));
+        return redirect()->route('user.index')->withStatus(__('User successfully updated.'));
     }
 
     /**
@@ -81,6 +83,6 @@ class UserController extends Controller
     {
         $user->delete();
 
-        return redirect()->route('admin.user.index')->withStatus(__('User successfully deleted.'));
+        return redirect()->route('user.index')->withStatus(__('User successfully deleted.'));
     }
 }
