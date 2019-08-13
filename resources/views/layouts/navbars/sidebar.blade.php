@@ -6,23 +6,24 @@
         </button>
         <!-- Brand -->
         <a class="navbar-brand pt-0" href="{{ route('home') }}">
-            <img src="{{ asset('argon') }}/img/brand/blue.png" class="navbar-brand-img" alt="...">
+            {{-- <img src="{{ asset('argon') }}/img/brand/blue.png" class="navbar-brand-img" alt="..."> --}}
+            <span class="text-danger">MartKH</span> 
         </a>
         <!-- User -->
         <ul class="nav align-items-center d-md-none">
             <li class="nav-item dropdown">
                 <a class="nav-link" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <div class="media align-items-center">
-                        <span class="avatar avatar-sm rounded-circle">
+                        {{-- <span class="avatar avatar-sm rounded-circle">
                         <img alt="Image placeholder" src="{{ asset('argon') }}/img/theme/team-1-800x800.jpg">
-                        </span>
+                        </span> --}}
                     </div>
                 </a>
                 <div class="dropdown-menu dropdown-menu-arrow dropdown-menu-right">
                     <div class=" dropdown-header noti-title">
                         <h6 class="text-overflow m-0">{{ __('Welcome!') }}</h6>
                     </div>
-                    <a href="{{ route('profile.edit') }}" class="dropdown-item">
+                    <a href="{{ route('admin.profile.edit') }}" class="dropdown-item">
                         <i class="ni ni-single-02"></i>
                         <span>{{ __('My profile') }}</span>
                     </a>
@@ -54,7 +55,8 @@
                 <div class="row">
                     <div class="col-6 collapse-brand">
                         <a href="{{ route('home') }}">
-                            <img src="{{ asset('argon') }}/img/brand/blue.png">
+                            {{-- <img src="{{ asset('argon') }}/img/brand/blue.png"> --}}
+                            <span class="text-danger">MartKH</span> 
                         </a>
                     </div>
                     <div class="col-6 collapse-close">
@@ -85,14 +87,15 @@
                 </li>
                 <li class="nav-item">
                     <a class="nav-link active" href="#navbar-examples" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="navbar-examples">
-                        <i class="fab fa-laravel" style="color: #f4645f;"></i>
-                        <span class="nav-link-text" style="color: #f4645f;">{{ __('User') }}</span>
+                        {{-- <i class="fab fa-laravel" style="color: #f4645f;"></i> --}}
+                        <i class="fas fa-user-ninja text-danger"></i>
+                        <span class="nav-link-text">{{ __('User') }}</span>
                     </a>
 
                     <div class="collapse show" id="navbar-examples">
                         <ul class="nav nav-sm flex-column">
                             <li class="nav-item">
-                                <a class="nav-link" href="{{ route('profile.edit') }}">
+                                <a class="nav-link" href="{{ route('admin.profile.edit') }}">
                                     {{ __('Profile') }}
                                 </a>
                             </li>
@@ -106,6 +109,33 @@
                 </li>
 
                 <li class="nav-item">
+                    <a class="nav-link" href="{{ route('products.index') }}">
+                        {{-- <i class="ni ni-tv-2 text-primary"></i> --}}
+                        <i class="fas fa-shopping-bag text-info"></i> {{ __('Product') }}
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('home') }}">
+                        {{-- <i class="ni ni-tv-2 text-primary"></i>  --}}
+                        <i class="fas fa-store-alt" style="color:#1a8a6b;"></i>{{ __('Category') }}
+                    </a>
+                </li>
+                
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('home') }}">
+                        {{-- <i class="ni ni-tv-2 text-primary"></i>  --}}
+                        <i class="fas fa-cubes" style="color:#ffd600;"></i> {{ __('Stock') }}
+                    </a>
+                </li>
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('home') }}">
+                        {{-- <i class="ni ni-tv-2 text-primary"></i>  --}}
+                        <i class="fas fa-map-marked-alt" style="color:#f4645f;"></i> {{ __('Franchise') }}
+                    </a>
+                </li>
+                {{-- <li class="nav-item">
                     <a class="nav-link" href="#">
                         <i class="ni ni-planet text-blue"></i> {{ __('Icons') }}
                     </a>
@@ -114,8 +144,8 @@
                     <a class="nav-link" href="#">
                         <i class="ni ni-pin-3 text-orange"></i> {{ __('Maps') }}
                     </a>
-                </li>
-                <li class="nav-item">
+                </li> --}}
+                {{-- <li class="nav-item">
                     <a class="nav-link" href="#">
                         <i class="ni ni-key-25 text-info"></i> {{ __('Login') }}
                     </a>
@@ -124,22 +154,22 @@
                     <a class="nav-link" href="#">
                         <i class="ni ni-circle-08 text-pink"></i> {{ __('Register') }}
                     </a>
-                </li>
-                <li class="nav-item mb-5" style="position: absolute; bottom: 0;">
+                </li> --}}
+                {{-- <li class="nav-item mb-5" style="position: absolute; bottom: 0;">
                     <a class="nav-link" href="https://www.creative-tim.com/product/argon-dashboard-pro-laravel" target="_blank">
-                        <i class="ni ni-cloud-download-95"></i> Upgrade to PRO
+                        <i class="ni ni-cloud-download-95"></i> Upgrade Mart
                     </a>
-                </li>
+                </li> --}}
             </ul>
             <!-- Divider -->
-            <hr class="my-3">
+                    {{-- <hr class="my-3"> --}}
             <!-- Heading -->
-            <h6 class="navbar-heading text-muted">Documentation</h6>
+                    {{-- <h6 class="navbar-heading text-muted">Documentation</h6> --}}
             <!-- Navigation -->
-            <ul class="navbar-nav mb-md-3">
+            {{-- <ul class="navbar-nav mb-md-3">
                 <li class="nav-item">
                     <a class="nav-link" href="https://demos.creative-tim.com/argon-dashboard/docs/getting-started/overview.html">
-                        <i class="ni ni-spaceship"></i> Getting started
+                        <i class="ni ni-spaceship"></i> About Us
                     </a>
                 </li>
                 <li class="nav-item">
@@ -152,7 +182,7 @@
                         <i class="ni ni-ui-04"></i> Components
                     </a>
                 </li>
-            </ul>
+            </ul> --}}
         </div>
     </div>
 </nav>
