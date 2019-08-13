@@ -30,3 +30,12 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::resource('admin/products', 'Admin\ProductController', ['except' => ['show']]);
 });
 
+Route::get('/category', 'Admin\CategoryController@index')->name('admin.category');
+Route::get('/search', 'Admin\CategoryController@search')->name('admin.search');
+Route::post('/create_category', 'Admin\CategoryController@create')->name('admin.create_category');
+Route::get('/delete/{cid}', 'Admin\CategoryController@destroy')->name('admin.delete_category');
+Route::post('/edit', 'Admin\CategoryController@edit')->name('admin.edit_category');
+
+Route::get('/view-sub-category', function (){
+	return view('admin.category.sub-category.index');
+})->name('admin.sub-category');

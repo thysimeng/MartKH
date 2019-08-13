@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateFranchisesTable extends Migration
+class CreateCategoriesTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,12 +13,9 @@ class CreateFranchisesTable extends Migration
      */
     public function up()
     {
-        Schema::create('franchises', function (Blueprint $table) {
-            $table->bigIncrements('id');
-            $table->string('franchise_name',100);
-            $table->string('address',100);
-            $table->float('lat',10,6);
-            $table->float('lng',10,6);
+        Schema::create('categories', function (Blueprint $table) {
+            $table->increments('cid');
+            $table->string('categories_name',20);
             $table->timestamps();
         });
     }
@@ -30,6 +27,6 @@ class CreateFranchisesTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('franchises');
+        Schema::dropIfExists('categories');
     }
 }
