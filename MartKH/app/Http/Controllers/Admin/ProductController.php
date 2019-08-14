@@ -4,7 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\User;
+use App\Products;
 
 class ProductController extends Controller
 {
@@ -13,9 +13,10 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(User $model)
+    public function index()
     {
-        return view('admin.users.index', ['users' => $model->paginate(15)]);
+        $products = Products::all();
+        return view('admin.products.index',compact('products'));
     }
 
     /**
@@ -25,7 +26,7 @@ class ProductController extends Controller
      */
     public function create()
     {
-        //
+        return view('admin.products.create');
     }
 
     /**
@@ -36,7 +37,32 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        //
+
+        $this -> validate($request, [
+            'image' => 'required',
+            'code' => 'required' ,
+            'name' => 'required',
+            'description' => 'required',
+            'price' => 'required',
+            'size' => 'required',
+            'brand' => 'required',
+            'country' => 'required',
+            'subcategory_id' => 'required'
+        ]);
+        return 123;
+        $products = new Products;
+        $products->image = $request->input('image');
+        $products->code = $request->input('code');
+        $products->name = $request->input('name');
+        $products->description = $request->input('description');
+        $products->price = $request->input('price');
+        $products->size = $request->input('size');
+        $products->brand = $request->input('brand');
+        $products->country = $request->input('country');
+        $products->subcategory_id = $request->input('subcategory_id');
+        $products->save();
+        // return redirect('/admin/products')->withStatus(__('Product successfully created.'));
+        return redirect()->route('products.index')->withStatus(__('Product successfully created.'));
     }
 
     /**

@@ -19,8 +19,7 @@ class CreateStocksTable extends Migration
             $table->integer('product_id');
             $table->integer('franchise_id');
             $table->timestamps();
-            $table->foreign('product_id')->references('pid')->on('products');
-            $table->foreign('franchise_id')->references('fid')->on('franchises');
+            
         });
     }
 

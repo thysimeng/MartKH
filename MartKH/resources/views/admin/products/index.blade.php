@@ -8,19 +8,12 @@
             <div class="col">
                 <div class="card shadow">
                     <div class="card-header border-0">
-                        <ul class="nav nav-tabs card-header-tabs" id="bologna-list" role="tablist">
-                                    <li class="nav-item col-2">
-                                      <a class="nav-link active" href="#admin" role="tab" aria-controls="admin" aria-selected="true">{{ __('Admin') }}</a>
-                                    </li>
-                                    <li class="nav-item col-2">
-                                      <a class="nav-link"  href="#user" role="tab" aria-controls="user" aria-selected="false">{{ __('User') }}</a>
-                                    </li>
-                                    <li class="nav-item col-2">
-                                      <a class="nav-link" href="#franchise" role="tab" aria-controls="franchise" aria-selected="false">{{ __('Franchise') }}</a>
-                                    </li>
-
+                        <div class="row align-items-center">
+                                    <div class="col-4">
+                                        <h3 class="mb-0">Products</h3>
+                                    </div>
                                     <form class="col-4">
-                                            <div class="form-group mb-4">
+                                            <div class="form-group mb-2 mt-2">
                                                 <div class="input-group input-group-alternative">
                                                     <div class="input-group-prepend">
                                                         <span class="input-group-text"><i class="fas fa-search"></i></span>
@@ -29,15 +22,13 @@
                                                 </div>
                                             </div>
                                     </form>
-                                        
-                                        
-                                    <div class="col-2 text-right">
-                                            <a href="{{ route('user.create') }}" class="btn btn-sm btn-primary">{{ __('Add user') }}</a>
+                                    <div class="col-4 text-right">
+                                            <a href="{{ route('products.create') }}" class="btn btn-sm btn-primary">{{ __('Add Product') }}</a>
                                     </div>
-                        </ul>
-                        
+
+                        </div>
                     </div>
-                    
+
                     <div class="col-12">
                         @if (session('status'))
                             <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -57,7 +48,7 @@
                                     <th scope="col">{{ __('Image') }}</th>
                                     <th scope="col">{{ __('Code') }}</th>
                                     <th scope="col">{{ __('Name') }}</th>
-                                    <th scope="col">{{ __('Description') }}</th>
+
                                     <th scope="col">{{ __('Price') }}</th>
                                     <th scope="col">{{ __('Size') }}</th>
                                     <th scope="col">{{ __('Brand') }}</th>
@@ -67,6 +58,7 @@
                                     {{-- <th scope="col">{{ __('View') }}</th>
                                     <th scope="col">{{ __('Created Date') }}</th>
                                     <th scope="col">{{ __('Updated Date') }}</th> --}}
+                                    {{-- <th scope="col">{{ __('Description') }}</th> --}}
                                     <th scope="col">{{ __('Action') }}</th>
                                 </tr>
                             </thead>
@@ -74,27 +66,38 @@
                                 @foreach ($products as $product)
                                     <tr>
                                         <td>{{ $product->pid }}</td>
-                                        <td>{{ $product->image }}</td>
-                                        {{-- <td>{{ $user->created_at->format('d/m/Y H:i') }}</td> --}}
+                                        <td><img src="{{ $product->image }}" alt="" class="img-thumbnail"></td>
+                                        <td>{{ $product->code }}</td>
+                                        <td>{{ $product->name }}</td>
+                                        {{-- <td>{{ $product->description }}</td> --}}
+                                        <td>{{ $product->price }}</td>
+                                        <td>{{ $product->size }}</td>
+                                        <td>{{ $product->brand }}</td>
+                                        <td>{{ $product->country }}</td>
+                                        <!-- {{-- <td>{{ $p->created_at->format('d/m/Y H:i') }}</td> --}} -->
+                                        {{-- <td>{{ $product->description }}</td> --}}
                                         <td class="text-right">
                                             <div class="dropdown">
                                                 <a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                     <i class="fas fa-ellipsis-v"></i>
                                                 </a>
                                                 <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                                    @if ($user->id != auth()->id())
-                                                        <form action="{{ route('user.destroy', $user) }}" method="post">
+                                                    {{-- delete fucntion --}}
+                                                    {{-- @if ($product->pid != auth()->id()) --}}
+                                                        {{-- <form action="{{ route('user.destroy', $user) }}" method="post"> --}}
+                                                        <form action="" method="post">
                                                             @csrf
                                                             @method('delete')
-                                                            
-                                                            <a class="dropdown-item" href="{{ route('user.edit', $user) }}">{{ __('Edit') }}</a>
+                                                            {{-- <a class="dropdown-item" href="{{ route('user.edit', $user) }}">{{ __('Edit') }}</a> --}}
+                                                            <a class="dropdown-item" href="">{{ __('Edit') }}</a>
                                                             <button type="button" class="dropdown-item" onclick="confirm('{{ __("Are you sure you want to delete this user?") }}') ? this.parentElement.submit() : ''">
                                                                 {{ __('Delete') }}
                                                             </button>
-                                                        </form>    
-                                                    @else
+                                                        </form>
+                                                    {{-- @else
                                                         <a class="dropdown-item" href="{{ route('admin.profile.edit') }}">{{ __('Edit') }}</a>
-                                                    @endif
+                                                        <a class="dropdown-item" href="">{{ __('Edit') }}</a>
+                                                    @endif --}}
                                                 </div>
                                             </div>
                                         </td>
@@ -105,13 +108,13 @@
                     </div>
                     <div class="card-footer py-4">
                         <nav class="d-flex justify-content-end" aria-label="...">
-                            {{ $users->links() }}
+                            {{-- <!-- {{ $users->links() }} --> --}}
                         </nav>
                     </div>
                 </div>
             </div>
         </div>
-            
+
         @include('layouts.footers.auth')
     </div>
 @endsection

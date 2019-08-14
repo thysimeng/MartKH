@@ -18,7 +18,7 @@ class CreateSubcategoriesTable extends Migration
             $table->integer('category_id');
             $table->string('subcategory_name',20);
             $table->timestamps();
-            $table->foreign('category_id')->references('cid')->on('categories');
+           
         });
     }
 

@@ -27,8 +27,7 @@ class CreateProductsTable extends Migration
             $table->integer('stock_id');
             $table->integer('view');
             $table->timestamps();
-            $table->foreign('subcategory_id')->references('sid')->on('subcategories');
-            $table->foreign('stock_id')->references('stid')->on('stocks');
+            
 
         });
     }
