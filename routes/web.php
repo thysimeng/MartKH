@@ -11,17 +11,18 @@
 |
 */
 
+
 Route::get('/', function () {
     return view('welcome');
 });
 
 Auth::routes();
 
-Route::get('/home', 'Admin\HomeController@index')->name('home');
+Route::get('/home', 'Admin\HomeController@index')->name('home')->middleware('checkUserRole');
 
 // Route::get('admin/user', 'UserController@user');
 
-Route::group(['middleware' => 'auth'], function () {
+Route::group(['middleware' => ['web','auth']], function () {
 	
 	Route::resource('admin/user', 'Admin\UserController', ['except' => ['show']]);
 	Route::get('admin/profile', ['as' => 'admin.profile.edit', 'uses' => 'Admin\ProfileController@edit']);
@@ -30,3 +31,6 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::resource('admin/products', 'Admin\ProductController', ['except' => ['show']]);
 });
 
+Route::get('/user', function(){
+	return view('user');
+})->name('normalUser');

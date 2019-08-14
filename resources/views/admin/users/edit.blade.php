@@ -44,13 +44,25 @@
                                         </span>
                                     @endif
                                 </div>
-                                <div class="form-group{{ $errors->has('email') ? ' has-danger' : '' }}">
-                                    <label class="form-control-label" for="input-email">{{ __('Role') }}</label>
-                                    <input type="email" name="email" id="input-email" class="form-control form-control-alternative{{ $errors->has('email') ? ' is-invalid' : '' }}" placeholder="{{ __('Email') }}" value="{{ old('email', $user->email) }}" required>
+                                <div class="form-group{{ $errors->has('role') ? ' has-danger' : '' }}">
+                                    <label class="form-control-label" for="input-role">{{ __('Role') }}</label>
+                                    <select name="role" id="input-role" class="form-control form-control-alternative{{ $errors->has('role') ? ' is-invalid' : '' }}" placeholder="{{ __('Role') }}" value="{{ old('role', $user->role) }}" required>
+                                        <option value="{{ $user->role }}" selected>{{ $user->role }}</option>
+                                        @if ($user->role === 'admin')
+                                        <option value="user">user</option>
+                                        <option value="franchise">franchise</option>
+                                        @elseif ($user->role === 'user')
+                                        <option value="admin">admin</option>
+                                        <option value="franchise">franchise</option>
+                                        @else
+                                        <option value="user">user</option>
+                                        <option value="admin">admin</option>
+                                        @endif
+                                    </select>
 
-                                    @if ($errors->has('email'))
+                                    @if ($errors->has('role'))
                                         <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $errors->first('email') }}</strong>
+                                            <strong>{{ $errors->first('role') }}</strong>
                                         </span>
                                     @endif
                                 </div>
