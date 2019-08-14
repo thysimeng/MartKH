@@ -14,7 +14,7 @@ class CreateFranchisesTable extends Migration
     public function up()
     {
         Schema::create('franchises', function (Blueprint $table) {
-            $table->bigIncrements('id');
+            $table->increments('fid');
             $table->string('franchise_name',100);
             $table->string('address',100);
             $table->float('lat',10,6);

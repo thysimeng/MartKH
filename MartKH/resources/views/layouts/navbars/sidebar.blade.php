@@ -116,7 +116,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('home') }}">
+                    <a class="nav-link" href="{{ route('admin.category') }}">
                         {{-- <i class="ni ni-tv-2 text-primary"></i>  --}}
                         <i class="fas fa-store-alt" style="color:#1a8a6b;"></i>{{ __('Category') }}
                     </a>
