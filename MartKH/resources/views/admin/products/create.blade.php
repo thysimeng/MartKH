@@ -21,8 +21,8 @@
                         <form method="post" action="{{ route('products.store') }}" autocomplete="off">
                         {{-- <form method="post" action="{{ route('product.store') }}" autocomplete="off"> --}}
                             @csrf
-
                             <h6 class="heading-small text-muted mb-4">{{ __('Product information') }}</h6>
+                            {{-- image input --}}
                             <div class="pl-lg-4">
                                 <div class="form-group{{ $errors->has('Image') ? ' has-danger' : '' }}">
                                     <label class="form-control-label" for="input-image">{{ __('Image') }}</label>
@@ -34,11 +34,12 @@
                                         </span>
                                     @endif
                                 </div>
+                                {{-- code and name input --}}
                                 <div class="row">
                                     <div class="col-lg-6 col-sm-12">
                                          <div class="form-group{{ $errors->has('code') ? ' has-danger' : '' }}">
                                             <label class="form-control-label" for="input-code">{{ __('Code') }}</label>
-                                            <input type="text" name="code" id="input-code" class="form-control form-control-alternative{{ $errors->has('code') ? ' is-invalid' : '' }}" placeholder="{{ __('Code') }}" required>
+                                            <input type="text" name="code" id="input-code" class="form-control form-control-alternative{{ $errors->has('code') ? ' is-invalid' : '' }}" placeholder="{{ __('Code') }}" required autofocus>
 
                                             @if ($errors->has('code'))
                                                 <span class="invalid-feedback" role="alert">
@@ -50,7 +51,7 @@
                                     <div class="col-lg-6 col-sm-12">
                                         <div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
                                             <label class="form-control-label" for="input-name">{{ __('Name') }}</label>
-                                            <input type="text" name="name" id="input-name" class="form-control form-control-alternative{{ $errors->has('name') ? ' is-invalid' : '' }}" placeholder="{{ __('Name') }}" required>
+                                            <input type="text" name="name" id="input-name" class="form-control form-control-alternative{{ $errors->has('name') ? ' is-invalid' : '' }}" placeholder="{{ __('Name') }}" required autofocus>
 
                                             @if ($errors->has('name'))
                                                 <span class="invalid-feedback" role="alert">
@@ -60,11 +61,13 @@
                                         </div>
                                     </div>
                                 </div>
+
                                 <div class="row">
+                                    {{-- price input --}}
                                     <div class="col-lg-6 col-sm-12">
-                                         <div class="form-group{{ $errors->has('price') ? ' has-danger' : '' }}">
+                                        <div class="form-group{{ $errors->has('price') ? ' has-danger' : '' }}">
                                             <label class="form-control-label" for="input-price">{{ __('Price') }}</label>
-                                            <input type="text" name="price" id="input-price" class="form-control form-control-alternative{{ $errors->has('price') ? ' is-invalid' : '' }}" placeholder="{{ __('Price') }}" required>
+                                            <input type="text" name="price" id="input-price" class="form-control form-control-alternative{{ $errors->has('price') ? ' is-invalid' : '' }}" placeholder="{{ __('Price') }}" required autofocus>
 
                                             @if ($errors->has('price'))
                                                 <span class="invalid-feedback" role="alert">
@@ -73,10 +76,11 @@
                                             @endif
                                         </div>
                                     </div>
+                                    {{-- size input --}}
                                     <div class="col-lg-6 col-sm-12">
                                         <div class="form-group{{ $errors->has('size') ? ' has-danger' : '' }}">
                                             <label class="form-control-label" for="input-size">{{ __('Size') }}</label>
-                                            <input type="text" name="size" id="input-size" class="form-control form-control-alternative{{ $errors->has('size') ? ' is-invalid' : '' }}" placeholder="{{ __('Size') }}" required>
+                                            <input type="text" name="size" id="input-size" class="form-control form-control-alternative{{ $errors->has('size') ? ' is-invalid' : '' }}" placeholder="{{ __('Size') }}" required autofocus>
 
                                             @if ($errors->has('size'))
                                                 <span class="invalid-feedback" role="alert">
@@ -87,10 +91,11 @@
                                     </div>
                                 </div>
                                 <div class="row">
+                                    {{-- brand input --}}
                                     <div class="col-lg-6 col-sm-12">
                                          <div class="form-group{{ $errors->has('brand') ? ' has-danger' : '' }}">
                                             <label class="form-control-label" for="input-brand">{{ __('Brand') }}</label>
-                                            <input type="text" name="brand" id="input-brand" class="form-control form-control-alternative{{ $errors->has('brand') ? ' is-invalid' : '' }}" placeholder="{{ __('Price') }}" required>
+                                            <input type="text" name="brand" id="input-brand" class="form-control form-control-alternative{{ $errors->has('brand') ? ' is-invalid' : '' }}" placeholder="{{ __('Price') }}" autofocus>
 
                                             @if ($errors->has('brand'))
                                                 <span class="invalid-feedback" role="alert">
@@ -99,10 +104,11 @@
                                             @endif
                                         </div>
                                     </div>
+                                    {{-- country input --}}
                                     <div class="col-lg-6 col-sm-12">
                                         <div class="form-group{{ $errors->has('country') ? ' has-danger' : '' }}">
                                             <label class="form-control-label" for="input-country">{{ __('Country') }}</label>
-                                            <input type="text" name="country" id="input-country" class="form-control form-control-alternative{{ $errors->has('country') ? ' is-invalid' : '' }}" placeholder="{{ __('Country') }}" required>
+                                            <input type="text" name="country" id="input-country" class="form-control form-control-alternative{{ $errors->has('country') ? ' is-invalid' : '' }}" placeholder="{{ __('Country') }}" autofocus>
 
                                             @if ($errors->has('country'))
                                                 <span class="invalid-feedback" role="alert">
@@ -112,9 +118,10 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="form-group{{ $errors->has('subcategory') ? ' has-danger' : '' }}">
-                                    <label class="form-control-label" for="input-subcategory">{{ __('Subcategory') }}</label>
-                                    <select class="form-control" name="subcategory" id="subcategory" required>
+                                {{-- subcategory input --}}
+                                <div class="form-group{{ $errors->has('subcategory_id') ? ' has-danger' : '' }}">
+                                    <label class="form-control-label" for="input-subcategory_id">{{ __('Subcategory') }}</label>
+                                    <select class="form-control" name="subcategory_id" id="subcategory_id" required>
                                         {{-- @if(count($categories)>0)
                                             @foreach ($categories as $category)
                                                 <option value="{{$category->id}}"
@@ -126,9 +133,15 @@
                                         <option value="2">Coffee</option>
                                     </select>
                                 </div>
-
-
-
+                                <div class="form-group{{ $errors->has('description') ? ' has-danger' : '' }}">
+                                        <label class="form-control-label" for="input-description">{{ __('Image') }}</label>
+                                        <textarea class="form-control form-control-alternative{{ $errors->has('description') ? ' is-invalid' : '' }}" placeholder="{{ __('Description') }}" id="input-description" rows="4" name="description" required autofocus></textarea>
+                                        @if ($errors->has('description'))
+                                            <span class="invalid-feedback" role="alert">
+                                                <strong>{{ $errors->first('description') }}</strong>
+                                            </span>
+                                        @endif
+                                </div>
                                 <div class="text-center">
                                     <button type="submit" class="btn btn-success mt-4">{{ __('Save') }}</button>
                                 </div>

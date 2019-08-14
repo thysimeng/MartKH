@@ -38,18 +38,20 @@ class ProductController extends Controller
     public function store(Request $request)
     {
 
-        $this -> validate($request, [
+
+        // return helloworld;
+        $this-> validate($request,[
             'image' => 'required',
             'code' => 'required' ,
             'name' => 'required',
-            'description' => 'required',
             'price' => 'required',
             'size' => 'required',
             'brand' => 'required',
             'country' => 'required',
-            'subcategory_id' => 'required'
+            'subcategory_id' => 'required',
+            'description' => 'required'
         ]);
-        return 123;
+        // return $this;
         $products = new Products;
         $products->image = $request->input('image');
         $products->code = $request->input('code');
