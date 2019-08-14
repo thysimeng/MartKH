@@ -41,18 +41,17 @@
                     </div>
 
                     <div class="table-responsive">
-                        <table class="table align-items-center table-flush">
+                        <table class="table align-items-center table-flush table-hover">
                             <thead class="thead-light">
                                 <tr>
-                                    <th scope="col">{{ __('Product ID') }}</th>
-                                    <th scope="col">{{ __('Image') }}</th>
                                     <th scope="col">{{ __('Code') }}</th>
+                                    {{-- <th scope="col">{{ __('Product ID') }}</th> --}}
+                                    <th scope="col">{{ __('Image') }}</th>
                                     <th scope="col">{{ __('Name') }}</th>
-
                                     <th scope="col">{{ __('Price') }}</th>
                                     <th scope="col">{{ __('Size') }}</th>
-                                    <th scope="col">{{ __('Brand') }}</th>
-                                    <th scope="col">{{ __('Country') }}</th>
+                                    {{-- <th scope="col">{{ __('Brand') }}</th>
+                                    <th scope="col">{{ __('Country') }}</th> --}}
                                     {{-- <th scope="col">{{ __('Subcategory ID') }}</th>
                                     <th scope="col">{{ __('Stock ID') }}</th> --}}
                                     {{-- <th scope="col">{{ __('View') }}</th>
@@ -65,18 +64,21 @@
                             <tbody>
                                 @foreach ($products as $product)
                                     <tr>
-                                        <td>{{ $product->pid }}</td>
-                                        <td><img src="{{ $product->image }}" alt="" class="img-thumbnail"></td>
+                                        {{-- <td>{{ $product->pid }}</td> --}}
                                         <td>{{ $product->code }}</td>
+                                        <td><img src="{{ $product->image }}" alt="" class="img-thumbnail " style="width:100px;heigth:100px;"></td>
+                                        
                                         <td>{{ $product->name }}</td>
                                         {{-- <td>{{ $product->description }}</td> --}}
                                         <td>{{ $product->price }}</td>
                                         <td>{{ $product->size }}</td>
-                                        <td>{{ $product->brand }}</td>
-                                        <td>{{ $product->country }}</td>
+                                        {{-- <td>{{ $product->brand }}</td>
+                                        <td>{{ $product->country }}</td> --}}
                                         <!-- {{-- <td>{{ $p->created_at->format('d/m/Y H:i') }}</td> --}} -->
                                         {{-- <td>{{ $product->description }}</td> --}}
-                                        <td class="text-right">
+                                        <td>
+                                        {{-- dot button to right most --}}
+                                        {{-- <td class="text-right"> --}}
                                             <div class="dropdown">
                                                 <a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                     <i class="fas fa-ellipsis-v"></i>
@@ -89,6 +91,7 @@
                                                             @csrf
                                                             @method('delete')
                                                             {{-- <a class="dropdown-item" href="{{ route('user.edit', $user) }}">{{ __('Edit') }}</a> --}}
+                                                        <a class="dropdown-item" href="/products/{{$product->pid}}">{{ __('View') }}</a>
                                                             <a class="dropdown-item" href="">{{ __('Edit') }}</a>
                                                             <button type="button" class="dropdown-item" onclick="confirm('{{ __("Are you sure you want to delete this user?") }}') ? this.parentElement.submit() : ''">
                                                                 {{ __('Delete') }}

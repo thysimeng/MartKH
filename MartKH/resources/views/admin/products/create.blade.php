@@ -95,7 +95,7 @@
                                     <div class="col-lg-6 col-sm-12">
                                          <div class="form-group{{ $errors->has('brand') ? ' has-danger' : '' }}">
                                             <label class="form-control-label" for="input-brand">{{ __('Brand') }}</label>
-                                            <input type="text" name="brand" id="input-brand" class="form-control form-control-alternative{{ $errors->has('brand') ? ' is-invalid' : '' }}" placeholder="{{ __('Price') }}" autofocus>
+                                            <input type="text" name="brand" id="input-brand" class="form-control form-control-alternative{{ $errors->has('brand') ? ' is-invalid' : '' }}" placeholder="{{ __('Brand') }}" autofocus>
 
                                             @if ($errors->has('brand'))
                                                 <span class="invalid-feedback" role="alert">
@@ -134,7 +134,7 @@
                                     </select>
                                 </div>
                                 <div class="form-group{{ $errors->has('description') ? ' has-danger' : '' }}">
-                                        <label class="form-control-label" for="input-description">{{ __('Image') }}</label>
+                                        <label class="form-control-label" for="input-description">{{ __('Description') }}</label>
                                         <textarea class="form-control form-control-alternative{{ $errors->has('description') ? ' is-invalid' : '' }}" placeholder="{{ __('Description') }}" id="input-description" rows="4" name="description" required autofocus></textarea>
                                         @if ($errors->has('description'))
                                             <span class="invalid-feedback" role="alert">

@@ -27,7 +27,7 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::get('admin/profile', ['as' => 'admin.profile.edit', 'uses' => 'Admin\ProfileController@edit']);
 	Route::put('admin/profile', ['as' => 'admin.profile.update', 'uses' => 'Admin\ProfileController@update']);
 	Route::put('admin/profile/password', ['as' => 'admin.profile.password', 'uses' => 'Admin\ProfileController@password']);
-	Route::resource('admin/products', 'Admin\ProductController', ['except' => ['show']]);
+	Route::resource('admin/products', 'Admin\ProductController');
 });
 
 Route::get('/category', 'Admin\CategoryController@index')->name('admin.category');
