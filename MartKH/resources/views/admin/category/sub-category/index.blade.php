@@ -9,7 +9,7 @@
                 <div class="card shadow"> 
                         <div class="card-header border-0">
                                 <ul class="nav nav-tabs card-header-tabs" id="bologna-list" role="tablist">
-                                            <form class="col-4" action="/search" method="get" role="search">
+                                            <form class="col-4" action="/admin/create_sub_category/search" method="get" role="search">
                                                 {{ csrf_field() }}
                                                     <div class="form-group mb-4">
                                                         <div class="input-group input-group-alternative">
@@ -28,7 +28,7 @@
                                                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">{{ __('Add Sub Category') }}</button>
                                                 
                                             </div>
-                                            <form class="form-horizontal" action="/create_category" enctype="multipart/form-data" method="post">
+                                            <form class="form-horizontal" action="/admin/create_sub_category" enctype="multipart/form-data" method="post">
                                                 @csrf
                                                 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                                                     <div class="modal-dialog modal-dialog-centered" role="document">
@@ -40,7 +40,16 @@
                                                                 </button>
                                                             </div>
                                                             <div class="modal-body">
-                                                                <input type="text" class="form-control" name="category" id="input_category" value="" required placeholder="category">
+                                                                <label for="exampleFormControlSelect1">Category select</label>
+                                                                
+                                                                <select class="form-control" id="exampleFormControlSelect1" name="category_id">
+                                                                    @foreach($categories_data as $sub_item)
+                                                                        <option @if(old('category_id') == $sub_item->cid) selected @endif value="{{$sub_item->cid}}">{{$sub_item->categories_name}}</option>
+                                                                    @endforeach
+                                                                </select>
+                                                              </div>
+                                                            <div class="modal-body">
+                                                                <input type="text" class="form-control" name="sub_category" id="" value="" required placeholder="sub category">
                                                             </div>
                                                             <div class="modal-footer">
                                                                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
@@ -58,19 +67,21 @@
                         <table class="table align-items-center table-flush">
                             <thead class="thead-light">
                                 <tr>
-                                    <th scope="col">{{ __('Category ID') }}</th>
+                                    <th scope="col">{{ __('Sub Category ID') }}</th>
                                     <th scope="col">{{ __('Name') }}</th>
+                                    <th scope="col">{{ __('Category') }}</th>
                                     <th scope="col">{{ __('Create Date') }}</th>
                                     <th scope="col">{{ __('Action') }}</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                    {{-- @foreach($categories_data as $item) --}}
-                                    
+                                    @foreach($sub_categories_data as $item)
                                     <tr>
-                                        <td></td>
-                                        <td></td>
-                                        <td></td>
+                                        <td>{{$item->sid}}</td>
+                                        <td>{{$item->subcategory_name}}</td>
+                                        <td>{{$item->categories_name}}</td>
+                                       
+                                        <td>{{$item->created_at}}</td>
                                         <td class="text-right">
                                             <div class="dropdown">
                                                 <a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -80,7 +91,7 @@
                                                     <a class="dropdown-item" data-toggle="modal" data-target="#editModalCenter" href="">{{ __('Edit') }}</a>
                                             
                                                     {{-- <a class="dropdown-item" href="">{{ __('View') }}</a> --}}
-                                                    <a class="dropdown-item" href="">{{ __('Delete') }}</a>
+                                                    <a class="dropdown-item" href="/admin/sub_category/delete/{{ $item->sid }}">{{ __('Delete') }}</a>
                                                 </div>
                                             </div>
                                         </td>
@@ -108,8 +119,7 @@
                                                 </div>
                                             </div>
                                     </form>
-
-                                    {{-- @endforeach --}}
+                                    @endforeach
                             </tbody>
                         </table>
                     </div>

@@ -50,12 +50,12 @@ class CategoryController extends Controller
 
     public function edit(Request $request) {
 
-        dd($request->all());
-        // return view('admin.category.edit',compact('cid'));
-        // $name = $request->input('category');
-        //$result =  DB::update('update categories set categories_name = ? where cid = ?',[$name,$cid]);
-        // DB::table('categories')
-        // dd($result);
-        // return redirect(route('admin.category'));
+        $category_id = $request->post('category_id');
+        $category_name = $request->post('category_name');
+
+        Category::where('cid', $category_id)->update([
+            'categories_name'=>$category_name,       
+        ]);
+        return redirect(route('admin.category'));
      }
 }
