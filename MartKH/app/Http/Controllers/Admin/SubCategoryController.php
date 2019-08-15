@@ -16,7 +16,7 @@ class SubCategoryController extends Controller
     public function index()
     {   
        // $sub_categories = SubCategory::query()->paginate(10);
-        $categories = Category::with('subCategory')->paginate(10);
+        $categories = Category::with('subCategory')->get();
         $sub_categories= SubCategory::leftJoin('categories','categories.cid','=','subcategories.category_id')->paginate(10);
         $data = [
             'sub_categories_data'=>$sub_categories,
@@ -30,7 +30,7 @@ class SubCategoryController extends Controller
     {
         $search = $request->get('search');
         $sub_categories = SubCategory::leftJoin('categories','categories.cid','=','subcategories.category_id')->where('subcategory_name', 'like', '%' .$search. '%')->paginate(10);
-        $categories = Category::with('subCategory')->paginate(10);
+        $categories = Category::with('subCategory')->get();
         $data = [
             'sub_categories_data'=>$sub_categories,
             'categories_data'=>$categories,
@@ -57,14 +57,14 @@ class SubCategoryController extends Controller
         return redirect(route('admin.category.sub-category'));
     }
 
-    // public function edit(Request $request) {
+    public function edit(Request $request) {
 
-    //     $category_id = $request->post('category_id');
-    //     $category_name = $request->post('category_name');
+        $sub_category_id = $request->post('sub_category_id');
+        $sub_category_name = $request->post('sub_category_name');
 
-    //     Category::where('cid', $category_id)->update([
-    //         'categories_name'=>$category_name,       
-    //     ]);
-    //     return redirect(route('admin.category'));
-    //  }
+        SubCategory::where('sid', $sub_category_id)->update([
+            'subcategory_name'=>$sub_category_name,       
+        ]);
+        return redirect(route('admin.category.sub-category'));
+     }
 }

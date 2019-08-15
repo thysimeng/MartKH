@@ -80,15 +80,14 @@
                                         <td>{{$item->sid}}</td>
                                         <td>{{$item->subcategory_name}}</td>
                                         <td>{{$item->categories_name}}</td>
-                                       
                                         <td>{{$item->created_at}}</td>
                                         <td class="text-right">
                                             <div class="dropdown">
                                                 <a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                     <i class="fas fa-ellipsis-v"></i>
                                                 </a>
-                                                <div data-id="" class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                                    <a class="dropdown-item" data-toggle="modal" data-target="#editModalCenter" href="">{{ __('Edit') }}</a>
+                                                <div data-id="{{$item->sid}}" class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+                                                    <a onclick="edit({{$item->sid}}, '{{$item->subcategory_name}}')" class="dropdown-item" data-toggle="modal" data-target="#editModalCenter" href="">{{ __('Edit') }}</a>
                                             
                                                     {{-- <a class="dropdown-item" href="">{{ __('View') }}</a> --}}
                                                     <a class="dropdown-item" href="/admin/sub_category/delete/{{ $item->sid }}">{{ __('Delete') }}</a>
@@ -97,35 +96,36 @@
                                         </td>
                                     </tr>
 
-                                    <form class="form-horizontal" action="" enctype="multipart/form-data" method="post">
-                                            @csrf
-                                            <div class="modal fade" id="editModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                    <div class="modal fade" id="editModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                        <form action="/admin/sub_category/edit" method="post">
+                                            <div class="modal-dialog modal-dialog-centered" role="document">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
-                                                            <h5 class="modal-title" id="exampleModalCenterTitle">Add Category</h5>
+                                                            <h5 class="modal-title" id="exampleModalCenterTitle">Edit Sub Category</h5>
                                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                             <span aria-hidden="true">&times;</span>
                                                             </button>
                                                         </div>
+                                                        <input type="hidden" name="sub_category_id" value="" >
+                                                        @csrf
                                                         <div class="modal-body">
-                                                            <input type="text" class="form-control" name="category" id="input_category" value="" required placeholder="">
+                                                            <input type="text" class="form-control" name="sub_category_name" value="" required placeholder="">
                                                         </div>
-                                                        <div class="modal-footer">
+                                                        <div  class="modal-footer">
                                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                            <button type="submit" class="btn btn-primary">Save changes</button>
+                                                            <button onclick="saveEdit()"  class="btn btn-primary">Save changes</button>
                                                         </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                    </form>
+                                        </form>
+                                    </div>
                                     @endforeach
                             </tbody>
                         </table>
                     </div>
                     <div class="text-center">
                             <div class="wrapper-pagination">
-                                {{-- {{$categories_data->appends($queryParams)->render()}} --}}
+                                {{$sub_categories_data->appends($queryParams)->render()}}
                             </div>
                         </div>
                 </div>
@@ -136,11 +136,11 @@
 @endsection
 
 <script>
+    var id = null;
 
-    function edit(clickEdit){
-        var id = $(clickEdit).parent().attr("data-id");
-        document.location.href='/edit/'+id;
-
+    function edit(id,name) {
+        document.querySelector('[name="sub_category_id"]').setAttribute('value', id);
+        document.querySelector('[name="sub_category_name"]').setAttribute('value', name);
     }
 
 </script>

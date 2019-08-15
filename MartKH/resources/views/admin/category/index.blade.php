@@ -88,28 +88,27 @@
                                     </tr>
                                
                                     <div class="modal fade" id="editModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                                    <form action="/edit" method="post">
-                                        <div class="modal-dialog modal-dialog-centered" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="exampleModalCenterTitle">Add Category</h5>
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
-                                                        </button>
-                                                    </div>
-                                                    <input type="hidden" name="category_id" value="" >
-                                                    @csrf
-                                                    <div class="modal-body">
-                                                        <input type="text" class="form-control" name="category_name" value="" required placeholder="">
-                                                    </div>
-                                                    <div  class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                        <button onclick="saveEdit()"  class="btn btn-primary">Save changes</button>
+                                        <form action="/edit" method="post">
+                                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalCenterTitle">Edit Category</h5>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <input type="hidden" name="category_id" value="" >
+                                                        @csrf
+                                                        <div class="modal-body">
+                                                            <input type="text" class="form-control" name="category_name" value="" required placeholder="">
+                                                        </div>
+                                                        <div  class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                            <button onclick="saveEdit()"  class="btn btn-primary">Save changes</button>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                    </form>
-                                        
+                                        </form>
                                     </div>
                                     @endforeach
                             </tbody>
@@ -133,12 +132,6 @@
     function edit(id,name) {
         document.querySelector('[name="category_id"]').setAttribute('value', id);
         document.querySelector('[name="category_name"]').setAttribute('value', name);
-    }
-
-    function saveEdit(){
-        var name = document.getElementById("input_category").value;
-        console.log('ID:::',this.id)   
-        console.log('ID:::',name)    
     }
 
 </script>
