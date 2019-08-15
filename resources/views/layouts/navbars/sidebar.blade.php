@@ -130,7 +130,7 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('home') }}">
+                    <a class="nav-link" href="{{ route('franchises.index') }}">
                         {{-- <i class="ni ni-tv-2 text-primary"></i>  --}}
                         <i class="fas fa-map-marked-alt" style="color:#f4645f;"></i> {{ __('Franchise') }}
                     </a>

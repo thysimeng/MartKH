@@ -62,7 +62,7 @@
                                             <th scope="col">{{ __('Email') }}</th>
                                             <th scope="col">{{ __('Role') }}</th>
                                             <th scope="col">{{ __('Creation Date') }}</th>
-                                            <th scope="col"></th>
+                                            <th scope="col">{{ __('Action') }}</th>
                                         </tr>
                                     </thead>
                                     <tbody>
