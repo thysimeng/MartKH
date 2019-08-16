@@ -74,35 +74,55 @@
                         </div>
                     </div>
                     <div class="card-body">
+
+                    <h6 class="heading-small text-muted mb-5">{{ __('User information') }}</h6>
+                            
+                        @if (session('status'))
+                            <div class="alert alert-success alert-dismissible fade show mb-5" role="alert">
+                                {{ session('status') }}
+                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                        @endif
+                        
+                        <!-- img -->
+                        <div class="justify-content-center pt-lg-4" >
+                                <!-- {{-- <div class="pl-lg-4"> --}} -->
+                                        <div class="card-profile-image" style="position:relative !important;">
+                                            <a href="#">
+                                                <img src="{{ asset('uploads') }}/avatar/{{ auth()->user()->avatar }}" class="rounded-circle" id="img-preview">
+                                            </a>
+                                        </div>
+                                <!-- {{-- </div> --}} -->
+                        </div>
+
+                        <div class="pl-lg-4">
+                            <div class="form-group{{ $errors->has('avatar') ? ' has-danger' : '' }}">
+                                <form action="{{ route('admin.profile.upload') }}" enctype="multipart/form-data" method="post">
+                                    @csrf
+                                    <label class="form-control-label" for="upload-avatar">{{ __('Update Profile Picture') }}</label>
+                                    <br>
+                                    <input type="file" name="avatar" id="upload-avatar" class="{{ $errors->has('avatar') ? ' is-invalid' : '' }}">
+                                    <input type="submit" class="btn btn-success" value="{{ __('Upload') }}">
+
+                                    @if ($errors->has('avatar'))
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $errors->first('avatar') }}</strong>
+                                        </span>
+                                    @endif
+                                </form>
+                            </div>
+                        </div>
+
+                        
                         
 
                         <form method="post" action="{{ route('admin.profile.update') }}" autocomplete="off">
                             @csrf
                             @method('put')
 
-                            <h6 class="heading-small text-muted mb-4">{{ __('User information') }}</h6>
                             
-                            
-                            
-                            @if (session('status'))
-                                <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                    {{ session('status') }}
-                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                        <span aria-hidden="true">&times;</span>
-                                    </button>
-                                </div>
-                            @endif
-                            
-                            {{-- img --}}
-                            <div class="justify-content-center pt-lg-4" >
-                                    {{-- <div class="pl-lg-4"> --}}
-                                            <div class="card-profile-image" style="position:relative !important;">
-                                                <a href="#">
-                                                    <img src="{{ asset('argon') }}/img/theme/panda.jpg" class="rounded-circle">
-                                                </a>
-                                            </div>
-                                    {{-- </div> --}}
-                            </div>
 
                             <div class="pl-lg-4">
                                 <div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
@@ -185,4 +205,23 @@
         
         @include('layouts.footers.auth')
     </div>
+
+    <script type="text/javascript">
+        $(document).ready(function() {
+            // preview image before upload
+            function readURL(input) {
+                if (input.files && input.files[0]) {
+                    var reader = new FileReader();
+                    
+                    reader.onload = function(e) {
+                        $('#img-preview').attr('src', e.target.result);
+                    };
+                    reader.readAsDataURL(input.files[0]);
+                }
+            }
+            $("#upload-avatar").change(function() {
+                readURL(this);
+            });
+        });
+    </script>
 @endsection

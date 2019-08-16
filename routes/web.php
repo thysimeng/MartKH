@@ -28,6 +28,7 @@ Route::group(['middleware' => ['web','auth','checkUserRole']], function () {
 	Route::get('admin/profile', ['as' => 'admin.profile.edit', 'uses' => 'Admin\ProfileController@edit']);
 	Route::put('admin/profile', ['as' => 'admin.profile.update', 'uses' => 'Admin\ProfileController@update']);
 	Route::put('admin/profile/password', ['as' => 'admin.profile.password', 'uses' => 'Admin\ProfileController@password']);
+	Route::post('admin/profile/upload', ['as' => 'admin.profile.upload', 'uses' => 'Admin\ProfileController@upload']);
 	Route::resource('admin/products', 'Admin\ProductController', ['except' => ['show']]);
 	Route::resource('admin/franchises','Admin\FranchiseController',['except' => ['show']]);
 	Route::get('admin/franchises',['as' => 'franchises.index', 'uses' => 'Admin\FranchiseController@index']);

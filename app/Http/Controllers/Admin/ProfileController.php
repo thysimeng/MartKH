@@ -7,6 +7,8 @@ use App\Http\Requests\ProfileRequest;
 use App\Http\Requests\PasswordRequest;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\Controller;
+use Auth;
+use Image;
 
 class ProfileController extends Controller
 {
@@ -44,5 +46,21 @@ class ProfileController extends Controller
         auth()->user()->update(['password' => Hash::make($request->get('password'))]);
 
         return back()->withPasswordStatus(__('Password successfully updated.'));
+    }
+
+    public function upload(Request $request)
+    {
+        if($request->hasFile('avatar'))
+        {
+            $avatar = $request->file('avatar');
+            $fileName = time().'.'.$avatar->getClientOriginalExtension();
+        Image::make($avatar)->resize(400,400)->save( public_path('uploads\avatar\\'.$fileName));
+
+            $user = Auth::user();
+            $user->avatar = $fileName;
+            $user->save();
+
+            return back()->withStatus(__('Profile picture successfully updated.'));
+        }
     }
 }
