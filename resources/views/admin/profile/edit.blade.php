@@ -103,9 +103,18 @@
                                     @csrf
                                     <label class="form-control-label" for="upload-avatar">{{ __('Update Profile Picture') }}</label>
                                     <br>
-                                    <input type="file" name="avatar" id="upload-avatar" class="{{ $errors->has('avatar') ? ' is-invalid' : '' }}">
-                                    <input type="submit" class="btn btn-success" value="{{ __('Upload') }}">
-
+                                    <div class="input-group">
+                                        <div class="custom-file">
+                                            <input type="file" name="avatar" id="upload-avatar" class="{{ $errors->has('avatar') ? ' is-invalid' : '' }} custom-file-input">
+                                            <label class="custom-file-label" for="upload-avatar" id="input-file-label">{{ __('Choose file')}}</label>
+                                        </div>
+                                        <div class="input-group-prepend">
+                                            <input type="submit" class="btn btn-success rounded" value="{{ __('Upload') }}">
+                                        </div>
+                                    </div>
+                                    
+                                    
+                                        
                                     @if ($errors->has('avatar'))
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $errors->first('avatar') }}</strong>
@@ -209,6 +218,7 @@
     <script type="text/javascript">
         $(document).ready(function() {
             // preview image before upload
+            
             function readURL(input) {
                 if (input.files && input.files[0]) {
                     var reader = new FileReader();
@@ -222,6 +232,13 @@
             $("#upload-avatar").change(function() {
                 readURL(this);
             });
+
+            $('#upload-avatar').on("change",function() {
+                var i = $(this).prev('#input-file-label').clone();
+                var file = $('#upload-avatar')[0].files[0].name;
+                $(this).next('#input-file-label').text(file);
+            });
+
         });
     </script>
 @endsection
