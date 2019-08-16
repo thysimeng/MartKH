@@ -28024,7 +28024,7 @@ a.btn-icon-only
 }
 .card-profile-image img
 {
-    position: absolute;
+    position: relative;
     left: 50%;
 
     max-width: 180px;

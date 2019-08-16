@@ -2,11 +2,14 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Franchise;
 use App\User;
 use App\Http\Requests\UserRequest;
 use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\Controller;
 
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\DB;
 
 class UserController extends Controller
 {
@@ -84,5 +87,19 @@ class UserController extends Controller
         $user->delete();
 
         return redirect()->route('user.index')->withStatus(__('User successfully deleted.'));
+    }
+
+
+    //search
+    public function search(Request $request)
+    {
+        $search = $request->get('search');
+        
+        $users = User::whereRaw('LOWER(`name`) LIKE ?', '%'.trim(strtolower($search)).'%')
+                    ->orWhereRaw('LOWER(`email`) LIKE ?','%'.trim(strtolower($search)).'%')
+                    ->orWhereRaw('LOWER(`role`) LIKE ?','%'.trim(strtolower($search)).'%')
+                    ->paginate(15);
+        
+        return view('admin.users.index',['users'=> $users]);
     }
 }

@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Franchise;
+use Illuminate\Support\Facades\DB;
 
 class FranchiseController extends Controller
 {
@@ -113,4 +114,17 @@ class FranchiseController extends Controller
         
         return redirect()->route('franchises.index')->withStatus(__('Franchise successfully deleted.'));
     }
+
+    // Search
+    public function search(Request $request)
+    {
+        $search = $request->get('search');
+        
+        $franchises = Franchise::whereRaw('LOWER(`franchise_name`) LIKE ?', '%'.trim(strtolower($search)).'%')
+                    ->orWhereRaw('LOWER(`address`) LIKE ?','%'.trim(strtolower($search)).'%')
+                    ->paginate(15);
+        
+        return view('admin.franchises.index',['franchises'=> $franchises]);
+    }
+
 }

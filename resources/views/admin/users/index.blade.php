@@ -21,13 +21,13 @@
                                     </li>
                                     
                                     <!-- Search -->
-                                    <form class="col-4">
+                                    <form class="col-4" id="search-user" method="get" action="{{ route('user.search') }}">
                                             <div class="form-group mb-4">
                                                 <div class="input-group input-group-alternative">
                                                     <div class="input-group-prepend">
                                                         <span class="input-group-text"><i class="fas fa-search"></i></span>
                                                     </div>
-                                                    <input class="form-control" placeholder="Search" type="text">
+                                                    <input class="form-control" placeholder="Search" type="search" name="search">
                                                 </div>
                                             </div>
                                     </form>
@@ -74,7 +74,7 @@
                                                         <a href="mailto:{{ $user->email }}">{{ $user->email }}</a>
                                                     </td>
                                                     <td>{{ $user->role }}</td>
-                                                    <td>{{ $user->created_at->format('d/m/Y H:i') }}</td>
+                                                    <td>{{ Carbon\Carbon::parse($user->created_at)->format('d/m/Y H:i') }}</td>
                                                     <td class="text-right">
                                                         <div class="dropdown">
                                                             <a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -126,7 +126,7 @@
                                                         <a href="mailto:{{ $user->email }}">{{ $user->email }}</a>
                                                     </td>
                                                     <td>{{ $user->role }}</td>
-                                                    <td>{{ $user->created_at->format('d/m/Y H:i') }}</td>
+                                                    <td>{{ Carbon\Carbon::parse($user->created_at)->format('d/m/Y H:i') }}</td>
                                                     <td class="text-right">
                                                         <div class="dropdown">
                                                             <a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -178,7 +178,7 @@
                                                         <a href="mailto:{{ $user->email }}">{{ $user->email }}</a>
                                                     </td>
                                                     <td>{{ $user->role }}</td>
-                                                    <td>{{ $user->created_at->format('d/m/Y H:i') }}</td>
+                                                    <td>{{ Carbon\Carbon::parse($user->created_at)->format('d/m/Y H:i') }}</td>
                                                     <td class="text-right">
                                                         <div class="dropdown">
                                                             <a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -221,4 +221,8 @@
             
         @include('layouts.footers.auth')
     </div>
+
+    <script type="test/javascript">
+        document.getElementById('search-franchises').submit();
+    </script>
 @endsection

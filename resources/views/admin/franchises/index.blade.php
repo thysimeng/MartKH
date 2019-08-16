@@ -12,13 +12,13 @@
                                     <div class="col-4">
                                         <h3 class="mb-0">Franchise</h3>
                                     </div>
-                                    <form class="col-4">
+                                    <form class="col-4" id="search-franchises" method="get" action="{{ route('franchises.search') }}">
                                             <div class="form-group mb-2 mt-2">
                                                 <div class="input-group input-group-alternative">
                                                     <div class="input-group-prepend">
                                                         <span class="input-group-text"><i class="fas fa-search"></i></span>
                                                     </div>
-                                                    <input class="form-control" placeholder="Search" type="text">
+                                                    <input class="form-control" placeholder="Search" type="search" name="search">
                                                 </div>
                                             </div>
                                     </form>
@@ -57,7 +57,7 @@
                                         <td>{{ $franchise->id }}</td>
                                         <td>{{ $franchise->franchise_name }}</td>
                                         <td>{{ $franchise->address }}</td>
-                                        <td>{{ $franchise->created_at->format('d/m/Y H:i') }}</td>
+                                        <td>{{ Carbon\Carbon::parse($franchise->created_at)->format('d/m/Y H:i') }}</td>
                                         <td class="text-right">
                                             <div class="dropdown">
                                                 <a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -95,4 +95,8 @@
 
         @include('layouts.footers.auth')
     </div>
+
+    <script type="test/javascript">
+        document.getElementById('search-franchises').submit();
+    </script>
 @endsection

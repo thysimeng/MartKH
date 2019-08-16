@@ -22,7 +22,7 @@ Route::get('/home', 'Admin\HomeController@index')->name('home')->middleware('che
 
 // Route::get('admin/user', 'UserController@user');
 
-Route::group(['middleware' => ['web','auth']], function () {
+Route::group(['middleware' => ['web','auth','checkUserRole']], function () {
 	
 	Route::resource('admin/user', 'Admin\UserController', ['except' => ['show']]);
 	Route::get('admin/profile', ['as' => 'admin.profile.edit', 'uses' => 'Admin\ProfileController@edit']);
@@ -36,6 +36,11 @@ Route::group(['middleware' => ['web','auth']], function () {
 	Route::post('admin/franchises/{id}',['as' => 'franchises.destroy', 'uses' => 'Admin\FranchiseController@destroy']);
 	Route::get('admin/franchises/edit/{id}',['as' => 'franchises.edit', 'uses' => 'Admin\FranchiseController@edit']);
 	Route::post('admin/franchises/edit/{id}',['as' => 'franchises.update', 'uses' => 'Admin\FranchiseController@update']);
+
+	// search franchises
+	Route::get('admin/franchises/search', ['as' => 'franchises.search', 'uses' => 'Admin\FranchiseController@search']);
+	// search users
+	Route::get('admin/user/search', ['as' => 'user.search', 'uses' => 'Admin\UserController@search']);
 });
 
 Route::get('/user', function(){
