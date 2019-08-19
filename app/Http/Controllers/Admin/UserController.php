@@ -21,7 +21,7 @@ class UserController extends Controller
      */
     public function index(User $model)
     {
-        return view('admin.users.index', ['users' => $model->paginate(15)]);
+        return view('admin.users.index', ['users' => $model->paginate(10)]);
     }
 
     /**
@@ -98,7 +98,7 @@ class UserController extends Controller
         $users = User::whereRaw('LOWER(`name`) LIKE ?', '%'.trim(strtolower($search)).'%')
                     ->orWhereRaw('LOWER(`email`) LIKE ?','%'.trim(strtolower($search)).'%')
                     ->orWhereRaw('LOWER(`role`) LIKE ?','%'.trim(strtolower($search)).'%')
-                    ->paginate(15);
+                    ->paginate(10);
         
         return view('admin.users.index',['users'=> $users]);
     }

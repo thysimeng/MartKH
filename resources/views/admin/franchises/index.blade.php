@@ -81,12 +81,18 @@
                                         </td>
                                     </tr>
                                 @endforeach
+                                <!-- <tr>
+                                    <td></td>
+                                    <td></td>
+                                    <td></td>
+                                    <td colspan="5">{{$franchises->links()}}</td>
+                                </tr> -->
                             </tbody>
                         </table>
                     </div>
                     <div class="card-footer py-4">
                         <nav class="d-flex justify-content-end" aria-label="...">
-                            {{-- <!-- {{ $users->links() }} --> --}}
+                            {{ $franchises->links() }}
                         </nav>
                     </div>
                 </div>

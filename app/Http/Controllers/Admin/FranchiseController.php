@@ -17,7 +17,7 @@ class FranchiseController extends Controller
      */
     public function index(Franchise $model)
     {
-        return view('admin.franchises.index', ['franchises' => $model->paginate(15)]);
+        return view('admin.franchises.index', ['franchises' => $model->paginate(10)]);
     }
 
     /**
@@ -122,7 +122,7 @@ class FranchiseController extends Controller
         
         $franchises = Franchise::whereRaw('LOWER(`franchise_name`) LIKE ?', '%'.trim(strtolower($search)).'%')
                     ->orWhereRaw('LOWER(`address`) LIKE ?','%'.trim(strtolower($search)).'%')
-                    ->paginate(15);
+                    ->paginate(10);
         
         return view('admin.franchises.index',['franchises'=> $franchises]);
     }
