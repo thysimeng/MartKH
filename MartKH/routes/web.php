@@ -28,6 +28,7 @@ Route::group(['middleware' => 'auth'], function () {
 	Route::put('admin/profile', ['as' => 'admin.profile.update', 'uses' => 'Admin\ProfileController@update']);
 	Route::put('admin/profile/password', ['as' => 'admin.profile.password', 'uses' => 'Admin\ProfileController@password']);
 	Route::resource('admin/products', 'Admin\ProductController');
+	Route::post('/delete/{pid}', 'Admin\ProductController@destroy')->name('products.destroy');
 });
 
 Route::get('/category', 'Admin\CategoryController@index')->name('admin.category');

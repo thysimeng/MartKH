@@ -18,13 +18,14 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <form method="post" action="{{ route('products.store') }}" autocomplete="off">
+                        <form method="post" action="{{ route('products.store') }}" autocomplete="off" enctype="multipart/form-data">
                         {{-- <form method="post" action="{{ route('product.store') }}" autocomplete="off"> --}}
                             @csrf
                             <h6 class="heading-small text-muted mb-4">{{ __('Product information') }}</h6>
                             {{-- image input --}}
                             <div class="pl-lg-4">
-                                <div class="form-group{{ $errors->has('Image') ? ' has-danger' : '' }}">
+                                {{-- image address --}}
+                                {{-- <div class="form-group{{ $errors->has('Image') ? ' has-danger' : '' }}">
                                     <label class="form-control-label" for="input-image">{{ __('Image') }}</label>
                                     <input type="text" name="image" id="input-image" class="form-control form-control-alternative{{ $errors->has('image') ? ' is-invalid' : '' }}" placeholder="{{ __('Image URL') }}" required autofocus>
 
@@ -33,6 +34,21 @@
                                             <strong>{{ $errors->first('image') }}</strong>
                                         </span>
                                     @endif
+                                </div> --}}
+                                {{-- upload img --}}
+                                <div class="form-group">
+                                    <label class="form-control-label" for="input-code">{{ __('Upload Image') }}</label>
+                                    <div class="input-group">
+                                        <span class="input-group-btn">
+                                            <span class="btn btn-default btn-file">
+                                                Browse… <input type="file" id="imgInp" name="image">
+                                            </span>
+                                            <div>{{$errors->first('image')}}</div>
+                                        </span>
+                                        <input type="text" class="form-control" readonly>
+                                    </div>
+                                    <br>
+                                    <img id='img-upload' class="img-thumbnail rounded mx-auto d-block"/>
                                 </div>
                                 {{-- code and name input --}}
                                 <div class="row">
@@ -118,10 +134,10 @@
                                         </div>
                                     </div>
                                 </div>
-                                {{-- subcategory input --}}
-                                <div class="form-group{{ $errors->has('subcategory_id') ? ' has-danger' : '' }}">
-                                    <label class="form-control-label" for="input-subcategory_id">{{ __('Subcategory') }}</label>
-                                    <select class="form-control" name="subcategory_id" id="subcategory_id" required>
+                                {{-- category input --}}
+                                <div class="form-group{{ $errors->has('category_id') ? ' has-danger' : '' }}">
+                                    <label class="form-control-label" for="input-category_id">{{ __('category') }}</label>
+                                    <select class="form-control" name="category_id" id="category_id" required>
                                         {{-- @if(count($categories)>0)
                                             @foreach ($categories as $category)
                                                 <option value="{{$category->id}}"
@@ -151,6 +167,41 @@
                 </div>
             </div>
         </div>
+        <script>
+            $(document).ready( function() {
+                $(document).on('change', '.btn-file :file', function() {
+                var input = $(this),
+                    label = input.val().replace(/\\/g, '/').replace(/.*\//, '');
+                input.trigger('fileselect', [label]);
+                });
+                $('.btn-file :file').on('fileselect', function(event, label) {
+                    
+                    var input = $(this).parents('.input-group').find(':text'),
+                        log = label;
+                    
+                    if( input.length ) {
+                        input.val(log);
+                    } else {
+                        if( log ) alert(log);
+                    }
+                
+                });
+                function readURL(input) {
+                    if (input.files && input.files[0]) {
+                        var reader = new FileReader();
+                        
+                        reader.onload = function (e) {
+                            $('#img-upload').attr('src', e.target.result);
+                        }
+                        
+                        reader.readAsDataURL(input.files[0]);
+                    }
+                }
+                $("#imgInp").change(function(){
+                    readURL(this);
+                }); 	
+            });
+        </script>
 
         @include('layouts.footers.auth')
     </div>

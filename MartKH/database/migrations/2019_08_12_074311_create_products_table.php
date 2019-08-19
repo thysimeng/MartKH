@@ -27,8 +27,6 @@ class CreateProductsTable extends Migration
             $table->integer('stock_id');
             $table->integer('view');
             $table->timestamps();
-            
-
         });
     }
 

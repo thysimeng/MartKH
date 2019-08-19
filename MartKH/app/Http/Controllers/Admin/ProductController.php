@@ -5,7 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Products;
-
+use Image;
 class ProductController extends Controller
 {
     /**
@@ -41,19 +41,38 @@ class ProductController extends Controller
 
         // return helloworld;
         $this-> validate($request,[
-            'image' => 'required',
+            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'code' => 'required' ,
             'name' => 'required',
             'price' => 'required',
             'size' => 'required',
             'brand' => 'required',
             'country' => 'required',
-            'subcategory_id' => 'required',
+            'category_id' => 'required',
             'description' => 'required'
         ]);
         // return $this;
+        // $image =  $request->file('image');
+        // $img_name = rand() . '.' . $image->getClientOriginalExtension();
+        // $products->image->move(public_path('uploads.product_image'),$img_name);
+        // return $img_name;
         $products = new Products;
-        $products->image = $request->input('image');
+        // $products->image = $request->file('image');
+        // new img name
+
+        // $products->image = $request->file('image');
+        // $imgName = $file->getClientOriginalName();
+        // $imagePath = '/public/uploads/product_image';
+        // $file->move(public_path($imagePath), $picName);
+
+        if($request->hasFile('image')){
+            $image = $request->file('image');
+            $filename = time() . '.' . $image->getClientOriginalExtension();
+            Image::make($image)->resize(600, 600)->save( public_path('uploads\product_image\\' . $filename ) );
+            $products->image = $filename;
+            // $products->save();
+        };
+        
         $products->code = $request->input('code');
         $products->name = $request->input('name');
         $products->description = $request->input('description');
@@ -61,7 +80,7 @@ class ProductController extends Controller
         $products->size = $request->input('size');
         $products->brand = $request->input('brand');
         $products->country = $request->input('country');
-        $products->subcategory_id = $request->input('subcategory_id');
+        $products->category_id = $request->input('category_id');
         $products->save();
         // return redirect('/admin/products')->withStatus(__('Product successfully created.'));
         return redirect()->route('products.index')->withStatus(__('Product successfully created.'));
@@ -75,7 +94,11 @@ class ProductController extends Controller
      */
     public function show($id)
     {
-        return Products::find($id);
+        $product = Products::findOrFail($id);
+        return view('products.show',compact('product'));
+        // return Products::find($id);
+        // $sd = DB::table('products')->where('pid', '=', $societyid);
+        // return view('admin.modalview', ['sd' => $sd])->render();
     }
 
     /**
@@ -86,7 +109,9 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        //
+        // $product = Products::where('pid',$id)->get()->first();
+        $product = Products::find($id);
+        return view('admin.products.edit',compact('product'));
     }
 
     /**
@@ -98,7 +123,32 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $this-> validate($request,[
+            'image' => 'required',
+            'code' => 'required' ,
+            'name' => 'required',
+            'price' => 'required',
+            'size' => 'required',
+            'brand' => 'required',
+            'country' => 'required',
+            'category_id' => 'required',
+            'description' => 'required'
+        ]);
+        //return $this;
+        $products = Products::find($id);
+        $products->image = $request->input('image');
+        $products->code = $request->input('code');
+        $products->name = $request->input('name');
+        $products->description = $request->input('description');
+        $products->price = $request->input('price');
+        $products->size = $request->input('size');
+        $products->brand = $request->input('brand');
+        $products->country = $request->input('country');
+        $products->category_id = $request->input('category_id');
+        // return $products;
+        $products->save();
+        // return redirect('/admin/products')->withStatus(__('Product successfully created.'));
+        return redirect()->route('products.index')->withStatus(__('Product successfully updated.'));
     }
 
     /**
@@ -109,6 +159,9 @@ class ProductController extends Controller
      */
     public function destroy($id)
     {
-        //
+        $product = Products::findOrFail($id);
+        $product->delete();
+  
+        return redirect()->route('products.index')->withStatus(__('Product successfully deleted.'));
     }
 }

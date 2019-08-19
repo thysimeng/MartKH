@@ -44,19 +44,19 @@
                         <table class="table align-items-center table-flush table-hover">
                             <thead class="thead-light">
                                 <tr>
+                                    <th scope="col">{{ __('PID') }}</th>
                                     <th scope="col">{{ __('Code') }}</th>
-                                    {{-- <th scope="col">{{ __('Product ID') }}</th> --}}
                                     <th scope="col">{{ __('Image') }}</th>
                                     <th scope="col">{{ __('Name') }}</th>
                                     <th scope="col">{{ __('Price') }}</th>
                                     <th scope="col">{{ __('Size') }}</th>
-                                    {{-- <th scope="col">{{ __('Brand') }}</th>
-                                    <th scope="col">{{ __('Country') }}</th> --}}
-                                    {{-- <th scope="col">{{ __('Subcategory ID') }}</th>
-                                    <th scope="col">{{ __('Stock ID') }}</th> --}}
-                                    {{-- <th scope="col">{{ __('View') }}</th>
+                                    <th scope="col">{{ __('Brand') }}</th>
+                                    <th scope="col">{{ __('Country') }}</th>
+                                    {{-- <th scope="col">{{ __('Subcategory ID') }}</th> --}}
+                                    {{-- <th scope="col">{{ __('Stock ID') }}</th> --}}
+                                    {{-- <th scope="col">{{ __('View') }}</th> --}}
                                     <th scope="col">{{ __('Created Date') }}</th>
-                                    <th scope="col">{{ __('Updated Date') }}</th> --}}
+                                    {{-- <th scope="col">{{ __('Updated Date') }}</th> --}}
                                     {{-- <th scope="col">{{ __('Description') }}</th> --}}
                                     <th scope="col">{{ __('Action') }}</th>
                                 </tr>
@@ -64,17 +64,15 @@
                             <tbody>
                                 @foreach ($products as $product)
                                     <tr>
-                                        {{-- <td>{{ $product->pid }}</td> --}}
+                                        <td>{{ $product->pid }}</td>
                                         <td>{{ $product->code }}</td>
-                                        <td><img src="{{ $product->image }}" alt="" class="img-thumbnail " style="width:100px;heigth:100px;"></td>
-                                        
+                                        <td><img src="{{asset( 'uploads/product_image/' . $product->image )}}" alt="" class="img-thumbnail " style="width:100px;heigth:100px;"></td>                                      
                                         <td>{{ $product->name }}</td>
-                                        {{-- <td>{{ $product->description }}</td> --}}
                                         <td>{{ $product->price }}</td>
                                         <td>{{ $product->size }}</td>
-                                        {{-- <td>{{ $product->brand }}</td>
-                                        <td>{{ $product->country }}</td> --}}
-                                        <!-- {{-- <td>{{ $p->created_at->format('d/m/Y H:i') }}</td> --}} -->
+                                        <td>{{ $product->brand }}</td>
+                                        <td>{{ $product->country }}</td>
+                                        <td>{{ $product->created_at->format('d/m/Y H:i') }}</td>
                                         {{-- <td>{{ $product->description }}</td> --}}
                                         <td>
                                         {{-- dot button to right most --}}
@@ -87,15 +85,19 @@
                                                     {{-- delete fucntion --}}
                                                     {{-- @if ($product->pid != auth()->id()) --}}
                                                         {{-- <form action="{{ route('user.destroy', $user) }}" method="post"> --}}
-                                                        <form action="" method="post">
+                                                        <form action="products/{{$product->pid}}" method="post">
                                                             @csrf
                                                             @method('delete')
                                                             {{-- <a class="dropdown-item" href="{{ route('user.edit', $user) }}">{{ __('Edit') }}</a> --}}
-                                                        <a class="dropdown-item" href="/products/{{$product->pid}}">{{ __('View') }}</a>
-                                                            <a class="dropdown-item" href="">{{ __('Edit') }}</a>
-                                                            <button type="button" class="dropdown-item" onclick="confirm('{{ __("Are you sure you want to delete this user?") }}') ? this.parentElement.submit() : ''">
-                                                                {{ __('Delete') }}
-                                                            </button>
+                                                            <button type="button" class="dropdown-item openImageDialog" data-toggle="modal" data-target="#viewProduct" data-pid="{{ $product->pid }}" data-name="{{ $product->name }}" 
+                                                                data-code="{{ $product->code }}" data-price="{{ $product->price }}" data-brand="{{ $product->brand }}" 
+                                                                data-country="{{ $product->country }}" data-size="{{ $product->size }}" data-image="{{ $product->image }}"
+                                                                data-description="{{ $product->description }}" data-created_at="{{ $product->created_at->format('d/m/Y H:i') }}"
+                                                                data-update="{{ $product->updated_at->format('d/m/Y H:i') }}" data-subcategory_id="{{ $product->subcategory_id }}">{{ __('View') }}</button> 
+                                                            <a class="dropdown-item" href="/admin/products/{{$product->pid}}/edit" id="edit">{{ __('Edit') }}</a>
+                                                            <button class="dropdown-item " type="submit">Delete</button>
+ 
+                                                            
                                                         </form>
                                                     {{-- @else
                                                         <a class="dropdown-item" href="{{ route('admin.profile.edit') }}">{{ __('Edit') }}</a>
@@ -116,8 +118,129 @@
                     </div>
                 </div>
             </div>
-        </div>
-
+        </div>        
+    <script>
+        $(document).ready(function(){
+            $(function() {
+                $('#viewProduct').on("show.bs.modal", function (e) {
+                    $("#pid").html($(e.relatedTarget).data('pid'));
+                    $("#name").html($(e.relatedTarget).data('name'));
+                    $("#code").html($(e.relatedTarget).data('code'));
+                    $("#brand").html($(e.relatedTarget).data('brand'));
+                    $("#price").html($(e.relatedTarget).data('price'));
+                    $("#size").html($(e.relatedTarget).data('size'));
+                    $("#country").html($(e.relatedTarget).data('country'));
+                    $("#description").html($(e.relatedTarget).data('description'));
+                    $("#subcategory_id").html($(e.relatedTarget).data('subcategory_id'));
+                    $("#created_at").html($(e.relatedTarget).data('created_at'));
+                    // $("#update").html($(e.relatedTarget).data('updated_at'));
+                    
+                    // $('#imagesrc').attr('src',$("#image").html($(e.relatedTarget).data('image'));
+                });
+            });
+        });
+        $(document).on("click", ".openImageDialog", function () {
+            var imgsrc = $(this).data('image');
+            var imgsrc_path = '/uploads/product_image/'.concat(imgsrc);
+            $('#imagesrc').attr('src',imgsrc_path);
+            // console.log(imgsrc);
+        });
+    </script>
         @include('layouts.footers.auth')
     </div>
+    <div class="modal fade" id="viewProduct" tabindex="-1" role="dialog" aria-labelledby="viewProductTitle" aria-hidden="true">
+            <div class="modal-dialog modal-xxl modal-dialog-centered " role="document">
+              <div class="modal-content">
+                <div class="modal-header red-brown">
+                <h3 class="modal-title text-white">Product Information :</h3>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true" class="text-white">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                    <div class="row">    
+                        <div class="col-lg-6">
+                            <img id="imagesrc" style="width:auto;"/>
+                        </div>
+                        <div class="col-lg-6">
+                            <div class="row mt-3">
+                                <div class="col-lg-4">
+                                    <span>Name : </span>
+                                </div>
+                                <div class="col-lg-8">
+                                    <span id="name"></span>
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-lg-4">
+                                    <span>Code : </span>
+                                </div>
+                                <div class="col-lg-8">
+                                    <span id="code"></span>
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                    <div class="col-lg-4">
+                                        <span>Price : </span>
+                                    </div>
+                                    <div class="col-lg-8">
+                                        <span id="price"></span>
+                                    </div>
+                                </div>
+                            <div class="row mt-3">
+                                <div class="col-lg-4">
+                                    <span>Size : </span>
+                                </div>
+                                <div class="col-lg-8">
+                                    <span id="size"></span>
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-lg-4">
+                                    <span>Brand : </span>
+                                </div>
+                                <div class="col-lg-8">
+                                    <span id="brand"></span>
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-lg-4">
+                                    <span>Country : </span>
+                                </div>
+                                <div class="col-lg-8">
+                                    <span id="country"></span>
+                                </div>
+                            </div>
+                            <div class="row mt-3">
+                                <div class="col-lg-4">
+                                    <span>Created date : </span>
+                                </div>
+                                <div class="col-lg-8">
+                                    <span id="created_at"></span>
+                                </div>
+                            </div>
+                            {{-- <div class="row mt-3">
+                                <div class="col-lg-4">
+                                    <span>Updated date : </span>
+                                </div>
+                                <div class="col-lg-8">
+                                    <span id="updated_at"></span>
+                                </div>
+                            </div> --}}
+                            <div class="row mt-3">
+                                <div class="col-lg-4">
+                                    <span>Description : </span>
+                                </div>
+                                <div class="col-lg-8">
+                                    <span><h5 id="description"></h5></span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+              </div>
+            </div>
+        </div>
 @endsection
+
+
