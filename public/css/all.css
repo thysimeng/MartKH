@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-@import url(https://fonts.googleapis.com/css?family=Nunito);@charset "UTF-8";
-=======
 @import url(https://fonts.googleapis.com/css?family=Nunito);
->>>>>>> lyheang
 
 /*!
  * Bootstrap v4.3.1 (https://getbootstrap.com/)
@@ -605,21 +601,13 @@ pre code {
 
 @media (min-width: 992px) {
   .container {
-<<<<<<< HEAD
-    max-width: 960px;
-=======
     max-width: 1140px;
->>>>>>> lyheang
   }
 }
 
 @media (min-width: 1200px) {
   .container {
-<<<<<<< HEAD
-    max-width: 1140px;
-=======
     max-width: 1140px !important;
->>>>>>> lyheang
   }
 }
 
@@ -6142,9 +6130,6 @@ a.close.disabled {
 
 @media (min-width: 1200px) {
   .modal-xl {
-<<<<<<< HEAD
-    max-width: 1140px;
-=======
     max-width: 1140px !important;
   }
 }
@@ -6152,7 +6137,6 @@ a.close.disabled {
 @media (min-width: 1200px) {
   .modal-xxl {
     max-width: 1400px !important;
->>>>>>> lyheang
   }
 }
 
@@ -11443,11 +11427,7 @@ pre code
 {
     .container
     {
-<<<<<<< HEAD
-        max-width: 1140px;
-=======
         max-width: 1140px !important;
->>>>>>> lyheang
     }
 }
 
@@ -32551,9 +32531,6 @@ html:not([dir='rtl']) .noUi-horizontal .noUi-handle
 }
 
 ::-webkit-scrollbar {
-<<<<<<< HEAD
-display: none;
-=======
     -webkit-appearance: none;
     width: 0;
     height: 5px;
@@ -32590,5 +32567,4 @@ display: none;
   background: white;
   cursor: inherit;
   display: block;
->>>>>>> lyheang
 }

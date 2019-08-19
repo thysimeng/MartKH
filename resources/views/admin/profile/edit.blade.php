@@ -74,7 +74,6 @@
                         </div>
                     </div>
                     <div class="card-body">
-<<<<<<< HEAD:resources/views/admin/profile/edit.blade.php
 
                     <h6 class="heading-small text-muted mb-5">{{ __('User information') }}</h6>
                             
@@ -126,8 +125,6 @@
                         </div>
 
                         
-=======
->>>>>>> lyheang:resources/views/admin/profile/edit.blade.php
                         
 
                         <form method="post" action="{{ route('admin.profile.update') }}" autocomplete="off">

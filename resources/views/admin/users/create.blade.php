@@ -1,11 +1,7 @@
 @extends('layouts.app', ['title' => __('User Management')])
 
 @section('content')
-<<<<<<< HEAD:resources/views/admin/users/create.blade.php
     @include('admin.users.partials.header', ['title' => __('Add User')])   
-=======
-    @include('admin.users.partials.header', ['title' => __('Add User')])
->>>>>>> lyheang:resources/views/admin/users/create.blade.php
 
     <div class="container-fluid mt--7">
         <div class="row">

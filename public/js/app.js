@@ -49507,13 +49507,8 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-<<<<<<< HEAD
-__webpack_require__(/*! D:\Documents\GitHub\MartKH\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! D:\Documents\GitHub\MartKH\resources\sass\app.scss */"./resources/sass/app.scss");
-=======
-__webpack_require__(/*! C:\Users\asd\Documents\GitHub\MartKH\MartKH\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\asd\Documents\GitHub\MartKH\MartKH\resources\sass\app.scss */"./resources/sass/app.scss");
->>>>>>> lyheang
+__webpack_require__(/*! C:/Users/asd/Documents/GitHub/MKHv2/MartKH/public/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\asd\Documents\GitHub\MKHv2\MartKH\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

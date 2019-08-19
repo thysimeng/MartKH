@@ -21878,10 +21878,6 @@ html:not([dir='rtl']) .noUi-horizontal .noUi-handle
 }
 
 ::-webkit-scrollbar {
-<<<<<<< HEAD:public/argon/css/argon.css
-display: none;
-}
-=======
     -webkit-appearance: none;
     width: 0;
     height: 5px;
@@ -21899,4 +21895,3 @@ display: none;
 .red-brown{
     background-image: -webkit-linear-gradient(left, #fd0202 0%, #881c1c 100%);
 }
->>>>>>> lyheang:public/argon/css/argon.css
