@@ -1,4 +1,12 @@
-
-MartKH/database/migrations/2019_08_12_074315_create_stocks_table.php
-MartKH/database/migrations/2019_08_12_074316_create_products_table.php
-MartKH/database/migrations/2019_08_12_074316_create_products_table.php
+/node_modules
+/public/hot
+/public/storage
+/storage/*.key
+/vendor
+.env
+.env.backup
+.phpunit.result.cache
+Homestead.json
+Homestead.yaml
+npm-debug.log
+yarn-error.log
