@@ -116,11 +116,7 @@
                 </li>
 
                 <li class="nav-item">
-<<<<<<< HEAD:resources/views/layouts/navbars/sidebar.blade.php
-                    <a class="nav-link" href="{{ route('home') }}">
-=======
                     <a class="nav-link" href="{{ route('admin.category') }}">
->>>>>>> lyheang:resources/views/layouts/navbars/sidebar.blade.php
                         {{-- <i class="ni ni-tv-2 text-primary"></i>  --}}
                         <i class="fas fa-store-alt" style="color:#1a8a6b;"></i>{{ __('Category') }}
                     </a>
@@ -134,11 +130,7 @@
                 </li>
 
                 <li class="nav-item">
-<<<<<<< HEAD:resources/views/layouts/navbars/sidebar.blade.php
                     <a class="nav-link" href="{{ route('franchises.index') }}">
-=======
-                    <a class="nav-link" href="{{ route('home') }}">
->>>>>>> lyheang:resources/views/layouts/navbars/sidebar.blade.php
                         {{-- <i class="ni ni-tv-2 text-primary"></i>  --}}
                         <i class="fas fa-map-marked-alt" style="color:#f4645f;"></i> {{ __('Franchise') }}
                     </a>
