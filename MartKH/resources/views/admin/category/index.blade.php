@@ -11,7 +11,7 @@
                                 <ul class="nav nav-tabs card-header-tabs" id="bologna-list" role="tablist">
                                             <div class="col-4 text-left">
                                                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">{{ __('Add Category') }}</button>
-                                                <button type="button" class="btn " ><a href="/view-sub-category">{{ __('View Sub Category') }}</a></button>
+                                                <button type="button" class="btn " ><a href="/category/sub-category">{{ __('View Sub Category') }}</a></button>
                                             </div>
 
                                             <form class="col-4" action="/search" method="get" role="search">
@@ -78,7 +78,7 @@
                                                     <i class="fas fa-ellipsis-v"></i>
                                                 </a>
                                                 <div data-id="{{$item->cid}}"  class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                                    <a onclick="edit(this)"  class="dropdown-item" data-toggle="modal" data-target="#editModalCenter" href="">{{ __('Edit') }}</a>
+                                                    <a onclick="edit({{$item->cid}}, '{{$item->categories_name}}')"  class="dropdown-item" data-toggle="modal" data-target="#editModalCenter" href="">{{ __('Edit') }}</a>
                                             
                                                     {{-- <a class="dropdown-item" href="">{{ __('View') }}</a> --}}
                                                     <a class="dropdown-item" href="/delete/{{ $item->cid }}">{{ __('Delete') }}</a>
@@ -88,30 +88,28 @@
                                     </tr>
                                
                                     <div class="modal fade" id="editModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                                    <form action="/edit/" method="post">
-                                        <div class="modal-dialog modal-dialog-centered" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="exampleModalCenterTitle">Add Category</h5>
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
-                                                        </button>
-                                                    </div>
-                                                    <input type="hidden" name="id" value="" >
-                                                    @csrf
-                                                    <div class="modal-body">
-                                                        <input type="text" class="form-control" name="category_name" value="" required placeholder="">
-                                                    </div>
-                                                    <div  class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                        <button onclick="saveEdit()"  class="btn btn-primary">Save changes</button>
+                                        <form action="/edit" method="post">
+                                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                                    <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalCenterTitle">Edit Category</h5>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <input type="hidden" name="category_id" value="" >
+                                                        @csrf
+                                                        <div class="modal-body">
+                                                            <input type="text" class="form-control" name="category_name" value="" required placeholder="">
+                                                        </div>
+                                                        <div  class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                            <button onclick="saveEdit()"  class="btn btn-primary">Save changes</button>
+                                                        </div>
                                                     </div>
                                                 </div>
-                                            </div>
-                                    </form>
-                                        
+                                        </form>
                                     </div>
-                                  
                                     @endforeach
                             </tbody>
                         </table>
@@ -131,15 +129,9 @@
 <script>
     var id = null;
 
-    function edit(clickEdit){
-        var myid = $(clickEdit).parent().attr("data-id");
-        this.id = myid;    
-    }
-
-    function saveEdit(){
-        var name = document.getElementById("input_category").value;
-        console.log('ID:::',this.id)   
-        console.log('ID:::',name)    
+    function edit(id,name) {
+        document.querySelector('[name="category_id"]').setAttribute('value', id);
+        document.querySelector('[name="category_name"]').setAttribute('value', name);
     }
 
 </script>
