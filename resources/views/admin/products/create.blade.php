@@ -135,9 +135,9 @@
                                     </div>
                                 </div>
                                 {{-- category input --}}
-                                <div class="form-group{{ $errors->has('category_id') ? ' has-danger' : '' }}">
-                                    <label class="form-control-label" for="input-category_id">{{ __('category') }}</label>
-                                    <select class="form-control" name="category_id" id="category_id" required>
+                                <div class="form-group{{ $errors->has('subcategory_id') ? ' has-danger' : '' }}">
+                                    <label class="form-control-label" for="input-subcategory_id">{{ __('subcategory') }}</label>
+                                    <select class="form-control" name="subcategory_id" id="subcategory_id" required>
                                         {{-- @if(count($categories)>0)
                                             @foreach ($categories as $category)
                                                 <option value="{{$category->id}}"

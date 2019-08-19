@@ -48,7 +48,7 @@ class ProductController extends Controller
             'size' => 'required',
             'brand' => 'required',
             'country' => 'required',
-            'category_id' => 'required',
+            'subcategory_id' => 'required',
             'description' => 'required'
         ]);
         // return $this;
@@ -80,7 +80,7 @@ class ProductController extends Controller
         $products->size = $request->input('size');
         $products->brand = $request->input('brand');
         $products->country = $request->input('country');
-        $products->category_id = $request->input('category_id');
+        $products->subcategory_id = $request->input('subcategory_id');
         $products->save();
         // return redirect('/admin/products')->withStatus(__('Product successfully created.'));
         return redirect()->route('products.index')->withStatus(__('Product successfully created.'));
