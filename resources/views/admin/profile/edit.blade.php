@@ -74,6 +74,7 @@
                         </div>
                     </div>
                     <div class="card-body">
+<<<<<<< HEAD:resources/views/admin/profile/edit.blade.php
 
                     <h6 class="heading-small text-muted mb-5">{{ __('User information') }}</h6>
                             
@@ -125,6 +126,8 @@
                         </div>
 
                         
+=======
+>>>>>>> lyheang:resources/views/admin/profile/edit.blade.php
                         
 
                         <form method="post" action="{{ route('admin.profile.update') }}" autocomplete="off">
@@ -132,6 +135,30 @@
                             @method('put')
 
                             
+<<<<<<< HEAD:resources/views/admin/profile/edit.blade.php
+=======
+                            
+                            
+                            @if (session('status'))
+                                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                    {{ session('status') }}
+                                    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                                        <span aria-hidden="true">&times;</span>
+                                    </button>
+                                </div>
+                            @endif
+                            
+                            {{-- img --}}
+                            <div class="justify-content-center pt-lg-4" >
+                                    {{-- <div class="pl-lg-4"> --}}
+                                            <div class="card-profile-image" style="position:relative !important;">
+                                                <a href="#">
+                                                    <img src="{{ asset('argon') }}/img/theme/panda.jpg" class="rounded-circle">
+                                                </a>
+                                            </div>
+                                    {{-- </div> --}}
+                            </div>
+>>>>>>> lyheang:resources/views/admin/profile/edit.blade.php
 
                             <div class="pl-lg-4">
                                 <div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">

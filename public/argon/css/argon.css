@@ -774,7 +774,7 @@ pre code
 {
     .container
     {
-        max-width: 1140px;
+        max-width: 1140px !important;
     }
 }
 
@@ -21878,5 +21878,25 @@ html:not([dir='rtl']) .noUi-horizontal .noUi-handle
 }
 
 ::-webkit-scrollbar {
+<<<<<<< HEAD:public/argon/css/argon.css
 display: none;
 }
+=======
+    -webkit-appearance: none;
+    width: 0;
+    height: 5px;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 4px;
+    background: rgba(0, 0, 0, .3)
+}
+  
+::-webkit-scrollbar-thumb:hover {
+    background-color: #5e72e4;
+}
+
+.red-brown{
+    background-image: -webkit-linear-gradient(left, #fd0202 0%, #881c1c 100%);
+}
+>>>>>>> lyheang:public/argon/css/argon.css
