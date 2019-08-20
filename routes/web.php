@@ -12,7 +12,7 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect('/users');;
 });
 
 Auth::routes();
@@ -55,9 +55,9 @@ Route::group(['middleware' => ['web','auth','checkUserRole']], function () {
 	Route::post('/admin/sub_category/edit', 'Admin\SubCategoryController@edit')->name('admin.category.edit_sub_category');
 });
 
-// Route::get('/user', function(){
-// 	return view('user');
-// })->name('normalUser');
+Route::get('/user', function(){
+	return redirect('/users');
+})->name('normalUser');
 
 Route::get('/users', 'UsersController\UserHomeController@index')->name('home');
 Route::get('/users/shop', 'UsersController\ProductDisplayController@index')->name('productDisplay');
