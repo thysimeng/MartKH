@@ -10,6 +10,7 @@ use App\Http\Controllers\Controller;
 use Auth;
 use Image;
 use Alert;
+use File;
 
 class ProfileController extends Controller
 {
@@ -62,11 +63,20 @@ class ProfileController extends Controller
     {
         if($request->hasFile('avatar'))
         {
+            $user = Auth::user();
+            if($user->avatar != 'default.png')
+            {
+                $userImage = public_path('uploads\avatar\\'.$user->avatar);
+                if(file_exists($userImage))
+                {
+                    File::delete($userImage);
+                }
+                else return "{$user->avatar} ,{$userImage}";
+            }
             $avatar = $request->file('avatar');
             $fileName = time().'.'.$avatar->getClientOriginalExtension();
-        Image::make($avatar)->resize(400,400)->save( public_path('uploads\avatar\\'.$fileName));
+            Image::make($avatar)->resize(400,400)->save( public_path('uploads\avatar\\'.$fileName));
 
-            $user = Auth::user();
             $user->avatar = $fileName;
             $user->save();
 

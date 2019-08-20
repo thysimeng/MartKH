@@ -113,7 +113,7 @@
                                         </div>
                                     </div>
                                     <div class="text-center mt-3">
-                                            <input type="submit" class="btn btn-success rounded" value="{{ __('Upload') }}">
+                                            <input type="submit" class="btn btn-success rounded upload-btn" value="{{ __('Upload') }}">
                                     </div>
                                     
                                     
@@ -242,6 +242,23 @@
                 var i = $(this).prev('#input-file-label').clone();
                 var file = $('#upload-avatar')[0].files[0].name;
                 $(this).next('#input-file-label').text(file);
+            });
+
+            $('.upload-btn').click(function(e){
+                e.preventDefault();
+                Swal.fire({
+                    title: 'Are you sure?',
+                    text: "You can not switch back to current profile picture!",
+                    type: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes'
+                }).then((result) => {
+                if (result.value) {
+                    this.parentElement.submit()
+                }
+                })
             });
 
         });
