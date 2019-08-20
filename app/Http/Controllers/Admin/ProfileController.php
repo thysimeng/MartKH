@@ -9,6 +9,7 @@ use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\Controller;
 use Auth;
 use Image;
+use Alert;
 
 class ProfileController extends Controller
 {
@@ -19,6 +20,15 @@ class ProfileController extends Controller
      */
     public function edit()
     {
+        if (session('status'))
+        {
+            Alert::success('Success', session('status'));
+        }
+        if (session('password_status'))
+        {
+            Alert::success('Success', session('password_status'));
+        }
+
         return view('admin.profile.edit');
     }
 

@@ -10,6 +10,7 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Alert;
 
 class UserController extends Controller
 {
@@ -21,6 +22,10 @@ class UserController extends Controller
      */
     public function index(User $model)
     {
+        if (session('status'))
+        {
+            Alert::success('Success', session('status'));
+        }
         return view('admin.users.index', ['users' => $model->paginate(10)]);
     }
 

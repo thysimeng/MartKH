@@ -3,8 +3,8 @@
 @section('content')
     @include('admin.users.partials.header', [
         'title' => __('Hello') . ' '. auth()->user()->name,
-        'description' => __('This is your profile page. You can see the progress you\'ve made with your work and manage your projects or assigned tasks'),
-        'class' => 'col-lg-7'
+        'description' => __('This is your profile page.'),
+        'class' => 'col-lg-12'
     ])   
     
 
@@ -77,14 +77,15 @@
 
                     <h6 class="heading-small text-muted mb-5">{{ __('User information') }}</h6>
                             
-                        @if (session('status'))
+                        <!-- Success Message -->
+                        <!-- @if (session('status'))
                             <div class="alert alert-success alert-dismissible fade show mb-5" role="alert">
                                 {{ session('status') }}
                                 <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                     <span aria-hidden="true">&times;</span>
                                 </button>
                             </div>
-                        @endif
+                        @endif -->
                         
                         <!-- img -->
                         <div class="justify-content-center pt-lg-4" >
@@ -97,20 +98,22 @@
                                 <!-- {{-- </div> --}} -->
                         </div>
 
+                        <h6 class="heading-small text-muted mb-4">{{ __('Profile Picture') }}</h6>
+
                         <div class="pl-lg-4">
                             <div class="form-group{{ $errors->has('avatar') ? ' has-danger' : '' }}">
                                 <form action="{{ route('admin.profile.upload') }}" enctype="multipart/form-data" method="post">
                                     @csrf
-                                    <label class="form-control-label" for="upload-avatar">{{ __('Update Profile Picture') }}</label>
+                                    <!-- <label class="form-control-label" for="upload-avatar">{{ __('Update Profile Picture') }}</label> -->
                                     <br>
                                     <div class="input-group">
                                         <div class="custom-file">
                                             <input type="file" name="avatar" id="upload-avatar" class="{{ $errors->has('avatar') ? ' is-invalid' : '' }} custom-file-input">
                                             <label class="custom-file-label" for="upload-avatar" id="input-file-label">{{ __('Choose file')}}</label>
                                         </div>
-                                        <div class="input-group-prepend">
+                                    </div>
+                                    <div class="text-center mt-3">
                                             <input type="submit" class="btn btn-success rounded" value="{{ __('Upload') }}">
-                                        </div>
                                     </div>
                                     
                                     
@@ -124,8 +127,9 @@
                             </div>
                         </div>
 
-                        
-                        
+                        <hr>
+
+                        <h6 class="heading-small text-muted mb-4">{{ __('Name and Email') }}</h6>
 
                         <form method="post" action="{{ route('admin.profile.update') }}" autocomplete="off">
                             @csrf
@@ -167,14 +171,15 @@
 
                             <h6 class="heading-small text-muted mb-4">{{ __('Password') }}</h6>
 
-                            @if (session('password_status'))
+                            <!-- Password Success Status -->
+                            <!-- @if (session('password_status'))
                                 <div class="alert alert-success alert-dismissible fade show" role="alert">
                                     {{ session('password_status') }}
                                     <button type="button" class="close" data-dismiss="alert" aria-label="Close">
                                         <span aria-hidden="true">&times;</span>
                                     </button>
                                 </div>
-                            @endif
+                            @endif -->
 
                             <div class="pl-lg-4">
                                 <div class="form-group{{ $errors->has('old_password') ? ' has-danger' : '' }}">
