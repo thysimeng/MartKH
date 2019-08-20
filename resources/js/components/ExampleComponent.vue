@@ -1,23 +1,26 @@
 <template>
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header">Example Component</div>
-
-                    <div class="card-body">
-                        I'm an example component.
+    <div>
+        <div>
+            <div>
+                <div>
+                    <div>
+                        <h1>
+                            {{ message }}
+                        </h1>
                     </div>
+                    <p>What do you want to see?Click button show</p>
+                    <button @click=" showLoginButton = !showLoginButton">Show</button>
                 </div>
             </div>
         </div>
+        <div v-if="!showLoginButton">
+            <p>Hello Thy Si Meng</p>
+        </div>
+        <p>{{ showSlideP }}</p>
     </div>
 </template>
 
 <script>
     export default {
-        mounted() {
-            console.log('Component mounted.')
-        }
     }
 </script>

@@ -23,7 +23,7 @@ Route::get('/home', 'Admin\HomeController@index')->name('home')->middleware('che
 
 Route::group(['middleware' => ['web','auth','checkUserRole']], function () {
 
-	
+
 	Route::resource('admin/user', 'Admin\UserController', ['except' => ['show']]);
 	Route::get('admin/profile', ['as' => 'admin.profile.edit', 'uses' => 'Admin\ProfileController@edit']);
 	Route::put('admin/profile', ['as' => 'admin.profile.update', 'uses' => 'Admin\ProfileController@update']);
@@ -55,7 +55,13 @@ Route::group(['middleware' => ['web','auth','checkUserRole']], function () {
 	Route::post('/admin/sub_category/edit', 'Admin\SubCategoryController@edit')->name('admin.category.edit_sub_category');
 });
 
-Route::get('/user', function(){
-	return view('user');
-})->name('normalUser');
+// Route::get('/user', function(){
+// 	return view('user');
+// })->name('normalUser');
 
+Route::get('/users', 'UsersController\UserHomeController@index')->name('home');
+Route::get('/users/shop', 'UsersController\ProductDisplayController@index')->name('productDisplay');
+Route::get('/users/food', 'UsersController\ProductsController@food')->name('productFood');
+Route::get('/users/all', 'UsersController\ProductsController@get')->name('productFood');
+
+Route::get('/usersTest', 'UsersController\temp\testController@index')->name('get');
