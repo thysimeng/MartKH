@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Products;
 use Image;
+use File;
+use RealRashid\SweetAlert\Facades\Alert;
 class ProductController extends Controller
 {
     /**
@@ -16,6 +18,8 @@ class ProductController extends Controller
     public function index()
     {
         $products = Products::all();
+
+
         return view('admin.products.index',compact('products'));
     }
 
@@ -37,9 +41,6 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-
-
-        // return helloworld;
         $this-> validate($request,[
             'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'code' => 'required' ,
@@ -51,20 +52,8 @@ class ProductController extends Controller
             'subcategory_id' => 'required',
             'description' => 'required'
         ]);
-        // return $this;
-        // $image =  $request->file('image');
-        // $img_name = rand() . '.' . $image->getClientOriginalExtension();
-        // $products->image->move(public_path('uploads.product_image'),$img_name);
-        // return $img_name;
         $products = new Products;
-        // $products->image = $request->file('image');
-        // new img name
-
-        // $products->image = $request->file('image');
-        // $imgName = $file->getClientOriginalName();
-        // $imagePath = '/public/uploads/product_image';
-        // $file->move(public_path($imagePath), $picName);
-
+        // store and resize image to folder uploads/product_image
         if($request->hasFile('image')){
             $image = $request->file('image');
             $filename = time() . '.' . $image->getClientOriginalExtension();
@@ -72,7 +61,6 @@ class ProductController extends Controller
             $products->image = $filename;
             // $products->save();
         };
-        
         $products->code = $request->input('code');
         $products->name = $request->input('name');
         $products->description = $request->input('description');
@@ -82,8 +70,9 @@ class ProductController extends Controller
         $products->country = $request->input('country');
         $products->subcategory_id = $request->input('subcategory_id');
         $products->save();
-        // return redirect('/admin/products')->withStatus(__('Product successfully created.'));
-        return redirect()->route('products.index')->withStatus(__('Product successfully created.'));
+        Alert::success('Product Creation', 'Successfully Created');
+        // return redirect()->route('products.index')->withStatus(__('Product successfully created.'));
+        return redirect()->route('products.index');
     }
 
     /**
@@ -96,9 +85,6 @@ class ProductController extends Controller
     {
         $product = Products::findOrFail($id);
         return view('products.show',compact('product'));
-        // return Products::find($id);
-        // $sd = DB::table('products')->where('pid', '=', $societyid);
-        // return view('admin.modalview', ['sd' => $sd])->render();
     }
 
     /**
@@ -124,19 +110,34 @@ class ProductController extends Controller
     public function update(Request $request, $id)
     {
         $this-> validate($request,[
-            'image' => 'required',
+            'imgDB' => '',
+            'image' => 'max:2048',
             'code' => 'required' ,
             'name' => 'required',
             'price' => 'required',
             'size' => 'required',
             'brand' => 'required',
             'country' => 'required',
-            'category_id' => 'required',
+            'subcategory_id' => 'required',
             'description' => 'required'
         ]);
         //return $this;
         $products = Products::find($id);
-        $products->image = $request->input('image');
+
+        if($request->hasFile('image')){
+            // upload a new file
+            $image = $request->file('image');
+            $image_old = $request->input('imgDB');
+            $filename = time() . '.' . $image->getClientOriginalExtension();
+            Image::make($image)->resize(600, 600)->save( public_path('uploads\product_image\\' . $filename ) );
+            File::delete(public_path('uploads\product_image\\' . $image_old));
+            $products->image = $filename;
+            // $products->save();
+        }
+        else {
+            // existing image file
+            $products->image = $request->input('imgDB');
+        };
         $products->code = $request->input('code');
         $products->name = $request->input('name');
         $products->description = $request->input('description');
@@ -144,11 +145,13 @@ class ProductController extends Controller
         $products->size = $request->input('size');
         $products->brand = $request->input('brand');
         $products->country = $request->input('country');
-        $products->category_id = $request->input('category_id');
+        $products->subcategory_id = $request->input('subcategory_id');
         // return $products;
         $products->save();
         // return redirect('/admin/products')->withStatus(__('Product successfully created.'));
-        return redirect()->route('products.index')->withStatus(__('Product successfully updated.'));
+        Alert::success('Product Update', 'Successfully Updated');
+        return redirect()->route('products.index');
+        // return redirect()->route('products.index')->withStatus(__('Product successfully updated.'));
     }
 
     /**
@@ -161,7 +164,7 @@ class ProductController extends Controller
     {
         $product = Products::findOrFail($id);
         $product->delete();
-  
-        return redirect()->route('products.index')->withStatus(__('Product successfully deleted.'));
+        return redirect()->route('products.index');  
+        // return redirect()->route('products.index')->withStatus(__('Product successfully deleted.'));
     }
 }
