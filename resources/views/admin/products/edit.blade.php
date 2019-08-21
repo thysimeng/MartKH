@@ -19,7 +19,8 @@
                     </div>
                     <div class="card-body">
                         {{-- <form method="post" action="{{ route('products.update', $product) }}" autocomplete="off"> --}}
-                        <form method="post" action="{{ route('products.update',$product->pid) }}" autocomplete="off" enctype="multipart/form-data">
+                        {{-- <form method="post" action="{{ route('products.update',$product->pid) }}" autocomplete="off" enctype="multipart/form-data"> --}}
+                        <form method="post" action="{{ route('products.update',$product->id) }}" autocomplete="off" enctype="multipart/form-data">
                             @csrf
                             @method('put')
 
@@ -56,7 +57,7 @@
                                     <div class="col-lg-6 col-sm-12">
                                          <div class="form-group{{ $errors->has('code') ? ' has-danger' : '' }}">
                                             <label class="form-control-label" for="input-code">{{ __('Code') }}</label>
-                                            <input type="text" name="code" id="input-code" class="form-control form-control-alternative{{ $errors->has('code') ? ' is-invalid' : '' }}" placeholder="{{ __('Code') }}" value="{{$product->code}}" required autofocus>
+                                            <input type="text" name="code" id="input-code" class="form-control form-control-alternative{{ $errors->has('code') ? ' is-invalid' : '' }}" placeholder="{{ __('Code') }}" value="{{$product->code}}" autofocus>
 
                                             @if ($errors->has('code'))
                                                 <span class="invalid-feedback" role="alert">
@@ -68,7 +69,7 @@
                                     <div class="col-lg-6 col-sm-12">
                                         <div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
                                             <label class="form-control-label" for="input-name">{{ __('Name') }}</label>
-                                            <input type="text" name="name" id="input-name" class="form-control form-control-alternative{{ $errors->has('name') ? ' is-invalid' : '' }}" placeholder="{{ __('Name') }}" value="{{$product->name}}" required autofocus>
+                                            <input type="text" name="name" id="input-name" class="form-control form-control-alternative{{ $errors->has('name') ? ' is-invalid' : '' }}" placeholder="{{ __('Name') }}" value="{{$product->name}}" autofocus>
 
                                             @if ($errors->has('name'))
                                                 <span class="invalid-feedback" role="alert">

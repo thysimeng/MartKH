@@ -43,8 +43,8 @@ class ProductController extends Controller
     {
         $this-> validate($request,[
             'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'code' => 'required' ,
-            'name' => 'required',
+            'code' => 'required|unique:products',
+            'name' => 'required|unique:products',
             'price' => 'required',
             'size' => 'required',
             'brand' => 'required',
@@ -109,11 +109,12 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
+        $products = Products::findOrFail($id);
         $this-> validate($request,[
             'imgDB' => '',
             'image' => 'max:2048',
-            'code' => 'required' ,
-            'name' => 'required',
+            'code' => 'required|unique:products,code,'.$products->id,
+            'name' => 'required|unique:products,name,'.$products->id,
             'price' => 'required',
             'size' => 'required',
             'brand' => 'required',
@@ -122,7 +123,7 @@ class ProductController extends Controller
             'description' => 'required'
         ]);
         //return $this;
-        $products = Products::find($id);
+        // $products = Products::find($id);
 
         if($request->hasFile('image')){
             // upload a new file
