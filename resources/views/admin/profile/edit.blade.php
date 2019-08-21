@@ -113,7 +113,7 @@
                                         </div>
                                     </div>
                                     <div class="text-center mt-3">
-                                            <input type="submit" class="btn btn-success rounded upload-btn" value="{{ __('Upload') }}">
+                                        <input type="submit" class="btn btn-success rounded upload-btn" value="{{ __('Upload') }}">
                                     </div>
                                     
                                     
@@ -245,6 +245,7 @@
             });
 
             $('.upload-btn').click(function(e){
+                var form = $(this).parents('form:first');
                 e.preventDefault();
                 Swal.fire({
                     title: 'Are you sure?',
@@ -256,7 +257,7 @@
                     confirmButtonText: 'Yes'
                 }).then((result) => {
                 if (result.value) {
-                    this.parentElement.submit()
+                    form.submit();
                 }
                 })
             });
