@@ -95,7 +95,7 @@
                                                                 data-description="{{ $product->description }}" data-created_at="{{ $product->created_at->format('d/m/Y H:i') }}"
                                                                 data-update="{{ $product->updated_at->format('d/m/Y H:i') }}" data-subcategory_id="{{ $product->subcategory_id }}">{{ __('View') }}</button> 
                                                             <a class="dropdown-item" href="/admin/products/{{$product->pid}}/edit" id="edit">{{ __('Edit') }}</a>
-                                                            <button class="dropdown-item " type="submit">Delete</button>
+                                                            <button class="dropdown-item delete-btn" type="submit">Delete</button>
  
                                                             
                                                         </form>
@@ -145,7 +145,25 @@
             $('#imagesrc').attr('src',imgsrc_path);
             // console.log(imgsrc);
         });
+        $('.delete-btn').click(function(e){
+            e.preventDefault();
+            Swal.fire({
+                title: 'Warning',
+                text: "Are you sure you want to delete this product?",
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes'
+            }).then((result) => {
+            if (result.value) {
+                this.parentElement.submit()
+            }   
+            })
+        });
     </script>
+        
+        
         @include('layouts.footers.auth')
     </div>
     <div class="modal fade" id="viewProduct" tabindex="-1" role="dialog" aria-labelledby="viewProductTitle" aria-hidden="true">
