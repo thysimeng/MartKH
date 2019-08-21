@@ -11,7 +11,7 @@
           <div class="product-wrapper mb-30">
             <div class="product-img">
               <a href="#">
-                <img v-bind:src="'/images/' + products[product-1].image" alt />
+                <img :src="'/uploads/product_image/' + products[product-1].image" alt="" />
               </a>
               <span>hot</span>
               <div class="product-action">
@@ -54,7 +54,7 @@
           <div class="product-wrapper mb-30 single-product-list product-list-right-pr mb-60">
             <div class="product-img list-img-width">
               <a href="#">
-                <img v-bind:src="'/images/' + products[product-1].image" alt />
+                <img :src="'/uploads/product_image/' + products[product-1].image" alt="" />
               </a>
               <span>hot</span>
               <div class="product-action-list-style">
@@ -107,18 +107,12 @@ export default {
   data: function() {
     return {
       seeMore: 1,
-      productID: []
+      productID: [],
     };
   },
   //   To use props, they must be declared
   props: {
     products: Array
-  },
-  mounted() {
-    this.$store.dispatch("fetchPosts");
-  },
-  computed: {
-    ...mapGetters(["productsFood"])
   },
   methods: {
     quickView(PID, v) {

@@ -11,7 +11,7 @@
             <div class="quick-view-learg-img">
               <div class="quick-view-tab-content tab-content">
                 <div class="tab-pane active show fade" id="modal1" role="tabpanel">
-                  <img v-bind:src="'/images/' + productID[productID.length-1]" alt />
+                  <img v-bind:src="'/uploads/product_image/' + productID[productID.length-1]" alt />
                 </div>
                 <div class="tab-pane fade" id="modal2" role="tabpanel">
                   <img src alt />

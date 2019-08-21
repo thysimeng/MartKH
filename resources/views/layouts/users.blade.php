@@ -58,7 +58,7 @@
                                             <li><a href="index-sports.html">sports</a></li>
                                         </ul>
                                     </li>
-                                    <li><a href="/food">Food</a>
+                                    {{-- <li><a href="/food">Food</a>
                                         <ul class="single-dropdown">
                                             <li>
                                                 <router-link to="/food">Food</router-link>
@@ -110,11 +110,11 @@
                                                 </a>
                                             </div>
                                         </div>
-                                    </li>
+                                    </li> --}}
                                     <li><a href="/users/shop">shop</a>
                                         <ul class="single-dropdown">
                                             <li>
-                                                <router-link to="/users/food">Food</router-link>
+                                                <router-link to="/users/foodVue">Food</router-link>
                                             </li>
                                             <li><a href="blog-2-col.html">blog 2 colunm</a></li>
                                             <li><a href="blog-sidebar.html">blog sidebar</a></li>
@@ -122,7 +122,7 @@
                                             <li><a href="blog-details-sidebar.html">blog details 2</a></li>
                                         </ul>
                                     </li>
-                                    <li><a href="contact.html">contact</a></li>
+                                    {{-- <li><a href="contact.html">contact</a></li> --}}
                                 </ul>
                             </nav>
                         </div>
@@ -262,7 +262,7 @@
                             <ul>
                                 @auth
                                 @if (Route::has('login'))
-                                <li>Your : <a href="/users/profile">Profile</a></li>
+                                <li><a href="/users/profile">Profile</a></li>
                                 <li>
                                     <a href="{{ route('logout') }}" onclick="event.preventDefault();
                                                     document.getElementById('logout-form').submit();">

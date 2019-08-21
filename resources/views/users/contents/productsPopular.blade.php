@@ -7,7 +7,7 @@
         </div>
         <div class="product-style">
             <div class="popular-product-active owl-carousel">
-                <div class="product-wrapper">
+                {{-- <div class="product-wrapper">
                     <div class="product-img">
                         <a href="#">
                             <img src="assets/img/product/furniture/1.jpg" alt="">
@@ -28,8 +28,8 @@
                         <h4><a href="product-details.html">Sofa Chaise Sleeper</a></h4>
                         <span>$90.00</span>
                     </div>
-                </div>
-                <div class="product-wrapper">
+                </div> --}}
+                {{-- <div class="product-wrapper">
                     <div class="product-img">
                         <a href="#">
                             <img src="assets/img/product/furniture/2.jpg" alt="">
@@ -50,8 +50,8 @@
                         <h4><a href="product-details.html">Darcy Sofa</a></h4>
                         <span>$90.00</span>
                     </div>
-                </div>
-                <div class="product-wrapper">
+                </div> --}}
+                {{-- <div class="product-wrapper">
                     <div class="product-img">
                         <a href="#">
                             <img src="assets/img/product/furniture/3.jpg" alt="">
@@ -138,7 +138,7 @@
                         <h4><a href="product-details.html">Trivia Accent Chair</a></h4>
                         <span>$90.00</span>
                     </div>
-                </div>
+                </div> --}}
             </div>
         </div>
     </div>
