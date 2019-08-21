@@ -1,5 +1,5 @@
 <!-- Top navbar -->
-<nav class="navbar navbar-top navbar-expand-md navbar-dark" id="navbar-main">
+<nav class="navbar navbar-top navbar-expand-md navbar-dark d-none d-md-flex" id="navbar-main">
     <div class="container-fluid">
         <!-- Brand -->
         <a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="{{ route('home') }}">{{ __('Dashboard') }}</a>
@@ -19,10 +19,10 @@
             <li class="nav-item dropdown">
                 <a class="nav-link pr-0" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     <div class="media align-items-center">
-                        <span class="avatar avatar-sm rounded-circle">
+                        <span class="avatar avatar-sm rounded-circle d-flex">
                             <img alt="Image placeholder" src="{{ asset('uploads') }}/avatar/{{ auth()->user()->avatar}}">
                         </span>
-                        <div class="media-body ml-2 d-none d-lg-block">
+                        <div class="media-body ml-2 d-none d-md-block">
                             <span class="mb-0 text-sm  font-weight-bold">{{ auth()->user()->name }}</span>
                         </div>
                     </div>
