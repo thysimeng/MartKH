@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Franchise;
 use Alert;
+use Illuminate\Validation\Rule;
 
 class FranchiseController extends Controller
 {
@@ -93,8 +94,11 @@ class FranchiseController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request,[
-            'franchise_name' => 'required',
-            'address' => 'required'
+            'franchise_name' => [
+                'required',
+                Rule::unique('franchises')->ignore($request->id),
+            ],
+            'address' => 'required',
         ]);
 
         $franchise = Franchise::findOrFail($id);
