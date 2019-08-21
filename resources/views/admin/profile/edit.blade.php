@@ -245,6 +245,7 @@
             });
 
             $('.upload-btn').click(function(e){
+                var form = $(this).parents('form:first');
                 e.preventDefault();
                 Swal.fire({
                     title: 'Are you sure?',
@@ -256,7 +257,7 @@
                     confirmButtonText: 'Yes'
                 }).then((result) => {
                 if (result.value) {
-                    this.parentElement.submit()
+                    form.submit()
                 }
                 })
             });

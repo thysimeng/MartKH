@@ -71,7 +71,6 @@ class ProfileController extends Controller
                 {
                     File::delete($userImage);
                 }
-                else return "{$user->avatar} ,{$userImage}";
             }
             $avatar = $request->file('avatar');
             $fileName = time().'.'.$avatar->getClientOriginalExtension();
