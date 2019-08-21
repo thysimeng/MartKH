@@ -55,7 +55,7 @@
                                     <div class="col-lg-6 col-sm-12">
                                          <div class="form-group{{ $errors->has('code') ? ' has-danger' : '' }}">
                                             <label class="form-control-label" for="input-code">{{ __('Code') }}</label>
-                                            <input type="text" name="code" id="input-code" class="form-control form-control-alternative{{ $errors->has('code') ? ' is-invalid' : '' }}" placeholder="{{ __('Code') }}"  autofocus>
+                                            <input type="text" name="code" id="input-code" class="form-control form-control-alternative{{ $errors->has('code') ? ' is-invalid' : '' }}" placeholder="{{ __('Code') }}" required autofocus>
 
                                             @if ($errors->has('code'))
                                                 <span class="invalid-feedback" role="alert">
@@ -67,7 +67,7 @@
                                     <div class="col-lg-6 col-sm-12">
                                         <div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
                                             <label class="form-control-label" for="input-name">{{ __('Name') }}</label>
-                                            <input type="text" name="name" id="input-name" class="form-control form-control-alternative{{ $errors->has('name') ? ' is-invalid' : '' }}" placeholder="{{ __('Name') }}" autofocus>
+                                            <input type="text" name="name" id="input-name" class="form-control form-control-alternative{{ $errors->has('name') ? ' is-invalid' : '' }}" placeholder="{{ __('Name') }}" required autofocus>
 
                                             @if ($errors->has('name'))
                                                 <span class="invalid-feedback" role="alert">
