@@ -18,7 +18,7 @@
                                     </li>
                                     
                                     <!-- Search -->
-                                    <form class="col-4" id="search-user" method="get" action="" autocomplete="off">
+                                    <form class="col-4" id="search-stocks" method="get" action="{{ route('admin.search_stock') }}" autocomplete="off">
                                             <div class="form-group mb-4">
                                                 <div class="input-group input-group-alternative">
                                                     <div class="input-group-prepend">
@@ -48,23 +48,11 @@
                                                             <label for="exampleFormControlSelect1">Select Product</label>
                                                             <input type="hidden" class="form-control" name="product_id" id="" value="">
                                                             <input type="text" class="typeahead form-control" name="product_name">
-                                                        {{-- <label for="exampleFormControlSelect1">Select Product</label>
-                                                        
-                                                        <select class="form-control" id="exampleFormControlSelect1" name="category_id">
-                                                            @foreach($categories_data as $sub_item)
-                                                                <option @if(old('category_id') == $sub_item->cid) selected @endif value="{{$sub_item->cid}}">{{$sub_item->categories_name}}</option>
-                                                            @endforeach
-                                                        </select> --}}
                                                       </div>
                                                     <div class="modal-body">
                                                         <label for="exampleFormControlSelect1">Select Franchies</label>
                                                         <input type="hidden" class="form-control" name="franchise_id" id="" value="">
                                                         <input type="text" class="typeahead form-control" name="franchise_name"> 
-                                                        {{-- <select class="form-control" id="exampleFormControlSelect1" name="category_id">
-                                                                @foreach($categories_data as $sub_item)
-                                                                    <option @if(old('category_id') == $sub_item->cid) selected @endif value="{{$sub_item->cid}}">{{$sub_item->categories_name}}</option>
-                                                                @endforeach
-                                                        </select> --}}
                                                     </div>
                                                     <div class="modal-body">
                                                         <input type="text" class="form-control" name="amount" id="" value="" required placeholder="Amount">
@@ -122,36 +110,62 @@
                                                                     <i class="fas fa-ellipsis-v"></i>
                                                                 </a>
                                                                 <div data-id="{{$item->stid}}"  class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                                                    <a onclick="edit({{$item->stid}}, '')"  class="dropdown-item" data-toggle="modal" data-target="#editModalCenter" href="">{{ __('Edit') }}</a>
+                                                                    <a onclick="edit({{$item->stid}}, '{{$item->amount}}')" class="dropdown-item" data-toggle="modal" data-target="#editModalCenter" href="">{{ __('Edit') }}</a>
                                                             
                                                                     {{-- <a class="dropdown-item" href="">{{ __('View') }}</a> --}}
-                                                                    <a class="dropdown-item" href="/delete/{{ $item->stid }}">{{ __('Delete') }}</a>
+                                                                    <a onclick="delet({{$item->stid}})" class="dropdown-item" data-toggle="modal" data-target="#deleteModalCenter" href="">{{ __('Delete') }}</a>
+                                                                    {{-- <a class="dropdown-item" href="/admin/delete_stock/{{ $item->stid }}">{{ __('Delete') }}</a> --}}
                                                                 </div>
                                                             </div>
                                                         </td>
                                                     </tr>
-                                               
-                                                    <div class="modal fade" id="editModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                                                        <form action="/edit" method="post">
+
+                                                    <div class="modal fade" id="deleteModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                                        <form action="{{ route('admin.delete_stock') }}" method="post">
+                                                                @csrf
                                                             <div class="modal-dialog modal-dialog-centered" role="document">
-                                                                    <div class="modal-content">
+                                                                <div class="modal-content">
                                                                         <div class="modal-header">
-                                                                            <h5 class="modal-title" id="exampleModalCenterTitle">Edit Category</h5>
+                                                                            <h5 class="modal-title" id="exampleModalCenterTitle">Delete Stock</h5>
                                                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                                                                             <span aria-hidden="true">&times;</span>
                                                                             </button>
                                                                         </div>
-                                                                        <input type="hidden" name="category_id" value="" >
-                                                                        @csrf
+                                                                        <div  class="modal-footer">
+                                                                            <input type="hidden" name="delete_stock_id" value="" >
+                                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                            <button type="submit"  class="btn btn-primary">Yes</button>
+                                                                        </div>
+                                                                </div>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                    <div class="modal fade" id="editModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                                        <form action="{{ route('admin.update_stock') }}" method="post">
+                                                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                                                <div class="modal-content">
+                                                                        <div class="modal-header">
+                                                                            <h5 class="modal-title" id="exampleModalCenterTitle">Update Stock</h5>
+                                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                            <span aria-hidden="true">&times;</span>
+                                                                            </button>
+                                                                        </div>
                                                                         <div class="modal-body">
-                                                                            <input type="text" class="form-control" name="category_name" value="" required placeholder="">
+                                                                            <label for="exampleFormControlSelect1">Old Stocks</label>
+                                                                            <input type="hidden" name="stock_id" value="" >
+                                                                            @csrf
+                                                                            <input disabled="false" type="text" class="form-control" name="old-amount" value="" required placeholder="">
+                                                                        </div>
+                                                                        <div class="modal-body">
+                                                                            <label for="exampleFormControlSelect1">New Stocks</label>
+                                                                            <input type="text" class="form-control" name="new-amount" value="" required placeholder="">
                                                                         </div>
                                                                         <div  class="modal-footer">
                                                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                                                             <button onclick="saveEdit()"  class="btn btn-primary">Save changes</button>
                                                                         </div>
-                                                                    </div>
                                                                 </div>
+                                                            </div>
                                                         </form>
                                                     </div>
                                                     @endforeach
@@ -170,7 +184,6 @@
                                                     <th scope="col">{{ __('Amount') }}</th>
                                                     <th scope="col">{{ __('Create Date') }}</th>
                                                     <th scope="col">{{ __('Update Date') }}</th>
-                                                    <th scope="col">{{ __('Action') }}</th>
                                                 </tr>
                                             </thead>
                                             <tbody>
@@ -182,44 +195,7 @@
                                                         <td>{{$item->amount}}</td>
                                                         <td>{{$item->created_at}}</td>
                                                         <td>{{$item->updated_at}}</td>
-                                                        <td class="">
-                                                            <div class="dropdown">
-                                                                <a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                                    <i class="fas fa-ellipsis-v"></i>
-                                                                </a>
-                                                                <div data-id="{{$item->stid}}"  class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                                                    <a onclick="edit({{$item->stid}}, '')"  class="dropdown-item" data-toggle="modal" data-target="#editModalCenter" href="">{{ __('Edit') }}</a>
-                                                            
-                                                                    {{-- <a class="dropdown-item" href="">{{ __('View') }}</a> --}}
-                                                                    <a class="dropdown-item" href="/delete/{{ $item->stid }}">{{ __('Delete') }}</a>
-                                                                </div>
-                                                            </div>
-                                                        </td>
                                                     </tr>
-                                               
-                                                    <div class="modal fade" id="editModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                                                        <form action="/edit" method="post">
-                                                            <div class="modal-dialog modal-dialog-centered" role="document">
-                                                                    <div class="modal-content">
-                                                                        <div class="modal-header">
-                                                                            <h5 class="modal-title" id="exampleModalCenterTitle">Edit Category</h5>
-                                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                            <span aria-hidden="true">&times;</span>
-                                                                            </button>
-                                                                        </div>
-                                                                        <input type="hidden" name="category_id" value="" >
-                                                                        @csrf
-                                                                        <div class="modal-body">
-                                                                            <input type="text" class="form-control" name="category_name" value="" required placeholder="">
-                                                                        </div>
-                                                                        <div  class="modal-footer">
-                                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                                            <button onclick="saveEdit()"  class="btn btn-primary">Save changes</button>
-                                                                        </div>
-                                                                    </div>
-                                                                </div>
-                                                        </form>
-                                                    </div>
                                                     @endforeach
                                             </tbody>  
                                     
@@ -235,7 +211,7 @@
     </div>
 
     <script type="test/javascript">
-        document.getElementById('search-franchises').submit();
+        document.getElementById('search-stocks').submit();
     </script>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.1/bootstrap3-typeahead.min.js"></script>  
@@ -278,5 +254,24 @@
             }
         
         });
+    </script>
+
+    <script>
+        var id = null;
+
+        function edit(id,name) {
+            document.querySelector('[name="stock_id"]').setAttribute('value', id);
+            document.querySelector('[name="old-amount"]').setAttribute('value', name);
+        }
+
+    </script>
+
+    <script>
+        var stid = null;
+
+        function delet(stid) {
+            document.querySelector('[name="delete_stock_id"]').setAttribute('value', stid);
+        }
+
     </script>
 @endsection

@@ -30,9 +30,11 @@ class StockController extends Controller
     public function stockSearch(Request $request)
     {
         $search = $request->get('stock-search');
-        $stocks= Stock::leftJoin('products','products.pid','=','stocks.product_id')->where('name', 'like', '%' .$search. '%')->paginate(10);
+        $stocks= Stock::leftJoin('products','products.pid','=','stocks.product_id')->where('products.name', 'like', '%' .$search. '%')->paginate(10);
+        $stocks_franch= Stock::leftJoin('franchises','franchises.id','=','stocks.franchise_id')->paginate(10);
         $data = [
             'stocks_data'=>$stocks,
+            'stocks_franch_data'=>$stocks_franch,
             'queryParams' => [],
         ];
         return view('admin.stock.index')->with($data);
@@ -50,16 +52,6 @@ class StockController extends Controller
     public function autocompleteFranchise(Request $request)
     {
         $data_franchise = DB::table('franchises')->select('id as fid', 'franchise_name as name')->where("franchise_name","LIKE","%{$request->input('query')}%")->get();
-        // $dataModified = array();
-        // foreach ($data_franchise as $data)
-        // {   
-        //     $fid=$data->id;
-        //     $dataModified[] = $data->franchise_name;
-        //     $dataModified[] = $data=(string)$fid;
-        // }
-
-        // dd($data_franchise);
-
         return response()->json($data_franchise);
         
     }
@@ -78,19 +70,24 @@ class StockController extends Controller
         return redirect(route('admin.stock'));
     }
 
-    // public function destroy($cid) {
-    //     DB::delete('delete from categories where cid = ?',[$cid]);
-    //     return redirect(route('admin.category'));
-    // }
+    public function delete(Request $request) {
+        $stock_id = $request->post('delete_stock_id');
+        DB::delete('delete from stocks where stid = ?',[$stock_id]);
+        return redirect(route('admin.stock'));
+    }
 
-    // public function edit(Request $request) {
+    public function edit(Request $request) {
 
-    //     $category_id = $request->post('category_id');
-    //     $category_name = $request->post('category_name');
-
-    //     Category::where('cid', $category_id)->update([
-    //         'categories_name'=>$category_name,       
-    //     ]);
-    //     return redirect(route('admin.category'));
-    //  }
+        $stock_id = $request->post('stock_id');
+        $old_amount = DB::table('stocks')->where("stid","=",$stock_id)->get();
+        foreach ($old_amount as $id){
+            $stid = $id->amount;
+        }
+        $new_amount = $request->post('new-amount');
+        $new_st = $stid+$new_amount;
+        Stock::where('stid', $stock_id)->update([
+            'amount'=>$new_st,       
+        ]);
+        return redirect(route('admin.stock'));
+     }
 }
