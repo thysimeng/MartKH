@@ -125,7 +125,7 @@
                 </li>
                 
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('home') }}">
+                    <a class="nav-link" href="{{ route('admin.stock') }}">
                         {{-- <i class="ni ni-tv-2 text-primary"></i>  --}}
                         <i class="fas fa-cubes" style="color:#ffd600;"></i> {{ __('Stock') }}
                     </a>
