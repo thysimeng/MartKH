@@ -47,12 +47,12 @@
                                                     <div class="modal-body">
                                                             <label for="exampleFormControlSelect1">Select Product</label>
                                                             <input type="hidden" class="form-control" name="product_id" id="" value="">
-                                                            <input type="text" class="typeahead form-control" name="product_name">
+                                                            <input type="text" class="typeahead form-control" name="product_name" required placeholder="Search Products">
                                                       </div>
                                                     <div class="modal-body">
                                                         <label for="exampleFormControlSelect1">Select Franchies</label>
                                                         <input type="hidden" class="form-control" name="franchise_id" id="" value="">
-                                                        <input type="text" class="typeahead form-control" name="franchise_name"> 
+                                                        <input type="text" class="typeahead form-control" name="franchise_name" required placeholder="Search Franchise"> 
                                                     </div>
                                                     <div class="modal-body">
                                                         <input type="text" class="form-control" name="amount" id="" value="" required placeholder="Amount">
@@ -119,7 +119,7 @@
                                                             </div>
                                                         </td>
                                                     </tr>
-
+                                                    {{-- Delete Form --}}
                                                     <div class="modal fade" id="deleteModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                                                         <form action="{{ route('admin.delete_stock') }}" method="post">
                                                                 @csrf
@@ -131,7 +131,7 @@
                                                                             <span aria-hidden="true">&times;</span>
                                                                             </button>
                                                                         </div>
-                                                                        <div  class="modal-footer">
+                                                                        <div class="modal-footer">
                                                                             <input type="hidden" name="delete_stock_id" value="" >
                                                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                                                             <button type="submit"  class="btn btn-primary">Yes</button>
@@ -140,6 +140,7 @@
                                                             </div>
                                                         </form>
                                                     </div>
+                                                    {{-- Update Form --}}
                                                     <div class="modal fade" id="editModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                                                         <form action="{{ route('admin.update_stock') }}" method="post">
                                                             <div class="modal-dialog modal-dialog-centered" role="document">
@@ -200,6 +201,11 @@
                                             </tbody>  
                                     
                                 </table>
+                            </div>
+                            <div class="text-center">
+                                <div class="wrapper-pagination">
+                                    {{$stocks_data->appends($queryParams)->render()}}
+                                </div>
                             </div>
                         </div>
                     </div>

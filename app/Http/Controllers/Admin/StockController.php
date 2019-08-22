@@ -45,8 +45,6 @@ class StockController extends Controller
         $data = DB::table('products')->where("name","LIKE","%{$request->input('query')}%")->get();
         // dd($data);
         return response()->json($data);
-
-        
     }
 
     public function autocompleteFranchise(Request $request)
