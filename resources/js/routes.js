@@ -1,5 +1,5 @@
 // Home components
-import productPopular from './components/usersComponent/homeComponent/productPopular';
+import productPopularSender from './components/usersComponent/homeComponent/productPopularSender';
 import productAll from './components/usersComponent/homeComponent/productAll';
 import productFood from './components/usersComponent/homeComponent/productFood';
 import productDrink from './components/usersComponent/homeComponent/productDrink';
@@ -13,7 +13,7 @@ export const routes = [
     { path: '/users/foodVue', component: food },
     {
         path: '/users', components: {
-            productPopular: productPopular,
+            productPopularSender: productPopularSender,
             productAll: productAll,
             productFood: productFood
         },
@@ -23,14 +23,14 @@ export const routes = [
     },
     {
         path: '/users/foodHome', components: {
-            productPopular: productPopular,
+            productPopularSender: productPopularSender,
             productAll: productAll,
             productFood: productFood
         }
     },
     {
         path: '/users/drinkHome', components: {
-            productPopular: productPopular,
+            productPopularSender: productPopularSender,
             productAll: productAll,
             productDrink: productDrink
         }

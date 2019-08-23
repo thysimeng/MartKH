@@ -36,7 +36,7 @@
                 <div class="container-fluid">
                     <div class="header-bottom-wrapper">
                         <div class="logo-2 furniture-logo ptb-30">
-                            <a href="/">
+                            <a href="/users">
                                 <img src="{{asset('assets/img/logo/2.png')}}" alt="">
                             </a>
                         </div>

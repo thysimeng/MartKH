@@ -40,7 +40,7 @@ Vue.use(Vuex);
         actions:{
             //Home
             fetchProductsPopular({commit}) {
-                axios.get('/users/food')
+                axios.get('/users/all')
                     .then(res => {
                         commit('fetch_products_popular', res.data)
                     }).catch(err => {
@@ -56,7 +56,7 @@ Vue.use(Vuex);
                     })
             },
             fetchProductsDrink({commit}) {
-                axios.get('/users/food')
+                axios.get('/users/all')
                     .then(res => {
                         commit('fetch_products_food_drink', res.data)
                     }).catch(err => {

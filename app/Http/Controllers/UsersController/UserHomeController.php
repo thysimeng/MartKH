@@ -5,12 +5,13 @@ namespace App\Http\Controllers\UsersController;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\User;
+use DB;
 
 class UserHomeController extends Controller
 {
     public function index(){
-        $message = 'hello';
-        return view('users.userHomePage', compact('message'));
+        $productPopular = DB::table('products')->limit(9)->get();
+        return view('users.userHomePage', compact('productPopular'));
     }
 
     public function get(Request $request)

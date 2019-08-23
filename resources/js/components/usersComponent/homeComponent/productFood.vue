@@ -1,7 +1,6 @@
 <template>
   <div>
     <productAll :products="products"></productAll>
-    <!-- <h1>productFood component</h1> -->
   </div>
 </template>
 
