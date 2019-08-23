@@ -20,7 +20,8 @@ class UsersTableSeeder extends Seeder
             'password' => Hash::make('martkh'),
             'created_at' => now(),
             'updated_at' => now(),
-            'role' => 'admin'
+            'role' => 'admin',
+            'avatar' => 'default.png'
         ]);
     }
 }

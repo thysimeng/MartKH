@@ -39,7 +39,8 @@
                         </ul>
                     </div>
                     
-                    <div class="col-12">
+                    <!-- success message -->
+                    <!-- <div class="col-12">
                         @if (session('status'))
                             <div class="alert alert-success alert-dismissible fade show" role="alert">
                                 {{ session('status') }}
@@ -48,7 +49,7 @@
                                 </button>
                             </div>
                         @endif
-                    </div>
+                    </div> -->
                     
                     <!-- Users Table -->
                     <div class="tab-content" id="nav-tabContent">
@@ -87,7 +88,7 @@
                                                                         @method('delete')
                                                                         
                                                                         <a class="dropdown-item" href="{{ route('user.edit', $user) }}">{{ __('Edit') }}</a>
-                                                                        <button type="button" class="dropdown-item" onclick="confirm('{{ __("Are you sure you want to delete this user?") }}') ? this.parentElement.submit() : ''">
+                                                                        <button type="button" class="dropdown-item delete-btn">
                                                                             {{ __('Delete') }}
                                                                         </button>
                                                                     </form>    
@@ -139,7 +140,7 @@
                                                                         @method('delete')
                                                                         
                                                                         <a class="dropdown-item" href="{{ route('user.edit', $user) }}">{{ __('Edit') }}</a>
-                                                                        <button type="button" class="dropdown-item" onclick="confirm('{{ __("Are you sure you want to delete this user?") }}') ? this.parentElement.submit() : ''">
+                                                                        <button type="button" class="dropdown-item delete-btn">
                                                                             {{ __('Delete') }}
                                                                         </button>
                                                                     </form>    
@@ -191,7 +192,7 @@
                                                                         @method('delete')
                                                                         
                                                                         <a class="dropdown-item" href="{{ route('user.edit', $user) }}">{{ __('Edit') }}</a>
-                                                                        <button type="button" class="dropdown-item" onclick="confirm('{{ __("Are you sure you want to delete this user?") }}') ? this.parentElement.submit() : ''">
+                                                                        <button type="button" class="dropdown-item delete-btn">
                                                                             {{ __('Delete') }}
                                                                         </button>
                                                                     </form>    
@@ -222,7 +223,26 @@
         @include('layouts.footers.auth')
     </div>
 
-    <script type="test/javascript">
+    <script type="text">
         document.getElementById('search-franchises').submit();
+    </script>
+
+    <script>
+        $('.delete-btn').click(function(e){
+            e.preventDefault();
+            Swal.fire({
+                title: 'Warning',
+                text: "Are you sure you want to delete this user?",
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes'
+            }).then((result) => {
+            if (result.value) {
+                this.parentElement.submit()
+            }
+            })
+        });
     </script>
 @endsection

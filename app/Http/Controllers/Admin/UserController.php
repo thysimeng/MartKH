@@ -10,6 +10,8 @@ use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Alert;
+use File;
 
 class UserController extends Controller
 {
@@ -21,6 +23,10 @@ class UserController extends Controller
      */
     public function index(User $model)
     {
+        if (session('status'))
+        {
+            Alert::success('Success', session('status'));
+        }
         return view('admin.users.index', ['users' => $model->paginate(10)]);
     }
 
@@ -83,6 +89,15 @@ class UserController extends Controller
      */
     public function destroy(User  $user)
     {
+        if ($user->avatar != 'default.png')
+        {
+            $userImage = public_path('uploads\avatar\\'.$user->avatar);
+                if(file_exists($userImage))
+                {
+                    File::delete($userImage);
+                }
+        }
+        
         $user->delete();
 
         return redirect()->route('user.index')->withStatus(__('User successfully deleted.'));

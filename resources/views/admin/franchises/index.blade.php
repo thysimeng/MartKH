@@ -29,7 +29,8 @@
                         </div>
                     </div>
 
-                    <div class="col-12">
+                    <!-- Success Message -->
+                    <!-- <div class="col-12">
                         @if (session('status'))
                             <div class="alert alert-success alert-dismissible fade show" role="alert">
                                 {{ session('status') }}
@@ -38,7 +39,7 @@
                                 </button>
                             </div>
                         @endif
-                    </div>
+                    </div> -->
 
                     <div class="table-responsive">
                         <table class="table align-items-center table-flush">
@@ -71,7 +72,7 @@
                                                             @method('delete')
                                                             <a class="dropdown-item" href="{{ route('franchises.edit', $franchise->id) }}">{{ __('Edit') }}</a>
                                                             <!-- <a class="dropdown-item" href="">{{ __('Edit') }}</a> -->
-                                                            <button type="button" class="dropdown-item" onclick="confirm('{{ __("Are you sure you want to delete this user?") }}') ? this.parentElement.submit() : ''">
+                                                            <button type="button" class="dropdown-item delete-btn">
                                                                 {{ __('Delete') }}
                                                             </button>
                                                         </form>
@@ -104,5 +105,23 @@
 
     <script type="test/javascript">
         document.getElementById('search-franchises').submit();
+    </script>
+    <script type="text/javascript">
+        $('.delete-btn').click(function(e){
+            e.preventDefault();
+            Swal.fire({
+                title: 'Warning',
+                text: "Are you sure you want to delete this franchise?",
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes'
+            }).then((result) => {
+            if (result.value) {
+                this.parentElement.submit()
+            }
+            })
+        });
     </script>
 @endsection

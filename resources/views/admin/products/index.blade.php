@@ -44,7 +44,7 @@
                         <table class="table align-items-center table-flush table-hover">
                             <thead class="thead-light">
                                 <tr>
-                                    <th scope="col">{{ __('PID') }}</th>
+                                    <th scope="col">{{ __('ID') }}</th>
                                     <th scope="col">{{ __('Code') }}</th>
                                     <th scope="col">{{ __('Image') }}</th>
                                     <th scope="col">{{ __('Name') }}</th>
@@ -64,7 +64,7 @@
                             <tbody>
                                 @foreach ($products as $product)
                                     <tr>
-                                        <td>{{ $product->pid }}</td>
+                                        <td>{{ $product->id }}</td>
                                         <td>{{ $product->code }}</td>
                                         <td><img src="{{asset( 'uploads/product_image/' . $product->image )}}" alt="" class="img-thumbnail " style="width:100px;heigth:100px;"></td>                                      
                                         <td>{{ $product->name }}</td>
@@ -83,19 +83,19 @@
                                                 </a>
                                                 <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
                                                     {{-- delete fucntion --}}
-                                                    {{-- @if ($product->pid != auth()->id()) --}}
+                                                    {{-- @if ($product->id != auth()->id()) --}}
                                                         {{-- <form action="{{ route('user.destroy', $user) }}" method="post"> --}}
-                                                        <form action="products/{{$product->pid}}" method="post">
+                                                        <form action="products/{{$product->id}}" method="post">
                                                             @csrf
                                                             @method('delete')
                                                             {{-- <a class="dropdown-item" href="{{ route('user.edit', $user) }}">{{ __('Edit') }}</a> --}}
-                                                            <button type="button" class="dropdown-item openImageDialog" data-toggle="modal" data-target="#viewProduct" data-pid="{{ $product->pid }}" data-name="{{ $product->name }}" 
+                                                            <button type="button" class="dropdown-item openImageDialog" data-toggle="modal" data-target="#viewProduct" data-id="{{ $product->id }}" data-name="{{ $product->name }}" 
                                                                 data-code="{{ $product->code }}" data-price="{{ $product->price }}" data-brand="{{ $product->brand }}" 
                                                                 data-country="{{ $product->country }}" data-size="{{ $product->size }}" data-image="{{ $product->image }}"
                                                                 data-description="{{ $product->description }}" data-created_at="{{ $product->created_at->format('d/m/Y H:i') }}"
                                                                 data-update="{{ $product->updated_at->format('d/m/Y H:i') }}" data-subcategory_id="{{ $product->subcategory_id }}">{{ __('View') }}</button> 
-                                                            <a class="dropdown-item" href="/admin/products/{{$product->pid}}/edit" id="edit">{{ __('Edit') }}</a>
-                                                            <button class="dropdown-item " type="submit">Delete</button>
+                                                            <a class="dropdown-item" href="/admin/products/{{$product->id}}/edit" id="edit">{{ __('Edit') }}</a>
+                                                            <button class="dropdown-item delete-btn" type="submit">Delete</button>
  
                                                             
                                                         </form>
@@ -123,7 +123,7 @@
         $(document).ready(function(){
             $(function() {
                 $('#viewProduct').on("show.bs.modal", function (e) {
-                    $("#pid").html($(e.relatedTarget).data('pid'));
+                    $("#id").html($(e.relatedTarget).data('id'));
                     $("#name").html($(e.relatedTarget).data('name'));
                     $("#code").html($(e.relatedTarget).data('code'));
                     $("#brand").html($(e.relatedTarget).data('brand'));
@@ -145,7 +145,25 @@
             $('#imagesrc').attr('src',imgsrc_path);
             // console.log(imgsrc);
         });
+        $('.delete-btn').click(function(e){
+            e.preventDefault();
+            Swal.fire({
+                title: 'Warning',
+                text: "Are you sure you want to delete this product?",
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes'
+            }).then((result) => {
+            if (result.value) {
+                this.parentElement.submit()
+            }   
+            })
+        });
     </script>
+        
+        
         @include('layouts.footers.auth')
     </div>
     <div class="modal fade" id="viewProduct" tabindex="-1" role="dialog" aria-labelledby="viewProductTitle" aria-hidden="true">

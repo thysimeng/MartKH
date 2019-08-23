@@ -20,6 +20,8 @@
         {{-- <link type="text/css" href="{{ asset('argon') }}/css/argon.css?v=1.0.0" rel="stylesheet"> --}}
         {{-- jquery --}}
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <!-- SweetAlert2 -->
+        <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
     </head>
     <body class="{{ $class ?? '' }}">
         @auth()
@@ -45,5 +47,6 @@
         
         <!-- Argon JS -->
         <script src="{{ asset('argon') }}/js/argon.js?v=1.0.0"></script>
+        @include('sweetalert::alert')
     </body>
 </html>

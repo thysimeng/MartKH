@@ -53,6 +53,17 @@ Route::group(['middleware' => ['web','auth','checkUserRole']], function () {
 	Route::get('/admin/create_sub_category/search', 'Admin\SubCategoryController@search')->name('admin.category.create_sub_category.search');
 	Route::get('/admin/sub_category/delete/{cid}', 'Admin\SubCategoryController@destroy')->name('admin.category.delete_sub_category');
 	Route::post('/admin/sub_category/edit', 'Admin\SubCategoryController@edit')->name('admin.category.edit_sub_category');
+
+	Route::get('admin/stock', 'Admin\StockController@index')->name('admin.stock');
+	Route::get('admin/stock/search', 'Admin\StockController@stockSearch')->name('admin.stock.search');
+	Route::post('admin/create_stock', 'Admin\StockController@create')->name('admin.create_stock');
+	Route::post('admin/update_stock', 'Admin\StockController@edit')->name('admin.update_stock');
+	Route::get('admin/search_stock', 'Admin\StockController@stockSearch')->name('admin.search_stock');
+	Route::post('admin/delete_stock', 'Admin\StockController@delete')->name('admin.delete_stock');
+	
+	Route::get('admin/stock/autocomplete',array('as'=>'admin.stock.autocomplete','uses'=>'Admin\StockController@autocomplete'));
+	Route::get('admin/stock/autocompleteFranchise',array('as'=>'admin.stock.autocompleteFranchise','uses'=>'Admin\StockController@autocompleteFranchise'));
+
 });
 
 Route::get('/user', function(){

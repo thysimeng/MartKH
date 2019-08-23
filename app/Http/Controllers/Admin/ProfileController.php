@@ -9,6 +9,8 @@ use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\Controller;
 use Auth;
 use Image;
+use Alert;
+use File;
 
 class ProfileController extends Controller
 {
@@ -19,6 +21,15 @@ class ProfileController extends Controller
      */
     public function edit()
     {
+        if (session('status'))
+        {
+            Alert::success('Success', session('status'));
+        }
+        if (session('password_status'))
+        {
+            Alert::success('Success', session('password_status'));
+        }
+
         return view('admin.profile.edit');
     }
 
@@ -50,13 +61,25 @@ class ProfileController extends Controller
 
     public function upload(Request $request)
     {
+        $request->validate([
+            'avatar' => 'required|image|mimes:jpeg,jpg,png,gif,svg|max:2048|'
+        ]);
+
         if($request->hasFile('avatar'))
         {
+            $user = Auth::user();
+            if($user->avatar != 'default.png')
+            {
+                $userImage = public_path('uploads\avatar\\'.$user->avatar);
+                if(file_exists($userImage))
+                {
+                    File::delete($userImage);
+                }
+            }
             $avatar = $request->file('avatar');
             $fileName = time().'.'.$avatar->getClientOriginalExtension();
-        Image::make($avatar)->resize(400,400)->save( public_path('uploads\avatar\\'.$fileName));
+            Image::make($avatar)->resize(400,400)->save( public_path('uploads\avatar\\'.$fileName));
 
-            $user = Auth::user();
             $user->avatar = $fileName;
             $user->save();
 

@@ -5,7 +5,8 @@ namespace App\Http\Controllers\Admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Franchise;
-use Illuminate\Support\Facades\DB;
+use Alert;
+use Illuminate\Validation\Rule;
 
 class FranchiseController extends Controller
 {
@@ -17,6 +18,11 @@ class FranchiseController extends Controller
      */
     public function index(Franchise $model)
     {
+        if (session('status'))
+        {
+            Alert::success('Success', session('status'));
+        }
+
         return view('admin.franchises.index', ['franchises' => $model->paginate(10)]);
     }
 
@@ -88,8 +94,11 @@ class FranchiseController extends Controller
     public function update(Request $request, $id)
     {
         $this->validate($request,[
-            'franchise_name' => 'required',
-            'address' => 'required'
+            'franchise_name' => [
+                'required',
+                Rule::unique('franchises')->ignore($request->id),
+            ],
+            'address' => 'required',
         ]);
 
         $franchise = Franchise::findOrFail($id);
@@ -122,6 +131,7 @@ class FranchiseController extends Controller
         
         $franchises = Franchise::whereRaw('LOWER(`franchise_name`) LIKE ?', '%'.trim(strtolower($search)).'%')
                     ->orWhereRaw('LOWER(`address`) LIKE ?','%'.trim(strtolower($search)).'%')
+                    ->orWhereRaw('LOWER(`id`) LIKE ?','%'.trim(strtolower($search)).'%')
                     ->paginate(10);
         
         return view('admin.franchises.index',['franchises'=> $franchises]);
