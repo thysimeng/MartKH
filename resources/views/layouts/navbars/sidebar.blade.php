@@ -58,7 +58,7 @@
                     <div class="col-6 collapse-brand">
                         <a href="{{ route('home') }}">
                             {{-- <img src="{{ asset('argon') }}/img/brand/blue.png"> --}}
-                            <span class="text-danger">MartKH</span> 
+                            <span class="text-danger">MartKH</span>
                         </a>
                     </div>
                     <div class="col-6 collapse-close">
@@ -123,7 +123,7 @@
                         <i class="fas fa-store-alt" style="color:#1a8a6b;"></i>{{ __('Category') }}
                     </a>
                 </li>
-                
+
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('admin.stock') }}">
                         {{-- <i class="ni ni-tv-2 text-primary"></i>  --}}
@@ -136,6 +136,12 @@
                         {{-- <i class="ni ni-tv-2 text-primary"></i>  --}}
                         <i class="fas fa-map-marked-alt" style="color:#f4645f;"></i> {{ __('Franchise') }}
                     </a>
+                </li>
+                <li class="nav-item">
+                        <a class="nav-link" href="/admin/slide">
+                            {{-- <i class="ni ni-tv-2 text-primary"></i> --}}
+                            <i class="fas fa-shopping-bag text-info"></i> {{ __('Slide Home Page') }}
+                        </a>
                 </li>
                 {{-- <li class="nav-item">
                     <a class="nav-link" href="#">

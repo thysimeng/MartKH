@@ -21,7 +21,18 @@ const router = new VueRouter({
 
 const app = new Vue({
     el: '#app',
+    data: {
+        show: true
+    },
     store,
     // food,
-    router
+    router,
+    methods:{
+        showPage(){
+            return this.show=false
+        },
+        showHomePage(){
+            return this.show=true
+        }
+    }
 });
