@@ -1,5 +1,5 @@
 @section('content')
-<form class="form-horizontal" action="/edit/{{cid}}" enctype="multipart/form-data" method="post">
+<form class="form-horizontal" action="/edit/{{id}}" enctype="multipart/form-data" method="post">
     @csrf
     <div class="modal fade" id="editModalCenter" tabindex="1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered" role="document">
