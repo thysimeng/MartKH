@@ -9,6 +9,10 @@
                 <div class="card shadow"> 
                         <div class="card-header border-0">
                                 <ul class="nav nav-tabs card-header-tabs" id="bologna-list" role="tablist">
+                                            <div class="col-2 text-left">
+                                                <button type="button" class="btn " ><a href="/category">{{ __('Back') }}</a></button>
+                                            </div>
+
                                             <form class="col-4" action="/admin/create_sub_category/search" method="get" role="search">
                                                 {{ csrf_field() }}
                                                     <div class="form-group mb-4">
@@ -24,7 +28,7 @@
                                                     </div>
                                             </form>
                                                 
-                                            <div class="col-4 text-left">
+                                            <div class="col-6 text-right">
                                                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">{{ __('Add Sub Category') }}</button>
                                                 
                                             </div>
@@ -81,7 +85,7 @@
                                         <td>{{$item->subcategory_name}}</td>
                                         <td>{{$item->categories_name}}</td>
                                         <td>{{$item->created_at}}</td>
-                                        <td class="text-right">
+                                        <td class="">
                                             <div class="dropdown">
                                                 <a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                     <i class="fas fa-ellipsis-v"></i>

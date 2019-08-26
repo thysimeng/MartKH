@@ -9,8 +9,7 @@
                 <div class="card shadow"> 
                         <div class="card-header border-0">
                                 <ul class="nav nav-tabs card-header-tabs" id="bologna-list" role="tablist">
-                                            <div class="col-4 text-left">
-                                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">{{ __('Add Category') }}</button>
+                                            <div class="col-2 text-left">
                                                 <button type="button" class="btn " ><a href="/category/sub-category">{{ __('View Sub Category') }}</a></button>
                                             </div>
 
@@ -28,6 +27,10 @@
                                                         </div>
                                                     </div>
                                             </form>
+
+                                            <div class="col-6 text-right">
+                                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">{{ __('Add Category') }}</button>
+                                            </div>
                                            
                                             <form class="form-horizontal" action="/create_category" enctype="multipart/form-data" method="post">
                                                 @csrf
@@ -72,7 +75,7 @@
                                         <td>{{$item->cid}}</td>
                                         <td>{{$item->categories_name}}</td>
                                         <td>{{$item->created_at}}</td>
-                                        <td class="text-right">
+                                        <td class="">
                                             <div class="dropdown">
                                                 <a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                     <i class="fas fa-ellipsis-v"></i>

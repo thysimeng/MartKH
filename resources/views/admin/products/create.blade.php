@@ -22,7 +22,6 @@
                         {{-- <form method="post" action="{{ route('product.store') }}" autocomplete="off"> --}}
                             @csrf
                             <h6 class="heading-small text-muted mb-4">{{ __('Product information') }}</h6>
-                            {{-- image input --}}
                             <div class="pl-lg-4">
                                 {{-- upload img --}}
                                 <div class="form-group">
