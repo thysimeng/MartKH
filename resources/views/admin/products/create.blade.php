@@ -24,17 +24,6 @@
                             <h6 class="heading-small text-muted mb-4">{{ __('Product information') }}</h6>
                             {{-- image input --}}
                             <div class="pl-lg-4">
-                                {{-- image address --}}
-                                {{-- <div class="form-group{{ $errors->has('Image') ? ' has-danger' : '' }}">
-                                    <label class="form-control-label" for="input-image">{{ __('Image') }}</label>
-                                    <input type="text" name="image" id="input-image" class="form-control form-control-alternative{{ $errors->has('image') ? ' is-invalid' : '' }}" placeholder="{{ __('Image URL') }}" required autofocus>
-
-                                    @if ($errors->has('image'))
-                                        <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $errors->first('image') }}</strong>
-                                        </span>
-                                    @endif
-                                </div> --}}
                                 {{-- upload img --}}
                                 <div class="form-group">
                                     <label class="form-control-label" for="input-code">{{ __('Upload Image') }}</label>
@@ -138,15 +127,12 @@
                                 <div class="form-group{{ $errors->has('subcategory_id') ? ' has-danger' : '' }}">
                                     <label class="form-control-label" for="input-subcategory_id">{{ __('subcategory') }}</label>
                                     <select class="form-control" name="subcategory_id" id="subcategory_id" required>
-                                        {{-- @if(count($categories)>0)
-                                            @foreach ($categories as $category)
-                                                <option value="{{$category->id}}"
-                                                >{{ $category->category}} </option>
-                                            @endforeach
-                                        @endif --}}
-                                        <option value="1">Energy Drink</option>
-                                        <option value="2">Soft Drink</option>
-                                        <option value="2">Coffee</option>
+                                        @if(count($subcategories)>0)   
+                                        @foreach ($subcategories as $subcategory)
+                                            <option value="{{$subcategory->sid}}" 
+                                            >{{ $subcategory->subcategory_name}} </option>               
+                                        @endforeach  
+                                    @endif
                                     </select>
                                 </div>
                                 <div class="form-group{{ $errors->has('description') ? ' has-danger' : '' }}">
