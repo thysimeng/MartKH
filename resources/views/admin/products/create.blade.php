@@ -24,7 +24,7 @@
                             <h6 class="heading-small text-muted mb-4">{{ __('Product information') }}</h6>
                             {{-- image input --}}
                             <div class="pl-lg-4">
-                                {{-- image address --}}
+                                <!-- {{-- image address --}}
                                 {{-- <div class="form-group{{ $errors->has('Image') ? ' has-danger' : '' }}">
                                     <label class="form-control-label" for="input-image">{{ __('Image') }}</label>
                                     <input type="text" name="image" id="input-image" class="form-control form-control-alternative{{ $errors->has('image') ? ' is-invalid' : '' }}" placeholder="{{ __('Image URL') }}" required autofocus>
@@ -34,7 +34,7 @@
                                             <strong>{{ $errors->first('image') }}</strong>
                                         </span>
                                     @endif
-                                </div> --}}
+                                </div> --}} -->
                                 {{-- upload img --}}
                                 <div class="form-group">
                                     <label class="form-control-label" for="input-code">{{ __('Upload Image') }}</label>
