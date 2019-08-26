@@ -17,7 +17,7 @@ class SubCategoryController extends Controller
     {   
        // $sub_categories = SubCategory::query()->paginate(10);
         $categories = Category::with('subCategory')->get();
-        $sub_categories= SubCategory::leftJoin('categories','categories.cid','=','subcategories.category_id')->paginate(10);
+        $sub_categories= SubCategory::leftJoin('categories','categories.id','=','subcategories.category_id')->paginate(10);
         $data = [
             'sub_categories_data'=>$sub_categories,
             'categories_data'=>$categories,
@@ -29,7 +29,7 @@ class SubCategoryController extends Controller
     public function search(Request $request)
     {
         $search = $request->get('search');
-        $sub_categories = SubCategory::leftJoin('categories','categories.cid','=','subcategories.category_id')->where('subcategory_name', 'like', '%' .$search. '%')->paginate(10);
+        $sub_categories = SubCategory::leftJoin('categories','categories.id','=','subcategories.category_id')->where('subcategory_name', 'like', '%' .$search. '%')->paginate(10);
         $categories = Category::with('subCategory')->get();
         $data = [
             'sub_categories_data'=>$sub_categories,
@@ -52,8 +52,8 @@ class SubCategoryController extends Controller
         return redirect(route('admin.category.sub-category'));
     }
 
-    public function destroy($sid) {
-        DB::delete('delete from subcategories where sid = ?',[$sid]);
+    public function destroy($id) {
+        DB::delete('delete from subcategories where id = ?',[$id]);
         return redirect(route('admin.category.sub-category'));
     }
 
@@ -62,7 +62,7 @@ class SubCategoryController extends Controller
         $sub_category_id = $request->post('sub_category_id');
         $sub_category_name = $request->post('sub_category_name');
 
-        SubCategory::where('sid', $sub_category_id)->update([
+        SubCategory::where('id', $sub_category_id)->update([
             'subcategory_name'=>$sub_category_name,       
         ]);
         return redirect(route('admin.category.sub-category'));

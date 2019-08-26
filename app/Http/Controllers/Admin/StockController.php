@@ -49,7 +49,7 @@ class StockController extends Controller
 
     public function autocompleteFranchise(Request $request)
     {
-        $data_franchise = DB::table('franchises')->select('id as fid', 'franchise_name as name')->where("franchise_name","LIKE","%{$request->input('query')}%")->get();
+        $data_franchise = DB::table('franchises')->select('id', 'franchise_name as name')->where("franchise_name","LIKE","%{$request->input('query')}%")->get();
         return response()->json($data_franchise);
         
     }
@@ -70,20 +70,20 @@ class StockController extends Controller
 
     public function delete(Request $request) {
         $stock_id = $request->post('delete_stock_id');
-        DB::delete('delete from stocks where stid = ?',[$stock_id]);
+        DB::delete('delete from stocks where id = ?',[$stock_id]);
         return redirect(route('admin.stock'));
     }
 
     public function edit(Request $request) {
 
         $stock_id = $request->post('stock_id');
-        $old_amount = DB::table('stocks')->where("stid","=",$stock_id)->get();
+        $old_amount = DB::table('stocks')->where("id","=",$stock_id)->get();
         foreach ($old_amount as $id){
             $stid = $id->amount;
         }
         $new_amount = $request->post('new-amount');
         $new_st = $stid+$new_amount;
-        Stock::where('stid', $stock_id)->update([
+        Stock::where('id', $stock_id)->update([
             'amount'=>$new_st,       
         ]);
         return redirect(route('admin.stock'));
