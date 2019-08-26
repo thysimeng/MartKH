@@ -99,7 +99,7 @@
                                                     @foreach($stocks_data as $item)
                                                     
                                                     <tr>
-                                                        <td>{{$item->stid}}</td>
+                                                        <td>{{$item->id}}</td>
                                                         <td>{{$item->name}}</td>
                                                         <td>{{$item->amount}}</td>
                                                         <td>{{$item->created_at}}</td>
@@ -109,12 +109,12 @@
                                                                 <a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                                     <i class="fas fa-ellipsis-v"></i>
                                                                 </a>
-                                                                <div data-id="{{$item->stid}}"  class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                                                    <a onclick="edit({{$item->stid}}, '{{$item->amount}}')" class="dropdown-item" data-toggle="modal" data-target="#editModalCenter" href="">{{ __('Edit') }}</a>
+                                                                <div data-id="{{$item->id}}"  class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+                                                                    <a onclick="edit({{$item->id}}, '{{$item->amount}}')" class="dropdown-item" data-toggle="modal" data-target="#editModalCenter" href="">{{ __('Edit') }}</a>
                                                             
                                                                     {{-- <a class="dropdown-item" href="">{{ __('View') }}</a> --}}
-                                                                    <a onclick="delet({{$item->stid}})" class="dropdown-item" data-toggle="modal" data-target="#deleteModalCenter" href="">{{ __('Delete') }}</a>
-                                                                    {{-- <a class="dropdown-item" href="/admin/delete_stock/{{ $item->stid }}">{{ __('Delete') }}</a> --}}
+                                                                    <a onclick="delet({{$item->id}})" class="dropdown-item" data-toggle="modal" data-target="#deleteModalCenter" href="">{{ __('Delete') }}</a>
+                                                                    {{-- <a class="dropdown-item" href="/admin/delete_stock/{{ $item->id }}">{{ __('Delete') }}</a> --}}
                                                                 </div>
                                                             </div>
                                                         </td>
@@ -191,7 +191,7 @@
                                                     @foreach($stocks_franch_data as $item)
                                                     
                                                     <tr>
-                                                        <td>{{$item->stid}}</td>
+                                                        <td>{{$item->id}}</td>
                                                         <td>{{$item->franchise_name}}</td>
                                                         <td>{{$item->amount}}</td>
                                                         <td>{{$item->created_at}}</td>
@@ -256,7 +256,7 @@
         $franchiseInput.change(function() {
             var currentFranchise = $franchiseInput.typeahead("getActive");
             if (currentFranchise) {
-                $('input[name="franchise_id"]').val(currentFranchise.fid);
+                $('input[name="franchise_id"]').val(currentFranchise.id);
             }
         
         });
@@ -273,10 +273,10 @@
     </script>
 
     <script>
-        var stid = null;
+        var id = null;
 
-        function delet(stid) {
-            document.querySelector('[name="delete_stock_id"]').setAttribute('value', stid);
+        function delet(id) {
+            document.querySelector('[name="delete_stock_id"]').setAttribute('value', id);
         }
 
     </script>

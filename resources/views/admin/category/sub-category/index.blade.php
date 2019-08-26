@@ -48,7 +48,7 @@
                                                                 
                                                                 <select class="form-control" id="exampleFormControlSelect1" name="category_id">
                                                                     @foreach($categories_data as $sub_item)
-                                                                        <option @if(old('category_id') == $sub_item->cid) selected @endif value="{{$sub_item->cid}}">{{$sub_item->categories_name}}</option>
+                                                                        <option @if(old('category_id') == $sub_item->id) selected @endif value="{{$sub_item->id}}">{{$sub_item->categories_name}}</option>
                                                                     @endforeach
                                                                 </select>
                                                               </div>
@@ -81,7 +81,7 @@
                             <tbody>
                                     @foreach($sub_categories_data as $item)
                                     <tr>
-                                        <td>{{$item->sid}}</td>
+                                        <td>{{$item->id}}</td>
                                         <td>{{$item->subcategory_name}}</td>
                                         <td>{{$item->categories_name}}</td>
                                         <td>{{$item->created_at}}</td>
@@ -90,11 +90,11 @@
                                                 <a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                     <i class="fas fa-ellipsis-v"></i>
                                                 </a>
-                                                <div data-id="{{$item->sid}}" class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                                    <a onclick="edit({{$item->sid}}, '{{$item->subcategory_name}}')" class="dropdown-item" data-toggle="modal" data-target="#editModalCenter" href="">{{ __('Edit') }}</a>
+                                                <div data-id="{{$item->id}}" class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+                                                    <a onclick="edit({{$item->id}}, '{{$item->subcategory_name}}')" class="dropdown-item" data-toggle="modal" data-target="#editModalCenter" href="">{{ __('Edit') }}</a>
                                             
                                                     {{-- <a class="dropdown-item" href="">{{ __('View') }}</a> --}}
-                                                    <a class="dropdown-item" href="/admin/sub_category/delete/{{ $item->sid }}">{{ __('Delete') }}</a>
+                                                    <a class="dropdown-item" href="/admin/sub_category/delete/{{ $item->id }}">{{ __('Delete') }}</a>
                                                 </div>
                                             </div>
                                         </td>

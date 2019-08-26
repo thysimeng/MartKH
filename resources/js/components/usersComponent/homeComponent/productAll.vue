@@ -1,8 +1,8 @@
 <template>
   <div class="tab-content">
-    <div v-for="product in products" v-bind:data="product" v-bind:key="product.key" class="tab-pane active show fade" id="furniture1" role="tabpanel">
+    <div class="tab-pane active show fade" id="furniture1" role="tabpanel">
       <div class="coustom-row-5">
-        <div class="custom-col-three-5 custom-col-style-5 mb-65">
+        <div class="custom-col-three-5 custom-col-style-5 mb-65" v-for="product in products" v-bind:data="product" v-bind:key="product.key">
           <div class="product-wrapper">
             <div class="product-img">
               <a href="#">
@@ -43,8 +43,8 @@
           </div>
         </div>
       </div>
-      <modalQuickView :productID="productID"></modalQuickView>
     </div>
+      <modalQuickView :productID="productID"></modalQuickView>
   </div>
 </template>
 <script>

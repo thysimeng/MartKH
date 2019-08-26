@@ -72,7 +72,7 @@
                                     @foreach($categories_data as $item)
                                     
                                     <tr>
-                                        <td>{{$item->cid}}</td>
+                                        <td>{{$item->id}}</td>
                                         <td>{{$item->categories_name}}</td>
                                         <td>{{$item->created_at}}</td>
                                         <td class="">
@@ -80,11 +80,11 @@
                                                 <a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                     <i class="fas fa-ellipsis-v"></i>
                                                 </a>
-                                                <div data-id="{{$item->cid}}"  class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                                    <a onclick="edit({{$item->cid}}, '{{$item->categories_name}}')"  class="dropdown-item" data-toggle="modal" data-target="#editModalCenter" href="">{{ __('Edit') }}</a>
+                                                <div data-id="{{$item->id}}"  class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+                                                    <a onclick="edit({{$item->id}}, '{{$item->categories_name}}')"  class="dropdown-item" data-toggle="modal" data-target="#editModalCenter" href="">{{ __('Edit') }}</a>
                                             
                                                     {{-- <a class="dropdown-item" href="">{{ __('View') }}</a> --}}
-                                                    <a class="dropdown-item" href="/delete/{{ $item->cid }}">{{ __('Delete') }}</a>
+                                                    <a class="dropdown-item" href="/delete/{{ $item->id }}">{{ __('Delete') }}</a>
                                                 </div>
                                             </div>
                                         </td>

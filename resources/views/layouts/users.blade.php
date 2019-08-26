@@ -115,7 +115,7 @@
                                     <li><a href="/users/shop">shop</a>
                                         <ul class="single-dropdown">
                                             <li>
-                                                <router-link to="/users/foodVue">Food</router-link>
+                                                <router-link to="/users/shop/foodVue">Food</router-link>
                                             </li>
                                             <li><a href="blog-2-col.html">blog 2 colunm</a></li>
                                             <li><a href="blog-sidebar.html">blog sidebar</a></li>

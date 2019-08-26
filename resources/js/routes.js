@@ -8,33 +8,43 @@ import productDrink from './components/usersComponent/homeComponent/productDrink
 import shop from './components/usersComponent/shopComponent/shop.vue';
 import food from './components/usersComponent/shopComponent/food.vue';
 
-export const routes = [
-    { path: '/users/shop', component: shop },
-    { path: '/users/foodVue', component: food },
+export const routes = [{
+        path: '/users/shop',
+        component: shop
+    },
     {
-        path: '/users', components: {
+        path: '/users/shop/foodVue',
+        component: food
+    },
+    {
+        path: '/users',
+        components: {
             productPopularSender: productPopularSender,
             productAll: productAll,
             productFood: productFood
         },
-        children:[
-            {path:"/foodHome", name: 'food', component: productFood}
-        ]
+        children: [{
+            path: "/foodHome",
+            name: 'food',
+            component: productFood
+        }]
     },
     {
-        path: '/users/foodHome', components: {
+        path: '/users/foodHome',
+        components: {
             productPopularSender: productPopularSender,
             productAll: productAll,
             productFood: productFood
         }
     },
     {
-        path: '/users/drinkHome', components: {
+        path: '/users/drinkHome',
+        components: {
             productPopularSender: productPopularSender,
             productAll: productAll,
             productDrink: productDrink
         }
-    },
+    }
     // { path: '/users/modalQuickView', component: modalQuickView },
     // { path: '/users/listView', component: listView},
     // { path: '/food', component: food, children:[
