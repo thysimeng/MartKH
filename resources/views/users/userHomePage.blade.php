@@ -3,29 +3,29 @@
 {{-- Start slide area --}}
 <div class="slider-area">
     <div class="slider-active owl-carousel">
-        <div class="single-slider-4 slider-height-6 bg-img" style="background-image: url(assets/img/slider/9.jpg)">
+        <div class="single-slider-4 slider-height-6 bg-img" style="background-image: url(uploads/slide/dairy.jpg)">
             <div class="container">
                 <div class="row">
-                    <div class="ml-auto col-lg-6">
-                        <div class="furniture-content fadeinup-animated">
-                            <h2 class="animated">Comfort <br>Collection.</h2>
-                            <p class="animated">Lorem Ipsum is simply dummy text of the printing and typesetting
+                    <div class="ml-auto col-lg-6" style="background:rgba(255, 0, 0, 0.8);">
+                        <div class="furniture-content fadeinup-animated mt-4 mb-4 ml-4">
+                            <h2 class="animated" style="color:white;">Dairy Products</h2>
+                            <p class="animated" style="color:white;">Lorem Ipsum is simply dummy text of the printing and typesetting
                                 industry.</p>
-                            <a class="furniture-slider-btn btn-hover animated" href="product-details.html">Shop Now</a>
+                            <a class="furniture-slider-btn btn-hover animated" href="product-details.html" style="color:white;">Shop Now</a>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-        <div class="single-slider-4 slider-height-6 bg-img" style="background-image: url(assets/img/slider/19.jpg)">
+        <div class="single-slider-4 slider-height-6 bg-img" style="background-image: url(uploads/slide/vegetables.jpg)">
             <div class="container">
                 <div class="row">
-                    <div class="ml-auto col-lg-6">
-                        <div class="furniture-content fadeinup-animated">
-                            <h2 class="animated">Comfort <br>Collection.</h2>
-                            <p class="animated">Lorem Ipsum is simply dummy text of the printing and typesetting
+                    <div class="ml-auto col-lg-6" style="background:rgba(0, 255, 0, 0.6);">
+                        <div class="furniture-content fadeinup-animated mt-4 mb-4 ml-4">
+                            <h2 class="animated" style="color:white;">Vegetables</h2>
+                            <p class="animated" style="color:white;">Lorem Ipsum is simply dummy text of the printing and typesetting
                                 industry.</p>
-                            <a class="furniture-slider-btn btn-hover animated" href="product-details.html">Shop Now</a>
+                            <a class="furniture-slider-btn btn-hover animated" href="product-details.html" style="color:white;">Shop Now</a>
                         </div>
                     </div>
                 </div>

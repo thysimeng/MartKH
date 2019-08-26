@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Favicon -->
-    <link rel="shortcut icon" type="{{asset('image/x-icon')}}" href="{{asset('assets/img/favicon.png')}}">
+    <link rel="shortcut icon" type="{{asset('image/x-icon')}}" href="{{asset('icon/mkh.png')}}">
 
     <!-- all css here -->
     <link rel="stylesheet" href="{{asset('/css/app.css')}}">
@@ -37,7 +37,8 @@
                     <div class="header-bottom-wrapper">
                         <div class="logo-2 furniture-logo ptb-30">
                             <a href="/users">
-                                <img src="{{asset('assets/img/logo/2.png')}}" alt="">
+                                {{-- <img src="{{asset('assets/img/logo/2.png')}}" alt=""> --}}
+                                <img src="{{asset('icon/mkh-logo.png')}}" alt="" style="width:250px;height:78px;">
                             </a>
                         </div>
                         <div class="menu-style-2 furniture-menu menu-hover">
@@ -129,7 +130,7 @@
                         <div class="header-cart">
                             <a class="icon-cart-furniture" href="#">
                                 <i class="ti-shopping-cart"></i>
-                                <span class="shop-count-furniture green">02</span>
+                                <span class="shop-count-furniture green" style="background-color:red;">02</span>
                             </a>
                             <ul class="cart-dropdown">
                                 <li class="single-product-cart">
@@ -255,7 +256,7 @@
                     </div>
                 </div>
             </div>
-            <div class="header-bottom-furniture wrapper-padding-2 border-top-3">
+            <div class="header-bottom-furniture wrapper-padding-2 border-top-3 border-bottom-3">
                 <div class="container-fluid">
                     <div class="furniture-bottom-wrapper">
                         <div class="furniture-login">
@@ -310,7 +311,7 @@
                 <div class="container-fluid">
                     <div class="widget-wrapper">
                         <div class="footer-widget mb-30">
-                            <a href="#"><img src="{{asset('assets/img/logo/2.png')}}" alt=""></a>
+                            <a href="#"><img src="{{asset('icon/mkh-logo.png')}}" alt="" style="width:250px;"></a>
                             <div class="footer-about-2">
                                 <p>MartKh provide you everything<br>Food, drink and shop place<br>Find what you want</p>
                             </div>

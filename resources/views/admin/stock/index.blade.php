@@ -235,7 +235,7 @@
         $stockInput.change(function() {
             var current = $stockInput.typeahead("getActive");
             if (current) {
-                $('input[name="product_id"]').val(current.pid);
+                $('input[name="product_id"]').val(current.id);
             }
         
         });
