@@ -60,7 +60,7 @@ Route::group(['middleware' => ['web','auth','checkUserRole']], function () {
 	Route::post('admin/update_stock', 'Admin\StockController@edit')->name('admin.update_stock');
 	Route::get('admin/search_stock', 'Admin\StockController@stockSearch')->name('admin.search_stock');
 	Route::post('admin/delete_stock', 'Admin\StockController@delete')->name('admin.delete_stock');
-	
+
 	Route::get('admin/stock/autocomplete',array('as'=>'admin.stock.autocomplete','uses'=>'Admin\StockController@autocomplete'));
 	Route::get('admin/stock/autocompleteFranchise',array('as'=>'admin.stock.autocompleteFranchise','uses'=>'Admin\StockController@autocompleteFranchise'));
 
@@ -74,5 +74,7 @@ Route::get('/users', 'UsersController\UserHomeController@index')->name('home');
 Route::get('/users/shop', 'UsersController\ProductDisplayController@index')->name('productDisplay');
 Route::get('/users/food', 'UsersController\ProductsController@food')->name('productFood');
 Route::get('/users/all', 'UsersController\ProductsController@get')->name('productFood');
-
+Route::get('/{any}', function(){
+    return view('user');
+})->where('any', '^(?!api).*$');
 Route::get('/usersTest', 'UsersController\temp\testController@index')->name('get');

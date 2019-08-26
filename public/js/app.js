@@ -37908,83 +37908,90 @@ var render = function() {
   return _c(
     "div",
     { staticClass: "tab-content" },
-    _vm._l(_vm.products, function(product) {
-      return _c(
+    [
+      _c(
         "div",
         {
-          key: product.key,
           staticClass: "tab-pane active show fade",
-          attrs: { data: product, id: "furniture1", role: "tabpanel" }
+          attrs: { id: "furniture1", role: "tabpanel" }
         },
         [
-          _c("div", { staticClass: "coustom-row-5" }, [
-            _c(
-              "div",
-              { staticClass: "custom-col-three-5 custom-col-style-5 mb-65" },
-              [
-                _c("div", { staticClass: "product-wrapper" }, [
-                  _c("div", { staticClass: "product-img" }, [
-                    _c("a", { attrs: { href: "#" } }, [
-                      _c("img", {
-                        attrs: {
-                          src: "/uploads/product_image/" + product.image,
-                          alt: ""
-                        }
-                      })
-                    ]),
-                    _vm._v(" "),
-                    _c("div", { staticClass: "product-action" }, [
-                      _vm._m(0, true),
-                      _vm._v(" "),
-                      _vm._m(1, true),
-                      _vm._v(" "),
-                      _c(
-                        "a",
-                        {
-                          staticClass: "animate-right",
+          _c(
+            "div",
+            { staticClass: "coustom-row-5" },
+            _vm._l(_vm.products, function(product) {
+              return _c(
+                "div",
+                {
+                  key: product.key,
+                  staticClass: "custom-col-three-5 custom-col-style-5 mb-65",
+                  attrs: { data: product }
+                },
+                [
+                  _c("div", { staticClass: "product-wrapper" }, [
+                    _c("div", { staticClass: "product-img" }, [
+                      _c("a", { attrs: { href: "#" } }, [
+                        _c("img", {
                           attrs: {
-                            title: "Quick View",
-                            "data-toggle": "modal",
-                            "data-target": "#exampleModal",
-                            href: "#"
-                          },
-                          on: {
-                            click: function($event) {
-                              return _vm.quickView(product.pid, product.image)
-                            }
+                            src: "/uploads/product_image/" + product.image,
+                            alt: ""
                           }
-                        },
-                        [_c("i", { staticClass: "pe-7s-look" })]
-                      )
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c(
-                    "div",
-                    { staticClass: "funiture-product-content text-center" },
-                    [
-                      _c("h4", [
-                        _c("a", { attrs: { href: "product-details.html" } }, [
-                          _vm._v(_vm._s(product.name))
-                        ])
+                        })
                       ]),
                       _vm._v(" "),
-                      _c("span", [_vm._v("$90.00")]),
-                      _vm._v(" "),
-                      _vm._m(2, true)
-                    ]
-                  )
-                ])
-              ]
-            )
-          ]),
-          _vm._v(" "),
-          _c("modalQuickView", { attrs: { productID: _vm.productID } })
-        ],
-        1
-      )
-    }),
-    0
+                      _c("div", { staticClass: "product-action" }, [
+                        _vm._m(0, true),
+                        _vm._v(" "),
+                        _vm._m(1, true),
+                        _vm._v(" "),
+                        _c(
+                          "a",
+                          {
+                            staticClass: "animate-right",
+                            attrs: {
+                              title: "Quick View",
+                              "data-toggle": "modal",
+                              "data-target": "#exampleModal",
+                              href: "#"
+                            },
+                            on: {
+                              click: function($event) {
+                                return _vm.quickView(product.pid, product.image)
+                              }
+                            }
+                          },
+                          [_c("i", { staticClass: "pe-7s-look" })]
+                        )
+                      ])
+                    ]),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      { staticClass: "funiture-product-content text-center" },
+                      [
+                        _c("h4", [
+                          _c("a", { attrs: { href: "product-details.html" } }, [
+                            _vm._v(_vm._s(product.name))
+                          ])
+                        ]),
+                        _vm._v(" "),
+                        _c("span", [_vm._v("$90.00")]),
+                        _vm._v(" "),
+                        _vm._m(2, true)
+                      ]
+                    )
+                  ])
+                ]
+              )
+            }),
+            0
+          )
+        ]
+      ),
+      _vm._v(" "),
+      _c("modalQuickView", { attrs: { productID: _vm.productID } })
+    ],
+    1
   )
 }
 var staticRenderFns = [
@@ -55706,7 +55713,7 @@ var routes = [{
   path: '/users/shop',
   component: _components_usersComponent_shopComponent_shop_vue__WEBPACK_IMPORTED_MODULE_4__["default"]
 }, {
-  path: '/users/foodVue',
+  path: '/users/shop/foodVue',
   component: _components_usersComponent_shopComponent_food_vue__WEBPACK_IMPORTED_MODULE_5__["default"]
 }, {
   path: '/users',
@@ -55733,7 +55740,15 @@ var routes = [{
     productPopularSender: _components_usersComponent_homeComponent_productPopularSender__WEBPACK_IMPORTED_MODULE_0__["default"],
     productAll: _components_usersComponent_homeComponent_productAll__WEBPACK_IMPORTED_MODULE_1__["default"],
     productDrink: _components_usersComponent_homeComponent_productDrink__WEBPACK_IMPORTED_MODULE_3__["default"]
-  }
+  } // { path: '/users/modalQuickView', component: modalQuickView },
+  // { path: '/users/listView', component: listView},
+  // { path: '/food', component: food, children:[
+  //     {path: '', component: foodStart},
+  //     {path: ':id', component: foodDetail},
+  //     {path: ':id/edit', component: foodEdit, name: 'foodEdit'},
+  // ] },
+  // { path: '/drink', component: drink }
+
 }];
 
 /***/ }),
