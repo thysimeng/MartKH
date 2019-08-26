@@ -17,7 +17,7 @@ class StockController extends Controller
     public function index()
     {   
         // $stocks = Stock::query()->paginate(10);
-        $stocks= Stock::leftJoin('products','products.pid','=','stocks.product_id')->paginate(10);
+        $stocks= Stock::leftJoin('products','products.id','=','stocks.product_id')->paginate(10);
         $stocks_franch= Stock::leftJoin('franchises','franchises.id','=','stocks.franchise_id')->paginate(10);
         $data = [
             'stocks_data'=>$stocks,
@@ -30,7 +30,7 @@ class StockController extends Controller
     public function stockSearch(Request $request)
     {
         $search = $request->get('stock-search');
-        $stocks= Stock::leftJoin('products','products.pid','=','stocks.product_id')->where('products.name', 'like', '%' .$search. '%')->paginate(10);
+        $stocks= Stock::leftJoin('products','products.id','=','stocks.product_id')->where('products.name', 'like', '%' .$search. '%')->paginate(10);
         $stocks_franch= Stock::leftJoin('franchises','franchises.id','=','stocks.franchise_id')->paginate(10);
         $data = [
             'stocks_data'=>$stocks,

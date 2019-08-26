@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Products;
+use App\Models\SubCategory;
 use Image;
 use File;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -18,8 +19,6 @@ class ProductController extends Controller
     public function index()
     {
         $products = Products::all();
-
-
         return view('admin.products.index',compact('products'));
     }
 
@@ -30,7 +29,8 @@ class ProductController extends Controller
      */
     public function create()
     {
-        return view('admin.products.create');
+        $subcategories = SubCategory::all();
+        return view('admin.products.create',compact('subcategories'));
     }
 
     /**
