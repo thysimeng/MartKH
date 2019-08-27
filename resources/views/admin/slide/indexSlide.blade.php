@@ -66,7 +66,7 @@
                                     <tr>
                                         <td>{{ $product->id }}</td>
                                         <td>{{ $product->code }}</td>
-                                        <td><img src="{{asset( 'uploads/product_image/' . $product->image )}}" alt="" class="img-thumbnail " style="width:100px;heigth:100px;"></td>
+                                        <td><img src="{{asset( 'uploads/slide_image/' . $product->image )}}" alt="" class="img-thumbnail " style="width:100px;heigth:100px;"></td>
                                         <td>{{ $product->name }}</td>
                                         <td>{{ $product->price }}</td>
                                         <td>{{ $product->size }}</td>
@@ -85,7 +85,7 @@
                                                     {{-- delete fucntion --}}
                                                     {{-- @if ($product->id != auth()->id()) --}}
                                                         {{-- <form action="{{ route('user.destroy', $user) }}" method="post"> --}}
-                                                        <form action="products/{{$product->id}}" method="post">
+                                                        <form action="admin/slide/{{$product->id}}" method="post">
                                                             @csrf
                                                             @method('delete')
                                                             {{-- <a class="dropdown-item" href="{{ route('user.edit', $user) }}">{{ __('Edit') }}</a> --}}
@@ -141,7 +141,7 @@
         });
         $(document).on("click", ".openImageDialog", function () {
             var imgsrc = $(this).data('image');
-            var imgsrc_path = '/uploads/product_image/'.concat(imgsrc);
+            var imgsrc_path = '/uploads/slide_image/'.concat(imgsrc);
             $('#imagesrc').attr('src',imgsrc_path);
             // console.log(imgsrc);
         });

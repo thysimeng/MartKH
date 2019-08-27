@@ -18,7 +18,7 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <form method="post" action="{{ route('admin/slide/store') }}" autocomplete="off" enctype="multipart/form-data">
+                        <form method="post" action="{{ route('slide.store') }}" autocomplete="off" enctype="multipart/form-data">
                         {{-- <form method="post" action="{{ route('product.store') }}" autocomplete="off"> --}}
                             @csrf
                             <h6 class="heading-small text-muted mb-4">{{ __('Product information') }}</h6>

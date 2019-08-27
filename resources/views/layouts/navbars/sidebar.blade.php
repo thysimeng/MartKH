@@ -138,7 +138,7 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                        <a class="nav-link" href="/admin/slide">
+                        <a class="nav-link" href="{{ route('slide.index') }}">
                             {{-- <i class="ni ni-tv-2 text-primary"></i> --}}
                             <i class="fas fa-shopping-bag text-info"></i> {{ __('Slide Home Page') }}
                         </a>

@@ -4,7 +4,6 @@ namespace App\Http\Controllers\Admin;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use App\Models\Slide;
 use App\Products;
 use App\Models\SubCategory;
 use Image;
@@ -22,12 +21,6 @@ class ProductController extends Controller
         $products = Products::all();
         return view('admin.products.index',compact('products'));
     }
-    public function indexSlide()
-    {
-        $products = Slide::all();
-        return view('admin.products.indexSlide',compact('products'));
-    }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -37,11 +30,6 @@ class ProductController extends Controller
     {
         $subcategories = SubCategory::all();
         return view('admin.products.create',compact('subcategories'));
-    }
-    public function createSlide()
-    {
-        $subcategories = SubCategory::all();
-        return view('admin.products.createSlide',compact('subcategories'));
     }
 
     /**
@@ -84,42 +72,6 @@ class ProductController extends Controller
         Alert::success('Product Creation', 'Successfully Created');
         // return redirect()->route('products.index')->withStatus(__('Product successfully created.'));
         return redirect()->route('products.index');
-    }
-    public function storeSlide(Request $request)
-    {
-        $this-> validate($request,[
-            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
-            'code' => 'required|unique:products',
-            'name' => 'required|unique:products',
-            'price' => 'required',
-            'size' => 'required',
-            'brand' => 'required',
-            'country' => 'required',
-            'subcategory_id' => 'required',
-            'description' => 'required'
-        ]);
-        $products = new Slide;
-        // store and resize image to folder uploads/product_image
-        if($request->hasFile('image')){
-            $image = $request->file('image');
-            $filename = time() . '.' . $image->getClientOriginalExtension();
-            Image::make($image)->resize(600, 600)->save( public_path('uploads\product_image\\' . $filename ) );
-            $products->image = $filename;
-            // $products->save();
-        };
-        $products->code = $request->input('code');
-        $products->name = $request->input('name');
-        $products->description = $request->input('description');
-        $products->price = $request->input('price');
-        $products->size = $request->input('size');
-        $products->brand = $request->input('brand');
-        $products->country = $request->input('country');
-        $products->subcategory_id = $request->input('subcategory_id');
-        $products->view = 2;
-        $products->save();
-        Alert::success('Product Creation', 'Successfully Created');
-        // return redirect()->route('products.index')->withStatus(__('Product successfully created.'));
-        return redirect('/admin/slide');
     }
 
     /**

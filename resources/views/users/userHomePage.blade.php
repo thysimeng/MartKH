@@ -5,34 +5,22 @@
     {{-- Start slide area --}}
     <div class="slider-area">
         <div class="slider-active owl-carousel">
-            <div class="single-slider-4 slider-height-6 bg-img" style="background-image: url(assets/img/slider/9.jpg)">
-                <div class="container">
-                    <div class="row">
-                        <div class="ml-auto col-lg-6">
-                            <div class="furniture-content fadeinup-animated">
-                                <h2 class="animated">Comfort <br>Collection.</h2>
-                                <p class="animated">Lorem Ipsum is simply dummy text of the printing and typesetting
-                                    industry.</p>
-                                <a class="furniture-slider-btn btn-hover animated" href="product-details.html">Shop Now</a>
+            @foreach ($productSlide as $SlideValue)
+                <div class="single-slider-4 slider-height-6 bg-img" style="background-image: url(uploads/slide_image/{{$SlideValue->image}})">
+                    <div class="container">
+                        <div class="row">
+                            <div class="ml-auto col-lg-6">
+                                <div class="furniture-content fadeinup-animated">
+                                    <h2 class="animated">Comfort <br>Collection.</h2>
+                                    <p class="animated">Lorem Ipsum is simply dummy text of the printing and typesetting
+                                        industry.</p>
+                                    <a class="furniture-slider-btn btn-hover animated" href="product-details.html">Shop Now</a>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
-            <div class="single-slider-4 slider-height-6 bg-img" style="background-image: url(assets/img/slider/19.jpg)">
-                <div class="container">
-                    <div class="row">
-                        <div class="ml-auto col-lg-6">
-                            <div class="furniture-content fadeinup-animated">
-                                <h2 class="animated">Comfort <br>Collection.</h2>
-                                <p class="animated">Lorem Ipsum is simply dummy text of the printing and typesetting
-                                    industry.</p>
-                                <a class="furniture-slider-btn btn-hover animated" href="product-details.html">Shop Now</a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            @endforeach
         </div>
     </div>
     {{-- End slide area --}}
@@ -67,8 +55,8 @@
                             </div>
                         </div>
                         <div class="funiture-product-content text-center">
-                            <h4><a href="product-details.html">Sofa Chaise Sleeper</a></h4>
-                            <span>$90.00</span>
+                            <h4><a href="product-details.html">{{$productValue->name}}</a></h4>
+                        <span>{{$productValue->price}}</span>
                         </div>
                     </div>
                     @endforeach
