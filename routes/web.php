@@ -20,7 +20,7 @@ Auth::routes();
 Route::get('/home', 'Admin\HomeController@index')->name('home')->middleware('checkUserRole');
 
 // Route::get('admin/user', 'UserController@user');
-
+// Admin-related routes
 Route::group(['middleware' => ['web','auth','checkUserRole']], function () {
 
 
@@ -66,6 +66,15 @@ Route::group(['middleware' => ['web','auth','checkUserRole']], function () {
 
 });
 
+// franchise-related routes
+// Route::get('/franchise','Franchise\FranchiseController@index')->name('franchise');
+Route::get('/franchise','Franchise\FranchiseController@showDashboard')->name('franchise');
+Route::get('/franchise/products','Franchise\FranchiseController@viewProduct')->name('franchise.products');
+Route::get('/franchise/stocks','Franchise\FranchiseController@index')->name('franchise.stock');
+Route::get('/franchise/stocks/request','Franchise\FranchiseController@requestForm')->name('franchise.request');
+
+
+// test route for redirecting users when they try to access admin pages
 Route::get('/user', function(){
 	return redirect('/users');
 })->name('normalUser');
