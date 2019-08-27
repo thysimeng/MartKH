@@ -54873,9 +54873,20 @@ var router = new vue_router__WEBPACK_IMPORTED_MODULE_0__["default"]({
 });
 var app = new Vue({
   el: '#app',
+  data: {
+    show: true
+  },
   store: _components_usersComponent_mainAPI_productsReader__WEBPACK_IMPORTED_MODULE_2__["default"],
   // food,
-  router: router
+  router: router,
+  methods: {
+    showPage: function showPage() {
+      return this.show = false;
+    },
+    showHomePage: function showHomePage() {
+      return this.show = true;
+    }
+  }
 });
 
 /***/ }),
@@ -55771,8 +55782,8 @@ var routes = [{
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\Users\asd\Documents\GitHub\MartKH\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\Users\asd\Documents\GitHub\MartKH\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\project\martkh\MartKH\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\project\martkh\MartKH\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

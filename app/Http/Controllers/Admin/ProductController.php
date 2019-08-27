@@ -21,7 +21,6 @@ class ProductController extends Controller
         $products = Products::all();
         return view('admin.products.index',compact('products'));
     }
-
     /**
      * Show the form for creating a new resource.
      *
@@ -167,7 +166,7 @@ class ProductController extends Controller
         $image_path = $product->image;
         File::delete(public_path('uploads\product_image\\' . $image_path));
         $product->delete();
-        return redirect()->route('products.index');  
+        return redirect()->route('products.index');
         // return redirect()->route('products.index')->withStatus(__('Product successfully deleted.'));
     }
 }

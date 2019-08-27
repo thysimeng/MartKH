@@ -11,7 +11,8 @@ class UserHomeController extends Controller
 {
     public function index(){
         $productPopular = DB::table('products')->limit(9)->get();
-        return view('users.userHomePage', compact('productPopular'));
+        $productSlide = DB::table('slide')->get();
+        return view('users.userHomePage', compact('productPopular', 'productSlide'));
     }
 
     public function get(Request $request)

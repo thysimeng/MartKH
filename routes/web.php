@@ -29,7 +29,10 @@ Route::group(['middleware' => ['web','auth','checkUserRole']], function () {
 	Route::put('admin/profile', ['as' => 'admin.profile.update', 'uses' => 'Admin\ProfileController@update']);
 	Route::put('admin/profile/password', ['as' => 'admin.profile.password', 'uses' => 'Admin\ProfileController@password']);
 	Route::post('admin/profile/upload', ['as' => 'admin.profile.upload', 'uses' => 'Admin\ProfileController@upload']);
-	Route::resource('admin/products', 'Admin\ProductController');
+    Route::resource('admin/products', 'Admin\ProductController');
+    // Start slide controller
+    Route::resource('admin/slide', 'Admin\SlideController');
+    // End slide controller
 	Route::post('/delete/{pid}', 'Admin\ProductController@destroy')->name('products.destroy');
 	Route::resource('admin/franchises','Admin\FranchiseController',['except' => ['show']]);
 	Route::get('admin/franchises',['as' => 'franchises.index', 'uses' => 'Admin\FranchiseController@index']);

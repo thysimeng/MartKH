@@ -44,7 +44,8 @@
                         <div class="menu-style-2 furniture-menu menu-hover">
                             <nav>
                                 <ul>
-                                    <li><a href="/users">home</a>
+                                    <li><a href="/users">Home</a>
+                                        {{-- <router-link to="/users" @click.native="showHomePage()">Home</router-link> --}}
                                         <ul class="single-dropdown">
                                             <li><a href="index.html">Fashion</a></li>
                                             <li><a href="index-fashion-2.html">Fashion style 2</a></li>
@@ -112,11 +113,9 @@
                                             </div>
                                         </div>
                                     </li> --}}
-                                    <li><a href="/users/shop">shop</a>
+                                <li><router-link to="/users/shop" @click.native="showPage()">Shop</router-link>
                                         <ul class="single-dropdown">
-                                            <li>
-                                                <router-link to="/users/shop/foodVue">Food</router-link>
-                                            </li>
+                                            <li><router-link to="/users/shop/foodVue" @click.native="showPage()">Food</router-link></li>
                                             <li><a href="blog-2-col.html">blog 2 colunm</a></li>
                                             <li><a href="blog-sidebar.html">blog sidebar</a></li>
                                             <li><a href="blog-details.html">blog details</a></li>
