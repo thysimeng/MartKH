@@ -19,7 +19,7 @@
                     </div>
                     <div class="card-body">
                         {{-- <form method="post" action="{{ route('products.update', $product) }}" autocomplete="off"> --}}
-                        {{-- <form method="post" action="{{ route('products.update',$product->pid) }}" autocomplete="off" enctype="multipart/form-data"> --}}
+                        {{-- <form method="post" action="{{ route('products.update',$product->id) }}" autocomplete="off" enctype="multipart/form-data"> --}}
                         <form method="post" action="{{ route('products.update',$product->id) }}" autocomplete="off" enctype="multipart/form-data">
                             @csrf
                             @method('put')

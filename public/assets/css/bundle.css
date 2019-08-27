@@ -1221,7 +1221,8 @@ button:focus {
 }
 
 .border-bottom-3{
-    border-bottom: 1px solid #5b5b63;
+    //border-bottom: 1px solid #5b5b63;
+    border-bottom: 1px solid #e5e5e5;
 }
 
 
