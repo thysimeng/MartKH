@@ -1,5 +1,6 @@
 @extends('layouts.users')
 @section('contents')
+<<<<<<< Updated upstream
 {{-- Home page section --}}
 <div v-if="show">
     {{-- Start slide area --}}
@@ -19,6 +20,44 @@
                                 <a class="furniture-slider-btn btn-hover animated" href="product-details.html"
                                     style="color:white;">Shop Now</a>
                             </div>
+=======
+{{-- Start slide area --}}
+@if (Session::has('message'))
+    <div class="alert alert-success">
+        <p>{{ Session::get('message') }}</p>
+    </div>
+@endif
+@if (Session::has('success'))
+    <div class="alert alert-success">
+        <p>{{ Session::get('success') }}</p>
+    </div>
+@endif
+<div class="slider-area">
+    <div class="slider-active owl-carousel">
+        <div class="single-slider-4 slider-height-6 bg-img" style="background-image: url(uploads/slide/dairy.jpg)">
+            <div class="container">
+                <div class="row">
+                    <div class="ml-auto col-lg-6" style="background:rgba(255, 0, 0, 0.8);">
+                        <div class="furniture-content fadeinup-animated mt-4 mb-4 ml-4">
+                            <h2 class="animated" style="color:white;">Dairy Products</h2>
+                            <p class="animated" style="color:white;">Lorem Ipsum is simply dummy text of the printing and typesetting
+                                industry.</p>
+                            <a class="furniture-slider-btn btn-hover animated" href="product-details.html" style="color:white;">Shop Now</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="single-slider-4 slider-height-6 bg-img" style="background-image: url(uploads/slide/vegetables.jpg)">
+            <div class="container">
+                <div class="row">
+                    <div class="ml-auto col-lg-6" style="background:rgba(0, 255, 0, 0.6);">
+                        <div class="furniture-content fadeinup-animated mt-4 mb-4 ml-4">
+                            <h2 class="animated" style="color:white;">Vegetables</h2>
+                            <p class="animated" style="color:white;">Lorem Ipsum is simply dummy text of the printing and typesetting
+                                industry.</p>
+                            <a class="furniture-slider-btn btn-hover animated" href="product-details.html" style="color:white;">Shop Now</a>
+>>>>>>> Stashed changes
                         </div>
                     </div>
                 </div>
@@ -46,12 +85,17 @@
                                 <img src="{{ asset('uploads/product_image/'.$productValue->image)}}" alt="">
                             </a>
                             <div class="product-action">
-                                <a class="animate-left" title="Wishlist" href="#">
-                                    <i class="pe-7s-like"></i>
-                                </a>
+                                <form action="{{ route('add-wishlist') }}" method="post" id="submitWishList">
+                                    @csrf
+                                    <input type="hidden" name="product_id" value="{{$productValue->id}}">
+                                    <a  class="animate-left my-click" title="Wishlist" href="javascript:void(0)" id="buttonSubmitWishList">
+                                        <i class="pe-7s-like"></i>
+                                    </a>
+                                </form>
                                 <a class="animate-top" title="Add To Cart" href="#">
                                     <i class="pe-7s-cart"></i>
                                 </a>
+<<<<<<< Updated upstream
                                 <a class="animate-right" title="Quick View" data-toggle="modal"
                                     data-target="#exampleModal" href="#">
                                     <i class="pe-7s-look"></i>
@@ -79,6 +123,9 @@
                                 </a>
                                 <a class="animate-right" title="Quick View" data-toggle="modal" data-target="#exampleModal"
                                     href="#">
+=======
+                                <a class="animate-right" title="Quick View" data-toggle="modal" data-target="#exampleModal" href="#">
+>>>>>>> Stashed changes
                                     <i class="pe-7s-look"></i>
                                 </a>
                             </div>
@@ -455,5 +502,20 @@
         </div>
     </div>
 </div>
+<<<<<<< Updated upstream
 {{-- Shop page section --}}
+=======
+<!-- product all area end -->
+
+
+>>>>>>> Stashed changes
 @endsection
+
+@section('script')
+    <script type="text/javascript">
+            $('.my-click').on('click', function(event) {
+                $("#submitWishList").submit();
+                console.log("Hwllo")
+            });
+    </script>
+ @endsection

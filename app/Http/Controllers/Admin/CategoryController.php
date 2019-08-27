@@ -43,8 +43,8 @@ class CategoryController extends Controller
         return redirect(route('admin.category'));
     }
 
-    public function destroy($cid) {
-        DB::delete('delete from categories where cid = ?',[$cid]);
+    public function destroy($id) {
+        DB::delete('delete from categories where id = ?',[$id]);
         return redirect(route('admin.category'));
     }
 
@@ -53,7 +53,7 @@ class CategoryController extends Controller
         $category_id = $request->post('category_id');
         $category_name = $request->post('category_name');
 
-        Category::where('cid', $category_id)->update([
+        Category::where('id', $category_id)->update([
             'categories_name'=>$category_name,       
         ]);
         return redirect(route('admin.category'));
