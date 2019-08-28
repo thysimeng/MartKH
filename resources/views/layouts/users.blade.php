@@ -48,7 +48,7 @@
                                         {{-- <router-link to="/users" @click.native="showHomePage()">Home</router-link> --}}
                                         <ul class="single-dropdown">
                                             <li><a href="index.html">Fashion</a></li>
-                                            <li><a href="index-fashion-2.html">Fashion style 2</a></li>
+                                            {{-- <li><a href="index-fashion-2.html">Fashion style 2</a></li>
                                             <li><a href="index-fruits.html">fruits</a></li>
                                             <li><a href="index-book.html">book</a></li>
                                             <li><a href="index-electronics.html">electronics</a></li>
@@ -57,7 +57,7 @@
                                             <li><a href="index-furniture.html">furniture</a></li>
                                             <li><a href="index-handicraft.html">handicraft</a></li>
                                             <li><a target="_blank" href="index-smart-watch.html">smart watch</a></li>
-                                            <li><a href="index-sports.html">sports</a></li>
+                                            <li><a href="index-sports.html">sports</a></li> --}}
                                         </ul>
                                     </li>
                                     {{-- <li><a href="/food">Food</a>
@@ -116,10 +116,10 @@
                                 <li><router-link to="/users/shop" @click.native="showPage()">Shop</router-link>
                                         <ul class="single-dropdown">
                                             <li><router-link to="/users/shop/foodVue" @click.native="showPage()">Food</router-link></li>
-                                            <li><a href="blog-2-col.html">blog 2 colunm</a></li>
+                                            {{-- <li><a href="blog-2-col.html">blog 2 colunm</a></li>
                                             <li><a href="blog-sidebar.html">blog sidebar</a></li>
                                             <li><a href="blog-details.html">blog details</a></li>
-                                            <li><a href="blog-details-sidebar.html">blog details 2</a></li>
+                                            <li><a href="blog-details-sidebar.html">blog details 2</a></li> --}}
                                         </ul>
                                     </li>
                                     {{-- <li><a href="contact.html">contact</a></li> --}}
@@ -191,11 +191,11 @@
                             <div class="mobile-menu">
                                 <nav id="mobile-menu-active">
                                     <ul class="menu-overflow">
-                                        <li><a href="#">HOME</a>
+                                        <li><a href="/users">HOME</a>
                                             <ul>
                                                 <li><a href="index.html">Fashion</a></li>
                                                 <li><a href="index-fashion-2.html">Fashion style 2</a></li>
-                                                <li><a href="index-fruits.html">Fruits</a></li>
+                                                {{-- <li><a href="index-fruits.html">Fruits</a></li>
                                                 <li><a href="index-book.html">book</a></li>
                                                 <li><a href="index-electronics.html">electronics</a></li>
                                                 <li><a href="index-electronics-2.html">electronics style 2</a></li>
@@ -203,22 +203,22 @@
                                                 <li><a href="index-furniture.html">furniture</a></li>
                                                 <li><a href="index-handicraft.html">handicraft</a></li>
                                                 <li><a href="index-smart-watch.html">smart watch</a></li>
-                                                <li><a href="index-sports.html">sports</a></li>
+                                                <li><a href="index-sports.html">sports</a></li> --}}
                                             </ul>
                                         </li>
-                                        <li><a href="#">pages</a>
+                                        <li><router-link to="/users/shop" @click.native="showPage()">Shop</router-link>
                                             <ul>
-                                                <li><a href="about-us.html">about us</a></li>
-                                                <li><a href="menu-list.html">menu list</a></li>
+                                                <li><router-link to="/users/shop/foodVue" @click.native="showPage()">Food</router-link></li>
+                                                {{-- <li><a href="menu-list.html">menu list</a></li>
                                                 <li><a href="login.html">login</a></li>
                                                 <li><a href="register.html">register</a></li>
                                                 <li><a href="cart.html">cart page</a></li>
                                                 <li><a href="checkout.html">checkout</a></li>
                                                 <li><a href="wishlist.html">wishlist</a></li>
-                                                <li><a href="contact.html">contact</a></li>
+                                                <li><a href="contact.html">contact</a></li> --}}
                                             </ul>
                                         </li>
-                                        <li><a href="#">shop</a>
+                                        {{-- <li><a href="#">shop</a>
                                             <ul>
                                                 <li><a href="shop-grid-2-col.html"> grid 2 column</a></li>
                                                 <li><a href="shop-grid-3-col.html"> grid 3 column</a></li>
@@ -247,7 +247,7 @@
                                                 <li><a href="blog-details-sidebar.html">blog details 2</a></li>
                                             </ul>
                                         </li>
-                                        <li><a href="contact.html"> Contact </a></li>
+                                        <li><a href="contact.html"> Contact </a></li> --}}
                                     </ul>
                                 </nav>
                             </div>

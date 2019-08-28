@@ -31,7 +31,7 @@
               <h4>
                 <a href="product-details.html">{{ product.name }}</a>
               </h4>
-              <span>$90.00</span>
+              <span>{{ product.price }}</span>
               <div class="product-rating-5">
                 <i class="pe-7s-star black"></i>
                 <i class="pe-7s-star black"></i>

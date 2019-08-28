@@ -37975,7 +37975,7 @@ var render = function() {
                           ])
                         ]),
                         _vm._v(" "),
-                        _c("span", [_vm._v("$90.00")]),
+                        _c("span", [_vm._v(_vm._s(product.price))]),
                         _vm._v(" "),
                         _vm._m(2, true)
                       ]
