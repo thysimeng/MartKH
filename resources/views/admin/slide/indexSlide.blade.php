@@ -85,7 +85,7 @@
                                                     {{-- delete fucntion --}}
                                                     {{-- @if ($product->id != auth()->id()) --}}
                                                         {{-- <form action="{{ route('user.destroy', $user) }}" method="post"> --}}
-                                                        <form action="admin/slide/{{$product->id}}" method="post">
+                                                        <form action="slide/{{$product->id}}" method="post">
                                                             @csrf
                                                             @method('delete')
                                                             {{-- <a class="dropdown-item" href="{{ route('user.edit', $user) }}">{{ __('Edit') }}</a> --}}
@@ -94,7 +94,7 @@
                                                                 data-country="{{ $product->country }}" data-size="{{ $product->size }}" data-image="{{ $product->image }}"
                                                                 data-description="{{ $product->description }}" data-created_at="{{ $product->created_at->format('d/m/Y H:i') }}"
                                                                 data-update="{{ $product->updated_at->format('d/m/Y H:i') }}" data-subcategory_id="{{ $product->subcategory_id }}">{{ __('View') }}</button>
-                                                            <a class="dropdown-item" href="/admin/products/{{$product->id}}/edit" id="edit">{{ __('Edit') }}</a>
+                                                            <a class="dropdown-item" href="/admin/slide/{{$product->id}}/edit" id="edit">{{ __('Edit') }}</a>
                                                             <button class="dropdown-item delete-btn" type="submit">Delete</button>
 
 

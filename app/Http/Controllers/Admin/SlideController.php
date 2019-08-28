@@ -6,8 +6,9 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Slide;
 use App\Models\SubCategory;
-use Intervention\Image\Facades\Image;
 use RealRashid\SweetAlert\Facades\Alert;
+use Image;
+use File;
 
 class SlideController extends Controller
 {
@@ -95,7 +96,8 @@ class SlideController extends Controller
      */
     public function edit($id)
     {
-        //
+        $product = Slide::find($id);
+        return view('admin.slide.edit',compact('product'));
     }
 
     /**
@@ -107,7 +109,50 @@ class SlideController extends Controller
      */
     public function update(Request $request, $id)
     {
-        //
+        $products = Slide::findOrFail($id);
+        $this-> validate($request,[
+            'imgDB' => '',
+            'image' => 'max:2048',
+            'code' => 'required|unique:products,code,'.$products->id,
+            'name' => 'required|unique:products,name,'.$products->id,
+            'price' => 'required',
+            'size' => 'required',
+            'brand' => 'required',
+            'country' => 'required',
+            'subcategory_id' => 'required',
+            'description' => 'required'
+        ]);
+        //return $this;
+        // $products = Products::find($id);
+
+        if($request->hasFile('image')){
+            // upload a new file
+            $image = $request->file('image');
+            $image_old = $request->input('imgDB');
+            $filename = time() . '.' . $image->getClientOriginalExtension();
+            Image::make($image)->resize(600, 600)->save( public_path('uploads\slide_image\\' . $filename ) );
+            File::delete(public_path('uploads\slide_image\\' . $image_old));
+            $products->image = $filename;
+            // $products->save();
+        }
+        else {
+            // existing image file
+            $products->image = $request->input('imgDB');
+        };
+        $products->code = $request->input('code');
+        $products->name = $request->input('name');
+        $products->description = $request->input('description');
+        $products->price = $request->input('price');
+        $products->size = $request->input('size');
+        $products->brand = $request->input('brand');
+        $products->country = $request->input('country');
+        $products->subcategory_id = $request->input('subcategory_id');
+        // return $products;
+        $products->save();
+        // return redirect('/admin/products')->withStatus(__('Product successfully created.'));
+        Alert::success('Product Update', 'Successfully Updated');
+        return redirect()->route('slide.index');
+        // return redirect()->route('products.index')->withStatus(__('Product successfully updated.'));
     }
 
     /**
