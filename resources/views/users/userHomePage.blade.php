@@ -19,6 +19,16 @@
                                 <a class="furniture-slider-btn btn-hover animated" href="product-details.html"
                                     style="color:white;">Shop Now</a>
                             </div>
+                            @if (Session::has('message'))
+                            <div class="alert alert-success">
+                                <p>{{ Session::get('message') }}</p>
+                            </div>
+                            @endif
+                            @if (Session::has('success'))
+                            <div class="alert alert-success">
+                                <p>{{ Session::get('success') }}</p>
+                            </div>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -46,9 +56,14 @@
                                 <img src="{{ asset('uploads/product_image/'.$productValue->image)}}" alt="">
                             </a>
                             <div class="product-action">
-                                <a class="animate-left" title="Wishlist" href="#">
-                                    <i class="pe-7s-like"></i>
-                                </a>
+                                <form action="{{ route('add-wishlist') }}" method="post" id="submitWishList">
+                                    @csrf
+                                    <input type="hidden" name="product_id" value="{{$productValue->id}}">
+                                    <a class="animate-left my-click" title="Wishlist" href="javascript:void(0)"
+                                        id="buttonSubmitWishList">
+                                        <i class="pe-7s-like"></i>
+                                    </a>
+                                </form>
                                 <a class="animate-top" title="Add To Cart" href="#">
                                     <i class="pe-7s-cart"></i>
                                 </a>
@@ -112,18 +127,7 @@
 </div>
 {{-- End home page section --}}
 
-{{-- Shop page section --}}
-{{-- <div class="breadcrumb-area pt-205 breadcrumb-padding pb-210" style="background-image: url(https://www.facebook.com/images/fb_icon_325x325.png)">
-        <div class="container-fluid">
-            <div class="breadcrumb-content text-center">
-                <h2> shop grid</h2>
-                <ul>
-                    <li><a href="#">home</a></li>
-                    <li>shop grid</li>
-                </ul>
-            </div>
-        </div>
-    </div> --}}
+{{-- Start shop page --}}
 <div class="shop-page-wrapper shop-page-padding ptb-100" v-if="!show">
     <div class="container-fluid">
         <div class="row">
@@ -340,5 +344,15 @@
         </div>
     </div>
 </div>
-{{-- Shop page section --}}
+
+{{-- End shop page --}}
+@endsection
+
+@section('script')
+<script type="text/javascript">
+    $('.my-click').on('click', function(event) {
+                $("#submitWishList").submit();
+                console.log("Hwllo")
+            });
+</script>
 @endsection

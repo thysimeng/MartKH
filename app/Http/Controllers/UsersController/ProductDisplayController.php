@@ -11,3 +11,5 @@ class ProductDisplayController extends Controller
         return view('users.productDisplay');
     }
 }
+
+
