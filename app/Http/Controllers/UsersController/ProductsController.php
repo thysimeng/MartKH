@@ -15,7 +15,7 @@ class ProductsController extends Controller
     }
     public function food()
     {
-        $food = DB::table('products')->where('pid', '=', 14)->get();
+        $food = DB::table('products')->where('id', '=', 2)->get();
         return response()->json($food);
     }
 }
