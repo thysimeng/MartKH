@@ -9,6 +9,7 @@ use Alert;
 use Illuminate\Validation\Rule;
 use App\User;
 use DB;
+use Carbon\Carbon;
 
 class FranchiseController extends Controller
 {
@@ -148,10 +149,9 @@ class FranchiseController extends Controller
     // Link Franchise with a Franchise User Account
     public function linkAccount(Request $request)
     {
-        error_log('controller@linkAccount');
         $userID = $request->post('user_id');
         $franchiseID = $request->post('franchise_id');
-        $time = Carbon\Carbon::now();
+        $time = Carbon::now();
 
         DB::table('franchise_user')->insert([
             'franchise_id'  => $franchiseID,
@@ -159,10 +159,7 @@ class FranchiseController extends Controller
             'created_at'    => $time,
         ]);
 
-        
-
         return redirect()->route('franchises.index')->withStatus(__('Franchise and Account successfully linked.'));
-        // return view('admin.franchises.index')->withStatus('Success');
     }
 
 }
