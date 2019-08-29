@@ -1,26 +1,5 @@
 @extends('layouts.users')
 @section('contents')
-<<<<<<< Updated upstream
-{{-- Home page section --}}
-<div v-if="show">
-    {{-- Start slide area --}}
-    <div class="slider-area">
-        <div class="slider-active owl-carousel">
-            @foreach ($productSlide as $SlideValue)
-            <div class="single-slider-4 slider-height-6 bg-img"
-                style="background-image: url(uploads/slide_image/{{$SlideValue->image}})">
-                <div class="container">
-                    <div class="row">
-                        <div class="ml-auto col-lg-6" style="background:rgba(255, 0, 0, 0.8);">
-                            <div class="furniture-content fadeinup-animated mt-4 mb-4 ml-4">
-                                <h2 class="animated" style="color:white;">Dairy Products</h2>
-                                <p class="animated" style="color:white;">Lorem Ipsum is simply dummy text of the
-                                    printing and typesetting
-                                    industry.</p>
-                                <a class="furniture-slider-btn btn-hover animated" href="product-details.html"
-                                    style="color:white;">Shop Now</a>
-                            </div>
-=======
 {{-- Start slide area --}}
 @if (Session::has('message'))
     <div class="alert alert-success">
@@ -57,7 +36,6 @@
                             <p class="animated" style="color:white;">Lorem Ipsum is simply dummy text of the printing and typesetting
                                 industry.</p>
                             <a class="furniture-slider-btn btn-hover animated" href="product-details.html" style="color:white;">Shop Now</a>
->>>>>>> Stashed changes
                         </div>
                     </div>
                 </div>
@@ -95,37 +73,7 @@
                                 <a class="animate-top" title="Add To Cart" href="#">
                                     <i class="pe-7s-cart"></i>
                                 </a>
-<<<<<<< Updated upstream
-                                <a class="animate-right" title="Quick View" data-toggle="modal"
-                                    data-target="#exampleModal" href="#">
-                                    <i class="pe-7s-look"></i>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="funiture-product-content text-center">
-                            <h4><a href="product-details.html">{{$productValue->name}}</a></h4>
-                            <span>{{$productValue->price}}</span>
-                        </div>
-                    </div>
-                    @endforeach
-
-                    {{-- <div class="product-wrapper">
-                        <div class="product-img">
-                            <a href="#">
-                                <img src="assets/img/product/furniture/2.jpg" alt="">
-                            </a>
-                            <div class="product-action">
-                                <a class="animate-left" title="Wishlist" href="#">
-                                    <i class="pe-7s-like"></i>
-                                </a>
-                                <a class="animate-top" title="Add To Cart" href="#">
-                                    <i class="pe-7s-cart"></i>
-                                </a>
-                                <a class="animate-right" title="Quick View" data-toggle="modal" data-target="#exampleModal"
-                                    href="#">
-=======
                                 <a class="animate-right" title="Quick View" data-toggle="modal" data-target="#exampleModal" href="#">
->>>>>>> Stashed changes
                                     <i class="pe-7s-look"></i>
                                 </a>
                             </div>
@@ -502,13 +450,9 @@
         </div>
     </div>
 </div>
-<<<<<<< Updated upstream
-{{-- Shop page section --}}
-=======
 <!-- product all area end -->
 
 
->>>>>>> Stashed changes
 @endsection
 
 @section('script')

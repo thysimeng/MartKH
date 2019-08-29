@@ -2,7 +2,9 @@
 
 @section('content')
     @include('admin.users.partials.header', ['title' => __('Edit Product')])   
-
+    <?php
+        $page = $_GET['page'];
+    ?>
     <div class="container-fluid mt--7">
         <div class="row">
             <div class="col-xl-12 order-xl-1">
@@ -36,6 +38,7 @@
                                         </span>
                                     @endif
                                 </div> --}}
+                            <input type="hidden" value="{{$page}}" name="page">
                                 {{-- upload img --}}
                                 <div class="form-group">
                                     <label class="form-control-label" for="input-code">{{ __('Upload Image') }}</label>
@@ -140,15 +143,13 @@
                                 <div class="form-group{{ $errors->has('subcategory_id') ? ' has-danger' : '' }}">
                                     <label class="form-control-label" for="input-subcategory_id">{{ __('Subcategory') }}</label>
                                     <select class="form-control" name="subcategory_id" id="subcategory_id" required>
-                                        {{-- @if(count($categories)>0)
-                                            @foreach ($categories as $subcategory)
-                                                <option value="{{$subcategory->id}}"
-                                                >{{ $subcategory->subcategory}} </option>
-                                            @endforeach
-                                        @endif --}}
-                                        <option value="1">Energy Drink</option>
-                                        <option value="2">Soft Drink</option>
-                                        <option value="2">Coffee</option>
+                                        @if(count($subcategories)>0)   
+                                            @foreach ($subcategories as $subcategory)
+                                                <option value="{{$subcategory->id}}" 
+                                                {{ ( $product['subcategory_id'] == $subcategory['id'] )? 'selected' : '' }}
+                                                >{{ $subcategory->subcategory_name}} </option>               
+                                            @endforeach  
+                                        @endif
                                     </select>
                                 </div>
                                 <div class="form-group{{ $errors->has('description') ? ' has-danger' : '' }}">

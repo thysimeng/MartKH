@@ -12,17 +12,34 @@
                                     <div class="col-4">
                                         <h3 class="mb-0">Products</h3>
                                     </div>
-                                    <form class="col-4">
-                                            <div class="form-group mb-2 mt-2">
+                                    <form class="col-4 mb-2 mt-2" method="get" action="{{ route('products.index') }}">
                                                 <div class="input-group input-group-alternative">
-                                                    <div class="input-group-prepend">
+                                                    {{-- <div class="input-group-prepend">
                                                         <span class="input-group-text"><i class="fas fa-search"></i></span>
+                                                    </div> --}}
+                                                <input class="form-control" placeholder="Search" type="text" name="search" id="search" value="{{$keyword}}">
+                                                <span class="form-clear d-none"><i class="fas fa-times-circle">clear</i></span>   
+                                                <div class="input-group-append">
+                                                     
+                                                    <button class="btn btn-info" type="submit"><i class="fa fa-search"></i></button>
                                                     </div>
-                                                    <input class="form-control" placeholder="Search" type="text">
-                                                </div>
                                             </div>
                                     </form>
-                                    <div class="col-4 text-right">
+                                    {{-- <div class="col-4 mb-2 mt-2">
+                                        <div class="input-group input-group-alternative">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="fas fa-search"></i></span>
+                                            </div>
+                                            <input class="form-control" placeholder="Search" type="text" name="search" id="search">
+                                            <div class="input-group-append">
+                                                    <button class="btn btn-info" type="submit"><i class="fa fa-search"></i></button>
+                                            </div>
+                                        </div>
+                                    </div> --}}
+                                    <div class="col-2">
+                                    <span class="mb-0" id="total_records">Total data : {{$products->total()}}</span>
+                                    </div>
+                                    <div class="col-2 text-right">
                                             <a href="{{ route('products.create') }}" class="btn btn-sm btn-primary">{{ __('Add Product') }}</a>
                                     </div>
 
@@ -61,7 +78,7 @@
                                     <th scope="col">{{ __('Action') }}</th>
                                 </tr>
                             </thead>
-                            <tbody>
+                            <tbody id="products_table">
                                 @foreach ($products as $product)
                                     <tr>
                                         <td>{{ $product->id }}</td>
@@ -94,7 +111,7 @@
                                                                 data-country="{{ $product->country }}" data-size="{{ $product->size }}" data-image="{{ $product->image }}"
                                                                 data-description="{{ $product->description }}" data-created_at="{{ $product->created_at->format('d/m/Y H:i') }}"
                                                                 data-update="{{ $product->updated_at->format('d/m/Y H:i') }}" data-subcategory_id="{{ $product->subcategory_id }}">{{ __('View') }}</button> 
-                                                            <a class="dropdown-item" href="/admin/products/{{$product->id}}/edit" id="edit">{{ __('Edit') }}</a>
+                                                            <a class="dropdown-item" href="/admin/products/{{$product->id}}/edit?page={{$products->currentPage()}}" id="edit">{{ __('Edit') }}</a>
                                                             <button class="dropdown-item delete-btn" type="submit">Delete</button>
  
                                                             
@@ -110,16 +127,69 @@
                                 @endforeach
                             </tbody>
                         </table>
+                        {{-- {{ $products->links() }}  --}}
                     </div>
                     <div class="card-footer py-4">
                         <nav class="d-flex justify-content-end" aria-label="...">
-                            {{-- <!-- {{ $users->links() }} --> --}}
+                            {{ $products->links() }}
                         </nav>
                     </div>
                 </div>
             </div>
-        </div>        
+        </div>
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+        <script>
+            $(window).on('hashchange', function() {
+                if (window.location.hash) {
+                    var page = window.location.hash.replace('#', '');
+                    if (page == Number.NaN || page <= 0) {
+                        return false;
+                    } else {
+                        getProducts(page);
+                    }
+                }
+            });
+            $(document).ready(function() {
+                // $(document).on('click', '.pagination a', function (e) {
+                //     $('.products').append('<img style="position: absolute; left: 0; top: 0; z-index: 100000;" src="../public/images/loading.gif" />');
+                //     var url = $(this).attr('href'); 
+                //     getProducts($(this).attr('href').split('page=')[1]);
+                //     e.preventDefault();
+                // });
+                $(document).on('click', '.pagination a', function (e) {
+                    getProducts($(this).attr('href').split('page=')[1]);
+                    e.preventDefault();
+                });
+            });
+            function getproducts(page) {
+                $.ajax({
+                    url : '?page=' + page,
+                    type : "get",
+                    dataType: 'json',
+                    data:{
+                        search: $('#search').val()
+                    },
+                }).done(function (data) {
+                    $('.products').html(data);
+                    location.hash = page;
+                }).fail(function (msg) {
+                    alert('page can\'t be load');
+                });
+            }
+        </script>        
+        
     <script>
+        // bootstrap filter 
+        // $(document).ready(function(){
+        // $("#search").on("keyup", function() {
+        //     var value = $(this).val().toLowerCase();
+        //     $("#products_table tr").filter(function() {
+        //     $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
+        //     });
+        // });
+        // });
+
+        //view modal
         $(document).ready(function(){
             $(function() {
                 $('#viewProduct').on("show.bs.modal", function (e) {
@@ -160,6 +230,22 @@
                 this.parentElement.submit()
             }   
             })
+            // $(document).ready(function(){
+            //     fetch_products();
+            //     function fetch_products(query = ''){
+            //         $.ajax({
+            //             url:"{{route('prouducts.search')}}",
+            //             method:'GET',
+            //             data:{query:query},
+            //             dataType:'json',
+            //             success:function(data){
+            //                 $('tbody').html(data.table_data);
+            //                 $('#total_records').text(data.total_data);
+            //             }
+            //         })
+            //     }
+            // }
+
         });
     </script>
         
