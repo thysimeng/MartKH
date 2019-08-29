@@ -21,9 +21,9 @@
                                                                 <span class="input-group-text"><i class="fas fa-search"></i></span>
                                                             </div>
                                                             <input class="form-control" placeholder="Search" type="text" name="search">
-                                                            <span class="form-group-btn">
+                                                            {{-- <span class="form-group-btn">
                                                                 <button  type="submit" class="btn btn-primary">Search</button>
-                                                            </span>
+                                                            </span> --}}
                                                         </div>
                                                     </div>
                                             </form>
@@ -65,6 +65,7 @@
                                     <th scope="col">{{ __('Category ID') }}</th>
                                     <th scope="col">{{ __('Name') }}</th>
                                     <th scope="col">{{ __('Create Date') }}</th>
+                                    <th scope="col">{{ __('Update Date') }}</th>
                                     <th scope="col">{{ __('Action') }}</th>
                                 </tr>
                             </thead>
@@ -75,6 +76,7 @@
                                         <td>{{$item->id}}</td>
                                         <td>{{$item->categories_name}}</td>
                                         <td>{{$item->created_at}}</td>
+                                        <td>{{$item->updated_at}}</td>
                                         <td class="">
                                             <div class="dropdown">
                                                 <a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">

@@ -56,7 +56,7 @@ Route::group(['middleware' => ['web','auth','checkUserRole']], function () {
 	Route::get('/category/sub-category', 'Admin\SubCategoryController@index')->name('admin.category.sub-category');
 	Route::post('/admin/create_sub_category', 'Admin\SubCategoryController@create')->name('admin.category.create_sub_category');
 	Route::get('/admin/create_sub_category/search', 'Admin\SubCategoryController@search')->name('admin.category.create_sub_category.search');
-	Route::get('/admin/sub_category/delete/{id}', 'Admin\SubCategoryController@destroy')->name('admin.category.delete_sub_category');
+	Route::post('/admin/sub_category/delete', 'Admin\SubCategoryController@destroy')->name('admin.category.delete_sub_category');
 	Route::post('/admin/sub_category/edit', 'Admin\SubCategoryController@edit')->name('admin.category.edit_sub_category');
 
 	Route::get('admin/stock', 'Admin\StockController@index')->name('admin.stock');

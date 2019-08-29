@@ -11,4 +11,9 @@ class SubCategory extends Model
         'subcategory_name',
         'category_id'
     ];
+
+    public function category()
+    {
+        return $this->belongsTo('App\Models\Category');
+    }
 }
