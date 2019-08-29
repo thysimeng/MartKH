@@ -13,21 +13,23 @@
                                     <li class="nav-item col-2">
                                       <a class="nav-link active" id="nav-admin-tab" href="#nav-admin" data-toggle="tab" role="tab" aria-controls="admin" aria-selected="true">{{ __('All Stock') }}</a>
                                     </li>
-                                    <li class="nav-item col-2">
+                                    {{-- <li class="nav-item col-2">
                                       <a class="nav-link"  href="#nav-user" data-toggle="tab" role="tab" aria-controls="user" aria-selected="false">{{ __('Franch Stocks') }}</a>
-                                    </li>
+                                    </li> --}}
                                     
                                     <!-- Search -->
-                                    <form class="col-4" id="search-stocks" method="get" action="{{ route('admin.search_stock') }}" autocomplete="off">
-                                            <div class="form-group mb-4">
-                                                <div class="input-group input-group-alternative">
-                                                    <div class="input-group-prepend">
-                                                        <span class="input-group-text"><i class="fas fa-search"></i></span>
+                                    <div class="col-6 text-right">
+                                        <form class="col-8" id="search-stocks" method="get" action="{{ route('admin.search_stock') }}" autocomplete="off">
+                                                <div class="form-group mb-4">
+                                                    <div class="input-group input-group-alternative">
+                                                        <div class="input-group-prepend">
+                                                            <span class="input-group-text"><i class="fas fa-search"></i></span>
+                                                        </div>
+                                                        <input class="form-control" placeholder="Search" type="search" name="search">
                                                     </div>
-                                                    <input class="form-control" placeholder="Search" type="search" name="search">
                                                 </div>
-                                            </div>
-                                    </form>
+                                        </form>
+                                    </div>
                                         
                                     <!-- Add stocks -->
                                     <div class="col-4 text-right">
@@ -47,13 +49,13 @@
                                                     <div class="modal-body">
                                                             <label for="exampleFormControlSelect1">Select Product</label>
                                                             <input type="hidden" class="form-control" name="product_id" id="" value="">
-                                                            <input type="text" class="typeahead form-control" name="product_name" required placeholder="Search Products">
+                                                            <input type="text" class="typeahead form-control" name="product_name" required placeholder="Search Products" autocomplete="off">
                                                       </div>
-                                                    <div class="modal-body">
+                                                    {{-- <div class="modal-body">
                                                         <label for="exampleFormControlSelect1">Select Franchies</label>
                                                         <input type="hidden" class="form-control" name="franchise_id" id="" value="">
                                                         <input type="text" class="typeahead form-control" name="franchise_name" required placeholder="Search Franchise"> 
-                                                    </div>
+                                                    </div> --}}
                                                     <div class="modal-body">
                                                         <input type="text" class="form-control" name="amount" id="" value="" required placeholder="Amount">
                                                     </div>
@@ -100,7 +102,7 @@
                                                     
                                                     <tr>
                                                         <td>{{$item->id}}</td>
-                                                        <td>{{$item->name}}</td>
+                                                        <td>{{$item->product->name}}</td>
                                                         <td>{{$item->amount}}</td>
                                                         <td>{{$item->created_at}}</td>
                                                         <td>{{$item->updated_at}}</td>
@@ -175,7 +177,7 @@
                             </div>
                         </div>
                          <!-- User List -->
-                         <div class="tab-pane" id="nav-user" role="tabpanel1">
+                         {{-- <div class="tab-pane" id="nav-user" role="tabpanel1">
                             <div class="table-responsive">
                                 <table class="table align-items-center table-flush">
                                         <thead class="thead-light">
@@ -202,12 +204,13 @@
                                     
                                 </table>
                             </div>
+                        </div> --}}
                             <div class="text-center">
                                 <div class="wrapper-pagination">
                                     {{$stocks_data->appends($queryParams)->render()}}
                                 </div>
                             </div>
-                        </div>
+                        
                     </div>
                 </div>
             </div>
@@ -241,7 +244,7 @@
         });
     </script>
 
-    <script type="text/javascript">
+    {{-- <script type="text/javascript">
         var franchise = "{{ route('admin.stock.autocompleteFranchise') }}";
         $franchiseInput = $('input[name="franchise_name"]');
         $franchiseInput.typeahead({
@@ -260,7 +263,7 @@
             }
         
         });
-    </script>
+    </script> --}}
 
     <script>
         var id = null;

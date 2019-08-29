@@ -126,12 +126,12 @@
                                 <div class="form-group{{ $errors->has('subcategory_id') ? ' has-danger' : '' }}">
                                     <label class="form-control-label" for="input-subcategory_id">{{ __('subcategory') }}</label>
                                     <select class="form-control" name="subcategory_id" id="subcategory_id" required>
-                                        @if(count($subcategories)>0)
-                                        @foreach ($subcategories as $subcategory)
-                                            <option value="{{$subcategory->id}}"
-                                            >{{ $subcategory->subcategory_name}} </option>
-                                        @endforeach
-                                    @endif
+                                        @if(count($subcategories)>0)   
+                                            @foreach ($subcategories as $subcategory)
+                                                <option value="{{$subcategory->id}}" 
+                                                >{{ $subcategory->subcategory_name}} </option>               
+                                            @endforeach  
+                                        @endif
                                     </select>
                                 </div>
                                 <div class="form-group{{ $errors->has('description') ? ' has-danger' : '' }}">

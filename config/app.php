@@ -162,6 +162,7 @@ return [
         Illuminate\Validation\ValidationServiceProvider::class,
         Illuminate\View\ViewServiceProvider::class,
         Intervention\Image\ImageServiceProvider::class,
+        
 
         /*
          * Package Service Providers...
@@ -178,7 +179,7 @@ return [
 
         Intervention\Image\ImageServiceProvider::class,
         RealRashid\SweetAlert\SweetAlertServiceProvider::class,
-
+        // Yajra\Datatables\DatatablesServiceProvider::class,
 
     ],
 
@@ -232,7 +233,7 @@ return [
         'View' => Illuminate\Support\Facades\View::class,
         'Image' => Intervention\Image\Facades\Image::class,
         'Alert' => RealRashid\SweetAlert\Facades\Alert::class,
-
+        // 'Datatables' => Yajra\Datatables\Facades\Datatables::class,
     ],
 
 ];

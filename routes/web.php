@@ -29,7 +29,8 @@ Route::group(['middleware' => ['web','auth','checkUserRole']], function () {
 	Route::put('admin/profile', ['as' => 'admin.profile.update', 'uses' => 'Admin\ProfileController@update']);
 	Route::put('admin/profile/password', ['as' => 'admin.profile.password', 'uses' => 'Admin\ProfileController@password']);
 	Route::post('admin/profile/upload', ['as' => 'admin.profile.upload', 'uses' => 'Admin\ProfileController@upload']);
-    Route::resource('admin/products', 'Admin\ProductController');
+	Route::resource('admin/products', 'Admin\ProductController');
+	Route::get('admin/products/search',['as' => 'prouducts.search', 'uses' => 'Admin\ProductController@search']);
     // Start slide controller
     Route::resource('admin/slide', 'Admin\SlideController');
     // End slide controller
@@ -37,10 +38,11 @@ Route::group(['middleware' => ['web','auth','checkUserRole']], function () {
 	Route::resource('admin/franchises','Admin\FranchiseController',['except' => ['show']]);
 	Route::get('admin/franchises',['as' => 'franchises.index', 'uses' => 'Admin\FranchiseController@index']);
 	Route::get('admin/franchises/create',['as' => 'franchises.create', 'uses' => 'Admin\FranchiseController@create']);
-	Route::post('admin/franchises',['as' => 'franchises.store', 'uses' => 'Admin\FranchiseController@store']);
+	Route::post('admin/franchises/store',['as' => 'franchises.store', 'uses' => 'Admin\FranchiseController@store']);
 	Route::post('admin/franchises/{id}',['as' => 'franchises.destroy', 'uses' => 'Admin\FranchiseController@destroy']);
 	Route::get('admin/franchises/edit/{id}',['as' => 'franchises.edit', 'uses' => 'Admin\FranchiseController@edit']);
 	Route::post('admin/franchises/edit/{id}',['as' => 'franchises.update', 'uses' => 'Admin\FranchiseController@update']);
+	Route::post('admin/franchises',['as' => 'franchises.linkAccount', 'uses' => 'Admin\FranchiseController@linkAccount']);
 
 	// search franchises
 	Route::get('admin/franchises/search', ['as' => 'franchises.search', 'uses' => 'Admin\FranchiseController@search']);
@@ -54,7 +56,7 @@ Route::group(['middleware' => ['web','auth','checkUserRole']], function () {
 	Route::get('/category/sub-category', 'Admin\SubCategoryController@index')->name('admin.category.sub-category');
 	Route::post('/admin/create_sub_category', 'Admin\SubCategoryController@create')->name('admin.category.create_sub_category');
 	Route::get('/admin/create_sub_category/search', 'Admin\SubCategoryController@search')->name('admin.category.create_sub_category.search');
-	Route::get('/admin/sub_category/delete/{id}', 'Admin\SubCategoryController@destroy')->name('admin.category.delete_sub_category');
+	Route::post('/admin/sub_category/delete', 'Admin\SubCategoryController@destroy')->name('admin.category.delete_sub_category');
 	Route::post('/admin/sub_category/edit', 'Admin\SubCategoryController@edit')->name('admin.category.edit_sub_category');
 
 	Route::get('admin/stock', 'Admin\StockController@index')->name('admin.stock');
@@ -66,7 +68,7 @@ Route::group(['middleware' => ['web','auth','checkUserRole']], function () {
 
 	Route::get('admin/stock/autocomplete',array('as'=>'admin.stock.autocomplete','uses'=>'Admin\StockController@autocomplete'));
 	Route::get('admin/stock/autocompleteFranchise',array('as'=>'admin.stock.autocompleteFranchise','uses'=>'Admin\StockController@autocompleteFranchise'));
-
+	
 });
 
 // franchise-related routes

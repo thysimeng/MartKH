@@ -21,9 +21,9 @@
                                                                 <span class="input-group-text"><i class="fas fa-search"></i></span>
                                                             </div>
                                                             <input class="form-control" placeholder="Search" type="text" name="search">
-                                                            <span class="form-group-btn">
+                                                            {{-- <span class="form-group-btn">
                                                                 <button  type="submit" class="btn btn-primary">Search</button>
-                                                            </span>
+                                                            </span> --}}
                                                         </div>
                                                     </div>
                                             </form>
@@ -75,6 +75,7 @@
                                     <th scope="col">{{ __('Name') }}</th>
                                     <th scope="col">{{ __('Category') }}</th>
                                     <th scope="col">{{ __('Create Date') }}</th>
+                                    <th scope="col">{{ __('Update Date') }}</th>
                                     <th scope="col">{{ __('Action') }}</th>
                                 </tr>
                             </thead>
@@ -83,8 +84,9 @@
                                     <tr>
                                         <td>{{$item->id}}</td>
                                         <td>{{$item->subcategory_name}}</td>
-                                        <td>{{$item->categories_name}}</td>
+                                        <td>{{$item->category->categories_name}}</td>
                                         <td>{{$item->created_at}}</td>
+                                        <td>{{$item->updated_at}}</td>
                                         <td class="">
                                             <div class="dropdown">
                                                 <a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -94,11 +96,33 @@
                                                     <a onclick="edit({{$item->id}}, '{{$item->subcategory_name}}')" class="dropdown-item" data-toggle="modal" data-target="#editModalCenter" href="">{{ __('Edit') }}</a>
                                             
                                                     {{-- <a class="dropdown-item" href="">{{ __('View') }}</a> --}}
-                                                    <a class="dropdown-item" href="/admin/sub_category/delete/{{ $item->id }}">{{ __('Delete') }}</a>
+                                                    <a onclick="delet({{$item->id}})" class="dropdown-item" data-toggle="modal" data-target="#deleteModalCenter" href="">{{ __('Delete') }}</a>
                                                 </div>
                                             </div>
                                         </td>
                                     </tr>
+
+                                    {{-- Delete Form --}}
+                                    <div class="modal fade" id="deleteModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                        <form action="{{ route('admin.category.delete_sub_category') }}" method="post">
+                                                @csrf
+                                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                                <div class="modal-content">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title" id="exampleModalCenterTitle">Delete Stock</h5>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <div class="modal-footer">
+                                                            <input type="hidden" name="delete_sub_id" value="" >
+                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                            <button type="submit"  class="btn btn-primary">Yes</button>
+                                                        </div>
+                                                </div>
+                                            </div>
+                                        </form>
+                                    </div>
 
                                     <div class="modal fade" id="editModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                                         <form action="/admin/sub_category/edit" method="post">
@@ -148,3 +172,12 @@
     }
 
 </script>
+
+    <script>
+        var id = null;
+
+        function delet(id) {
+            document.querySelector('[name="delete_sub_id"]').setAttribute('value', id);
+        }
+
+    </script>

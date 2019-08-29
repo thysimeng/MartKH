@@ -280,6 +280,8 @@
             </div>
         </div>  --}}
 
+        <h1>{{ $current_franchise->franchise_name }}</h1>
+
         @include('layouts.footers.auth')
     </div>
 @endsection

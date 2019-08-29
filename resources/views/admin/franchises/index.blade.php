@@ -48,7 +48,7 @@
                                     <th scope="col">{{ __('Franchise ID') }}</th>
                                     <th scope="col">{{ __('Name') }}</th>
                                     <th scope="col">{{ __('Address') }}</th>
-                                    <th scope="col">{{ __('Creation Date') }}</th>
+                                    <th scope="col">{{ __('Linked Account') }}</th>
                                     <th scope="col">{{ __('Action') }}</th>
                                 </tr>
                             </thead>
@@ -58,7 +58,14 @@
                                         <td>{{ $franchise->id }}</td>
                                         <td>{{ $franchise->franchise_name }}</td>
                                         <td>{{ $franchise->address }}</td>
-                                        <td>{{ Carbon\Carbon::parse($franchise->created_at)->format('d/m/Y H:i') }}</td>
+                                        <!-- <td>{{ Carbon\Carbon::parse($franchise->created_at)->format('d/m/Y H:i') }}</td> -->
+                                        <td>
+                                        @foreach ($linkUsers as $linkUser )
+                                            @if($franchise->id == $linkUser->franchise_id)
+                                                {{ $linkUser->email }}
+                                            @endif
+                                        @endforeach
+                                        </td>
                                         <td class="text-right">
                                             <div class="dropdown">
                                                 <a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -75,6 +82,7 @@
                                                             <button type="button" class="dropdown-item delete-btn">
                                                                 {{ __('Delete') }}
                                                             </button>
+                                                            <button type="button" class="dropdown-item" data-toggle="modal" data-target="#linkAccount" id="linkAccountBtn" data-id="{{ $franchise->id }}">{{ __('Link Account') }}</button>
                                                         </form>
                                                         @endif
                                                 </div>
@@ -123,5 +131,46 @@
             }
             })
         });
+
+        $(document).ready(function(){
+            $(function() {
+                $('#linkAccount').on("show.bs.modal", function (e) {
+                    $("#franchiseID").html($(e.relatedTarget).data('id'));
+                    var $data = document.getElementById('franchiseID').textContent;
+                    $('#franchiseID').attr('value',$data);
+                });
+            });
+        });
     </script>
+
+    <form class="form-horizontal" action="{{ route('franchises.linkAccount') }}" method="POST">
+        @csrf
+        <div class="modal fade" id="linkAccount" tabindex="-1" role="dialog" aria-labelledby="linkAccount" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="linkAccount">Link Franchise Account with this Franchise</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" value="" name="franchise_id" id="franchiseID">
+                    <select class="form-control" name="user_id" id="">
+                        @foreach ($users as $row)
+                            @if ($row->role == 'franchise')
+                                <option value="{{ $row->id }}">{{ __($row->name) }} | {{ __($row->email) }}</option>
+                            @endif
+                        @endforeach
+                    </select>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Link</button>
+                </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
 @endsection

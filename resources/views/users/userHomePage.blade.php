@@ -1,14 +1,14 @@
 @extends('layouts.users')
 @section('contents')
 @if (Session::has('message'))
-<div class="alert alert-success">
-    <p>{{ Session::get('message') }}</p>
-</div>
+    <div class="alert alert-success">
+        <p>{{ Session::get('message') }}</p>
+    </div>
 @endif
 @if (Session::has('success'))
-<div class="alert alert-success">
-    <p>{{ Session::get('success') }}</p>
-</div>
+    <div class="alert alert-success">
+        <p>{{ Session::get('success') }}</p>
+    </div>
 @endif
 {{-- Home page section --}}
 <div v-if="show">
