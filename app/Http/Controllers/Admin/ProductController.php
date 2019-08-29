@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Products;
 use App\Models\SubCategory;
+use DB;
 use Image;
 use File;
 use RealRashid\SweetAlert\Facades\Alert;
@@ -16,11 +17,35 @@ class ProductController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index(Request $request)
     {
-        $products = Products::all();
-        return view('admin.products.index',compact('products'));
+        $keyword = $request->get('search');
+        $products = Products::where('name', 'LIKE', '%' . $keyword . '%')
+                            ->orWhere('id','like','%'.$keyword.'%')
+                        // ->orWhere('image','like','%'.$keyword.'%')
+                            ->orWhere('code','like','%'.$keyword.'%')
+                        // ->orWhere('description','like','%'.$keyword.'%')
+                            ->orWhere('price','like','%'.$keyword.'%')
+                            ->orWhere('size','like','%'.$keyword.'%')
+                            ->orWhere('brand','like','%'.$keyword.'%')
+                            ->orWhere('country','like','%'.$keyword.'%')
+                            ->orWhere('subcategory_id','like','%'.$keyword.'%')
+                            ->orWhere('view','like','%'.$keyword.'%')
+                            // ->orWhere('created_at','like','%'.$keyword.'%')
+                            // ->orWhere('updated_at','like','%'.$keyword.'%')
+            ->paginate(3);
+        $products->withPath('products');
+        $products->appends($request->all());
+        if ($request->ajax()) {
+            return \Response::json(\View::make('list', array('products' => $products))->render());
+        }
+        return view('admin.products.index',compact('products', 'keyword'));
     }
+    // public function index()
+    // {
+    //     $products = Products::all();
+    //     return view('admin.products.index',compact('products'));
+    // }
     /**
      * Show the form for creating a new resource.
      *
@@ -96,7 +121,10 @@ class ProductController extends Controller
     {
         // $product = Products::where('pid',$id)->get()->first();
         $product = Products::find($id);
-        return view('admin.products.edit',compact('product'));
+        $subcategories = SubCategory::all();
+        // $page = url()->current();
+        // return view('admin.products.edit',compact('product','subcategories','page'));
+        return view('admin.products.edit',compact('product','subcategories'));
     }
 
     /**
@@ -108,6 +136,7 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
+        // dd($request);
         $products = Products::findOrFail($id);
         $this-> validate($request,[
             'imgDB' => '',
@@ -119,11 +148,12 @@ class ProductController extends Controller
             'brand' => 'required',
             'country' => 'required',
             'subcategory_id' => 'required',
-            'description' => 'required'
+            'description' => 'required',
+            'page' => '',
         ]);
         //return $this;
         // $products = Products::find($id);
-
+        $page = $request->input('page');
         if($request->hasFile('image')){
             // upload a new file
             $image = $request->file('image');
@@ -150,7 +180,7 @@ class ProductController extends Controller
         $products->save();
         // return redirect('/admin/products')->withStatus(__('Product successfully created.'));
         Alert::success('Product Update', 'Successfully Updated');
-        return redirect()->route('products.index');
+        return redirect('admin/products?page='.$page);
         // return redirect()->route('products.index')->withStatus(__('Product successfully updated.'));
     }
 
@@ -169,4 +199,68 @@ class ProductController extends Controller
         return redirect()->route('products.index');
         // return redirect()->route('products.index')->withStatus(__('Product successfully deleted.'));
     }
+    // Filter product
+    // public function filter()
+    // {   
+    //     $product_list = Products::query();
+    //     // $product_list->whereRaw("date(users.created_at) >= '" . $start_date . "' AND date(users.created_at) <= '" . $end_date . "'");
+    //     $product_list->whereRaw("CONCAT(id,code,name,price,size,brand,country,created_at) like ");
+    //     $products = $product_list->select('*');
+    //     return datatables()->of($products)
+    //         ->make(true);
+    // }
+
+    // function search(Request $request){
+    //     if($request->ajax()){
+    //         $query = $request->get('query');
+    //         // if not search 
+    //         if($query != ''){
+    //             $data = DB::table('products')
+    //                     // ->where('id','like','%'.$query.'%')
+    //                     // ->orWhere('image','like','%'.$query.'%')
+    //                     ->orWhere('code','like','%'.$query.'%')
+    //                     ->orWhere('name','like','%'.$query.'%')
+    //                     // ->orWhere('description','like','%'.$query.'%')
+    //                     // ->orWhere('price','like','%'.$query.'%')
+    //                     // ->orWhere('size','like','%'.$query.'%')
+    //                     // ->orWhere('brand','like','%'.$query.'%')
+    //                     // ->orWhere('country','like','%'.$query.'%')
+    //                     // ->orWhere('subcategory_id','like','%'.$query.'%')
+    //                     // ->orWhere('view','like','%'.$query.'%')
+    //                     // ->orWhere('created_at','like','%'.$query.'%')
+    //                     // ->orWhere('updated_at','like','%'.$query.'%')
+    //                     ->get();
+    //         }
+    //         // if type something in search box
+    //         else{
+    //             $data = DB::table('products')
+    //                     ->orderBy('id','desc')
+    //                     ->get();
+    //         }
+    //         $total_row = $data->count();
+    //         if($total_row>0){
+    //             foreach($data as $row){
+    //                 $output .= '
+    //                     <tr>
+    //                         <td>'.$row->name.'</td>
+    //                         <td>'.$row->code.'</td>
+    //                     </tr>
+    //                 ';
+    //             }
+    //         }
+    //         else{
+    //             $output = '
+    //                 <tr>
+    //                     <td>No Data Found</td>
+    //                 </tr>    
+    //             ';
+    //         }
+    //         $data = array(
+    //             'table_data' => $output,
+    //             'total_data' => $total_data
+    //         );
+    //         echo json_encode($data);
+    //     }
+    // }
+
 }

@@ -1,10 +1,8 @@
 @extends('layouts.app', ['title' => __('Product Management')])
 
 @section('content')
-    @include('admin.users.partials.header', ['title' => __('Edit Product')])   
-    <?php
-        $page = $_GET['page'];
-    ?>
+    @include('admin.users.partials.header', ['title' => __('Edit Product')])
+
     <div class="container-fluid mt--7">
         <div class="row">
             <div class="col-xl-12 order-xl-1">
@@ -22,7 +20,7 @@
                     <div class="card-body">
                         {{-- <form method="post" action="{{ route('products.update', $product) }}" autocomplete="off"> --}}
                         {{-- <form method="post" action="{{ route('products.update',$product->id) }}" autocomplete="off" enctype="multipart/form-data"> --}}
-                        <form method="post" action="{{ route('products.update',$product->id) }}" autocomplete="off" enctype="multipart/form-data">
+                        <form method="post" action="{{ route('slide.update',$product->id) }}" autocomplete="off" enctype="multipart/form-data">
                             @csrf
                             @method('put')
 
@@ -38,7 +36,6 @@
                                         </span>
                                     @endif
                                 </div> --}}
-                            <input type="hidden" value="{{$page}}" name="page">
                                 {{-- upload img --}}
                                 <div class="form-group">
                                     <label class="form-control-label" for="input-code">{{ __('Upload Image') }}</label>
@@ -53,7 +50,7 @@
                                         <input type="text" class="form-control" readonly>
                                     </div>
                                     <br>
-                                    <img src="{{asset( 'uploads/product_image/' . $product->image )}}" id='img-upload' class="img-thumbnail rounded mx-auto d-block"/>
+                                    <img src="{{asset( 'uploads/slide_image/' . $product->image )}}" id='img-upload' class="img-thumbnail rounded mx-auto d-block"/>
                                 </div>
                                 {{-- code and name input --}}
                                 <div class="row">
@@ -143,13 +140,15 @@
                                 <div class="form-group{{ $errors->has('subcategory_id') ? ' has-danger' : '' }}">
                                     <label class="form-control-label" for="input-subcategory_id">{{ __('Subcategory') }}</label>
                                     <select class="form-control" name="subcategory_id" id="subcategory_id" required>
-                                        @if(count($subcategories)>0)   
-                                            @foreach ($subcategories as $subcategory)
-                                                <option value="{{$subcategory->id}}" 
-                                                {{ ( $product['subcategory_id'] == $subcategory['id'] )? 'selected' : '' }}
-                                                >{{ $subcategory->subcategory_name}} </option>               
-                                            @endforeach  
-                                        @endif
+                                        {{-- @if(count($categories)>0)
+                                            @foreach ($categories as $subcategory)
+                                                <option value="{{$subcategory->id}}"
+                                                >{{ $subcategory->subcategory}} </option>
+                                            @endforeach
+                                        @endif --}}
+                                        <option value="1">Energy Drink</option>
+                                        <option value="2">Soft Drink</option>
+                                        <option value="2">Coffee</option>
                                     </select>
                                 </div>
                                 <div class="form-group{{ $errors->has('description') ? ' has-danger' : '' }}">
@@ -178,31 +177,31 @@
                 input.trigger('fileselect', [label]);
                 });
                 $('.btn-file :file').on('fileselect', function(event, label) {
-                    
+
                     var input = $(this).parents('.input-group').find(':text'),
                         log = label;
-                    
+
                     if( input.length ) {
                         input.val(log);
                     } else {
                         if( log ) alert(log);
                     }
-                
+
                 });
                 function readURL(input) {
                     if (input.files && input.files[0]) {
                         var reader = new FileReader();
-                        
+
                         reader.onload = function (e) {
                             $('#img-upload').attr('src', e.target.result);
                         }
-                        
+
                         reader.readAsDataURL(input.files[0]);
                     }
                 }
                 $("#imgInp").change(function(){
                     readURL(this);
-                }); 	
+                });
             });
         </script>
         @include('layouts.footers.auth')

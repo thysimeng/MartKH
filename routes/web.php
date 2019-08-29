@@ -29,7 +29,8 @@ Route::group(['middleware' => ['web','auth','checkUserRole']], function () {
 	Route::put('admin/profile', ['as' => 'admin.profile.update', 'uses' => 'Admin\ProfileController@update']);
 	Route::put('admin/profile/password', ['as' => 'admin.profile.password', 'uses' => 'Admin\ProfileController@password']);
 	Route::post('admin/profile/upload', ['as' => 'admin.profile.upload', 'uses' => 'Admin\ProfileController@upload']);
-    Route::resource('admin/products', 'Admin\ProductController');
+	Route::resource('admin/products', 'Admin\ProductController');
+	Route::get('admin/products/search',['as' => 'prouducts.search', 'uses' => 'Admin\ProductController@search']);
     // Start slide controller
     Route::resource('admin/slide', 'Admin\SlideController');
     // End slide controller
@@ -67,7 +68,7 @@ Route::group(['middleware' => ['web','auth','checkUserRole']], function () {
 
 	Route::get('admin/stock/autocomplete',array('as'=>'admin.stock.autocomplete','uses'=>'Admin\StockController@autocomplete'));
 	Route::get('admin/stock/autocompleteFranchise',array('as'=>'admin.stock.autocompleteFranchise','uses'=>'Admin\StockController@autocompleteFranchise'));
-
+	
 });
 
 // franchise-related routes
