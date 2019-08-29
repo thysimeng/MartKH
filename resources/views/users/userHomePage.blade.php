@@ -1,41 +1,34 @@
 @extends('layouts.users')
 @section('contents')
-{{-- Start slide area --}}
-@if (Session::has('message'))
-    <div class="alert alert-success">
-        <p>{{ Session::get('message') }}</p>
-    </div>
-@endif
-@if (Session::has('success'))
-    <div class="alert alert-success">
-        <p>{{ Session::get('success') }}</p>
-    </div>
-@endif
-<div class="slider-area">
-    <div class="slider-active owl-carousel">
-        <div class="single-slider-4 slider-height-6 bg-img" style="background-image: url(uploads/slide/dairy.jpg)">
-            <div class="container">
-                <div class="row">
-                    <div class="ml-auto col-lg-6" style="background:rgba(255, 0, 0, 0.8);">
-                        <div class="furniture-content fadeinup-animated mt-4 mb-4 ml-4">
-                            <h2 class="animated" style="color:white;">Dairy Products</h2>
-                            <p class="animated" style="color:white;">Lorem Ipsum is simply dummy text of the printing and typesetting
-                                industry.</p>
-                            <a class="furniture-slider-btn btn-hover animated" href="product-details.html" style="color:white;">Shop Now</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div class="single-slider-4 slider-height-6 bg-img" style="background-image: url(uploads/slide/vegetables.jpg)">
-            <div class="container">
-                <div class="row">
-                    <div class="ml-auto col-lg-6" style="background:rgba(0, 255, 0, 0.6);">
-                        <div class="furniture-content fadeinup-animated mt-4 mb-4 ml-4">
-                            <h2 class="animated" style="color:white;">Vegetables</h2>
-                            <p class="animated" style="color:white;">Lorem Ipsum is simply dummy text of the printing and typesetting
-                                industry.</p>
-                            <a class="furniture-slider-btn btn-hover animated" href="product-details.html" style="color:white;">Shop Now</a>
+{{-- Home page section --}}
+<div v-if="show">
+    {{-- Start slide area --}}
+    <div class="slider-area">
+        <div class="slider-active owl-carousel">
+            @foreach ($productSlide as $SlideValue)
+            <div class="single-slider-4 slider-height-6 bg-img"
+                style="background-image: url(uploads/slide_image/{{$SlideValue->image}})">
+                <div class="container">
+                    <div class="row">
+                        <div class="ml-auto col-lg-6" style="background:rgba(255, 0, 0, 0.8);">
+                            <div class="furniture-content fadeinup-animated mt-4 mb-4 ml-4">
+                                <h2 class="animated" style="color:white;">Dairy Products</h2>
+                                <p class="animated" style="color:white;">Lorem Ipsum is simply dummy text of the
+                                    printing and typesetting
+                                    industry.</p>
+                                <a class="furniture-slider-btn btn-hover animated" href="product-details.html"
+                                    style="color:white;">Shop Now</a>
+                            </div>
+                            @if (Session::has('message'))
+                            <div class="alert alert-success">
+                                <p>{{ Session::get('message') }}</p>
+                            </div>
+                            @endif
+                            @if (Session::has('success'))
+                            <div class="alert alert-success">
+                                <p>{{ Session::get('success') }}</p>
+                            </div>
+                            @endif
                         </div>
                     </div>
                 </div>
@@ -66,115 +59,26 @@
                                 <form action="{{ route('add-wishlist') }}" method="post" id="submitWishList">
                                     @csrf
                                     <input type="hidden" name="product_id" value="{{$productValue->id}}">
-                                    <a  class="animate-left my-click" title="Wishlist" href="javascript:void(0)" id="buttonSubmitWishList">
+                                    <a class="animate-left my-click" title="Wishlist" href="javascript:void(0)"
+                                        id="buttonSubmitWishList">
                                         <i class="pe-7s-like"></i>
                                     </a>
                                 </form>
                                 <a class="animate-top" title="Add To Cart" href="#">
                                     <i class="pe-7s-cart"></i>
                                 </a>
-                                <a class="animate-right" title="Quick View" data-toggle="modal" data-target="#exampleModal" href="#">
+                                <a class="animate-right" title="Quick View" data-toggle="modal"
+                                    data-target="#exampleModal" href="#">
                                     <i class="pe-7s-look"></i>
                                 </a>
                             </div>
                         </div>
                         <div class="funiture-product-content text-center">
-                            <h4><a href="product-details.html">Darcy Sofa</a></h4>
-                            <span>$90.00</span>
+                            <h4><a href="product-details.html">{{$productValue->name}}</a></h4>
+                            <span>{{$productValue->price}}</span>
                         </div>
                     </div>
-                    <div class="product-wrapper">
-                        <div class="product-img">
-                            <a href="#">
-                                <img src="assets/img/product/furniture/3.jpg" alt="">
-                            </a>
-                            <div class="product-action">
-                                <a class="animate-left" title="Wishlist" href="#">
-                                    <i class="pe-7s-like"></i>
-                                </a>
-                                <a class="animate-top" title="Add To Cart" href="#">
-                                    <i class="pe-7s-cart"></i>
-                                </a>
-                                <a class="animate-right" title="Quick View" data-toggle="modal" data-target="#exampleModal"
-                                    href="#">
-                                    <i class="pe-7s-look"></i>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="funiture-product-content text-center">
-                            <h4><a href="product-details.html">Bladen Sofa</a></h4>
-                            <span>$90.00</span>
-                        </div>
-                    </div>
-                    <div class="product-wrapper">
-                        <div class="product-img">
-                            <a href="#">
-                                <img src="assets/img/product/furniture/4.jpg" alt="">
-                            </a>
-                            <div class="product-action">
-                                <a class="animate-left" title="Wishlist" href="#">
-                                    <i class="pe-7s-like"></i>
-                                </a>
-                                <a class="animate-top" title="Add To Cart" href="#">
-                                    <i class="pe-7s-cart"></i>
-                                </a>
-                                <a class="animate-right" title="Quick View" data-toggle="modal" data-target="#exampleModal"
-                                    href="#">
-                                    <i class="pe-7s-look"></i>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="funiture-product-content text-center">
-                            <h4><a href="product-details.html">Ardenboro Sofa</a></h4>
-                            <span>$90.00</span>
-                        </div>
-                    </div>
-                    <div class="product-wrapper">
-                        <div class="product-img">
-                            <a href="#">
-                                <img src="assets/img/product/furniture/1.jpg" alt="">
-                            </a>
-                            <div class="product-action">
-                                <a class="animate-left" title="Wishlist" href="#">
-                                    <i class="pe-7s-like"></i>
-                                </a>
-                                <a class="animate-top" title="Add To Cart" href="#">
-                                    <i class="pe-7s-cart"></i>
-                                </a>
-                                <a class="animate-right" title="Quick View" data-toggle="modal" data-target="#exampleModal"
-                                    href="#">
-                                    <i class="pe-7s-look"></i>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="funiture-product-content text-center">
-                            <h4><a href="product-details.html">Daystar Sofa</a></h4>
-                            <span>$90.00</span>
-                        </div>
-                    </div>
-                    <div class="product-wrapper">
-                        <div class="product-img">
-                            <a href="#">
-                                <img src="assets/img/product/furniture/2.jpg" alt="">
-                            </a>
-                            <div class="product-action">
-                                <a class="animate-left" title="Wishlist" href="#">
-                                    <i class="pe-7s-like"></i>
-                                </a>
-                                <a class="animate-top" title="Add To Cart" href="#">
-                                    <i class="pe-7s-cart"></i>
-                                </a>
-                                <a class="animate-right" title="Quick View" data-toggle="modal" data-target="#exampleModal"
-                                    href="#">
-                                    <i class="pe-7s-look"></i>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="funiture-product-content text-center">
-                            <h4><a href="product-details.html">Trivia Accent Chair</a></h4>
-                            <span>$90.00</span>
-                        </div>
-                    </div> --}}
+                    @endforeach
                 </div>
             </div>
         </div>
@@ -214,7 +118,8 @@
             {{-- </div> --}}
             {{-- </div> --}}
             <div class="view-all-product text-center">
-                <a href="/users/shop">View All Product</a>
+                <router-link to="/users/shop" @click.native="showPage()">View All Product</router-link>
+                {{-- <a href="">View All Product</a> --}}
             </div>
         </div>
     </div>
@@ -222,18 +127,7 @@
 </div>
 {{-- End home page section --}}
 
-{{-- Shop page section --}}
-{{-- <div class="breadcrumb-area pt-205 breadcrumb-padding pb-210" style="background-image: url(https://www.facebook.com/images/fb_icon_325x325.png)">
-        <div class="container-fluid">
-            <div class="breadcrumb-content text-center">
-                <h2> shop grid</h2>
-                <ul>
-                    <li><a href="#">home</a></li>
-                    <li>shop grid</li>
-                </ul>
-            </div>
-        </div>
-    </div> --}}
+{{-- Start shop page --}}
 <div class="shop-page-wrapper shop-page-padding ptb-100" v-if="!show">
     <div class="container-fluid">
         <div class="row">
@@ -450,16 +344,15 @@
         </div>
     </div>
 </div>
-<!-- product all area end -->
 
-
+{{-- End shop page --}}
 @endsection
 
 @section('script')
-    <script type="text/javascript">
-            $('.my-click').on('click', function(event) {
+<script type="text/javascript">
+    $('.my-click').on('click', function(event) {
                 $("#submitWishList").submit();
                 console.log("Hwllo")
             });
-    </script>
- @endsection
+</script>
+@endsection

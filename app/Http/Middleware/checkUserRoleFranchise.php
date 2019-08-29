@@ -3,10 +3,8 @@
 namespace App\Http\Middleware;
 
 use Closure;
-use Illuminate\Http\Response;
-use Auth;
 
-class checkUserRole
+class checkUserRoleFranchise
 {
     /**
      * Handle an incoming request.
@@ -21,8 +19,8 @@ class checkUserRole
         if($request->user()->role == 'user'){
             return redirect()->route('normalUser');
         }
-        elseif($request->user()->role == 'franchise'){
-            return redirect()->route('franchise');
+        elseif($request->user()->role == 'admin'){
+            return redirect()->route('admin.home');
         }
         return $next($request);
     }

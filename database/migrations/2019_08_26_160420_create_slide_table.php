@@ -14,7 +14,7 @@ class CreateSlideTable extends Migration
     public function up()
     {
         Schema::create('slide', function (Blueprint $table) {
-            $table->bigIncrements('pid');
+            $table->bigIncrements('id');
             $table->longText('image');
             $table->string('code',100);
             $table->string('name',100);
