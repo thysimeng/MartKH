@@ -86,6 +86,7 @@ Route::get('/users', 'UsersController\UserHomeController@index')->name('home');
 Route::get('/users/shop', 'UsersController\ProductDisplayController@index')->name('productDisplay');
 Route::get('/users/food', 'UsersController\ProductsController@food')->name('productFood');
 Route::get('/users/all', 'UsersController\ProductsController@get')->name('productFood');
+Route::post('/searchweithwh', 'UsersController\ProductsController@search')->name('search');
 
 Route::post('/users/wishlist', 'UsersController\UserHomeController@wishList')->name('add-wishlist');
 
