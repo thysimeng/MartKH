@@ -5,13 +5,23 @@ namespace App\Http\Controllers\Franchise;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Products;
+use App\Stock_Franchise;
+use DB;
 
 class FranchiseController extends Controller
 {
     // "Resources" generated functions are for Franchise Stock
 
-    public function showDashboard(){
-        return view('franchise.dashboard');
+    public function showDashboard()
+    {
+        $franchise_user = auth()->user();
+        $current_franchise = DB::table('franchise_user')
+                                ->join('franchises','franchise_user.franchise_id','=','franchises.id')
+                                ->join('users','franchise_user.user_id','=','users.id')
+                                ->select('franchises.*')
+                                ->where('users.id','=',$franchise_user->id)
+                                ->first();
+        return view('franchise.dashboard',compact('franchise_user','current_franchise'));
     }
 
     /**
@@ -92,16 +102,19 @@ class FranchiseController extends Controller
     }
 
     // request stock from admin
-    public function requestForm(){
+    public function requestForm()
+    {
         return view('franchise.requestStock');
     }
 
-    public function requestStock(){
+    public function requestStock()
+    {
         // 
     }
 
     // View Product Only
-    public function viewProduct(){
+    public function viewProduct()
+    {
         $products = Products::paginate(10);
         return view('franchise.product',compact('products'));
     }

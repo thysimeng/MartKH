@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Franchise;
 use Alert;
 use Illuminate\Validation\Rule;
+use App\User;
+use DB;
 
 class FranchiseController extends Controller
 {
@@ -23,7 +25,13 @@ class FranchiseController extends Controller
             Alert::success('Success', session('status'));
         }
 
-        return view('admin.franchises.index', ['franchises' => $model->paginate(10)]);
+        $users = User::get();
+        $linkUsers = DB::table('franchise_user')
+                            ->join('users','franchise_user.user_id','=','users.id')
+                            ->select('franchise_user.franchise_id','users.*')
+                            ->get();
+
+        return view('admin.franchises.index', ['franchises' => $model->paginate(10)], compact('users','linkUsers'));
     }
 
     /**
@@ -135,6 +143,26 @@ class FranchiseController extends Controller
                     ->paginate(10);
         
         return view('admin.franchises.index',['franchises'=> $franchises]);
+    }
+
+    // Link Franchise with a Franchise User Account
+    public function linkAccount(Request $request)
+    {
+        error_log('controller@linkAccount');
+        $userID = $request->post('user_id');
+        $franchiseID = $request->post('franchise_id');
+        $time = Carbon\Carbon::now();
+
+        DB::table('franchise_user')->insert([
+            'franchise_id'  => $franchiseID,
+            'user_id'       => $userID,
+            'created_at'    => $time,
+        ]);
+
+        
+
+        return redirect()->route('franchises.index')->withStatus(__('Franchise and Account successfully linked.'));
+        // return view('admin.franchises.index')->withStatus('Success');
     }
 
 }

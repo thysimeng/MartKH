@@ -41,6 +41,7 @@ Route::group(['middleware' => ['web','auth','checkUserRole']], function () {
 	Route::post('admin/franchises/{id}',['as' => 'franchises.destroy', 'uses' => 'Admin\FranchiseController@destroy']);
 	Route::get('admin/franchises/edit/{id}',['as' => 'franchises.edit', 'uses' => 'Admin\FranchiseController@edit']);
 	Route::post('admin/franchises/edit/{id}',['as' => 'franchises.update', 'uses' => 'Admin\FranchiseController@update']);
+	Route::post('admin/franchises',['as' => 'franchises.linkAccount', 'uses' => 'Admin\FranchiseController@linkAccount']);
 
 	// search franchises
 	Route::get('admin/franchises/search', ['as' => 'franchises.search', 'uses' => 'Admin\FranchiseController@search']);
