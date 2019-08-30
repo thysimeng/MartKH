@@ -31,9 +31,9 @@ Route::group(['middleware' => ['web','auth','checkUserRole']], function () {
 	Route::post('admin/profile/upload', ['as' => 'admin.profile.upload', 'uses' => 'Admin\ProfileController@upload']);
 	Route::resource('admin/products', 'Admin\ProductController');
 	Route::get('admin/products/search',['as' => 'prouducts.search', 'uses' => 'Admin\ProductController@search']);
-    // Start slide controller
-    Route::resource('admin/slide', 'Admin\SlideController');
-    // End slide controller
+    // Start ads controller
+    Route::resource('admin/ads', 'Admin\AdsController');
+    // End ads controller
 	Route::post('/delete/{pid}', 'Admin\ProductController@destroy')->name('products.destroy');
 	Route::resource('admin/franchises','Admin\FranchiseController',['except' => ['show']]);
 	Route::get('admin/franchises',['as' => 'franchises.index', 'uses' => 'Admin\FranchiseController@index']);

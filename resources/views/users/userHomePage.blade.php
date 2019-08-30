@@ -15,9 +15,9 @@
     {{-- Start slide area --}}
     <div class="slider-area">
         <div class="slider-active owl-carousel">
-            @foreach ($productSlide as $SlideValue)
+            @foreach ($ads as $ad)
             <div class="single-slider-4 slider-height-6 bg-img"
-                style="background-image: url(uploads/slide_image/{{$SlideValue->image}})">
+                style="background-image: url(uploads/ads_image/{{$ad->image}})">
                 <div class="container">
                     <div class="row">
                         <div class="ml-auto col-lg-6" style="background:rgba(255, 0, 0, 0.8);">

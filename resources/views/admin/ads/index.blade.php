@@ -1,4 +1,4 @@
-@extends('layouts.app', ['title' => __('Product Management')])
+@extends('layouts.app', ['title' => __('Ads Management')])
 
 @section('content')
     @include('layouts.headers.cards')
@@ -9,23 +9,22 @@
                 <div class="card shadow">
                     <div class="card-header border-0">
                         <div class="row align-items-center">
-                                    <div class="col-4">
-                                        <h3 class="mb-0">Products For Slide</h3>
-                                    </div>
-                                    <form class="col-4">
-                                            <div class="form-group mb-2 mt-2">
-                                                <div class="input-group input-group-alternative">
-                                                    <div class="input-group-prepend">
-                                                        <span class="input-group-text"><i class="fas fa-search"></i></span>
-                                                    </div>
-                                                    <input class="form-control" placeholder="Search" type="text">
-                                                </div>
+                            <div class="col-4">
+                                <h3 class="mb-0">Ads</h3>
+                            </div>
+                            <form class="col-4">
+                                    <div class="form-group mb-2 mt-2">
+                                        <div class="input-group input-group-alternative">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="fas fa-search"></i></span>
                                             </div>
-                                    </form>
-                                    <div class="col-4 text-right">
-                                            <a href="slide/create" class="btn btn-sm btn-primary">{{ __('Add Product') }}</a>
+                                            <input class="form-control" placeholder="Search" type="text">
+                                        </div>
                                     </div>
-
+                            </form>
+                            <div class="col-4 text-right">
+                                    <a href="ads/create" class="btn btn-sm btn-primary">{{ __('Add Ads') }}</a>
+                            </div>
                         </div>
                     </div>
 
@@ -45,16 +44,8 @@
                             <thead class="thead-light">
                                 <tr>
                                     <th scope="col">{{ __('ID') }}</th>
-                                    <th scope="col">{{ __('Code') }}</th>
                                     <th scope="col">{{ __('Image') }}</th>
                                     <th scope="col">{{ __('Name') }}</th>
-                                    <th scope="col">{{ __('Price') }}</th>
-                                    <th scope="col">{{ __('Size') }}</th>
-                                    <th scope="col">{{ __('Brand') }}</th>
-                                    <th scope="col">{{ __('Country') }}</th>
-                                    {{-- <th scope="col">{{ __('Subcategory ID') }}</th> --}}
-                                    {{-- <th scope="col">{{ __('Stock ID') }}</th> --}}
-                                    {{-- <th scope="col">{{ __('View') }}</th> --}}
                                     <th scope="col">{{ __('Created Date') }}</th>
                                     {{-- <th scope="col">{{ __('Updated Date') }}</th> --}}
                                     {{-- <th scope="col">{{ __('Description') }}</th> --}}
@@ -62,18 +53,13 @@
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($products as $product)
+                                @foreach ($ads as $ad)
                                     <tr>
-                                        <td>{{ $product->id }}</td>
-                                        <td>{{ $product->code }}</td>
-                                        <td><img src="{{asset( 'uploads/slide_image/' . $product->image )}}" alt="" class="img-thumbnail " style="width:100px;heigth:100px;"></td>
-                                        <td>{{ $product->name }}</td>
-                                        <td>{{ $product->price }}</td>
-                                        <td>{{ $product->size }}</td>
-                                        <td>{{ $product->brand }}</td>
-                                        <td>{{ $product->country }}</td>
-                                        <td>{{ $product->created_at->format('d/m/Y H:i') }}</td>
-                                        {{-- <td>{{ $product->description }}</td> --}}
+                                        <td>{{ $ad->id }}</td>
+                                        <td><img src="{{asset( 'uploads/ads_image/' . $ad->image )}}" alt="" class="img-thumbnail " style="width:500px;height:300px;"></td>
+                                        <td>{{ $ad->name }}</td>
+                                        <td>{{ $ad->created_at->format('d/m/Y H:i') }}</td>
+                                        {{-- <td>{{ $ad->description }}</td> --}}
                                         <td>
                                         {{-- dot button to right most --}}
                                         {{-- <td class="text-right"> --}}
@@ -83,21 +69,22 @@
                                                 </a>
                                                 <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
                                                     {{-- delete fucntion --}}
-                                                    {{-- @if ($product->id != auth()->id()) --}}
+                                                    {{-- @if ($ad->id != auth()->id()) --}}
                                                         {{-- <form action="{{ route('user.destroy', $user) }}" method="post"> --}}
-                                                        <form action="slide/{{$product->id}}" method="post">
+                                                        <form action="ads/{{$ad->id}}" method="post">
                                                             @csrf
                                                             @method('delete')
                                                             {{-- <a class="dropdown-item" href="{{ route('user.edit', $user) }}">{{ __('Edit') }}</a> --}}
-                                                            <button type="button" class="dropdown-item openImageDialog" data-toggle="modal" data-target="#viewProduct" data-id="{{ $product->id }}" data-name="{{ $product->name }}"
+                                                            {{-- View --}}
+                                                            {{-- <button type="button" class="dropdown-item openImageDialog" data-toggle="modal" data-target="#viewProduct" data-id="{{ $product->id }}" data-name="{{ $product->name }}"
                                                                 data-code="{{ $product->code }}" data-price="{{ $product->price }}" data-brand="{{ $product->brand }}"
                                                                 data-country="{{ $product->country }}" data-size="{{ $product->size }}" data-image="{{ $product->image }}"
                                                                 data-description="{{ $product->description }}" data-created_at="{{ $product->created_at->format('d/m/Y H:i') }}"
-                                                                data-update="{{ $product->updated_at->format('d/m/Y H:i') }}" data-subcategory_id="{{ $product->subcategory_id }}">{{ __('View') }}</button>
-                                                            <a class="dropdown-item" href="/admin/slide/{{$product->id}}/edit" id="edit">{{ __('Edit') }}</a>
+                                                                data-update="{{ $product->updated_at->format('d/m/Y H:i') }}" data-subcategory_id="{{ $product->subcategory_id }}">{{ __('View') }}</button> --}}
+                                                            {{-- Edit --}}
+                                                            <a class="dropdown-item" href="/admin/ads/{{$ad->id}}/edit" id="edit">{{ __('Edit') }}</a>
+                                                            {{-- Delete  --}}
                                                             <button class="dropdown-item delete-btn" type="submit">Delete</button>
-
-
                                                         </form>
                                                     {{-- @else
                                                         <a class="dropdown-item" href="{{ route('admin.profile.edit') }}">{{ __('Edit') }}</a>
@@ -120,28 +107,28 @@
             </div>
         </div>
     <script>
-        $(document).ready(function(){
-            $(function() {
-                $('#viewProduct').on("show.bs.modal", function (e) {
-                    $("#id").html($(e.relatedTarget).data('id'));
-                    $("#name").html($(e.relatedTarget).data('name'));
-                    $("#code").html($(e.relatedTarget).data('code'));
-                    $("#brand").html($(e.relatedTarget).data('brand'));
-                    $("#price").html($(e.relatedTarget).data('price'));
-                    $("#size").html($(e.relatedTarget).data('size'));
-                    $("#country").html($(e.relatedTarget).data('country'));
-                    $("#description").html($(e.relatedTarget).data('description'));
-                    $("#subcategory_id").html($(e.relatedTarget).data('subcategory_id'));
-                    $("#created_at").html($(e.relatedTarget).data('created_at'));
-                    // $("#update").html($(e.relatedTarget).data('updated_at'));
+        // $(document).ready(function(){
+        //     $(function() {
+        //         $('#viewProduct').on("show.bs.modal", function (e) {
+        //             $("#id").html($(e.relatedTarget).data('id'));
+        //             $("#name").html($(e.relatedTarget).data('name'));
+        //             $("#code").html($(e.relatedTarget).data('code'));
+        //             $("#brand").html($(e.relatedTarget).data('brand'));
+        //             $("#price").html($(e.relatedTarget).data('price'));
+        //             $("#size").html($(e.relatedTarget).data('size'));
+        //             $("#country").html($(e.relatedTarget).data('country'));
+        //             $("#description").html($(e.relatedTarget).data('description'));
+        //             $("#subcategory_id").html($(e.relatedTarget).data('subcategory_id'));
+        //             $("#created_at").html($(e.relatedTarget).data('created_at'));
+        //             $("#update").html($(e.relatedTarget).data('updated_at'));
 
-                    // $('#imagesrc').attr('src',$("#image").html($(e.relatedTarget).data('image'));
-                });
-            });
-        });
+        //             $('#imagesrc').attr('src',$("#image").html($(e.relatedTarget).data('image'));
+        //         });
+        //     });
+        // });
         $(document).on("click", ".openImageDialog", function () {
             var imgsrc = $(this).data('image');
-            var imgsrc_path = '/uploads/slide_image/'.concat(imgsrc);
+            var imgsrc_path = '/uploads/ads_image/'.concat(imgsrc);
             $('#imagesrc').attr('src',imgsrc_path);
             // console.log(imgsrc);
         });
@@ -149,7 +136,7 @@
             e.preventDefault();
             Swal.fire({
                 title: 'Warning',
-                text: "Are you sure you want to delete this product?",
+                text: "Are you sure you want to delete this ads?",
                 type: 'warning',
                 showCancelButton: true,
                 confirmButtonColor: '#3085d6',
@@ -166,7 +153,7 @@
 
         @include('layouts.footers.auth')
     </div>
-    <div class="modal fade" id="viewProduct" tabindex="-1" role="dialog" aria-labelledby="viewProductTitle" aria-hidden="true">
+    {{-- <div class="modal fade" id="viewProduct" tabindex="-1" role="dialog" aria-labelledby="viewProductTitle" aria-hidden="true">
             <div class="modal-dialog modal-xxl modal-dialog-centered " role="document">
               <div class="modal-content">
                 <div class="modal-header red-brown">
@@ -237,14 +224,14 @@
                                     <span id="created_at"></span>
                                 </div>
                             </div>
-                            {{-- <div class="row mt-3">
+                            <div class="row mt-3">
                                 <div class="col-lg-4">
                                     <span>Updated date : </span>
                                 </div>
                                 <div class="col-lg-8">
                                     <span id="updated_at"></span>
                                 </div>
-                            </div> --}}
+                            </div>
                             <div class="row mt-3">
                                 <div class="col-lg-4">
                                     <span>Description : </span>
@@ -258,7 +245,7 @@
                 </div>
               </div>
             </div>
-        </div>
+        </div> --}}
 @endsection
 
 
