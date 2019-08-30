@@ -4,6 +4,7 @@ namespace App\Http\Controllers\UsersController;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Products;
 use Illuminate\Support\Facades\DB;
 
 class ProductsController extends Controller
@@ -16,6 +17,17 @@ class ProductsController extends Controller
     public function food()
     {
         $food = DB::table('products')->where('id', '=', 2)->get();
+        return response()->json($food);
+    }
+
+    public function search(Request $request){
+        // dd($request);
+        // $product = $request->all();
+        // return response()->json($product);
+        // $search = json([$request->searchInput]);
+        // $product = Product::where('name', 'like', '%a%')->get();
+        $food = DB::table('products')->get();
+        // return response()->json([$request->a]);
         return response()->json($food);
     }
 }

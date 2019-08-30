@@ -5,16 +5,24 @@ Vue.use(Vuex);
 
     export default new Vuex.Store({
         state:{
+            //search
+            productSearch:[],
+
             //Home
             productsPopular:[],
             productsFoodHome:[],
             productsFoodDrink:[],
+
             //Shop
             products:[],
             productsFood:[],
             productsAll:[],
         },
         mutations:{
+            //search
+            fetch_products_search(state, search){
+                return state.productSearch = search
+            },
             //Home
             fetch_products_popular(state, popular){
                 return state.productsPopular = popular
@@ -38,6 +46,15 @@ Vue.use(Vuex);
             },
         },
         actions:{
+            //Search
+            fetchProductsSearch({commit}) {
+                axios.get('/searchweithwh', searchInput)
+                    .then(res => {
+                        commit('fetch_products_search', res.data)
+                    }).catch(err => {
+                        console.log(err)
+                    })
+            },
             //Home
             fetchProductsPopular({commit}) {
                 axios.get('/users/all')
@@ -96,6 +113,10 @@ Vue.use(Vuex);
 
         },
         getters:{
+            // Search
+            productSearch: state => {
+                return state.productSearch
+            },
             // Home
             productsPopular: state => {
                 return state.productsPopular

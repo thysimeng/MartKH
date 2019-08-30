@@ -44,7 +44,7 @@ class UserHomeController extends Controller
                 'wishlist_id' => $product_id,
                 'created_at'=>date("YmdHis"),
             ]);
-            return redirect()->back()->with('success', 'product has been added.');
+            return redirect()->back()->with('success', 'product has been added to wishlist.');
         }
         else {
             return redirect()->back()->with('success', 'You already added this product.');

@@ -1,3 +1,7 @@
+// Search component
+import productSearch from './components/usersComponent/search/productSearch.vue';
+
+
 // Home components
 import productPopularSender from './components/usersComponent/homeComponent/productPopularSender';
 import productAll from './components/usersComponent/homeComponent/productAll';
@@ -7,18 +11,20 @@ import productDrink from './components/usersComponent/homeComponent/productDrink
 // Shop Components
 import shop from './components/usersComponent/shopComponent/shop.vue';
 import food from './components/usersComponent/shopComponent/food.vue';
+import searchResult from './components/usersComponent/shopComponent/searchResult.vue';
 
-export const routes = [{
-        path: '/users/shop',
-        component: shop
-    },
+export const routes = [
     {
-        path: '/users/shop/foodVue',
-        component: food
+        path: '/users',
+        components:{
+            productSearch: productSearch,
+            searchResult: searchResult,
+        }
     },
     {
         path: '/users',
         components: {
+            productSearch: productSearch,
             productPopularSender: productPopularSender,
             productAll: productAll,
             productFood: productFood
@@ -32,6 +38,7 @@ export const routes = [{
     {
         path: '/users/foodHome',
         components: {
+            productSearch: productSearch,
             productPopularSender: productPopularSender,
             productAll: productAll,
             productFood: productFood
@@ -40,11 +47,26 @@ export const routes = [{
     {
         path: '/users/drinkHome',
         components: {
+            productSearch: productSearch,
             productPopularSender: productPopularSender,
             productAll: productAll,
             productDrink: productDrink
         }
-    }
+    },
+    {
+        path: '/users/shop',
+        components: {
+            productSearch: productSearch,
+            shop:shop
+        }
+    },
+    {
+        path: '/users/shop/foodVue',
+        components: {
+            productSearch: productSearch,
+            food:food
+        }
+    },
     // { path: '/users/modalQuickView', component: modalQuickView },
     // { path: '/users/listView', component: listView},
     // { path: '/food', component: food, children:[
