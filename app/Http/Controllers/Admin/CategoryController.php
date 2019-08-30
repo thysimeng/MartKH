@@ -36,11 +36,13 @@ class CategoryController extends Controller
     public function create(Request $request)
     {
         $category = $request->post('category');
+        date_default_timezone_set('asia/phnom_penh');
         $data_category = array(
             'categories_name' => $category,
+            'created_at'=>date("YmdHis"),
         );
         DB::table('categories')->insert($data_category);
-        return redirect(route('admin.category'));
+        return redirect(route('admin.category'));    
     }
 
     public function destroy($id) {
@@ -52,9 +54,10 @@ class CategoryController extends Controller
 
         $category_id = $request->post('category_id');
         $category_name = $request->post('category_name');
-
+        date_default_timezone_set('asia/phnom_penh');
         Category::where('id', $category_id)->update([
-            'categories_name'=>$category_name,       
+            'categories_name'=>$category_name,
+            'updated_at'=>date("YmdHis"),      
         ]);
         return redirect(route('admin.category'));
      }

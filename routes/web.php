@@ -31,9 +31,9 @@ Route::group(['middleware' => ['web','auth','checkUserRole']], function () {
 	Route::post('admin/profile/upload', ['as' => 'admin.profile.upload', 'uses' => 'Admin\ProfileController@upload']);
 	Route::resource('admin/products', 'Admin\ProductController');
 	Route::get('admin/products/search',['as' => 'prouducts.search', 'uses' => 'Admin\ProductController@search']);
-    // Start slide controller
-    Route::resource('admin/slide', 'Admin\SlideController');
-    // End slide controller
+    // Start ads controller
+    Route::resource('admin/ads', 'Admin\AdsController');
+    // End ads controller
 	Route::post('/delete/{pid}', 'Admin\ProductController@destroy')->name('products.destroy');
 	Route::resource('admin/franchises','Admin\FranchiseController',['except' => ['show']]);
 	Route::get('admin/franchises',['as' => 'franchises.index', 'uses' => 'Admin\FranchiseController@index']);
@@ -58,7 +58,7 @@ Route::group(['middleware' => ['web','auth','checkUserRole']], function () {
 	Route::get('/category/sub-category', 'Admin\SubCategoryController@index')->name('admin.category.sub-category');
 	Route::post('/admin/create_sub_category', 'Admin\SubCategoryController@create')->name('admin.category.create_sub_category');
 	Route::get('/admin/create_sub_category/search', 'Admin\SubCategoryController@search')->name('admin.category.create_sub_category.search');
-	Route::get('/admin/sub_category/delete/{id}', 'Admin\SubCategoryController@destroy')->name('admin.category.delete_sub_category');
+	Route::post('/admin/sub_category/delete', 'Admin\SubCategoryController@destroy')->name('admin.category.delete_sub_category');
 	Route::post('/admin/sub_category/edit', 'Admin\SubCategoryController@edit')->name('admin.category.edit_sub_category');
 
 	Route::get('admin/stock', 'Admin\StockController@index')->name('admin.stock');
@@ -90,10 +90,11 @@ Route::get('/users', 'UsersController\UserHomeController@index')->name('home');
 Route::get('/users/shop', 'UsersController\ProductDisplayController@index')->name('productDisplay');
 Route::get('/users/food', 'UsersController\ProductsController@food')->name('productFood');
 Route::get('/users/all', 'UsersController\ProductsController@get')->name('productFood');
+Route::post('/searchweithwh', 'UsersController\ProductsController@search')->name('search');
 
 Route::post('/users/wishlist', 'UsersController\UserHomeController@wishList')->name('add-wishlist');
 
-// Route::get('/{any}', function(){
-//     return view('user');
-// })->where('any', '^(?!api).*$');
+Route::get('/{any}', function(){
+    return view('user');
+})->where('any', '^(?!api).*$');
 Route::get('/usersTest', 'UsersController\temp\testController@index')->name('get');

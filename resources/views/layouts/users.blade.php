@@ -283,14 +283,8 @@
                                 @endif
                             </ul>
                         </div>
-                        <div class="furniture-search">
-                            <form action="#">
-                                <input placeholder="I am Searching for . . ." type="text">
-                                <button>
-                                    <i class="ti-search"></i>
-                                </button>
-                            </form>
-                        </div>
+                        <product-Search :products="products" @changedatabyemit="products = $event" :show="show" @changeshowbyemit="show = $event"></product-Search>
+                        {{-- <product-Search :show="show" @changeshowbyemit="show = $event"></product-Search> --}}
                         <div class="furniture-wishlist">
                             <ul>
                                 <li><a data-toggle="modal" data-target="#exampleCompare" href="#"><i

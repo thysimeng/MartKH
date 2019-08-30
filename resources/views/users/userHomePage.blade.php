@@ -1,13 +1,23 @@
 @extends('layouts.users')
 @section('contents')
+@if (Session::has('message'))
+    <div class="alert alert-success">
+        <p>{{ Session::get('message') }}</p>
+    </div>
+@endif
+@if (Session::has('success'))
+    <div class="alert alert-success">
+        <p>{{ Session::get('success') }}</p>
+    </div>
+@endif
 {{-- Home page section --}}
 <div v-if="show">
     {{-- Start slide area --}}
     <div class="slider-area">
         <div class="slider-active owl-carousel">
-            @foreach ($productSlide as $SlideValue)
+            @foreach ($ads as $ad)
             <div class="single-slider-4 slider-height-6 bg-img"
-                style="background-image: url(uploads/slide_image/{{$SlideValue->image}})">
+                style="background-image: url(uploads/ads_image/{{$ad->image}})">
                 <div class="container">
                     <div class="row">
                         <div class="ml-auto col-lg-6" style="background:rgba(255, 0, 0, 0.8);">
@@ -19,16 +29,6 @@
                                 <a class="furniture-slider-btn btn-hover animated" href="product-details.html"
                                     style="color:white;">Shop Now</a>
                             </div>
-                            @if (Session::has('message'))
-                            <div class="alert alert-success">
-                                <p>{{ Session::get('message') }}</p>
-                            </div>
-                            @endif
-                            @if (Session::has('success'))
-                            <div class="alert alert-success">
-                                <p>{{ Session::get('success') }}</p>
-                            </div>
-                            @endif
                         </div>
                     </div>
                 </div>
@@ -129,6 +129,18 @@
 
 {{-- Start shop page --}}
 <div class="shop-page-wrapper shop-page-padding ptb-100" v-if="!show">
+    <div class="breadcrumb-area pt-205 breadcrumb-padding pb-210"
+        style="background-image: url(https://www.facebook.com/images/fb_icon_325x325.png)">
+        <div class="container-fluid">
+            <div class="breadcrumb-content text-center">
+                <h2> shop grid</h2>
+                <ul>
+                    <li><a href="#">home</a></li>
+                    <li>shop grid</li>
+                </ul>
+            </div>
+        </div>
+    </div>
     <div class="container-fluid">
         <div class="row">
             <div class="col-lg-3">
@@ -326,25 +338,28 @@
                                 </div>
                             </div>
                         </div>
-                        <router-view></router-view>
-
+                        <router-view name="shop" v-if="products.length==0"></router-view>
+                        <router-view name="food" v-if="products.length==0"></router-view>
+                        {{-- <router-view name="allProductDisplay"></router-view> --}}
+                        {{-- <product-Search></product-Search> --}}
+                        {{-- <search-Result></search-Result> --}}
+                        <all-Product-Display :products="products" v-if="products.length!=0"></all-Product-Display>
                     </div>
                 </div>
-                {{-- <div class="pagination-style mt-30 text-center">
-                        <ul>
-                            <li><a href="#"><i class="ti-angle-left"></i></a></li>
-                            <li><a href="#">1</a></li>
-                            <li><a href="#">2</a></li>
-                            <li><a href="#">...</a></li>
-                            <li><a href="#">19</a></li>
-                            <li class="active"><a href="#"><i class="ti-angle-right"></i></a></li>
-                        </ul>
-                    </div> --}}
+                <div class="pagination-style mt-30 text-center">
+                    <ul>
+                        <li><a href="#"><i class="ti-angle-left"></i></a></li>
+                        <li><a href="#">1</a></li>
+                        <li><a href="#">2</a></li>
+                        <li><a href="#">...</a></li>
+                        <li><a href="#">19</a></li>
+                        <li class="active"><a href="#"><i class="ti-angle-right"></i></a></li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
 </div>
-
 {{-- End shop page --}}
 @endsection
 

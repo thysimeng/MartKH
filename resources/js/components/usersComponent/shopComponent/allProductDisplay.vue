@@ -15,8 +15,8 @@
               </a>
               <span>hot</span>
               <div class="product-action">
-                <a class="animate-left" title="Wishlist" href="#">
-                  <i class="pe-7s-like"></i>
+                <a class="animate-left" title="Wishlist" href="#" type="submit">
+                    <i class="pe-7s-like"></i>
                 </a>
                 <a class="animate-top" title="Add To Cart" href="#">
                   <i class="pe-7s-cart"></i>
@@ -108,6 +108,7 @@ export default {
     return {
       seeMore: 1,
       productID: [],
+      add: Number
     };
   },
   //   To use props, they must be declared

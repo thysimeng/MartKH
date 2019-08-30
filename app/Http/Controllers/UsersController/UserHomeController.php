@@ -5,6 +5,7 @@ namespace App\Http\Controllers\UsersController;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\User;
+use App\Ads;
 use DB;
 use Auth;
 use App\Models\WishList;
@@ -13,8 +14,8 @@ class UserHomeController extends Controller
 {
     public function index(){
         $productPopular = DB::table('products')->limit(9)->get();
-        $productSlide = DB::table('slide')->get();
-        return view('users.userHomePage', compact('productPopular', 'productSlide'));
+        $ads = DB::table('ads')->get();
+        return view('users.userHomePage', compact('productPopular', 'ads'));
     }
 
     public function get(Request $request)
@@ -43,7 +44,7 @@ class UserHomeController extends Controller
                 'wishlist_id' => $product_id,
                 'created_at'=>date("YmdHis"),
             ]);
-            return redirect()->back()->with('success', 'product has been added.');
+            return redirect()->back()->with('success', 'product has been added to wishlist.');
         }
         else {
             return redirect()->back()->with('success', 'You already added this product.');
