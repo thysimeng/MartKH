@@ -87,10 +87,10 @@
                         <i class="ni ni-tv-2 text-primary"></i> {{ __('Dashboard') }}
                     </a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link active" href="#navbar-examples" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="navbar-examples">
+                {{-- <li class="nav-item">
+                    <a class="nav-link active" href="#navbar-examples" data-toggle="collapse" role="button" aria-expanded="true" aria-controls="navbar-examples"> --}}
                         {{-- <i class="fab fa-laravel" style="color: #f4645f;"></i> --}}
-                        <i class="fas fa-user-ninja text-danger"></i>
+                        {{-- <i class="fas fa-user-ninja text-danger"></i>
                         <span class="nav-link-text">{{ __('User') }}</span>
                     </a>
 
@@ -108,8 +108,23 @@
                             </li>
                         </ul>
                     </div>
+                </li> --}}
+                <li class="nav-item">
+                    <a class="nav-link " data-toggle="collapse" data-target="#collapse_user" aria-expanded="false" aria-controls="collapse_user">
+                        <i class="fas fa-user-ninja text-danger"></i>
+                        <span class="nav-link-text">{{ __('User') }}</span>
+                    </a>
+                    <div class="collapse" id="collapse_user">
+                        <ul class="nav nav-sm flex-column">
+                        <li class="nav-item">
+                            <a href="{{ route('admin.profile.edit') }}" class="nav-link">{{ __('Profile') }}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('user.index') }}" class="nav-link">{{ __('User Management') }}</a>
+                        </li>
+                        </ul>
+                    </div>
                 </li>
-
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('products.index') }}">
                         {{-- <i class="ni ni-tv-2 text-primary"></i> --}}
@@ -138,9 +153,8 @@
                     </a>
                 </li>
                 <li class="nav-item">
-                        <a class="nav-link" href="{{ route('slide.index') }}">
-                            {{-- <i class="ni ni-tv-2 text-primary"></i> --}}
-                            <i class="fas fa-shopping-bag text-info"></i> {{ __('Slide Home Page') }}
+                        <a class="nav-link" href="{{ route('ads.index') }}">
+                            <i class="fas fa-ad text-red"></i> {{ __('Ads') }}
                         </a>
                 </li>
                 {{-- <li class="nav-item">

@@ -17,7 +17,7 @@
                                                     {{-- <div class="input-group-prepend">
                                                         <span class="input-group-text"><i class="fas fa-search"></i></span>
                                                     </div> --}}
-                                                <input class="form-control" placeholder="Search" type="text" name="search" id="search" value="{{$keyword}}">
+                                                <input class="form-control" placeholder="Search" type="text" name="search" id="search" value="{{$keyword}}" style="border: 1px solid #11cdef">
                                                 <span class="form-clear d-none"><i class="fas fa-times-circle">clear</i></span>   
                                                 <div class="input-group-append">
                                                      
