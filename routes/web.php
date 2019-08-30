@@ -92,6 +92,8 @@ Route::get('/users/food', 'UsersController\ProductsController@food')->name('prod
 Route::get('/users/all', 'UsersController\ProductsController@get')->name('productFood');
 Route::post('/searchweithwh', 'UsersController\ProductsController@search')->name('search');
 
+Route::get('/users/wishlist', 'UsersController\UserHomeController@wishListIndex')->name('list-wishlist');
+
 Route::post('/users/wishlist', 'UsersController\UserHomeController@wishList')->name('add-wishlist');
 
 Route::get('/{any}', function(){

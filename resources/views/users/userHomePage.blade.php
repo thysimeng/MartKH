@@ -56,7 +56,7 @@
                                 <img src="{{ asset('uploads/product_image/'.$productValue->image)}}" alt="">
                             </a>
                             <div class="product-action">
-                                <form action="{{ route('add-wishlist') }}" method="post" id="submitWishList">
+                                <form action="{{ route('list-wishlist') }}" method="post" id="submitWishList">
                                     @csrf
                                     <input type="hidden" name="product_id" value="">
                                     <a onclick="wishList({{$productValue->id}})" class="animate-left my-click" title="Wishlist" href="javascript:void(0)"

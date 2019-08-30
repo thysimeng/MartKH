@@ -289,7 +289,7 @@
                             <ul>
                                 <li><a data-toggle="modal" data-target="#exampleCompare" href="#"><i
                                             class="ti-reload"></i> Compare</a></li>
-                                <li><a href="wishlist.html"><i class="ti-heart"></i> Wishlist</a></li>
+                                <li><a href="{{ route('add-wishlist') }}"><i class="ti-heart"></i> Wishlist</a></li>
                             </ul>
                         </div>
                     </div>
