@@ -43,6 +43,8 @@ Route::group(['middleware' => ['web','auth','checkUserRole']], function () {
 	Route::get('admin/franchises/edit/{id}',['as' => 'franchises.edit', 'uses' => 'Admin\FranchiseController@edit']);
 	Route::post('admin/franchises/edit/{id}',['as' => 'franchises.update', 'uses' => 'Admin\FranchiseController@update']);
 	Route::post('admin/franchises',['as' => 'franchises.linkAccount', 'uses' => 'Admin\FranchiseController@linkAccount']);
+	Route::post('admin/franchises/unlinkAccount',['as' => 'franchises.unlinkAccount', 'uses' => 'Admin\FranchiseController@unlinkAccount']);
+	Route::get('admin/franchises/linkAccount',['as' => 'franchises.getLinkAccount', 'uses' => 'Admin\FranchiseController@getLinkAccount']);
 
 	// search franchises
 	Route::get('admin/franchises/search', ['as' => 'franchises.search', 'uses' => 'Admin\FranchiseController@search']);
@@ -91,7 +93,7 @@ Route::get('/users/all', 'UsersController\ProductsController@get')->name('produc
 
 Route::post('/users/wishlist', 'UsersController\UserHomeController@wishList')->name('add-wishlist');
 
-Route::get('/{any}', function(){
-    return view('user');
-})->where('any', '^(?!api).*$');
+// Route::get('/{any}', function(){
+//     return view('user');
+// })->where('any', '^(?!api).*$');
 Route::get('/usersTest', 'UsersController\temp\testController@index')->name('get');

@@ -153,13 +153,51 @@ class FranchiseController extends Controller
         $franchiseID = $request->post('franchise_id');
         $time = Carbon::now();
 
-        DB::table('franchise_user')->insert([
+        DB::table('franchise_user')->insertOrIgnore([
             'franchise_id'  => $franchiseID,
             'user_id'       => $userID,
             'created_at'    => $time,
         ]);
 
         return redirect()->route('franchises.index')->withStatus(__('Franchise and Account successfully linked.'));
+    }
+
+    // Get link accounts to display when unlinking from a franchise
+    public function getLinkAccount()
+    {
+        if(isset($_GET['fid']))
+        {
+            $fid = $_GET['fid'];
+        }
+        // else
+        // {
+        //     return "Nope";
+        // }
+        
+
+        $data = DB::table('franchise_user')
+                    ->join('users','franchise_user.user_id','=','users.id')
+                    ->select('users.id','users.name','users.email')
+                    ->where('franchise_user.franchise_id','=', $fid)
+                    ->get();
+        return json_encode($data);
+
+        // foreach($data as $row)
+        // {
+        //     $html =
+        //       '<option value="'.$row->id.'">'.$row->name.' | '.$row->email.'</option>';
+        // }
+
+        // return $html;
+    }
+
+    // Unlink Franchise from a Franchise User Account
+    public function unlinkAccount(Request $request)
+    {
+        dd($request);
+        $user_id = $request->post('user_id');
+        $franchise_id = $request->post('franchise_id');
+        return redirect()->route('franchises.index')->withStatus(__('Franchise and Account successfully unlinked.'));
     }
 
 }
