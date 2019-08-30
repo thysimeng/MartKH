@@ -338,12 +338,12 @@
                                 </div>
                             </div>
                         </div>
-                        <router-view name="shop"></router-view>
-                        <router-view name="food"></router-view>
+                        <router-view name="shop" v-if="products.length==0"></router-view>
+                        <router-view name="food" v-if="products.length==0"></router-view>
                         {{-- <router-view name="allProductDisplay"></router-view> --}}
                         {{-- <product-Search></product-Search> --}}
                         {{-- <search-Result></search-Result> --}}
-                        <all-Product-Display :products="products"></all-Product-Display>
+                        <all-Product-Display :products="products" v-if="products.length!=0"></all-Product-Display>
                     </div>
                 </div>
                 <div class="pagination-style mt-30 text-center">

@@ -128,7 +128,7 @@
                                     <select class="form-control" name="subcategory_id" id="subcategory_id" required>
                                         @if(count($subcategories)>0)
                                         @foreach ($subcategories as $subcategory)
-                                            <option value="{{$subcategory->sid}}"
+                                            <option value="{{$subcategory->id}}"
                                             >{{ $subcategory->subcategory_name}} </option>
                                         @endforeach
                                     @endif

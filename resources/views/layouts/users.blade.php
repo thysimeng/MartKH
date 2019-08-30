@@ -283,8 +283,8 @@
                                 @endif
                             </ul>
                         </div>
-                        {{-- <router-view name="productSearch"></router-view> --}}
-                        <product-Search :products="products" @changedatabyemit="products = $event"></product-Search>
+                        <product-Search :products="products" @changedatabyemit="products = $event" :show="show" @changeshowbyemit="show = $event"></product-Search>
+                        {{-- <product-Search :show="show" @changeshowbyemit="show = $event"></product-Search> --}}
                         <div class="furniture-wishlist">
                             <ul>
                                 <li><a data-toggle="modal" data-target="#exampleCompare" href="#"><i

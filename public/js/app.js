@@ -2295,6 +2295,8 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "searchButton",
   data: function data() {
@@ -2309,14 +2311,17 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     ChangeData: function ChangeData() {
       this.products = this.products;
-      this.$emit('changedatabyemit', this.products); //   this.show=false;
-      //   this.$emit('changeShowbyemit', this.show);
+      this.$emit("changedatabyemit", this.products);
+    },
+    ChangeShow: function ChangeShow() {
+      this.show = false;
+      this.$emit("changeshowbyemit", this.show);
     },
     searchProduct: function searchProduct(e) {
       e.preventDefault();
       var currentObj = this;
       axios.post("/searchweithwh", {
-        a: this.searchInput
+        searchInput: this.searchInput
       }).then(function (response) {
         currentObj.products = response.data;
       })["catch"](function (error) {
@@ -2451,7 +2456,8 @@ __webpack_require__.r(__webpack_exports__);
   data: function data() {
     return {
       seeMore: 1,
-      productID: []
+      productID: [],
+      add: Number
     };
   },
   //   To use props, they must be declared
@@ -38388,7 +38394,7 @@ var render = function() {
           attrs: { disabled: !_vm.isValid },
           on: {
             click: function($event) {
-              return _vm.ChangeData()
+              ;[_vm.ChangeData(), _vm.ChangeShow()]
             }
           }
         },
@@ -38630,7 +38636,10 @@ var staticRenderFns = [
     var _c = _vm._self._c || _h
     return _c(
       "a",
-      { staticClass: "animate-left", attrs: { title: "Wishlist", href: "#" } },
+      {
+        staticClass: "animate-left",
+        attrs: { title: "Wishlist", href: "#", type: "submit" }
+      },
       [_c("i", { staticClass: "pe-7s-like" })]
     )
   },
@@ -55106,15 +55115,9 @@ __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js");
 
 window.Vue = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.common.js");
 
- // Test read data from DB
 
 
 
- // import food from './components/usersComponent/homeComponent/productsFood';
-// Vue.component('shopTest', require('./components/usersComponent/shop.vue').default)
-// Vue.component('posts', require('./components/usersComponent/Posts.vue').default)
-// Vue.component('createPost', require('./components/CreatePost.vue'))
-// End Test read data from DB
 
 Vue.use(vue_router__WEBPACK_IMPORTED_MODULE_0__["default"]);
 var router = new vue_router__WEBPACK_IMPORTED_MODULE_0__["default"]({
@@ -55132,7 +55135,7 @@ var app = new Vue({
   router: router,
   methods: {
     showPage: function showPage() {
-      return this.show = false;
+      return this.show = false, this.products = [];
     },
     showHomePage: function showHomePage() {
       return this.show = true;
@@ -56138,10 +56141,17 @@ __webpack_require__.r(__webpack_exports__);
 
 
 var routes = [{
-  path: '/users',
+  path: '/search',
   components: {
     productSearch: _components_usersComponent_search_productSearch_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
-    searchResult: _components_usersComponent_shopComponent_searchResult_vue__WEBPACK_IMPORTED_MODULE_7__["default"]
+    productPopularSender: _components_usersComponent_homeComponent_productPopularSender__WEBPACK_IMPORTED_MODULE_1__["default"],
+    productAll: _components_usersComponent_homeComponent_productAll__WEBPACK_IMPORTED_MODULE_2__["default"],
+    productFood: _components_usersComponent_homeComponent_productFood__WEBPACK_IMPORTED_MODULE_3__["default"]
+  }
+}, {
+  path: '/users',
+  components: {
+    productSearch: _components_usersComponent_search_productSearch_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
   }
 }, {
   path: '/users',
@@ -56150,12 +56160,7 @@ var routes = [{
     productPopularSender: _components_usersComponent_homeComponent_productPopularSender__WEBPACK_IMPORTED_MODULE_1__["default"],
     productAll: _components_usersComponent_homeComponent_productAll__WEBPACK_IMPORTED_MODULE_2__["default"],
     productFood: _components_usersComponent_homeComponent_productFood__WEBPACK_IMPORTED_MODULE_3__["default"]
-  },
-  children: [{
-    path: "/foodHome",
-    name: 'food',
-    component: _components_usersComponent_homeComponent_productFood__WEBPACK_IMPORTED_MODULE_3__["default"]
-  }]
+  }
 }, {
   path: '/users/foodHome',
   components: {
@@ -56206,8 +56211,8 @@ var routes = [{
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\project\martkh\MartKH\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\project\martkh\MartKH\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! E:\Project_IP\MartKH\MartKH Git\MartKH\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! E:\Project_IP\MartKH\MartKH Git\MartKH\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
