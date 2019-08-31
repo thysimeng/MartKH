@@ -367,7 +367,6 @@
 <script type="text/javascript">
     $('.my-click').on('click', function(event) {
                 $("#submitWishList").submit();
-                console.log("Hwllo")
             });
 </script>
 

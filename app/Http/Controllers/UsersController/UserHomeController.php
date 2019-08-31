@@ -63,4 +63,10 @@ class UserHomeController extends Controller
         // dd($data_product);
         return view('users.contents.wishlist')->with(compact('data_product'));
     }
+
+    public function deleteWishList(Request $request) {
+        $pro_id = $request->post('product_id');
+        DB::delete('delete from wishlists where wishlist_id = ?',[$pro_id]);
+        return redirect(route('add-wishlist'));
+    }
 }

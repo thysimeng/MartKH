@@ -93,8 +93,8 @@ Route::get('/users/all', 'UsersController\ProductsController@get')->name('produc
 Route::post('/searchweithwh', 'UsersController\ProductsController@search')->name('search');
 
 Route::get('/users/wishlist', 'UsersController\UserHomeController@wishListIndex')->name('list-wishlist');
-
 Route::post('/users/wishlist', 'UsersController\UserHomeController@wishList')->name('add-wishlist');
+Route::post('/users/delete-wishlist', 'UsersController\UserHomeController@deleteWishList')->name('delete-wishlist');
 
 Route::get('/{any}', function(){
     return view('user');

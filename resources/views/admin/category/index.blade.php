@@ -119,8 +119,8 @@
                             </tbody>
                         </table>
                     </div>
-                    <div class="text-center">
-                            <div class="wrapper-pagination">
+                    <div class="col-7">
+                            <div class="d-flex justify-content-end">
                                 {{$categories_data->appends($queryParams)->render()}}
                             </div>
                         </div>

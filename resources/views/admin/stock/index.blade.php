@@ -90,6 +90,7 @@
                                         <thead class="thead-light">
                                                 <tr>
                                                     <th scope="col">{{ __('Stock ID') }}</th>
+                                                    <th scope="col">{{ __('Image') }}</th>
                                                     <th scope="col">{{ __('Product Name') }}</th>
                                                     <th scope="col">{{ __('Amount') }}</th>
                                                     <th scope="col">{{ __('Create Date') }}</th>
@@ -102,6 +103,7 @@
                                                     
                                                     <tr>
                                                         <td>{{$item->id}}</td>
+                                                        <td><img src="{{asset( 'uploads/product_image/' . $item->product->image )}}" alt="" class="img-thumbnail " style="width:50px;"></td>
                                                         <td>{{$item->product->name}}</td>
                                                         <td>{{$item->amount}}</td>
                                                         <td>{{$item->created_at}}</td>
@@ -205,8 +207,8 @@
                                 </table>
                             </div>
                         </div> --}}
-                            <div class="text-center">
-                                <div class="wrapper-pagination">
+                            <div class="col-7">
+                                <div class="d-flex justify-content-end">
                                     {{$stocks_data->appends($queryParams)->render()}}
                                 </div>
                             </div>
