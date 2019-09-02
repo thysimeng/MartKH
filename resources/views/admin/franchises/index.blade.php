@@ -155,6 +155,7 @@
                 $('#unlinkAccount').on("show.bs.modal", function (e) {
                     $("#FID").html($(e.relatedTarget).data('ulid'));
                     var $fid = document.getElementById('FID').textContent;
+                    $('#FID').attr('value',$fid);
                     // console.log($fid);
                     $.ajax({
                         url: '{{ route('franchises.getLinkAccount')}}',
@@ -213,13 +214,13 @@
         </div>
     </form>
 
-    <form class="form-horizontal" action="{{ route('franchises.unlinkAccount') }}" method="POST">
+    <form class="form-horizontal" action="{{ route('franchises.unlinkAccount') }}" method="get">
         @csrf
         <div class="modal fade" id="unlinkAccount" tabindex="-1" role="dialog" aria-labelledby="unlinkAccount" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered" role="document">
                 <div class="modal-content">
                 <div class="modal-header">
-                    <h4 class="modal-title" id="unlinkAccount">Link Franchise Account with this Franchise</h4>
+                    <h4 class="modal-title" id="unlinkAccount">Unlink Franchise Account with this Franchise</h4>
                     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true">&times;</span>
                     </button>

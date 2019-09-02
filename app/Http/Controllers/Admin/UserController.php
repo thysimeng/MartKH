@@ -9,7 +9,7 @@ use Illuminate\Support\Facades\Hash;
 use App\Http\Controllers\Controller;
 
 use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use DB;
 use Alert;
 use File;
 
@@ -27,7 +27,13 @@ class UserController extends Controller
         {
             Alert::success('Success', session('status'));
         }
-        return view('admin.users.index', ['users' => $model->paginate(10)]);
+
+        $admins = User::where('role','admin')->paginate(10);
+        $users = User::where('role','user')->paginate(10);
+        $franchises = User::where('role','franchise')->paginate(10);
+        
+        return view('admin.users.index',compact('admins','users','franchises'));
+        // return view('admin.users.index', ['users' => $model->paginate(10)]);
     }
 
     /**
@@ -109,11 +115,15 @@ class UserController extends Controller
     {
         $search = $request->get('search');
         
-        $users = User::whereRaw('LOWER(`name`) LIKE ?', '%'.trim(strtolower($search)).'%')
+        $result = User::whereRaw('LOWER(`name`) LIKE ?', '%'.trim(strtolower($search)).'%')
                     ->orWhereRaw('LOWER(`email`) LIKE ?','%'.trim(strtolower($search)).'%')
                     ->orWhereRaw('LOWER(`role`) LIKE ?','%'.trim(strtolower($search)).'%')
                     ->paginate(10);
+        // dd($result);
+        $admins = $result;
+        $users = $result;
+        $franchises = $result;
         
-        return view('admin.users.index',['users'=> $users]);
+        return view('admin.users.index',compact('admins','users','franchises'));
     }
 }
