@@ -25,10 +25,18 @@
                     <div class=" dropdown-header noti-title">
                         <h6 class="text-overflow m-0">{{ __('Welcome!') }}</h6>
                     </div>
+                    <!-- My Profile -->
+                    @if (auth()->user()->role == 'admin')
                     <a href="{{ route('admin.profile.edit') }}" class="dropdown-item">
                         <i class="ni ni-single-02"></i>
                         <span>{{ __('My profile') }}</span>
                     </a>
+                    @elseif (auth()->user()->role == 'franchise')
+                    <a href="{{ route('franchise.edit.profile') }}" class="dropdown-item">
+                        <i class="ni ni-single-02"></i>
+                        <span>{{ __('My profile') }}</span>
+                    </a>
+                    @endif
                     <a href="#" class="dropdown-item">
                         <i class="ni ni-settings-gear-65"></i>
                         <span>{{ __('Settings') }}</span>

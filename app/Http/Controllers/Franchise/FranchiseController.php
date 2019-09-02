@@ -7,6 +7,10 @@ use Illuminate\Http\Request;
 use App\Products;
 use App\Stock_Franchise;
 use DB;
+use Auth;
+use Image;
+use Alert;
+use File;
 
 class FranchiseController extends Controller
 {
@@ -117,5 +121,62 @@ class FranchiseController extends Controller
     {
         $products = Products::paginate(10);
         return view('franchise.product',compact('products'));
+    }
+
+    // Edit Profile
+    public function editProfile()
+    {
+        if (session('status'))
+        {
+            Alert::success('Success', session('status'));
+        }
+        if (session('password_status'))
+        {
+            Alert::success('Success', session('password_status'));
+        }
+
+        return view('franchise.editProfile');
+    }
+
+    public function updateProfile(Request $request)
+    {
+        auth()->user()->update($request->all());
+
+        return back()->withStatus(__('Profile successfully updated.'));
+    }
+
+    public function password(PasswordRequest $request)
+    {
+        auth()->user()->update(['password' => Hash::make($request->get('password'))]);
+
+        return back()->withPasswordStatus(__('Password successfully updated.'));
+    }
+
+    public function upload(Request $request)
+    {
+        $request->validate([
+            'avatar' => 'required|image|mimes:jpeg,jpg,png,gif,svg|max:2048|'
+        ]);
+
+        if($request->hasFile('avatar'))
+        {
+            $user = Auth::user();
+            if($user->avatar != 'default.png')
+            {
+                $userImage = public_path('uploads\avatar\\'.$user->avatar);
+                if(file_exists($userImage))
+                {
+                    File::delete($userImage);
+                }
+            }
+            $avatar = $request->file('avatar');
+            $fileName = time().'.'.$avatar->getClientOriginalExtension();
+            Image::make($avatar)->resize(400,400)->save( public_path('uploads\avatar\\'.$fileName));
+
+            $user->avatar = $fileName;
+            $user->save();
+
+            return back()->withStatus(__('Profile picture successfully updated.'));
+        }
     }
 }

@@ -79,6 +79,10 @@ Route::group(['middleware' => ['web','auth','checkUserRoleFranchise']], function
 	Route::get('/franchise/products','Franchise\FranchiseController@viewProduct')->name('franchise.products');
 	Route::get('/franchise/stocks','Franchise\FranchiseController@index')->name('franchise.stock');
 	Route::get('/franchise/stocks/request','Franchise\FranchiseController@requestForm')->name('franchise.request');
+	Route::get('/franchise/profile','Franchise\FranchiseController@editProfile')->name('franchise.edit.profile');
+	Route::put('/franchise/profile','Franchise\FranchiseController@updateProfile')->name('franchise.update.profile');
+	Route::put('franchise/profile/password','Franchise\FranchiseController@password')->name('franchise.profile.password');
+	Route::post('franchise/profile/upload','Franchise\FranchiseController@upload')->name('franchise.profile.upload');
 });
 
 // test route for redirecting users when they try to access admin pages

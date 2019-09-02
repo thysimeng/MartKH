@@ -113,11 +113,13 @@
                             <nav class="d-flex justify-content-end" aria-label="...">
                                 {{ $admins->links() }}
                             </nav>
-                            <hr class="bg-dark">
                         </div>
+                    </div>
+                        <br>
                          <!-- User List -->
-                        <div class="col-4">
-                            <h3 class="mb-3 font-italic">User</h3>
+                    <div class="card shadow pt-3">
+                        <div class="col-4 pr-4">
+                            <h3 class="mb-3 font-italic align-items-center">User</h3>
                         </div>
                             <div class="table-responsive">
                                 <table class="table align-items-center table-flush">
@@ -172,10 +174,12 @@
                             <nav class="d-flex justify-content-end" aria-label="...">
                                 {{ $users->links() }}
                             </nav>
-                            <hr class="bg-dark">
                         </div>
+                    </div>
+                    <br>
                         <!-- Franchise List -->
-                        <div class="col-4">
+                    <div class="card shadow pt-3">
+                        <div class="col-4 pr-4">
                             <h3 class="mb-3 font-italic">Franchise</h3>
                         </div>
                             <div class="table-responsive">
