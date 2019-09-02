@@ -147,6 +147,13 @@
                 </li>
 
                 <li class="nav-item">
+                    <a class="nav-link" href="{{ route('admin.notification') }}">
+                        {{-- <i class="ni ni-tv-2 text-primary"></i>  --}}
+                        <i class="fas fa-envelope" style="color: #de6800;"></i> {{ __('Stock Requests') }}
+                    </a>
+                </li>
+
+                <li class="nav-item">
                     <a class="nav-link" href="{{ route('franchises.index') }}">
                         {{-- <i class="ni ni-tv-2 text-primary"></i>  --}}
                         <i class="fas fa-map-marked-alt" style="color:#f4645f;"></i> {{ __('Franchise') }}
