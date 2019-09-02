@@ -15,8 +15,8 @@ class CreateFranchiseUserTable extends Migration
     {
         Schema::create('franchise_user', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->integer('franchise_id');
-            $table->integer('user_id');
+            $table->BigInteger('franchise_id')->unsigned()->nullable();
+            $table->BigInteger('user_id')->unsigned()->nullable();
             $table->foreign('franchise_id')->references('id')->on('franchises');
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();

@@ -14,7 +14,7 @@ class CategoryController extends Controller
 {
     public function index()
     {   
-        $categories = Category::query()->paginate(10);
+        $categories = Category::orderBy('categories_name', 'ASC')->paginate(10);
         $data = [
             'categories_data'=>$categories,
             'queryParams' => [],
