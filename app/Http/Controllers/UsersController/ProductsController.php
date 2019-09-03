@@ -4,6 +4,7 @@ namespace App\Http\Controllers\UsersController;
 
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use App\Products;
 use Illuminate\Support\Facades\DB;
 
@@ -16,7 +17,7 @@ class ProductsController extends Controller
     }
     public function food()
     {
-        $food = DB::table('products')->where('id', '=', 2)->get();
+        $food = DB::table('products')->where('id', '=', 3)->get();
         return response()->json($food);
     }
 
@@ -29,6 +30,11 @@ class ProductsController extends Controller
         // $food = DB::table('products')->get();
         // return response()->json([$request->a]);
         return response()->json($product);
+    }
+
+    public function categories(){
+        $category = Category::all();
+        return response()->json($category);
     }
 }
 

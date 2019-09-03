@@ -4,6 +4,7 @@ window.Vue = require('vue');
 import VueRouter from 'vue-router';
 import {routes} from './routes';
 
+// import { mapGetters } from "vuex";
 import store from './components/usersComponent/mainAPI/productsReader';
 import productSearch from './components/usersComponent/search/productSearch.vue';
 import allProductDisplay from './components/usersComponent/shopComponent/allProductDisplay.vue';
@@ -31,6 +32,15 @@ const app = new Vue({
             return this.show=true
         }
     },
+    // mounted() {
+    //     this.$store.dispatch("fetchProductsCategories");
+    //   },
+    // computed: {
+    //     ...mapGetters(["productsCategories"]),
+    //     productsCategories() {
+    //       return this.$store.getters.productsCategories;
+    //     }
+    //   },
     components:{
         productSearch: productSearch,
         allProductDisplay: allProductDisplay

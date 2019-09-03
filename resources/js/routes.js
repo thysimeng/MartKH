@@ -24,12 +24,6 @@ export const routes = [
     },
     {
         path: '/users',
-        components:{
-            productSearch: productSearch
-        }
-    },
-    {
-        path: '/users',
         components: {
             productSearch: productSearch,
             productPopularSender: productPopularSender,

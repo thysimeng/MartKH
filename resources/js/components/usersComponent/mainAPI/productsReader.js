@@ -10,6 +10,7 @@ Vue.use(Vuex);
 
             //Home
             productsPopular:[],
+            // productsCategories:[],
             productsFoodHome:[],
             productsFoodDrink:[],
 
@@ -27,6 +28,9 @@ Vue.use(Vuex);
             fetch_products_popular(state, popular){
                 return state.productsPopular = popular
             },
+            // fetch_products_category(state, category){
+            //     return state.productsCategories = category
+            // },
             fetch_products_food_home(state, foodHome){
                 return state.productsFoodHome = foodHome
             },
@@ -64,6 +68,14 @@ Vue.use(Vuex);
                         console.log(err)
                     })
             },
+            // fetchProductsCategories({commit}) {
+            //     axios.get('/categoriesAll')
+            //         .then(res => {
+            //             commit('fetch_products_category', res.data)
+            //         }).catch(err => {
+            //             console.log(err)
+            //         })
+            // },
             fetchProductsFood({commit}) {
                 axios.get('/users/food')
                     .then(res => {
@@ -121,6 +133,9 @@ Vue.use(Vuex);
             productsPopular: state => {
                 return state.productsPopular
             },
+            // productsCategories: state => {
+            //     return state.productsCategories
+            // },
             productsFoodHome: state => {
                 return state.productsFoodHome
             },

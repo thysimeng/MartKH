@@ -70,7 +70,7 @@ Route::group(['middleware' => ['web','auth','checkUserRole']], function () {
 
 	Route::get('admin/stock/autocomplete',array('as'=>'admin.stock.autocomplete','uses'=>'Admin\StockController@autocomplete'));
 	Route::get('admin/stock/autocompleteFranchise',array('as'=>'admin.stock.autocompleteFranchise','uses'=>'Admin\StockController@autocompleteFranchise'));
-	
+
 });
 
 // franchise-related routes
@@ -95,6 +95,7 @@ Route::get('/users/shop', 'UsersController\ProductDisplayController@index')->nam
 Route::get('/users/food', 'UsersController\ProductsController@food')->name('productFood');
 Route::get('/users/all', 'UsersController\ProductsController@get')->name('productFood');
 Route::post('/searchweithwh', 'UsersController\ProductsController@search')->name('search');
+Route::get('/categoriesAll', 'UsersController\ProductsController@categories')->name('categories');
 
 Route::get('/users/wishlist', 'UsersController\UserHomeController@wishListIndex')->name('list-wishlist');
 Route::post('/users/wishlist', 'UsersController\UserHomeController@wishList')->name('add-wishlist');
