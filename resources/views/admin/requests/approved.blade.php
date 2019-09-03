@@ -36,6 +36,7 @@
                                     <th scope="col">{{ __('Amount') }}</th>
                                     
                                     <th scope="col">{{ __('Request Date') }}</th>
+                                    <th scope="col">{{ __('Approve Date') }}</th>
                                     <th scope="col">{{ __('Status') }}</th>
                                 </tr>
                             </thead>
@@ -48,8 +49,9 @@
                                         <td><img src="{{asset( 'uploads/product_image/' .$notifications->product->image  )}}" alt="" class="img-thumbnail " style="width:50px"></td>
                                         <td>{{ $notifications->amount }}</td>
                                         <td>{{ $notifications->created_at->format('d/m/Y') }}</td>
+                                        <td>{{ $notifications->updated_at->format('d/m/Y') }}</td>{{-- <button class="btn @if($notifications->status) btn-success @else btn-danger @endif btn-sm" style="border-radius: 50%; width: 20px; height: 20px;"></button> --}}
                                         <td>
-                                            <input class="checkToggle" data-id="{{$notifications->id}}" {{$notifications->status?"checked":""}} type="checkbox" data-onstyle="success" data-offstyle="danger" data-width="100" data-height="30">
+                                                <button class="btn @if($notifications->status) btn-success @else btn-danger @endif btn-sm" style="border-radius: 50%; width: 20px; height: 20px;"></button>
                                         </td>
                                     </tr>
                                 @endforeach
@@ -66,47 +68,6 @@
         </div>
         @include('layouts.footers.auth')
     </div>
-    <script>
-        $(function() {
-        function update_status(id, status) {
-            $.ajax(
-                {
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    },
-                    method: "POST",
-                    url: "/admin/edit_notification",
-                    data: { 'id': id, 'status': status },
-                   
-                }
-            )
-        }
-
-        function aprove_status(id) {
-            update_status(id, 1)
-        } 
-        function deny_status(id) {
-            update_status(id, 0);
-        }
-
-    
-        
-        $(document).ready(function(){
-            $('.checkToggle').bootstrapToggle({
-                on: 'Aproved',
-                off: 'New!'
-            });
-            
-            $('.checkToggle').change(function() {
-                var id = $(this).data('id');
-                var status = $(this).prop('checked')?1:0;
-                update_status(id, status);
-            })
-        });
-            
-        
-        })
-    </script>
 @endsection
 
 
