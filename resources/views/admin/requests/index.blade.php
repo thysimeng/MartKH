@@ -10,7 +10,7 @@
                     <div class="card-header border-0">
                         <div class="row align-items-center">
                             <div class="col-4">
-                                <h3 class="mb-0">Stock Requests</h3>
+                                <h3 class="mb-0">Stock Requests  <button class="btn btn-danger btn-sm" style="border-radius: 50%; width: 40px; height: 40px;">{{count($allNotifications_data)}}</button></h3>
                             </div>
                             <form class="col-4" action="{{route('admin.request_stock.search')}}" method="get" role="search">
                                     {{ csrf_field() }}
@@ -29,7 +29,7 @@
                         <table class="table align-items-center table-flush table-hover">
                             <thead class="thead-light">
                                 <tr>
-                                    <th scope="col">{{ __('ID') }}</th>
+                                    <th scope="col">{{ __('ID') }} </th>
                                     <th scope="col">{{ __('Franchise Name') }}</th>
                                     <th scope="col">{{ __('Product Name') }}</th>
                                     <th scope="col">{{ __('Product Image') }}</th>

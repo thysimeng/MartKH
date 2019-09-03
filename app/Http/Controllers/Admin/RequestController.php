@@ -19,8 +19,10 @@ class RequestController extends Controller
     public function index()
     {   
         $notifications = RequestNotification::where('status',0)->paginate(10);
+        $allNotifications = RequestNotification::where('status',0)->get();
         $data = [
             'notifications_data'=>$notifications,
+            'allNotifications_data'=>$allNotifications,
             'queryParams' => [],
         ];
         return view('admin.requests.index')->with($data);
@@ -56,8 +58,10 @@ class RequestController extends Controller
     public function ApprovedRequest()
     {   
         $notifications = RequestNotification::where('status',1)->paginate(10);
+        $allNotifications = RequestNotification::where('status',1)->get();
         $data = [
             'notifications_data'=>$notifications,
+            'allNotifications_data'=>$allNotifications,
             'queryParams' => [],
         ];
         return view('admin.requests.approved')->with($data);

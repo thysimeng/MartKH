@@ -8,33 +8,29 @@
             <div class="col">
                 <div class="card shadow">
                     <div class="card-header border-0">
-                        <!-- Tabs -->
-                        <ul class="nav nav-tabs card-header-tabs" id="bologna-list" role="tablist">
-                                    <li class="nav-item col-2">
-                                      <a class="nav-link active" id="nav-admin-tab" href="#nav-admin" data-toggle="tab" role="tab" aria-controls="admin" aria-selected="true">{{ __('All Stock') }}</a>
-                                    </li>
-                                    {{-- <li class="nav-item col-2">
-                                      <a class="nav-link"  href="#nav-user" data-toggle="tab" role="tab" aria-controls="user" aria-selected="false">{{ __('Franch Stocks') }}</a>
-                                    </li> --}}
-                                    
-                                    <!-- Search -->
-                                    <div class="col-6 text-right">
-                                        <form class="col-8" id="search-stocks" method="get" action="{{ route('admin.search_stock') }}" autocomplete="off">
-                                                <div class="form-group mb-4">
-                                                    <div class="input-group input-group-alternative">
-                                                        <div class="input-group-prepend">
-                                                            <span class="input-group-text"><i class="fas fa-search"></i></span>
-                                                        </div>
-                                                        <input class="form-control" placeholder="Search" type="search" name="search">
-                                                    </div>
-                                                </div>
-                                        </form>
+                            <div class="row align-items-center">
+                                    <div class="col-4">
+                                        <h3 class="mb-0">All Stocks  <button class="btn btn-danger btn-sm" style="border-radius: 50%; width: 40px; height: 40px;">{{count($allStocks_data)}}</button></h3>
                                     </div>
+                                            <form class="col-4" id="search-stocks" method="get" action="{{ route('admin.search_stock') }}" autocomplete="off">
+                                                    <div class="form-group mb-4">
+                                                        <div class="input-group input-group-alternative">
+                                                            <div class="input-group-prepend">
+                                                                <span class="input-group-text"><i class="fas fa-search"></i></span>
+                                                            </div>
+                                                            <input class="form-control" placeholder="Search" type="search" name="search">
+                                                        </div>
+                                                    </div>
+                                            </form>
+                                        <div class="col-4 text-right">
+                                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addStock">{{ __('Add Stock') }}</button>
+                                            </div>
+                            </div>
+                                    
+                                    
                                         
                                     <!-- Add stocks -->
-                                    <div class="col-4 text-right">
-                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addStock">{{ __('Add Stock') }}</button>
-                                    </div>
+                                    
                                     <form class="form-horizontal" action="{{ route('admin.create_stock') }}" enctype="multipart/form-data" method="post">
                                         @csrf
                                         <div class="modal fade" id="addStock" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -67,7 +63,6 @@
                                             </div>
                                         </div>
                                     </form>
-                        </ul>
                     </div>
                     
                     <div class="col-12">
