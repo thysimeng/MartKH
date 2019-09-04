@@ -72,7 +72,9 @@ Route::group(['middleware' => ['web','auth','checkUserRole']], function () {
 	Route::get('admin/stock/autocompleteFranchise',array('as'=>'admin.stock.autocompleteFranchise','uses'=>'Admin\StockController@autocompleteFranchise'));
 
 	Route::get('admin/stock_notification', 'Admin\RequestController@index')->name('admin.notification');
+	Route::get('admin/approved_request_stocks', 'Admin\RequestController@ApprovedRequest')->name('admin.stock.approved_request');
 	Route::post('admin/edit_notification', 'Admin\RequestController@edit')->name('admin.manage_stock');
+	Route::get('admin/request_stock/search', 'Admin\RequestController@search')->name('admin.request_stock.search');
 
 });
 
