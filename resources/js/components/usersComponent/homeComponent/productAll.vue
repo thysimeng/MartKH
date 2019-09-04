@@ -2,7 +2,12 @@
   <div class="tab-content">
     <div class="tab-pane active show fade" id="furniture1" role="tabpanel">
       <div class="coustom-row-5">
-        <div class="custom-col-three-5 custom-col-style-5 mb-65" v-for="product in products" v-bind:data="product" v-bind:key="product.key">
+        <div
+          class="custom-col-three-5 custom-col-style-5 mb-65"
+          v-for="product in productshomecate"
+          v-bind:data="product"
+          v-bind:key="product.key"
+        >
           <div class="product-wrapper">
             <div class="product-img">
               <a href="#">
@@ -16,12 +21,12 @@
                   <i class="pe-7s-cart"></i>
                 </a>
                 <a
+                  href
                   class="animate-right"
                   title="Quick View"
                   data-toggle="modal"
-                  data-target="#exampleModal"
-                  href="#"
-                  @click="quickView(product.pid, product.image)"
+                  data-target="#VUEModal"
+                  @click="quickView(product.id, product.image, product.name, product.description)"
                 >
                   <i class="pe-7s-look"></i>
                 </a>
@@ -44,7 +49,7 @@
         </div>
       </div>
     </div>
-      <modalQuickView :productID="productID"></modalQuickView>
+    <modalQuickView :productid="productid" v-if="!showmodal"></modalQuickView>
   </div>
 </template>
 <script>
@@ -52,16 +57,18 @@ import modalQuickView from "../shopComponent/modalQuickView";
 export default {
   name: "productAll",
   props: {
-    products: Array
+    showmodal: Boolean,
+    productshomecate: Array
   },
   data: function() {
     return {
-      productID: []
+      productid: []
     };
   },
   methods: {
-    quickView(PID, v) {
-      return this.productID.push(PID, v);
+    quickView(PID, v, name, description) {
+      this.showmodal = false;
+      this.productid = [PID, v, name, description];
     }
   },
   components: {
