@@ -1,6 +1,6 @@
 <template>
   <!-- modal -->
-  <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-hidden="true">
+  <div class="modal fade" id="VUEModal" tabindex="-1" role="dialog" aria-hidden="true">
     <button type="button" class="close" data-dismiss="modal" aria-label="Close">
       <span class="pe-7s-close" aria-hidden="true"></span>
     </button>
@@ -11,7 +11,7 @@
             <div class="quick-view-learg-img">
               <div class="quick-view-tab-content tab-content">
                 <div class="tab-pane active show fade" id="modal1" role="tabpanel">
-                  <img v-bind:src="'/uploads/product_image/' + productID[productID.length-1]" alt />
+                  <img v-bind:src="'/uploads/product_image/' + productid[productid.length-3]" alt />
                 </div>
                 <div class="tab-pane fade" id="modal2" role="tabpanel">
                   <img src alt />
@@ -35,7 +35,7 @@
           </div>
           <div class="qwick-view-right">
             <div class="qwick-view-content">
-              <h3>{{ productID[productID.length-2] }}</h3>
+              <h3>{{ productid[productid.length-2] }}</h3>
               <div class="price">
                 <span class="new">$90.00</span>
                 <span class="old">$120.00</span>
@@ -52,7 +52,7 @@
                   <span>2 Ratting (S)</span>
                 </div>
               </div>
-              <p>Lorem ipsum dolor sit amet, consectetur adip elit, sed do tempor incididun ut labore et dolore magna aliqua. Ut enim ad mi , quis nostrud veniam exercitation .</p>
+              <p>{{ productid[productid.length-1] }}</p>
               <div class="quick-view-select">
                 <div class="select-option-part">
                   <label>Size*</label>
@@ -96,6 +96,8 @@
 
 <script>
 export default {
-  props: ["productID"]
+  props: {
+    productid: Array
+  }
 };
 </script>

@@ -26,8 +26,8 @@
                   class="animate-right"
                   title="Quick View"
                   data-toggle="modal"
-                  data-target="#exampleModal"
-                  @click="quickView(products[product-1].pid, products[product-1].image)"
+                  data-target="#VUEModal"
+                  @click="quickView(products[product-1].id, products[product-1].image, products[product-1].name, products[product-1].description)"
                 >
                   <i class="pe-7s-look"></i>
                 </a>
@@ -63,8 +63,8 @@
                   class="animate-right"
                   title="Quick View"
                   data-toggle="modal"
-                  data-target="#exampleModal"
-                  @click="quickView(products[product-1].pid, products[product-1].image)"
+                  data-target="#VUEModal"
+                  @click="quickView(products[product-1].id, products[product-1].image, products[product-1].name, products[product-1].description)"
                 >
                   <i class="pe-7s-look"></i>
                 </a>
@@ -94,7 +94,7 @@
       </div>
     </div>
     <button @click="seeMore++">See more</button>
-    <modalQuickView :productID="productID" @clearData="productID = $event"></modalQuickView>
+    <modalQuickView :productid="productid" @clearData="productid = $event"></modalQuickView>
   </div>
 </template>
 
@@ -107,7 +107,7 @@ export default {
   data: function() {
     return {
       seeMore: 1,
-      productID: [],
+      productid: [],
       add: Number
     };
   },
@@ -116,8 +116,8 @@ export default {
     products: Array
   },
   methods: {
-    quickView(PID, v) {
-      return this.productID.push(PID, v);
+    quickView(PID, v, name, description) {
+      return this.productid.push(PID, v, name, description);
     }
   },
   components: {

@@ -17,8 +17,10 @@ class StockController extends Controller
     public function index()
     {   
         $stocks = Stock::paginate(10);
+        $allStocks = Stock::get();
         $data = [
             'stocks_data'=>$stocks,
+            'allStocks_data'=>$allStocks,
             'queryParams' => [],
         ];
         return view('admin.stock.index')->with($data);
