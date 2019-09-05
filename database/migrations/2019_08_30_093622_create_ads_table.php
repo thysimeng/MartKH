@@ -20,6 +20,7 @@ class CreateAdsTable extends Migration
             // $table->string('name',100)->unique();
             $table->string('position',100)->nullable();
             $table->integer('sort')->nullable();
+            $table->integer('template_id')->nullable();
             $table->timestamps();
         });
     }
