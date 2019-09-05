@@ -5,8 +5,9 @@ namespace App\Http\Controllers\UsersController;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use App\Models\Category;
+use App\Models\SubCategory;
 use App\Products;
-use Illuminate\Support\Facades\DB;
+use DB;
 
 class ProductsController extends Controller
 {
@@ -17,8 +18,25 @@ class ProductsController extends Controller
     }
     public function food()
     {
-        $food = DB::table('products')->where('id', '=', 3)->get();
-        return response()->json($food);
+        $product = DB::table('products')
+        ->join('subcategories', 'products.subcategory_id', '=', 'subcategories.id')
+        ->join('categories', 'subcategories.category_id', '=', 'categories.id')
+        ->select('products.*','subcategories.*','categories.*')
+        ->where('category_id', '=', 1)
+        ->get();
+        // $food = DB::table('products')->where('id', '=', 3)->get();
+        return response()->json($product);
+    }
+    public function categories1()
+    {
+        $product = DB::table('products')
+        ->join('subcategories', 'products.subcategory_id', '=', 'subcategories.id')
+        ->join('categories', 'subcategories.category_id', '=', 'categories.id')
+        ->select('products.*','subcategories.*','categories.*')
+        ->where('category_id', '=', 2)
+        ->get();
+        // $food = DB::table('products')->where('id', '=', 3)->get();
+        return response()->json($product);
     }
 
     public function search(Request $request){

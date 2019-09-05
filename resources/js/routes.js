@@ -2,7 +2,6 @@
 import productSearch from './components/usersComponent/search/productSearch.vue';
 
 // Home components
-import productPopularSender from './components/usersComponent/homeComponent/productPopularSender';
 import productAll from './components/usersComponent/homeComponent/productAll';
 
 // Shop Components
@@ -14,7 +13,6 @@ export const routes = [
         path: '/users',
         components: {
             productSearch: productSearch,
-            productPopularSender: productPopularSender,
             productAll: productAll,
         }
     },
@@ -22,7 +20,6 @@ export const routes = [
         path: '/users/foodHome',
         components: {
             productSearch: productSearch,
-            productPopularSender: productPopularSender,
             productAll: productAll,
         }
     },
@@ -30,7 +27,6 @@ export const routes = [
         path: '/users/drinkHome',
         components: {
             productSearch: productSearch,
-            productPopularSender: productPopularSender,
             productAll: productAll,
         }
     },

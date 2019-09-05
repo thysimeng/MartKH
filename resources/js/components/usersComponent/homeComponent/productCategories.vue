@@ -1,10 +1,10 @@
 <template>
   <div class="product-tab-list text-center mb-65 nav" role="tablist">
     <a href data-toggle="tab" role="tab" @click="sendDatatoApp()">
-      <h4>Food</h4>
+      <h4>{{ productsCategory[0].categories_name }}</h4>
     </a>
     <a href data-toggle="tab" role="tab" @click="sendDatatoAppAll()">
-      <h4>Drink</h4>
+      <h4>{{ productsCategory1[0].categories_name }}</h4>
     </a>
   </div>
 </template>
@@ -20,25 +20,26 @@ export default {
   },
   methods: {
     sendDatatoApp() {
-      this.productshomecate = this.products;
+      this.productshomecate = this.productsCategory;
       this.$emit("senddata", this.productshomecate);
     },
     sendDatatoAppAll() {
-      this.productshomecate = this.productsAll;
+      this.productshomecate = this.productsCategory1;
       this.$emit("senddata", this.productshomecate);
     }
   },
   mounted() {
     this.$store.dispatch("fetchProductsFood");
-    this.$store.dispatch("fetchProductsDrink");
+    this.$store.dispatch("fetchProductsCategories1");
   },
   computed: {
     ...mapGetters(["productsFoodHome"]),
-    products() {
+    ...mapGetters(["productsCategories1"]),
+    productsCategory() {
       return this.$store.getters.productsFoodHome;
     },
-    productsAll() {
-      return this.$store.getters.productsFoodDrink;
+    productsCategory1() {
+      return this.$store.getters.productsCategories1;
     }
   },
   components: {

@@ -13,6 +13,7 @@ Vue.use(Vuex);
             // productsCategories:[],
             productsFoodHome:[],
             productsFoodDrink:[],
+            productsCategories1:[],
 
             //Shop
             products:[],
@@ -28,9 +29,9 @@ Vue.use(Vuex);
             fetch_products_popular(state, popular){
                 return state.productsPopular = popular
             },
-            // fetch_products_category(state, category){
-            //     return state.productsCategories = category
-            // },
+            fetch_products_category1(state, category1){
+                return state.productsCategories1 = category1
+            },
             fetch_products_food_home(state, foodHome){
                 return state.productsFoodHome = foodHome
             },
@@ -68,14 +69,14 @@ Vue.use(Vuex);
                         console.log(err)
                     })
             },
-            // fetchProductsCategories({commit}) {
-            //     axios.get('/categoriesAll')
-            //         .then(res => {
-            //             commit('fetch_products_category', res.data)
-            //         }).catch(err => {
-            //             console.log(err)
-            //         })
-            // },
+            fetchProductsCategories1({commit}) {
+                axios.get('/categories1')
+                    .then(res => {
+                        commit('fetch_products_category1', res.data)
+                    }).catch(err => {
+                        console.log(err)
+                    })
+            },
             fetchProductsFood({commit}) {
                 axios.get('/users/food')
                     .then(res => {
@@ -133,9 +134,9 @@ Vue.use(Vuex);
             productsPopular: state => {
                 return state.productsPopular
             },
-            // productsCategories: state => {
-            //     return state.productsCategories
-            // },
+            productsCategories1: state => {
+                return state.productsCategories1
+            },
             productsFoodHome: state => {
                 return state.productsFoodHome
             },

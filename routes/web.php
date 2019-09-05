@@ -101,6 +101,7 @@ Route::get('/users/food', 'UsersController\ProductsController@food')->name('prod
 Route::get('/users/all', 'UsersController\ProductsController@get')->name('productFood');
 Route::post('/searchweithwh', 'UsersController\ProductsController@search')->name('search');
 Route::get('/categoriesAll', 'UsersController\ProductsController@categories')->name('categories');
+Route::get('/categories1', 'UsersController\ProductsController@categories1')->name('categories');
 
 Route::get('/users/wishlist', 'UsersController\UserHomeController@wishListIndex')->name('list-wishlist');
 Route::post('/users/wishlist', 'UsersController\UserHomeController@wishList')->name('add-wishlist');

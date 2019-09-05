@@ -17,6 +17,7 @@ import allProductDisplay from './components/usersComponent/shopComponent/allProd
 
 // API reader
 import store from './components/usersComponent/mainAPI/productsReader';
+
 Vue.use(VueRouter);
 
 const router = new VueRouter({
