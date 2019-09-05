@@ -76,7 +76,7 @@
                         </div>
                         <div class="funiture-product-content text-center">
                             <h4><a href="product-details.html">{{$productValue->name}}</a></h4>
-                            <span>{{$productValue->price}}</span>
+                            <span>${{$productValue->price}}</span>
                         </div>
                     </div>
                     @endforeach
@@ -97,8 +97,9 @@
                     industry's standard dummy text</p>
             </div>
             {{-- Passed and get data from child component  --}}
-            <product-Food :productshomecate="productshomecate" @senddata="productshomecate = $event"></product-Food>
+            <product-Food :productshomecate="productshomecate" @senddata="productshomecate = $event" @senddatashowmodal="showmodal = $event"></product-Food>
             {{-- Passed to productall component for view --}}
+            <product-All :productshomecate="productsCategory" :showmodal="showmodal" v-if="showmodal"></product-All>
             <product-All :productshomecate="productshomecate" :showmodal="showmodal"></product-All>
             <div class="view-all-product text-center">
                 <router-link to="/users/shop" @click.native="showPage()">View All Product</router-link>

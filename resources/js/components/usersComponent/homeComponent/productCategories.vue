@@ -1,6 +1,6 @@
 <template>
   <div class="product-tab-list text-center mb-65 nav" role="tablist">
-    <a href data-toggle="tab" role="tab" @click="sendDatatoApp()">
+    <a href class="active" data-toggle="tab" role="tab" @click="sendDatatoApp()">
       <h4>{{ productsCategory[0].categories_name }}</h4>
     </a>
     <a href data-toggle="tab" role="tab" @click="sendDatatoAppAll()">
@@ -16,16 +16,20 @@ import productAll from "./productAll.vue";
 export default {
   name: "productFood",
   props: {
-    productshomecate: Array
+    productshomecate: Array,
+    showmodal: Boolean
   },
   methods: {
     sendDatatoApp() {
       this.productshomecate = this.productsCategory;
+      this.showmodal = false;
       this.$emit("senddata", this.productshomecate);
+      this.$emit("senddatashowmodal", this.showmodal);
     },
     sendDatatoAppAll() {
       this.productshomecate = this.productsCategory1;
       this.$emit("senddata", this.productshomecate);
+      this.$emit("senddatashowmodal", this.showmodal);
     }
   },
   mounted() {

@@ -37,7 +37,7 @@
               <h4>
                 <a href="#">{{ products[product-1].name }}</a>
               </h4>
-              <span>$115.00</span>
+              <span>${{ products[product-1].price }}</span>
             </div>
           </div>
         </div>
@@ -75,7 +75,7 @@
                 <h4>
                   <a href="#">{{ products[product-1].name }}</a>
                 </h4>
-                <span>$150.00</span>
+                <span>${{ products[product-1].price }}</span>
                 <p>Lorem ipsum dolor sit amet, mana consectetur adipisicing elit, sed do eiusmod tempor labore.</p>
               </div>
               <div class="product-list-cart-wishlist">

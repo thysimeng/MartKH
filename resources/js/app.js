@@ -4,7 +4,7 @@ window.Vue = require('vue');
 import VueRouter from 'vue-router';
 import { routes } from './routes';
 
-// import { mapGetters } from "vuex";
+import { mapGetters } from "vuex";
 import modalQuickView from "./components/usersComponent/shopComponent/modalQuickView.vue";
 // Home
 import productSearch from './components/usersComponent/search/productSearch.vue';
@@ -45,7 +45,7 @@ const app = new Vue({
             return this.show = true
         },
         quickView(PID, v, name, description) {
-            return this.producthome.push(PID, v, name, description);
+            return this.producthome.push(PID, v, name, description), this.showmodal=true;
         },
     },
     components: {
@@ -54,5 +54,14 @@ const app = new Vue({
         productFood: productFood,
         productAll: productAll,
         modalQuickView: modalQuickView
-    }
+    },
+    mounted() {
+        this.$store.dispatch("fetchProductsFood");
+    },
+    computed: {
+        ...mapGetters(["productsFoodHome"]),
+        productsCategory() {
+            return this.$store.getters.productsFoodHome;
+        }
+    },
 });
