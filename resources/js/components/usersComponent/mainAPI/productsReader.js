@@ -10,8 +10,10 @@ Vue.use(Vuex);
 
             //Home
             productsPopular:[],
+            // productsCategories:[],
             productsFoodHome:[],
             productsFoodDrink:[],
+            productsCategories1:[],
 
             //Shop
             products:[],
@@ -26,6 +28,9 @@ Vue.use(Vuex);
             //Home
             fetch_products_popular(state, popular){
                 return state.productsPopular = popular
+            },
+            fetch_products_category1(state, category1){
+                return state.productsCategories1 = category1
             },
             fetch_products_food_home(state, foodHome){
                 return state.productsFoodHome = foodHome
@@ -60,6 +65,14 @@ Vue.use(Vuex);
                 axios.get('/users/all')
                     .then(res => {
                         commit('fetch_products_popular', res.data)
+                    }).catch(err => {
+                        console.log(err)
+                    })
+            },
+            fetchProductsCategories1({commit}) {
+                axios.get('/categories1')
+                    .then(res => {
+                        commit('fetch_products_category1', res.data)
                     }).catch(err => {
                         console.log(err)
                     })
@@ -120,6 +133,9 @@ Vue.use(Vuex);
             // Home
             productsPopular: state => {
                 return state.productsPopular
+            },
+            productsCategories1: state => {
+                return state.productsCategories1
             },
             productsFoodHome: state => {
                 return state.productsFoodHome

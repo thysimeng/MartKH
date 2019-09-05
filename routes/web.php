@@ -24,34 +24,38 @@ Route::group(['middleware' => ['web','auth','checkUserRole']], function () {
 	Route::get('/admin/dashboard', function () {
 		return view('admin/dashboard');
 	})->name('admin.dashboard');
+
+	Route::get('admin/user/search', ['as' => 'user.search', 'uses' => 'Admin\UserController@search']);
 	Route::resource('admin/user', 'Admin\UserController', ['except' => ['show']]);
 	Route::get('admin/profile', ['as' => 'admin.profile.edit', 'uses' => 'Admin\ProfileController@edit']);
 	Route::put('admin/profile', ['as' => 'admin.profile.update', 'uses' => 'Admin\ProfileController@update']);
 	Route::put('admin/profile/password', ['as' => 'admin.profile.password', 'uses' => 'Admin\ProfileController@password']);
 	Route::post('admin/profile/upload', ['as' => 'admin.profile.upload', 'uses' => 'Admin\ProfileController@upload']);
-	Route::resource('admin/products', 'Admin\ProductController');
 	Route::get('admin/products/search',['as' => 'prouducts.search', 'uses' => 'Admin\ProductController@search']);
-	// Start ads controller
-	Route::resource('admin/ads', 'Admin\AdsController');
 	// Route::get('images-upload', 'HomeController@imagesUpload');
 	Route::post('admin/ads/adsLeft', 'Admin\AdsController@adsLeftUpload')->name('adsLeft.upload');
 	Route::post('admin/ads/adsMiddle', 'Admin\AdsController@adsMiddleUpload')->name('adsMiddle.upload');
-
+	Route::resource('admin/products', 'Admin\ProductController');
+    // Start ads controller
+	Route::resource('admin/ads', 'Admin\AdsController');
+	
     // End ads controller
 	Route::post('/delete/{pid}', 'Admin\ProductController@destroy')->name('products.destroy');
+	Route::post('admin/franchises/linkAccount',['as' => 'franchises.linkAccount', 'uses' => 'Admin\FranchiseController@linkAccount']);
+	Route::get('admin/franchises/unlinkAccount',['as' => 'franchises.unlinkAccount', 'uses' => 'Admin\FranchiseController@unlinkAccount']);
+	Route::get('admin/franchises/linkedAccount',['as' => 'franchises.getLinkAccount', 'uses' => 'Admin\FranchiseController@getLinkAccount']);
 	Route::resource('admin/franchises','Admin\FranchiseController',['except' => ['show']]);
 	Route::get('admin/franchises',['as' => 'franchises.index', 'uses' => 'Admin\FranchiseController@index']);
 	Route::get('admin/franchises/create',['as' => 'franchises.create', 'uses' => 'Admin\FranchiseController@create']);
-	Route::post('admin/franchises/store',['as' => 'franchises.store', 'uses' => 'Admin\FranchiseController@store']);
+	Route::post('admin/franchises',['as' => 'franchises.store', 'uses' => 'Admin\FranchiseController@store']);
 	Route::post('admin/franchises/{id}',['as' => 'franchises.destroy', 'uses' => 'Admin\FranchiseController@destroy']);
 	Route::get('admin/franchises/edit/{id}',['as' => 'franchises.edit', 'uses' => 'Admin\FranchiseController@edit']);
 	Route::post('admin/franchises/edit/{id}',['as' => 'franchises.update', 'uses' => 'Admin\FranchiseController@update']);
-	Route::post('admin/franchises',['as' => 'franchises.linkAccount', 'uses' => 'Admin\FranchiseController@linkAccount']);
 
 	// search franchises
 	Route::get('admin/franchises/search', ['as' => 'franchises.search', 'uses' => 'Admin\FranchiseController@search']);
 	// search users
-	Route::get('admin/user/search', ['as' => 'user.search', 'uses' => 'Admin\UserController@search']);
+
 	Route::get('/category', 'Admin\CategoryController@index')->name('admin.category');
 	Route::get('/search', 'Admin\CategoryController@search')->name('admin.search');
 	Route::post('/create_category', 'Admin\CategoryController@create')->name('admin.create_category');
@@ -72,7 +76,12 @@ Route::group(['middleware' => ['web','auth','checkUserRole']], function () {
 
 	Route::get('admin/stock/autocomplete',array('as'=>'admin.stock.autocomplete','uses'=>'Admin\StockController@autocomplete'));
 	Route::get('admin/stock/autocompleteFranchise',array('as'=>'admin.stock.autocompleteFranchise','uses'=>'Admin\StockController@autocompleteFranchise'));
-	
+
+	Route::get('admin/stock_notification', 'Admin\RequestController@index')->name('admin.notification');
+	Route::get('admin/approved_request_stocks', 'Admin\RequestController@ApprovedRequest')->name('admin.stock.approved_request');
+	Route::post('admin/edit_notification', 'Admin\RequestController@edit')->name('admin.manage_stock');
+	Route::get('admin/request_stock/search', 'Admin\RequestController@search')->name('admin.request_stock.search');
+
 });
 
 // franchise-related routes
@@ -81,6 +90,10 @@ Route::group(['middleware' => ['web','auth','checkUserRoleFranchise']], function
 	Route::get('/franchise/products','Franchise\FranchiseController@viewProduct')->name('franchise.products');
 	Route::get('/franchise/stocks','Franchise\FranchiseController@index')->name('franchise.stock');
 	Route::get('/franchise/stocks/request','Franchise\FranchiseController@requestForm')->name('franchise.request');
+	Route::get('/franchise/profile','Franchise\FranchiseController@editProfile')->name('franchise.edit.profile');
+	Route::put('/franchise/profile','Franchise\FranchiseController@updateProfile')->name('franchise.update.profile');
+	Route::put('franchise/profile/password','Franchise\FranchiseController@password')->name('franchise.profile.password');
+	Route::post('franchise/profile/upload','Franchise\FranchiseController@upload')->name('franchise.profile.upload');
 });
 
 // test route for redirecting users when they try to access admin pages
@@ -93,7 +106,10 @@ Route::get('/users/shop', 'UsersController\ProductDisplayController@index')->nam
 Route::get('/users/food', 'UsersController\ProductsController@food')->name('productFood');
 Route::get('/users/all', 'UsersController\ProductsController@get')->name('productFood');
 Route::post('/searchweithwh', 'UsersController\ProductsController@search')->name('search');
+Route::get('/categoriesAll', 'UsersController\ProductsController@categories')->name('categories');
+Route::get('/categories1', 'UsersController\ProductsController@categories1')->name('categories');
 
+Route::get('/users/wishlist', 'UsersController\UserHomeController@wishListIndex')->name('list-wishlist');
 Route::post('/users/wishlist', 'UsersController\UserHomeController@wishList')->name('add-wishlist');
 // Google Account 
 // Route::get('google', function () {
@@ -102,9 +118,5 @@ Route::post('/users/wishlist', 'UsersController\UserHomeController@wishList')->n
 Route::get('/auth/google/callback', 'Auth\LoginController@handleGoogleCallback'); 
 Route::get('/auth/google', 'Auth\LoginController@redirectToGoogle')->name('redirectToGoogle');
 
-
-// Route::get('/{any}', function(){
-//     return view('user');
-// })->where('any', '^(?!api).*$');
-// Route::get('/usersTest', 'UsersController\temp\testController@index')->name('get');
+Route::post('/users/delete-wishlist', 'UsersController\UserHomeController@deleteWishList')->name('delete-wishlist');
 

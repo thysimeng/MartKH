@@ -2,39 +2,41 @@
   <div class="furniture-search">
     <form action @submit="searchProduct">
       <input placeholder="I am Searching for . . ." type="text" v-model="searchInput" />
-      <button :disabled="!isValid" @click="ChangeData()">
-          <i class="ti-search"></i>
+      <button :disabled="!isValid" @click="[ChangeData(), ChangeShow()]">
+        <!-- <router-link to="/search"> -->
+            <i class="ti-search"></i>
+        <!-- </router-link> -->
       </button>
     </form>
   </div>
 </template>
 <script>
-
 export default {
   name: "searchButton",
   data() {
     return {
-      searchInput: "",
+      searchInput: ""
     };
   },
-  props:{
-      products: Array,
-      show: Boolean,
+  props: {
+    products: Array,
+    show: Boolean
   },
   methods: {
-      ChangeData(){
-            this.products=this.products;
-            this.$emit('changedatabyemit', this.products);
-        //   this.show=false;
-        //   this.$emit('changeShowbyemit', this.show);
-
-      },
+    ChangeData() {
+      this.products = this.products;
+      this.$emit("changedatabyemit", this.products);
+    },
+    ChangeShow() {
+      this.show = false;
+      this.$emit("changeshowbyemit", this.show);
+    },
     searchProduct(e) {
       e.preventDefault();
       let currentObj = this;
       axios
         .post("/searchweithwh", {
-          a: this.searchInput
+          searchInput: this.searchInput
         })
         .then(function(response) {
           currentObj.products = response.data;

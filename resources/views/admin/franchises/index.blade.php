@@ -63,12 +63,13 @@
                                         @foreach ($linkUsers as $linkUser )
                                             @if($franchise->id == $linkUser->franchise_id)
                                                 {{ $linkUser->email }}
+                                                <br>
                                             @endif
                                         @endforeach
                                         </td>
                                         <td class="text-right">
                                             <div class="dropdown">
-                                                <a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" id="actionbtn">
                                                     <i class="fas fa-ellipsis-v"></i>
                                                 </a>
                                                 <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
@@ -83,6 +84,13 @@
                                                                 {{ __('Delete') }}
                                                             </button>
                                                             <button type="button" class="dropdown-item" data-toggle="modal" data-target="#linkAccount" id="linkAccountBtn" data-id="{{ $franchise->id }}">{{ __('Link Account') }}</button>
+                                                            @foreach ($linkUsers as $linkUser )
+                                                                @if($franchise->id == $linkUser->franchise_id)
+                                                                <button type="button" class="dropdown-item" data-toggle="modal" data-target="#unlinkAccount" id="unlinkAccountBtn" data-ulid="{{ $franchise->id }}">{{ __('Unlink Account') }}</button>
+                                                                @break
+                                                                @endif
+                                                            @endforeach
+                                                            <!-- <button type="button" class="dropdown-item" data-toggle="modal" data-target="#unlinkAccount" id="unlinkAccountBtn" data-ulid="{{ $franchise->id }}">{{ __('Unlink Account') }}</button> -->
                                                         </form>
                                                         @endif
                                                 </div>
@@ -134,10 +142,43 @@
 
         $(document).ready(function(){
             $(function() {
+                $.ajaxSetup({
+                    headers: {
+                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                    }
+                });
                 $('#linkAccount').on("show.bs.modal", function (e) {
                     $("#franchiseID").html($(e.relatedTarget).data('id'));
                     var $data = document.getElementById('franchiseID').textContent;
                     $('#franchiseID').attr('value',$data);
+                });
+                $('#unlinkAccount').on("show.bs.modal", function (e) {
+                    $("#FID").html($(e.relatedTarget).data('ulid'));
+                    var $fid = document.getElementById('FID').textContent;
+                    $('#FID').attr('value',$fid);
+                    // console.log($fid);
+                    $.ajax({
+                        url: '{{ route('franchises.getLinkAccount')}}',
+                        dataType:'json',
+                        type: "GET",
+                        data: {"fid":$fid},
+                        success: function(response){
+                            // console.log('Success::')
+                            // console.log(response);
+                            var data ="";
+                            $.each(response, function(res){
+                                var option = response[res];
+                                data += "<option value='"+ option.id + "'>" + option.name + " | " + option.email + "</option>";
+                            });
+                            $('#unlinkOption').html(data);
+                            // console.log('End Success::')
+                        },
+                        // error: function(jqXHR, textStatus, errorThrown) { // What to do if we fail
+                        //     console.log('Error::')
+                        //     console.log(JSON.stringify(jqXHR));
+                        //     console.log("AJAX error: " + textStatus + ' : ' + errorThrown);
+                        // },
+                    });
                 });
             });
         });
@@ -172,5 +213,51 @@
             </div>
         </div>
     </form>
+
+    <form class="form-horizontal" action="{{ route('franchises.unlinkAccount') }}" method="get">
+        @csrf
+        <div class="modal fade" id="unlinkAccount" tabindex="-1" role="dialog" aria-labelledby="unlinkAccount" aria-hidden="true">
+            <div class="modal-dialog modal-dialog-centered" role="document">
+                <div class="modal-content">
+                <div class="modal-header">
+                    <h4 class="modal-title" id="unlinkAccount">Unlink Franchise Account with this Franchise</h4>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <input type="hidden" value="" name="franchise_id" id="FID">
+                    <select class="form-control" name="user_id" id="unlinkOption">
+                        <option value="" disabled selected>Select a Account to unlink</option>
+                    </select>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <button type="button" class="btn btn-primary unlinkBtn">Unlink</button>
+                </div>
+                </div>
+            </div>
+        </div>
+    </form>
+
+    <script>
+        $('.unlinkBtn').click(function(e){
+            e.preventDefault();
+            var form = $(this).parents('form:first');
+            Swal.fire({
+                title: 'Warning',
+                text: "Are you sure you want to unlink this account?",
+                type: 'warning',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                cancelButtonColor: '#d33',
+                confirmButtonText: 'Yes'
+            }).then((result) => {
+            if (result.value) {
+                form.submit();
+            }
+            })
+        });
+    </script>
 
 @endsection

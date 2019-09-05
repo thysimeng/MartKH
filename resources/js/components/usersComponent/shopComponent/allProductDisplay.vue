@@ -15,8 +15,8 @@
               </a>
               <span>hot</span>
               <div class="product-action">
-                <a class="animate-left" title="Wishlist" href="#">
-                  <i class="pe-7s-like"></i>
+                <a class="animate-left" title="Wishlist" href="#" type="submit">
+                    <i class="pe-7s-like"></i>
                 </a>
                 <a class="animate-top" title="Add To Cart" href="#">
                   <i class="pe-7s-cart"></i>
@@ -26,8 +26,8 @@
                   class="animate-right"
                   title="Quick View"
                   data-toggle="modal"
-                  data-target="#exampleModal"
-                  @click="quickView(products[product-1].pid, products[product-1].image)"
+                  data-target="#VUEModal"
+                  @click="quickView(products[product-1].id, products[product-1].image, products[product-1].name, products[product-1].description)"
                 >
                   <i class="pe-7s-look"></i>
                 </a>
@@ -37,7 +37,7 @@
               <h4>
                 <a href="#">{{ products[product-1].name }}</a>
               </h4>
-              <span>$115.00</span>
+              <span>${{ products[product-1].price }}</span>
             </div>
           </div>
         </div>
@@ -63,8 +63,8 @@
                   class="animate-right"
                   title="Quick View"
                   data-toggle="modal"
-                  data-target="#exampleModal"
-                  @click="quickView(products[product-1].pid, products[product-1].image)"
+                  data-target="#VUEModal"
+                  @click="quickView(products[product-1].id, products[product-1].image, products[product-1].name, products[product-1].description)"
                 >
                   <i class="pe-7s-look"></i>
                 </a>
@@ -75,7 +75,7 @@
                 <h4>
                   <a href="#">{{ products[product-1].name }}</a>
                 </h4>
-                <span>$150.00</span>
+                <span>${{ products[product-1].price }}</span>
                 <p>Lorem ipsum dolor sit amet, mana consectetur adipisicing elit, sed do eiusmod tempor labore.</p>
               </div>
               <div class="product-list-cart-wishlist">
@@ -94,7 +94,7 @@
       </div>
     </div>
     <button @click="seeMore++">See more</button>
-    <modalQuickView :productID="productID" @clearData="productID = $event"></modalQuickView>
+    <modalQuickView :productid="productid" @clearData="productid = $event"></modalQuickView>
   </div>
 </template>
 
@@ -107,7 +107,8 @@ export default {
   data: function() {
     return {
       seeMore: 1,
-      productID: [],
+      productid: [],
+      add: Number
     };
   },
   //   To use props, they must be declared
@@ -115,8 +116,8 @@ export default {
     products: Array
   },
   methods: {
-    quickView(PID, v) {
-      return this.productID.push(PID, v);
+    quickView(PID, v, name, description) {
+      return this.productid.push(PID, v, name, description);
     }
   },
   components: {

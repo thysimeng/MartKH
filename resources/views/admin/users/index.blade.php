@@ -9,8 +9,12 @@
                 <div class="card shadow">
                     <div class="card-header border-0">
                         <!-- Tabs -->
-                        <ul class="nav nav-tabs card-header-tabs" id="bologna-list" role="tablist">
-                                    <li class="nav-item col-2">
+                        <div class="row align-items-center">
+                        <!-- <ul class="nav nav-tabs card-header-tabs" id="bologna-list" role="tablist"> -->
+                                    <div class="col-4">
+                                        <h3 class="mb-0">User Management</h3>
+                                    </div>
+                                    <!-- <li class="nav-item col-2">
                                       <a class="nav-link active" id="nav-admin-tab" href="#nav-admin" data-toggle="tab" role="tab" aria-controls="admin" aria-selected="true">{{ __('Admin') }}</a>
                                     </li>
                                     <li class="nav-item col-2">
@@ -18,11 +22,11 @@
                                     </li>
                                     <li class="nav-item col-2">
                                       <a class="nav-link" href="#nav-franchise" data-toggle="tab" role="tab" aria-controls="franchise" aria-selected="false">{{ __('Franchise') }}</a>
-                                    </li>
+                                    </li> -->
                                     
                                     <!-- Search -->
                                     <form class="col-4" id="search-user" method="get" action="{{ route('user.search') }}">
-                                            <div class="form-group mb-4">
+                                            <div class="form-group mb-2 mt-2">
                                                 <div class="input-group input-group-alternative">
                                                     <div class="input-group-prepend">
                                                         <span class="input-group-text"><i class="fas fa-search"></i></span>
@@ -33,10 +37,10 @@
                                     </form>
                                         
                                     <!-- Add users -->
-                                    <div class="col-2 text-right">
+                                    <div class="col-4 text-right">
                                             <a href="{{ route('user.create') }}" class="btn btn-sm btn-primary">{{ __('Add user') }}</a>
                                     </div>
-                        </ul>
+                        <!-- </ul> --> </div>
                     </div>
                     
                     <!-- success message -->
@@ -52,9 +56,10 @@
                     </div> -->
                     
                     <!-- Users Table -->
-                    <div class="tab-content" id="nav-tabContent">
                         <!-- Admin List -->
-                        <div class="tab-pane active" id="nav-admin" role="tabpanel1">
+                        <div class="col-4">
+                            <h3 class="mb-3 font-italic">Admin</h3>
+                        </div>
                             <div class="table-responsive">
                                 <table class="table align-items-center table-flush">
                                     <thead class="thead-light">
@@ -67,7 +72,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($users as $user)
+                                        @foreach ($admins as $user)
                                             @if ($user->role == 'admin')
                                                 <tr>
                                                     <td>{{ $user->name }}</td>
@@ -104,9 +109,18 @@
                                     </tbody>
                                 </table>
                             </div>
+                        <div class="card-footer py-4">
+                            <nav class="d-flex justify-content-end" aria-label="...">
+                                {{ $admins->links() }}
+                            </nav>
                         </div>
+                    </div>
+                        <br>
                          <!-- User List -->
-                         <div class="tab-pane" id="nav-user" role="tabpanel1">
+                    <div class="card shadow pt-3">
+                        <div class="col-4 pr-4">
+                            <h3 class="mb-3 font-italic align-items-center">User</h3>
+                        </div>
                             <div class="table-responsive">
                                 <table class="table align-items-center table-flush">
                                     <thead class="thead-light">
@@ -156,9 +170,18 @@
                                     </tbody>
                                 </table>
                             </div>
+                        <div class="card-footer py-4">
+                            <nav class="d-flex justify-content-end" aria-label="...">
+                                {{ $users->links() }}
+                            </nav>
                         </div>
+                    </div>
+                    <br>
                         <!-- Franchise List -->
-                        <div class="tab-pane" id="nav-franchise" role="tabpanel1">
+                    <div class="card shadow pt-3">
+                        <div class="col-4 pr-4">
+                            <h3 class="mb-3 font-italic">Franchise</h3>
+                        </div>
                             <div class="table-responsive">
                                 <table class="table align-items-center table-flush">
                                     <thead class="thead-light">
@@ -171,7 +194,7 @@
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        @foreach ($users as $user)
+                                        @foreach ($franchises as $user)
                                             @if($user->role == 'franchise')
                                                 <tr>
                                                     <td>{{ $user->name }}</td>
@@ -209,14 +232,11 @@
                                 </table>
                             </div>
                         </div>
-                    </div>
-
                     <div class="card-footer py-4">
                         <nav class="d-flex justify-content-end" aria-label="...">
-                            {{ $users->links() }}
+                            {{ $franchises->links() }}
                         </nav>
                     </div>
-                </div>
             </div>
         </div>
             

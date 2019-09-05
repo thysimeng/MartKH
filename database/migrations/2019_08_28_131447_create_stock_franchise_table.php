@@ -16,8 +16,8 @@ class CreateStockFranchiseTable extends Migration
         Schema::create('stock_franchise', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->integer('amount');
-            $table->integer('product_id');
-            $table->integer('franchise_id');
+            $table->BigInteger('product_id')->unsigned()->nullable();
+            $table->BigInteger('franchise_id')->unsigned()->nullable();
             $table->foreign('product_id')->references('id')->on('products');
             $table->foreign('franchise_id')->references('id')->on('franchises');
             $table->timestamps();

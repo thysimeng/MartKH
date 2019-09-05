@@ -1,6 +1,7 @@
 <template>
   <div>
     <productAll :products="products"></productAll>
+    <!-- <h1>Pro dri :{{ showmo }}</h1> -->
     <!-- <h1>productFood component</h1> -->
   </div>
 </template>
@@ -11,11 +12,15 @@ import productAll from "./productAll.vue";
 
 export default {
   name: "productFood",
-  data: function () {
-      return {
+//   props:{
+//       showmo: Boolean
+//   },
+//   data: function () {
+//       return {
+//         showmodal: true,
+//       }
+//   },
 
-      }
-  },
   mounted() {
     this.$store.dispatch("fetchProductsDrink");
   },

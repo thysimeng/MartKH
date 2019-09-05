@@ -1,14 +1,14 @@
 @extends('layouts.users')
 @section('contents')
 @if (Session::has('message'))
-    <div class="alert alert-success">
-        <p>{{ Session::get('message') }}</p>
-    </div>
+<div class="alert alert-success">
+    <p>{{ Session::get('message') }}</p>
+</div>
 @endif
 @if (Session::has('success'))
-    <div class="alert alert-success">
-        <p>{{ Session::get('success') }}</p>
-    </div>
+<div class="alert alert-success">
+    <p>{{ Session::get('success') }}</p>
+</div>
 @endif
 {{-- Home page section --}}
 <div v-if="show">
@@ -185,32 +185,34 @@
                                 <img src="{{ asset('uploads/product_image/'.$productValue->image)}}" alt="">
                             </a>
                             <div class="product-action">
-                                <form action="{{ route('add-wishlist') }}" method="post" id="submitWishList">
+                                <form action="{{ route('list-wishlist') }}" method="post" id="submitWishList">
                                     @csrf
-                                    <input type="hidden" name="product_id" value="{{$productValue->id}}">
-                                    <a class="animate-left my-click" title="Wishlist" href="javascript:void(0)"
-                                        id="buttonSubmitWishList">
+                                    <input type="hidden" name="product_id" value="">
+                                    <a onclick="wishList({{ $productValue->id }})" class="animate-left my-click"
+                                        title="Wishlist" href="javascript:void(0)" id="buttonSubmitWishList">
                                         <i class="pe-7s-like"></i>
                                     </a>
+                                    <a class="animate-top" title="Add To Cart" href="#">
+                                        <i class="pe-7s-cart"></i>
+                                    </a>
+                                    <a href class="animate-right" title="Quick View" data-toggle="modal"
+                                        data-target="#VUEModal"
+                                        @click="quickView({{ $productValue->id }}, '{{ $productValue->image }}', '{{ $productValue->name }}', '{{ $productValue->description }}')">
+                                        <i class="pe-7s-look"></i>
+                                    </a>
                                 </form>
-                                <a class="animate-top" title="Add To Cart" href="#">
-                                    <i class="pe-7s-cart"></i>
-                                </a>
-                                <a class="animate-right" title="Quick View" data-toggle="modal"
-                                    data-target="#exampleModal" href="#">
-                                    <i class="pe-7s-look"></i>
-                                </a>
                             </div>
                         </div>
                         <div class="funiture-product-content text-center">
                             <h4><a href="product-details.html">{{$productValue->name}}</a></h4>
-                            <span>{{$productValue->price}}</span>
+                            <span>${{$productValue->price}}</span>
                         </div>
                     </div>
                     @endforeach
                 </div>
             </div>
         </div>
+
     </div>
     <!-- product popular area end -->
 
@@ -223,36 +225,17 @@
                     the
                     industry's standard dummy text</p>
             </div>
-            <div class="product-tab-list text-center mb-65 nav" role="tablist">
-                <router-link to="/users/foodHome" data-toggle="tab" role="tab">
-                    <h4>Food</h4>
-                </router-link>
-                <router-link to="/users/drinkHome" data-toggle="tab" role="tab">
-                    <h4>Drink</h4>
-                </router-link>
-                {{-- <a href="#furniture3" data-toggle="tab" role="tab">
-                    <h4>ArmChair </h4>
-                </a>
-                <a href="#furniture4" data-toggle="tab" role="tab">
-                    <h4>Light</h4>
-                </a>
-                <a href="#furniture5" data-toggle="tab" role="tab">
-                    <h4> Corner</h4>
-                </a> --}}
-            </div>
-            {{-- <div class="tab-content"> --}}
-            {{-- <div class="tab-pane active show fade" id="furniture1" role="tabpanel"> --}}
-            <router-view name="productFood"></router-view>
-            <router-view name="productDrink"></router-view>
-            {{-- </div> --}}
-            {{-- </div> --}}
+            {{-- Passed and get data from child component  --}}
+            <product-Food :productshomecate="productshomecate" @senddata="productshomecate = $event" @senddatashowmodal="showmodal = $event"></product-Food>
+            {{-- Passed to productall component for view --}}
+            <product-All :productshomecate="productsCategory" :showmodal="showmodal" v-if="showmodal"></product-All>
+            <product-All :productshomecate="productshomecate" :showmodal="showmodal"></product-All>
             <div class="view-all-product text-center">
                 <router-link to="/users/shop" @click.native="showPage()">View All Product</router-link>
-                {{-- <a href="">View All Product</a> --}}
             </div>
         </div>
     </div>
-    <!-- product all area end -->
+    <modal-Quick-View :productid="producthome"></modal-Quick-View>
 </div>
 {{-- End home page section --}}
 
@@ -467,12 +450,12 @@
                                 </div>
                             </div>
                         </div>
-                        <router-view name="shop"></router-view>
-                        <router-view name="food"></router-view>
+                        <router-view name="shop" v-if="products.length==0"></router-view>
+                        <router-view name="food" v-if="products.length==0"></router-view>
                         {{-- <router-view name="allProductDisplay"></router-view> --}}
                         {{-- <product-Search></product-Search> --}}
                         {{-- <search-Result></search-Result> --}}
-                        <all-Product-Display :products="products"></all-Product-Display>
+                        <all-Product-Display :products="products" v-if="products.length!=0"></all-Product-Display>
                     </div>
                 </div>
                 <div class="pagination-style mt-30 text-center">
@@ -496,9 +479,17 @@
 <script type="text/javascript">
     $('.my-click').on('click', function(event) {
                 $("#submitWishList").submit();
-                console.log("Hwllo")
             });
     // $(document).ready(function(){
     // });
+</script>
+
+<script>
+    var id = null;
+
+    function wishList(id,name) {
+        document.querySelector('[name="product_id"]').setAttribute('value', id);
+    }
+
 </script>
 @endsection

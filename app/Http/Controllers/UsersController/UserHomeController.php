@@ -9,6 +9,7 @@ use App\Ads;
 use DB;
 use Auth;
 use App\Models\WishList;
+use App\Models\Product;
 
 class UserHomeController extends Controller
 {
@@ -55,5 +56,23 @@ class UserHomeController extends Controller
         else {
             return redirect()->back()->with('success', 'You already added this product.');
         }
+    }
+
+    public function wishListIndex(){
+        $data_product = [];
+        $user_id=auth::user()->id;
+        $wishlish_pro_id = WishList::where('user_id', $user_id)->pluck('wishlist_id');
+        foreach ($wishlish_pro_id as $id){
+            $product = Product::find($id);
+            array_push($data_product, $product);
+        }
+        // dd($data_product);
+        return view('users.contents.wishlist')->with(compact('data_product'));
+    }
+
+    public function deleteWishList(Request $request) {
+        $pro_id = $request->post('product_id');
+        DB::delete('delete from wishlists where wishlist_id = ?',[$pro_id]);
+        return redirect(route('add-wishlist'));
     }
 }

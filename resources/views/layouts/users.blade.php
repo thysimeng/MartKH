@@ -120,93 +120,102 @@
                                             <div class="mega-banner-img">
                                                 <a href="single-product.html">
                                                     <img src="{{asset('assets/img/banner/18.jpg')}}" alt="">
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </li> --}}
-                                <li><router-link to="/users/shop" @click.native="showPage()">Shop</router-link>
-                                        <ul class="single-dropdown">
-                                            <li><router-link to="/users/shop/foodVue" @click.native="showPage()">Food</router-link></li>
-                                            {{-- <li><a href="blog-2-col.html">blog 2 colunm</a></li>
+                                    </a>
+                        </div>
+                    </div>
+                    </li> --}}
+                    <li>
+                        <router-link to="/users/shop" @click.native="showPage()">Shop</router-link>
+                        <ul class="single-dropdown">
+                            <li>
+                                <router-link to="/users/shop/foodVue" @click.native="showPage()">Food</router-link>
+                            </li>
+                            {{-- <li><a href="blog-2-col.html">blog 2 colunm</a></li>
                                             <li><a href="blog-sidebar.html">blog sidebar</a></li>
                                             <li><a href="blog-details.html">blog details</a></li>
                                             <li><a href="blog-details-sidebar.html">blog details 2</a></li> --}}
-                                        </ul>
-                                    </li>
-                                    {{-- <li><a href="contact.html">contact</a></li> --}}
-                                </ul>
-                            </nav>
-                        </div>
-                        <div class="header-cart">
-                            <a class="icon-cart-furniture" href="#">
-                                <i class="ti-shopping-cart"></i>
-                                <span class="shop-count-furniture green" style="background-color:red;">02</span>
-                            </a>
-                            <ul class="cart-dropdown">
-                                <li class="single-product-cart">
-                                    <div class="cart-img">
-                                        <a href="#"><img src="{{asset('assets/img/cart/1.jpg')}}" alt=""></a>
-                                    </div>
-                                    <div class="cart-title">
-                                        <h5><a href="#"> Bits Headphone</a></h5>
-                                        <h6><a href="#">Black</a></h6>
-                                        <span>$80.00 x 1</span>
-                                    </div>
-                                    <div class="cart-delete">
-                                        <a href="#"><i class="ti-trash"></i></a>
-                                    </div>
-                                </li>
-                                <li class="single-product-cart">
-                                    <div class="cart-img">
-                                        <a href="#"><img src="{{asset('assets/img/cart/2.jpg')}}" alt=""></a>
-                                    </div>
-                                    <div class="cart-title">
-                                        <h5><a href="#"> Bits Headphone</a></h5>
-                                        <h6><a href="#">Black</a></h6>
-                                        <span>$80.00 x 1</span>
-                                    </div>
-                                    <div class="cart-delete">
-                                        <a href="#"><i class="ti-trash"></i></a>
-                                    </div>
-                                </li>
-                                <li class="single-product-cart">
-                                    <div class="cart-img">
-                                        <a href="#"><img src="{{asset('assets/img/cart/3.jpg')}}" alt=""></a>
-                                    </div>
-                                    <div class="cart-title">
-                                        <h5><a href="#"> Bits Headphone</a></h5>
-                                        <h6><a href="#">Black</a></h6>
-                                        <span>$80.00 x 1</span>
-                                    </div>
-                                    <div class="cart-delete">
-                                        <a href="#"><i class="ti-trash"></i></a>
-                                    </div>
-                                </li>
-                                <li class="cart-space">
-                                    <div class="cart-sub">
-                                        <h4>Subtotal</h4>
-                                    </div>
-                                    <div class="cart-price">
-                                        <h4>$240.00</h4>
-                                    </div>
-                                </li>
-                                <li class="cart-btn-wrapper">
-                                    <a class="cart-btn btn-hover" href="#">view cart</a>
-                                    <a class="cart-btn btn-hover" href="#">checkout</a>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    <div class="row">
-                        <div class="mobile-menu-area d-md-block col-md-12 col-lg-12 col-12 d-lg-none d-xl-none">
-                            <div class="mobile-menu">
-                                <nav id="mobile-menu-active">
-                                    <ul class="menu-overflow">
-                                        <li><a href="/users">HOME</a>
-                                            <ul>
-                                                <li><a href="index.html">Fashion</a></li>
-                                                <li><a href="index-fashion-2.html">Fashion style 2</a></li>
-                                                {{-- <li><a href="index-fruits.html">Fruits</a></li>
+                        </ul>
+                    </li>
+                    {{-- <li
+                    v-for="category in productsCategories"
+                    v-bind:data="category"
+                    v-bind:key="category.key">
+                        <router-link :to="category.categories_name">@{{ category.categories_name }}</router-link>
+                        <a href="">@{{ category.categories_name }}</a>
+                    </li> --}}
+                    </ul>
+                    </nav>
+                </div>
+                <div class="header-cart">
+                    <a class="icon-cart-furniture" href="#">
+                        <i class="ti-shopping-cart"></i>
+                        <span class="shop-count-furniture green" style="background-color:red;">02</span>
+                    </a>
+                    <ul class="cart-dropdown">
+                        <li class="single-product-cart">
+                            <div class="cart-img">
+                                <a href="#"><img src="{{asset('assets/img/cart/1.jpg')}}" alt=""></a>
+                            </div>
+                            <div class="cart-title">
+                                <h5><a href="#"> Bits Headphone</a></h5>
+                                <h6><a href="#">Black</a></h6>
+                                <span>$80.00 x 1</span>
+                            </div>
+                            <div class="cart-delete">
+                                <a href="#"><i class="ti-trash"></i></a>
+                            </div>
+                        </li>
+                        <li class="single-product-cart">
+                            <div class="cart-img">
+                                <a href="#"><img src="{{asset('assets/img/cart/2.jpg')}}" alt=""></a>
+                            </div>
+                            <div class="cart-title">
+                                <h5><a href="#"> Bits Headphone</a></h5>
+                                <h6><a href="#">Black</a></h6>
+                                <span>$80.00 x 1</span>
+                            </div>
+                            <div class="cart-delete">
+                                <a href="#"><i class="ti-trash"></i></a>
+                            </div>
+                        </li>
+                        <li class="single-product-cart">
+                            <div class="cart-img">
+                                <a href="#"><img src="{{asset('assets/img/cart/3.jpg')}}" alt=""></a>
+                            </div>
+                            <div class="cart-title">
+                                <h5><a href="#"> Bits Headphone</a></h5>
+                                <h6><a href="#">Black</a></h6>
+                                <span>$80.00 x 1</span>
+                            </div>
+                            <div class="cart-delete">
+                                <a href="#"><i class="ti-trash"></i></a>
+                            </div>
+                        </li>
+                        <li class="cart-space">
+                            <div class="cart-sub">
+                                <h4>Subtotal</h4>
+                            </div>
+                            <div class="cart-price">
+                                <h4>$240.00</h4>
+                            </div>
+                        </li>
+                        <li class="cart-btn-wrapper">
+                            <a class="cart-btn btn-hover" href="#">view cart</a>
+                            <a class="cart-btn btn-hover" href="#">checkout</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+            <div class="row">
+                <div class="mobile-menu-area d-md-block col-md-12 col-lg-12 col-12 d-lg-none d-xl-none">
+                    <div class="mobile-menu">
+                        <nav id="mobile-menu-active">
+                            <ul class="menu-overflow">
+                                <li><a href="/users">HOME</a>
+                                    <ul>
+                                        <li><a href="index.html">Fashion</a></li>
+                                        <li><a href="index-fashion-2.html">Fashion style 2</a></li>
+                                        {{-- <li><a href="index-fruits.html">Fruits</a></li>
                                                 <li><a href="index-book.html">book</a></li>
                                                 <li><a href="index-electronics.html">electronics</a></li>
                                                 <li><a href="index-electronics-2.html">electronics style 2</a></li>
@@ -215,21 +224,25 @@
                                                 <li><a href="index-handicraft.html">handicraft</a></li>
                                                 <li><a href="index-smart-watch.html">smart watch</a></li>
                                                 <li><a href="index-sports.html">sports</a></li> --}}
-                                            </ul>
+                                    </ul>
+                                </li>
+                                <li>
+                                    <router-link to="/users/shop" @click.native="showPage()">Shop</router-link>
+                                    <ul>
+                                        <li>
+                                            <router-link to="/users/shop/foodVue" @click.native="showPage()">Food
+                                            </router-link>
                                         </li>
-                                        <li><router-link to="/users/shop" @click.native="showPage()">Shop</router-link>
-                                            <ul>
-                                                <li><router-link to="/users/shop/foodVue" @click.native="showPage()">Food</router-link></li>
-                                                {{-- <li><a href="menu-list.html">menu list</a></li>
+                                        {{-- <li><a href="menu-list.html">menu list</a></li>
                                                 <li><a href="login.html">login</a></li>
                                                 <li><a href="register.html">register</a></li>
                                                 <li><a href="cart.html">cart page</a></li>
                                                 <li><a href="checkout.html">checkout</a></li>
                                                 <li><a href="wishlist.html">wishlist</a></li>
                                                 <li><a href="contact.html">contact</a></li> --}}
-                                            </ul>
-                                        </li>
-                                        {{-- <li><a href="#">shop</a>
+                                    </ul>
+                                </li>
+                                {{-- <li><a href="#">shop</a>
                                             <ul>
                                                 <li><a href="shop-grid-2-col.html"> grid 2 column</a></li>
                                                 <li><a href="shop-grid-3-col.html"> grid 3 column</a></li>
@@ -259,136 +272,136 @@
                                             </ul>
                                         </li>
                                         <li><a href="contact.html"> Contact </a></li> --}}
-                                    </ul>
-                                </nav>
-                            </div>
-                        </div>
+                            </ul>
+                        </nav>
                     </div>
                 </div>
             </div>
-            <div class="header-bottom-furniture wrapper-padding-2 border-top-3 border-bottom-3">
-                <div class="container-fluid">
-                    <div class="furniture-bottom-wrapper">
-                        <div class="furniture-login">
-                            <ul>
-                                @auth
-                                @if (Route::has('login'))
-                                <li><a href="/users/profile">Profile</a></li>
-                                <li>
-                                    <a href="{{ route('logout') }}" onclick="event.preventDefault();
+    </div>
+    </div>
+    <div class="header-bottom-furniture wrapper-padding-2 border-top-3 border-bottom-3">
+        <div class="container-fluid">
+            <div class="furniture-bottom-wrapper">
+                <div class="furniture-login">
+                    <ul>
+                        @auth
+                        @if (Route::has('login'))
+                        <li><a href="/users/profile">Profile</a></li>
+                        <li>
+                            <a href="{{ route('logout') }}" onclick="event.preventDefault();
                                                     document.getElementById('logout-form').submit();">
-                                        {{ __('Logout') }}
-                                    </a>
+                                {{ __('Logout') }}
+                            </a>
 
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                        style="display: none;">
-                                        @csrf
-                                    </form>
-                                </li>
-                                @endif
-                                @endauth
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
+                                @csrf
+                            </form>
+                        </li>
+                        @endif
+                        @endauth
 
-                                @if ( Auth::guest() )
-                                <li>Get Access: <a href="/login">login</a></li>
-                                <li><a href="/register">register</a></li>
-                                @endif
-                            </ul>
-                        </div>
-                        {{-- <router-view name="productSearch"></router-view> --}}
-                        <product-Search :products="products" @changedatabyemit="products = $event"></product-Search>
-                        <div class="furniture-wishlist">
-                            <ul>
-                                <li><a data-toggle="modal" data-target="#exampleCompare" href="#"><i
-                                            class="ti-reload"></i> Compare</a></li>
-                                <li><a href="wishlist.html"><i class="ti-heart"></i> Wishlist</a></li>
-                            </ul>
-                        </div>
-                    </div>
+                        @if ( Auth::guest() )
+                        <li>Get Access: <a href="/login">login</a></li>
+                        <li><a href="/register">register</a></li>
+                        @endif
+                    </ul>
+                </div>
+                <product-Search :products="products" @changedatabyemit="products = $event" :show="show"
+                    @changeshowbyemit="show = $event"></product-Search>
+                {{-- <product-Search :show="show" @changeshowbyemit="show = $event"></product-Search> --}}
+                <div class="furniture-wishlist">
+                    <ul>
+                        <li><a data-toggle="modal" data-target="#exampleCompare" href="#"><i class="ti-reload"></i>
+                                Compare</a></li>
+                        <li><a href="{{ route('add-wishlist') }}"><i class="ti-heart"></i> Wishlist</a></li>
+                    </ul>
                 </div>
             </div>
-        </header>
-        <!-- header end -->
-        @yield('contents')
-        {{-- footer start --}}
-        <footer class="footer-area">
-            <div class="footer-top-area pt-70 pb-35 wrapper-padding-5">
-                <div class="container-fluid">
-                    <div class="widget-wrapper">
-                        <div class="footer-widget mb-30">
-                            <a href="#"><img src="{{asset('icon/mkh-logo.png')}}" alt="" style="width:250px;"></a>
-                            <div class="footer-about-2">
-                                <p>MartKh provide you everything<br>Food, drink and shop place<br>Find what you want</p>
-                            </div>
+        </div>
+    </div>
+    </header>
+    <!-- header end -->
+    @yield('contents')
+    {{-- footer start --}}
+    <footer class="footer-area">
+        <div class="footer-top-area pt-70 pb-35 wrapper-padding-5">
+            <div class="container-fluid">
+                <div class="widget-wrapper">
+                    <div class="footer-widget mb-30">
+                        <a href="#"><img src="{{asset('icon/mkh-logo.png')}}" alt="" style="width:250px;"></a>
+                        <div class="footer-about-2">
+                            <p>MartKh provide you everything<br>Food, drink and shop place<br>Find what you want</p>
                         </div>
-                        <div class="footer-widget mb-30">
-                            <h3 class="footer-widget-title-5">Contact Info</h3>
-                            <div class="footer-info-wrapper-3">
-                                <div class="footer-address-furniture">
-                                    <div class="footer-info-icon3">
-                                        <span>Address: </span>
-                                    </div>
-                                    <div class="footer-info-content3">
-                                        <p>Heng Ly<br>Phnom Penh</p>
-                                    </div>
+                    </div>
+                    <div class="footer-widget mb-30">
+                        <h3 class="footer-widget-title-5">Contact Info</h3>
+                        <div class="footer-info-wrapper-3">
+                            <div class="footer-address-furniture">
+                                <div class="footer-info-icon3">
+                                    <span>Address: </span>
                                 </div>
-                                <div class="footer-address-furniture">
-                                    <div class="footer-info-icon3">
-                                        <span>Phone: </span>
-                                    </div>
-                                    <div class="footer-info-content3">
-                                        <p>+8801 (33) 515609735 <br>+8801 (66) 223352333</p>
-                                    </div>
-                                </div>
-                                <div class="footer-address-furniture">
-                                    <div class="footer-info-icon3">
-                                        <span>E-mail: </span>
-                                    </div>
-                                    <div class="footer-info-content3">
-                                        <p><a href="#"> email@domain.com</a> <br><a href="#"> domain@mail.info</a></p>
-                                    </div>
+                                <div class="footer-info-content3">
+                                    <p>Heng Ly<br>Phnom Penh</p>
                                 </div>
                             </div>
+                            <div class="footer-address-furniture">
+                                <div class="footer-info-icon3">
+                                    <span>Phone: </span>
+                                </div>
+                                <div class="footer-info-content3">
+                                    <p>+8801 (33) 515609735 <br>+8801 (66) 223352333</p>
+                                </div>
+                            </div>
+                            <div class="footer-address-furniture">
+                                <div class="footer-info-icon3">
+                                    <span>E-mail: </span>
+                                </div>
+                                <div class="footer-info-content3">
+                                    <p><a href="#"> email@domain.com</a> <br><a href="#"> domain@mail.info</a></p>
+                                </div>
+                            </div>
                         </div>
-                        <div class="footer-widget mb-30">
-                            <h3 class="footer-widget-title-5">Newsletter</h3>
-                            <div class="footer-newsletter-2">
-                                <p>Send us your mail or next updates</p>
-                                <div id="mc_embed_signup" class="subscribe-form-5">
-                                    <form
-                                        action="http://devitems.us11.list-manage.com/subscribe/post?u=6bbb9b6f5827bd842d9640c82&amp;id=05d85f18ef"
-                                        method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form"
-                                        class="validate" target="_blank" novalidate>
-                                        <div id="mc_embed_signup_scroll" class="mc-form">
-                                            <input type="email" value="" name="EMAIL" class="email"
-                                                placeholder="Enter mail address" required>
-                                            <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
-                                            <div class="mc-news" aria-hidden="true"><input type="text"
-                                                    name="b_6bbb9b6f5827bd842d9640c82_05d85f18ef" tabindex="-1"
-                                                    value=""></div>
-                                            <div class="clear"><input type="submit" value="Subscribe" name="subscribe"
-                                                    id="mc-embedded-subscribe" class="button"></div>
+                    </div>
+                    <div class="footer-widget mb-30">
+                        <h3 class="footer-widget-title-5">Newsletter</h3>
+                        <div class="footer-newsletter-2">
+                            <p>Send us your mail or next updates</p>
+                            <div id="mc_embed_signup" class="subscribe-form-5">
+                                <form
+                                    action="http://devitems.us11.list-manage.com/subscribe/post?u=6bbb9b6f5827bd842d9640c82&amp;id=05d85f18ef"
+                                    method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form"
+                                    class="validate" target="_blank" novalidate>
+                                    <div id="mc_embed_signup_scroll" class="mc-form">
+                                        <input type="email" value="" name="EMAIL" class="email"
+                                            placeholder="Enter mail address" required>
+                                        <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+                                        <div class="mc-news" aria-hidden="true"><input type="text"
+                                                name="b_6bbb9b6f5827bd842d9640c82_05d85f18ef" tabindex="-1" value="">
                                         </div>
-                                    </form>
-                                </div>
+                                        <div class="clear"><input type="submit" value="Subscribe" name="subscribe"
+                                                id="mc-embedded-subscribe" class="button"></div>
+                                    </div>
+                                </form>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="footer-bottom ptb-20 gray-bg-8">
-                <div class="container">
-                    <div class="row">
-                        <div class="col-12 text-center">
-                            <div class="copyright-furniture">
-                                <p>Copyright © <a href="https://hastech.company/">HasTech</a> 2018 . All Right Reserved.
-                                </p>
-                            </div>
+        </div>
+        <div class="footer-bottom ptb-20 gray-bg-8">
+            <div class="container">
+                <div class="row">
+                    <div class="col-12 text-center">
+                        <div class="copyright-furniture">
+                            <p>Copyright © <a href="https://hastech.company/">HasTech</a> 2018 . All Right Reserved.
+                            </p>
                         </div>
                     </div>
                 </div>
             </div>
-        </footer>
-        {{-- footer end --}}
+        </div>
+    </footer>
+    {{-- footer end --}}
     </div>
     
 
