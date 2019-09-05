@@ -14,10 +14,16 @@
     <!-- all css here -->
     <link rel="stylesheet" href="{{asset('/css/app.css')}}">
     {{-- <link rel="stylesheet" href="{{asset('/css/all.css')}}"> --}}
+    {{-- Argon  --}}
+    <link href="{{ asset('argon') }}/vendor/nucleo/css/nucleo.css" rel="stylesheet">
+    <link href="{{ asset('argon') }}/vendor/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
+    <link type="text/css" href="{{ asset('css') }}/all.css" rel="stylesheet">
+    {{-- Ezone  --}}
     <link rel="stylesheet" href="{{asset('assets/css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/magnific-popup.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/animate.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/owl.carousel.min.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/css/owl.theme.default.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/themify-icons.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/pe-icon-7-stroke.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/icofont.css')}}">
@@ -25,6 +31,11 @@
     <link rel="stylesheet" href="{{asset('assets/css/bundle.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/style.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/responsive.css')}}">
+    {{-- <link rel="stylesheet" href="{{asset('assets/css/jquery-ui.min.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/css/jquery-ui.structure.min.css')}}">
+    <link rel="stylesheet" href="{{asset('assets/css/jquery-ui.theme.min.css')}}"> --}}
+    <link rel="stylesheet" href="{{asset('assets/css/customize.css')}}">
+    
     <script src="{{asset('assets/js/vendor/modernizr-2.8.3.min.js')}}"></script>
 </head>
 
@@ -36,7 +47,7 @@
                 <div class="container-fluid">
                     <div class="header-bottom-wrapper">
                         <div class="logo-2 furniture-logo ptb-30">
-                            <a href="/users">
+                            <a href="/">
                                 {{-- <img src="{{asset('assets/img/logo/2.png')}}" alt=""> --}}
                                 <img src="{{asset('icon/mkh-logo.png')}}" alt="" style="width:250px;height:78px;">
                             </a>
@@ -44,7 +55,7 @@
                         <div class="menu-style-2 furniture-menu menu-hover">
                             <nav>
                                 <ul>
-                                    <li><a href="/users">Home</a>
+                                    <li><a href="/">Home</a>
                                         {{-- <router-link to="/users" @click.native="showHomePage()">Home</router-link> --}}
                                         <ul class="single-dropdown">
                                             <li><a href="index.html">Fashion</a></li>
@@ -379,23 +390,44 @@
         </footer>
         {{-- footer end --}}
     </div>
+    
 
     <!-- all js here -->
     <script src="{{asset('/js/app.js')}}"></script>
     {{-- <script src="{{asset('/js/all.js')}}"></script> --}}
-    <script src="{{asset('assets/js/vendor/jquery-1.12.0.min.js')}}"></script>
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    {{-- <script src="{{asset('assets/js/vendor/jquery-1.12.0.min.js')}}"></script> --}}
+    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script> --}}
     <script src="{{asset('assets/js/popper.js')}}"></script>
     <script src="{{asset('assets/js/bootstrap.min.js')}}"></script>
     <script src="{{asset('assets/js/jquery.magnific-popup.min.js')}}"></script>
     <script src="{{asset('assets/js/isotope.pkgd.min.js')}}"></script>
     <script src="{{asset('assets/js/imagesloaded.pkgd.min.js')}}"></script>
     <script src="{{asset('assets/js/jquery.counterup.min.js')}}"></script>
-    <script src="{{asset('assets/js/waypoints.min.js')}}"></script>
+    {{-- <script src="{{asset('assets/js/waypoints.min.js')}}"></script> --}}
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
     <script src="{{asset('assets/js/ajax-mail.js')}}"></script>
     <script src="{{asset('assets/js/owl.carousel.min.js')}}"></script>
     <script src="{{asset('assets/js/plugins.js')}}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/zxcvbn/1.0/zxcvbn.min.js"></script>
+    <script src="{{asset('assets/js/zxcvbn-bootstrap4-strength-meter.js')}}"></script>
     <script src="{{asset('assets/js/main.js')}}"></script>
+
+    {{-- <script src="{{asset('assets/js/password-score.js')}}"></script>
+    <script src="{{asset('assets/js/password-score-options.js')}}"></script>
+    <script src="{{asset('assets/js/bootstrap-strength-meter.js')}}"></script> --}}
+    
     @yield('script')
 </body>
 
 </html>
+
+<script>
+        $(document).ready(function(){
+            $("#StrengthProgressBar").zxcvbnProgressBar({ 
+			  passwordInput: "#password",
+			//   userInputs: userInputs,
+			  ratings: ["Very Weak", "Weak", "OK", "Strong", "Very strong"]
+             });
+        });
+</script>

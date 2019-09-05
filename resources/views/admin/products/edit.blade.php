@@ -2,9 +2,6 @@
 
 @section('content')
     @include('admin.users.partials.header', ['title' => __('Edit Product')])   
-    <?php
-        $page = $_GET['page'];
-    ?>
     <div class="container-fluid mt--7">
         <div class="row">
             <div class="col-xl-12 order-xl-1">
@@ -25,7 +22,6 @@
                         <form method="post" action="{{ route('products.update',$product->id) }}" autocomplete="off" enctype="multipart/form-data">
                             @csrf
                             @method('put')
-
                             <h6 class="heading-small text-muted mb-4">{{ __('products information') }}</h6>
                             <div class="pl-lg-4">
                                 {{-- <div class="form-group{{ $errors->has('Image') ? ' has-danger' : '' }}">
@@ -38,7 +34,8 @@
                                         </span>
                                     @endif
                                 </div> --}}
-                            <input type="hidden" value="{{$page}}" name="page">
+                                {{-- get url parameter --}}
+                                <input type="hidden" value="{{app('request')->input('page')}}" name="page">
                                 {{-- upload img --}}
                                 <div class="form-group">
                                     <label class="form-control-label" for="input-code">{{ __('Upload Image') }}</label>

@@ -56206,8 +56206,8 @@ var routes = [{
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! C:\project\martkh\MartKH\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! C:\project\martkh\MartKH\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\asd\Documents\GitHub\MartKH\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\asd\Documents\GitHub\MartKH\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

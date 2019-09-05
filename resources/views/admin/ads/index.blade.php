@@ -2,7 +2,58 @@
 
 @section('content')
     @include('layouts.headers.cards')
-
+    
+    {{-- <div class="container-fluid mt--7">
+        <div class="row">
+            <div class="col">
+                <div class="card">
+                    <div class="card-header">
+                        <div class="row align-items-center">
+                            <div class="col-8">
+                                <h3 class="mb-0">Roles</h3>
+                            </div>
+                            <div class="col-4 text-right">
+                                    <a href="https://argon-dashboard-pro-laravel.creative-tim.com/role/create" class="btn btn-sm btn-primary">Add role</a>
+                            </div>
+                        </div>
+                    </div>
+                   
+                    <div class="table-responsive">
+                            <table class="table table-flush dataTable no-footer" id="datatable-basic" role="grid" aria-describedby="datatable-basic_info">
+                                <thead class="thead-light">
+                                    <tr role="row">
+                                        <th scope="col" class="sorting_asc" tabindex="0" aria-controls="datatable-basic" rowspan="1" colspan="1" aria-sort="ascending" aria-label="Name: activate to sort column descending" style="width: 578px;">Name</th>
+                                        <th scope="col" class="sorting" tabindex="0" aria-controls="datatable-basic" rowspan="1" colspan="1" aria-label="Description: activate to sort column ascending" style="width: 644px;">Description</th>
+                                        <th scope="col" class="sorting" tabindex="0" aria-controls="datatable-basic" rowspan="1" colspan="1" aria-label="Creation date: activate to sort column ascending" style="width: 196px;">Creation date</th>
+                                        <th scope="col" class="sorting" tabindex="0" aria-controls="datatable-basic" rowspan="1" colspan="1" aria-label=": activate to sort column ascending" style="width: 87px;">Action</th>
+                                    </tr>
+                            </thead>
+                            <tbody>
+                                <tr role="row" class="odd">
+                                    <td class="sorting_1">3.50KB(GET)</td>
+                                    <td>some random description. haha</td>
+                                    <td>05/07/2019 09:26</td>
+                                    <td class="text-right">
+                                        <div class="dropdown">
+                                                <a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                <i class="fas fa-ellipsis-v"></i>
+                                            </a>
+                                            <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+                                                <a class="dropdown-item" href="https://argon-dashboard-pro-laravel.creative-tim.com/role/1042/edit">Edit</a>
+                                            </div>
+                                        </div>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="row">
+                        <div class="col-sm-12 col-md-5"><div class="dataTables_info" id="datatable-basic_info" role="status" aria-live="polite">Showing 1 to 10 of 153 entries</div></div><div class="col-sm-12 col-md-7"><div class="dataTables_paginate paging_simple_numbers" id="datatable-basic_paginate"><ul class="pagination"><li class="paginate_button page-item previous disabled" id="datatable-basic_previous"><a href="#" aria-controls="datatable-basic" data-dt-idx="0" tabindex="0" class="page-link"><i class="fas fa-angle-left"></i></a></li><li class="paginate_button page-item active"><a href="#" aria-controls="datatable-basic" data-dt-idx="1" tabindex="0" class="page-link">1</a></li><li class="paginate_button page-item "><a href="#" aria-controls="datatable-basic" data-dt-idx="2" tabindex="0" class="page-link">2</a></li><li class="paginate_button page-item "><a href="#" aria-controls="datatable-basic" data-dt-idx="3" tabindex="0" class="page-link">3</a></li><li class="paginate_button page-item "><a href="#" aria-controls="datatable-basic" data-dt-idx="4" tabindex="0" class="page-link">4</a></li><li class="paginate_button page-item "><a href="#" aria-controls="datatable-basic" data-dt-idx="5" tabindex="0" class="page-link">5</a></li><li class="paginate_button page-item disabled" id="datatable-basic_ellipsis"><a href="#" aria-controls="datatable-basic" data-dt-idx="6" tabindex="0" class="page-link">…</a></li><li class="paginate_button page-item "><a href="#" aria-controls="datatable-basic" data-dt-idx="7" tabindex="0" class="page-link">16</a></li><li class="paginate_button page-item next" id="datatable-basic_next"><a href="#" aria-controls="datatable-basic" data-dt-idx="8" tabindex="0" class="page-link"><i class="fas fa-angle-right"></i></a></li></ul></div></div></div></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div> --}}
     <div class="container-fluid mt--7">
         <div class="row">
             <div class="col">
@@ -10,128 +61,63 @@
                     <div class="card-header border-0">
                         <div class="row align-items-center">
                             <div class="col-4">
-                                <h3 class="mb-0">Ads</h3>
+                                <h3 class="mb-0">Ads Animated</h3>
                             </div>
-                            <form class="col-4">
-                                    <div class="form-group mb-2 mt-2">
-                                        <div class="input-group input-group-alternative">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text"><i class="fas fa-search"></i></span>
-                                            </div>
-                                            <input class="form-control" placeholder="Search" type="text">
+                            {{-- <div class="col-8 text-right">
+                                    <a href="ads/create" class="btn btn-sm btn-primary">{{ __('Add Ads') }}</a>
+                            </div> --}}
+                        </div>
+                        <div class="card-body p-0 pt-3">
+                            <div class="row align-items-center">
+                                <div class="col-3" style="height:700px;border:1px solid black; overflow:hidden;">
+                                    <form action="{{ route('adsLeft.upload') }}" method="post" enctype="multipart/form-data" id="submitForm">
+                                        @csrf
+                                        <input type="file" id="adsLeft1" style="display: none;" name="adsLeft1[]" multiple/>
+                                        <button  class="btn" id="adsLeftButton1" style="width:100%;background:transparent;"><i class="fas fa-plus-circle"></i>Add Left</button>
+                                        <input type="submit" id="submitLeft" class="btn btn-success" style="width:100%;" name='submitImage' value="Upload Image"/>
+                                    </form>
+                                    <div class="container mt-2" style="overflow-y:scroll;height:700px;">
+                                        <div id="image_preview"></div>
+                                        @foreach ($ads as $ad)
+                                        {{-- <img src="{{asset('uploads/Test/' . $ad->image)}}" alt=""> --}}
+                                            <img src="{{asset('uploads/ads_image/template1/adsLeft/' . $ad->image)}}" alt="">
+                                        @endforeach
+                                    </div>
+                                </div>
+                                <div class="col-6" style="height:700px;overflow:hidden;border:1px solid black">
+                                        <input type="file" id="adsMiddle1" style="display:none;">
+                                        <button class="btn" id="adsMiddleButton1" style="width:100%;background:transparent;"><i class="fas fa-plus-circle"></i>Add Middle</button>
+                                    {{-- <form action="{{route('adsMiddle.upload')}}" method="post" enctype="multipart/form-data">
+                                        <input type="file" name="images[]" id="fileInput" multiple >
+                                        <input type="submit" name="submit" value="UPLOAD"/>
+                                    </form>
+                                    <div class="container mt-2" style="overflow-y:scroll;height:700px;">
+                                        <div id="show-image"></div>
+                                    </div> --}}
+                                </div>
+                                <div class="col-3" style="height:700px;overflow:hidden;border:1px solid black">
+                                    <div class="row">
+                                        <div class="col-12" style="height:350px;overflow:hidden;border:1px solid black">
+                                                <input type="file" id="adsTopRight1" style="display:none;">
+                                                <button class="btn" id="adsTopRightButton1" style="width:100%;background:transparent;"><i class="fas fa-plus-circle"></i>Add Top Right</button>
                                         </div>
                                     </div>
-                            </form>
-                            <div class="col-4 text-right">
-                                    <a href="ads/create" class="btn btn-sm btn-primary">{{ __('Add Ads') }}</a>
-                            </div>
+                                    <div class="row">
+                                        <div class="col-12" style="height:350px;overflow:hidden;border:1px solid black">
+                                                <input type="file" id="adsBottomRight1" style="display:none;">
+                                                <button class="btn" id="adsBottomRightButton1" style="width:100%;background:transparent;"><i class="fas fa-plus-circle"></i>Add Bottom Right</button>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>        
                         </div>
                     </div>
 
-                    <div class="col-12">
-                        @if (session('status'))
-                            <div class="alert alert-success alert-dismissible fade show" role="alert">
-                                {{ session('status') }}
-                                <button type="button" class="close" data-dismiss="alert" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                        @endif
-                    </div>
-
-                    <div class="table-responsive">
-                        <table class="table align-items-center table-flush table-hover">
-                            <thead class="thead-light">
-                                <tr>
-                                    <th scope="col">{{ __('ID') }}</th>
-                                    <th scope="col">{{ __('Image') }}</th>
-                                    <th scope="col">{{ __('Name') }}</th>
-                                    <th scope="col">{{ __('Created Date') }}</th>
-                                    {{-- <th scope="col">{{ __('Updated Date') }}</th> --}}
-                                    {{-- <th scope="col">{{ __('Description') }}</th> --}}
-                                    <th scope="col">{{ __('Action') }}</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                @foreach ($ads as $ad)
-                                    <tr>
-                                        <td>{{ $ad->id }}</td>
-                                        <td><img src="{{asset( 'uploads/ads_image/' . $ad->image )}}" alt="" class="img-thumbnail " style="width:500px;height:300px;"></td>
-                                        <td>{{ $ad->name }}</td>
-                                        <td>{{ $ad->created_at->format('d/m/Y H:i') }}</td>
-                                        {{-- <td>{{ $ad->description }}</td> --}}
-                                        <td>
-                                        {{-- dot button to right most --}}
-                                        {{-- <td class="text-right"> --}}
-                                            <div class="dropdown">
-                                                <a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                    <i class="fas fa-ellipsis-v"></i>
-                                                </a>
-                                                <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                                    {{-- delete fucntion --}}
-                                                    {{-- @if ($ad->id != auth()->id()) --}}
-                                                        {{-- <form action="{{ route('user.destroy', $user) }}" method="post"> --}}
-                                                        <form action="ads/{{$ad->id}}" method="post">
-                                                            @csrf
-                                                            @method('delete')
-                                                            {{-- <a class="dropdown-item" href="{{ route('user.edit', $user) }}">{{ __('Edit') }}</a> --}}
-                                                            {{-- View --}}
-                                                            {{-- <button type="button" class="dropdown-item openImageDialog" data-toggle="modal" data-target="#viewProduct" data-id="{{ $product->id }}" data-name="{{ $product->name }}"
-                                                                data-code="{{ $product->code }}" data-price="{{ $product->price }}" data-brand="{{ $product->brand }}"
-                                                                data-country="{{ $product->country }}" data-size="{{ $product->size }}" data-image="{{ $product->image }}"
-                                                                data-description="{{ $product->description }}" data-created_at="{{ $product->created_at->format('d/m/Y H:i') }}"
-                                                                data-update="{{ $product->updated_at->format('d/m/Y H:i') }}" data-subcategory_id="{{ $product->subcategory_id }}">{{ __('View') }}</button> --}}
-                                                            {{-- Edit --}}
-                                                            <a class="dropdown-item" href="/admin/ads/{{$ad->id}}/edit" id="edit">{{ __('Edit') }}</a>
-                                                            {{-- Delete  --}}
-                                                            <button class="dropdown-item delete-btn" type="submit">Delete</button>
-                                                        </form>
-                                                    {{-- @else
-                                                        <a class="dropdown-item" href="{{ route('admin.profile.edit') }}">{{ __('Edit') }}</a>
-                                                        <a class="dropdown-item" href="">{{ __('Edit') }}</a>
-                                                    @endif --}}
-                                                </div>
-                                            </div>
-                                        </td>
-                                    </tr>
-                                @endforeach
-                            </tbody>
-                        </table>
-                    </div>
-                    <div class="card-footer py-4">
-                        <nav class="d-flex justify-content-end" aria-label="...">
-                            {{-- <!-- {{ $users->links() }} --> --}}
-                        </nav>
-                    </div>
+                    
                 </div>
             </div>
         </div>
     <script>
-        // $(document).ready(function(){
-        //     $(function() {
-        //         $('#viewProduct').on("show.bs.modal", function (e) {
-        //             $("#id").html($(e.relatedTarget).data('id'));
-        //             $("#name").html($(e.relatedTarget).data('name'));
-        //             $("#code").html($(e.relatedTarget).data('code'));
-        //             $("#brand").html($(e.relatedTarget).data('brand'));
-        //             $("#price").html($(e.relatedTarget).data('price'));
-        //             $("#size").html($(e.relatedTarget).data('size'));
-        //             $("#country").html($(e.relatedTarget).data('country'));
-        //             $("#description").html($(e.relatedTarget).data('description'));
-        //             $("#subcategory_id").html($(e.relatedTarget).data('subcategory_id'));
-        //             $("#created_at").html($(e.relatedTarget).data('created_at'));
-        //             $("#update").html($(e.relatedTarget).data('updated_at'));
-
-        //             $('#imagesrc').attr('src',$("#image").html($(e.relatedTarget).data('image'));
-        //         });
-        //     });
-        // });
-        $(document).on("click", ".openImageDialog", function () {
-            var imgsrc = $(this).data('image');
-            var imgsrc_path = '/uploads/ads_image/'.concat(imgsrc);
-            $('#imagesrc').attr('src',imgsrc_path);
-            // console.log(imgsrc);
-        });
         $('.delete-btn').click(function(e){
             e.preventDefault();
             Swal.fire({
@@ -148,104 +134,65 @@
             }
             })
         });
+        $(document).ready(function(){
+            $("#adsLeftButton1").click(function(){
+                $("#adsLeft1").click();
+            });
+            $("#adsMiddleButton1").click(function(){
+                $("#adsMiddle1").click();
+            });
+            $("#adsTopRightButton1").click(function(){
+                $("#adsTopRight1").click();
+            });
+            $("#adsBottomRightButton1").click(function(){
+                $("#adsBottomRight1").click();
+            });
+
+            $("#adsLeft1").change(function(){
+                $('#image_preview').html("");
+                var total_file=document.getElementById("adsLeft1").files.length;
+                for(var i=0;i<total_file;i++)
+                {
+                    $('#image_preview').append("<img src='"+URL.createObjectURL(event.target.files[i])+"'>");
+                }
+                // $("#submitForm").submit();
+                // $('#image_preview').empty();
+            });
+            // $("#submitLeft").click(function(){            
+            $("#submitForm").on('submit',function(e){
+                // $('#image_preview').html("");
+                // var total_file=document.getElementById("adsLeft1").files.length;
+                // for(var i=0;i<total_file;i++)
+                // {
+                //     $('#image_preview').empty();
+                // }
+                e.preventDefault();
+                $('#image_preview').empty("");
+                $.ajax({
+                    type: "POST",
+                    url: 'admin/ads/adsLeft',
+                    data: $('#submitForm').serialize(),
+                    success: function(response){
+                        console.log(response)
+                    }
+                });
+            });
+            $('form').ajaxForm(function() 
+            {
+                alert("Uploaded SuccessFully");
+                $('#submitForm').resetForm();
+            }); 
+
+           
+
+            
+            });
+            
     </script>
 
 
         @include('layouts.footers.auth')
     </div>
-    {{-- <div class="modal fade" id="viewProduct" tabindex="-1" role="dialog" aria-labelledby="viewProductTitle" aria-hidden="true">
-            <div class="modal-dialog modal-xxl modal-dialog-centered " role="document">
-              <div class="modal-content">
-                <div class="modal-header red-brown">
-                <h3 class="modal-title text-white">Product Information :</h3>
-                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true" class="text-white">&times;</span>
-                  </button>
-                </div>
-                <div class="modal-body">
-                    <div class="row">
-                        <div class="col-lg-6">
-                            <img id="imagesrc" style="width:auto;"/>
-                        </div>
-                        <div class="col-lg-6">
-                            <div class="row mt-3">
-                                <div class="col-lg-4">
-                                    <span>Name : </span>
-                                </div>
-                                <div class="col-lg-8">
-                                    <span id="name"></span>
-                                </div>
-                            </div>
-                            <div class="row mt-3">
-                                <div class="col-lg-4">
-                                    <span>Code : </span>
-                                </div>
-                                <div class="col-lg-8">
-                                    <span id="code"></span>
-                                </div>
-                            </div>
-                            <div class="row mt-3">
-                                    <div class="col-lg-4">
-                                        <span>Price : </span>
-                                    </div>
-                                    <div class="col-lg-8">
-                                        <span id="price"></span>
-                                    </div>
-                                </div>
-                            <div class="row mt-3">
-                                <div class="col-lg-4">
-                                    <span>Size : </span>
-                                </div>
-                                <div class="col-lg-8">
-                                    <span id="size"></span>
-                                </div>
-                            </div>
-                            <div class="row mt-3">
-                                <div class="col-lg-4">
-                                    <span>Brand : </span>
-                                </div>
-                                <div class="col-lg-8">
-                                    <span id="brand"></span>
-                                </div>
-                            </div>
-                            <div class="row mt-3">
-                                <div class="col-lg-4">
-                                    <span>Country : </span>
-                                </div>
-                                <div class="col-lg-8">
-                                    <span id="country"></span>
-                                </div>
-                            </div>
-                            <div class="row mt-3">
-                                <div class="col-lg-4">
-                                    <span>Created date : </span>
-                                </div>
-                                <div class="col-lg-8">
-                                    <span id="created_at"></span>
-                                </div>
-                            </div>
-                            <div class="row mt-3">
-                                <div class="col-lg-4">
-                                    <span>Updated date : </span>
-                                </div>
-                                <div class="col-lg-8">
-                                    <span id="updated_at"></span>
-                                </div>
-                            </div>
-                            <div class="row mt-3">
-                                <div class="col-lg-4">
-                                    <span>Description : </span>
-                                </div>
-                                <div class="col-lg-8">
-                                    <span><h5 id="description"></h5></span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-              </div>
-            </div>
-        </div> --}}
 @endsection
 
 

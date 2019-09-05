@@ -28,7 +28,7 @@ class RegisterController extends Controller
      *
      * @var string
      */
-    protected $redirectTo = '/home';
+    protected $redirectTo = '/';
 
     /**
      * Create a new controller instance.
@@ -48,10 +48,26 @@ class RegisterController extends Controller
      */
     protected function validator(array $data)
     {
+        // Minimum eight characters, at least one letter and one number:
+        // ^(?=.*[A-Za-z])(?=.*\d)[A-Za-z\d]{8,}$
+
+        // Minimum eight characters, at least one letter, one number and one special character:
+        // ^(?=.*[A-Za-z])(?=.*\d)(?=.*[@$!%*#?&])[A-Za-z\d@$!%*#?&]{8,}$
+        
+        // Minimum eight characters, at least one uppercase letter, one lowercase letter and one number:
+        // ^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$
+       
+        // Minimum eight characters, at least one uppercase letter, one lowercase letter, one number and one special character:
+        // ^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$
+        
+        // Minimum eight and maximum 10 characters, at least one uppercase letter, one lowercase letter, one number and one special character:
+        // ^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,10}$
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
-            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'password' => ['required', 'string', 'min:8','regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/', 'confirmed'],
+        ],[
+            'password.regex' => 'Password must contain minimum eight characters, at least one uppercase letter, one lowercase letter and one number.'
         ]);
     }
 

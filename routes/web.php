@@ -11,19 +11,19 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'UsersController\UserHomeController@index')->name('home');
 
 Auth::routes();
 
-Route::get('/admin/home', 'Admin\HomeController@index')->name('admin.home')->middleware('checkUserRole');
+Route::get('/admin', 'Admin\HomeController@index')->name('admin.home')->middleware('checkUserRole');
 
 // Route::get('admin/user', 'UserController@user');
 // Admin-related routes
 Route::group(['middleware' => ['web','auth','checkUserRole']], function () {
 
-
+	Route::get('/admin/dashboard', function () {
+		return view('admin/dashboard');
+	})->name('admin.dashboard');
 	Route::resource('admin/user', 'Admin\UserController', ['except' => ['show']]);
 	Route::get('admin/profile', ['as' => 'admin.profile.edit', 'uses' => 'Admin\ProfileController@edit']);
 	Route::put('admin/profile', ['as' => 'admin.profile.update', 'uses' => 'Admin\ProfileController@update']);
@@ -31,8 +31,12 @@ Route::group(['middleware' => ['web','auth','checkUserRole']], function () {
 	Route::post('admin/profile/upload', ['as' => 'admin.profile.upload', 'uses' => 'Admin\ProfileController@upload']);
 	Route::resource('admin/products', 'Admin\ProductController');
 	Route::get('admin/products/search',['as' => 'prouducts.search', 'uses' => 'Admin\ProductController@search']);
-    // Start ads controller
-    Route::resource('admin/ads', 'Admin\AdsController');
+	// Start ads controller
+	Route::resource('admin/ads', 'Admin\AdsController');
+	// Route::get('images-upload', 'HomeController@imagesUpload');
+	Route::post('admin/ads/adsLeft', 'Admin\AdsController@adsLeftUpload')->name('adsLeft.upload');
+	Route::post('admin/ads/adsMiddle', 'Admin\AdsController@adsMiddleUpload')->name('adsMiddle.upload');
+
     // End ads controller
 	Route::post('/delete/{pid}', 'Admin\ProductController@destroy')->name('products.destroy');
 	Route::resource('admin/franchises','Admin\FranchiseController',['except' => ['show']]);
@@ -81,18 +85,26 @@ Route::group(['middleware' => ['web','auth','checkUserRoleFranchise']], function
 
 // test route for redirecting users when they try to access admin pages
 Route::get('/user', function(){
-	return redirect('/users');
+	return redirect('/');
 })->name('normalUser');
 
-Route::get('/users', 'UsersController\UserHomeController@index')->name('home');
+// Route::get('/users', 'UsersController\UserHomeController@index')->name('home');
 Route::get('/users/shop', 'UsersController\ProductDisplayController@index')->name('productDisplay');
 Route::get('/users/food', 'UsersController\ProductsController@food')->name('productFood');
 Route::get('/users/all', 'UsersController\ProductsController@get')->name('productFood');
 Route::post('/searchweithwh', 'UsersController\ProductsController@search')->name('search');
 
 Route::post('/users/wishlist', 'UsersController\UserHomeController@wishList')->name('add-wishlist');
+// Google Account 
+// Route::get('google', function () {
+//     return view('googleAuth');
+// });
+Route::get('/auth/google/callback', 'Auth\LoginController@handleGoogleCallback'); 
+Route::get('/auth/google', 'Auth\LoginController@redirectToGoogle')->name('redirectToGoogle');
 
-Route::get('/{any}', function(){
-    return view('user');
-})->where('any', '^(?!api).*$');
-Route::get('/usersTest', 'UsersController\temp\testController@index')->name('get');
+
+// Route::get('/{any}', function(){
+//     return view('user');
+// })->where('any', '^(?!api).*$');
+// Route::get('/usersTest', 'UsersController\temp\testController@index')->name('get');
+

@@ -69,7 +69,8 @@ class ProductController extends Controller
             'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'code' => 'required|unique:products',
             'name' => 'required|unique:products',
-            'price' => 'required',
+            //decimal with 2 digits floating point
+            'price' => ['required','regex:/^\d+(\.\d{1,2})?$/'],
             'size' => 'required',
             'brand' => 'required',
             'country' => 'required',

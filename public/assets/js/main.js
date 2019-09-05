@@ -1,7 +1,14 @@
 (function($) {
     "use strict";
+
+    // $(document).ready(function() {
+    //     $('#example-progress-bar').strengthMeter('progressBar', {
+    //         container: $('#example-progress-bar-container')
+    //     });
+    // });
     
     
+
     /* jQuery MeanMenu */
     $('#mobile-menu-active').meanmenu({
         meanScreenWidth: "991",
@@ -41,7 +48,7 @@
         loop: true,
         nav: false,
         autoplay: true,
-        autoplayTimeout: 5000,
+        autoplayTimeout: 2000,
         animateOut: 'fadeOut',
         animateIn: 'fadeIn',
         item: 1,
@@ -81,6 +88,31 @@
         }
     })
     
+    $('.slider-active-3').owlCarousel({
+        loop: true,
+        nav: false,
+        dots: true,
+        autoplay: true,
+        autoplayTimeout: 5000,
+        animateOut: 'fadeOut',
+        animateIn: 'fadeIn',
+        // animateOut: 'bounceOutDown',
+        // animateIn: 'bounceInDown',
+        dotsData : true,
+        // navText: ['<img src="assets/img/icon-img/57.png"> next', 'prev <img src="assets/img/icon-img/58.png">'],
+        item: 1,
+        responsive: {
+            0: {
+                items: 1
+            },
+            768: {
+                items: 1
+            },
+            1000: {
+                items: 1
+            }
+        }
+    })
     
     /* arrival active */
     $('.arrival-active').owlCarousel({
@@ -355,11 +387,12 @@
     $('.popular-product-active').owlCarousel({
         loop: true,
         nav: true,
+        dots: true,
         autoplay: false,
         autoplayTimeout: 5000,
-        item: 4,
+        item: 1,
         margin: 57,
-        navText: ['<img src="assets/img/icon-img/left.png">', '<img src="assets/img/icon-img/right.png">'],
+        navText: ['<img src="assets/img/icon-img/left-red.png">', '<img src="assets/img/icon-img/right-red.png">'],
         responsive: {
             0: {
                 items: 1
