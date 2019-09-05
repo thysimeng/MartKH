@@ -24,32 +24,33 @@ Route::get('/admin/home', 'Admin\HomeController@index')->name('admin.home')->mid
 Route::group(['middleware' => ['web','auth','checkUserRole']], function () {
 
 
+	Route::get('admin/user/search', ['as' => 'user.search', 'uses' => 'Admin\UserController@search']);
 	Route::resource('admin/user', 'Admin\UserController', ['except' => ['show']]);
 	Route::get('admin/profile', ['as' => 'admin.profile.edit', 'uses' => 'Admin\ProfileController@edit']);
 	Route::put('admin/profile', ['as' => 'admin.profile.update', 'uses' => 'Admin\ProfileController@update']);
 	Route::put('admin/profile/password', ['as' => 'admin.profile.password', 'uses' => 'Admin\ProfileController@password']);
 	Route::post('admin/profile/upload', ['as' => 'admin.profile.upload', 'uses' => 'Admin\ProfileController@upload']);
-	Route::resource('admin/products', 'Admin\ProductController');
 	Route::get('admin/products/search',['as' => 'prouducts.search', 'uses' => 'Admin\ProductController@search']);
+	Route::resource('admin/products', 'Admin\ProductController');
     // Start ads controller
     Route::resource('admin/ads', 'Admin\AdsController');
     // End ads controller
 	Route::post('/delete/{pid}', 'Admin\ProductController@destroy')->name('products.destroy');
+	Route::post('admin/franchises/linkAccount',['as' => 'franchises.linkAccount', 'uses' => 'Admin\FranchiseController@linkAccount']);
+	Route::get('admin/franchises/unlinkAccount',['as' => 'franchises.unlinkAccount', 'uses' => 'Admin\FranchiseController@unlinkAccount']);
+	Route::get('admin/franchises/linkedAccount',['as' => 'franchises.getLinkAccount', 'uses' => 'Admin\FranchiseController@getLinkAccount']);
 	Route::resource('admin/franchises','Admin\FranchiseController',['except' => ['show']]);
 	Route::get('admin/franchises',['as' => 'franchises.index', 'uses' => 'Admin\FranchiseController@index']);
 	Route::get('admin/franchises/create',['as' => 'franchises.create', 'uses' => 'Admin\FranchiseController@create']);
-	Route::post('admin/franchises/store',['as' => 'franchises.store', 'uses' => 'Admin\FranchiseController@store']);
+	Route::post('admin/franchises',['as' => 'franchises.store', 'uses' => 'Admin\FranchiseController@store']);
 	Route::post('admin/franchises/{id}',['as' => 'franchises.destroy', 'uses' => 'Admin\FranchiseController@destroy']);
 	Route::get('admin/franchises/edit/{id}',['as' => 'franchises.edit', 'uses' => 'Admin\FranchiseController@edit']);
 	Route::post('admin/franchises/edit/{id}',['as' => 'franchises.update', 'uses' => 'Admin\FranchiseController@update']);
-	Route::post('admin/franchises',['as' => 'franchises.linkAccount', 'uses' => 'Admin\FranchiseController@linkAccount']);
-	Route::get('admin/franchises/unlinkAccount',['as' => 'franchises.unlinkAccount', 'uses' => 'Admin\FranchiseController@unlinkAccount']);
-	Route::get('admin/franchises/linkAccount',['as' => 'franchises.getLinkAccount', 'uses' => 'Admin\FranchiseController@getLinkAccount']);
 
 	// search franchises
 	Route::get('admin/franchises/search', ['as' => 'franchises.search', 'uses' => 'Admin\FranchiseController@search']);
 	// search users
-	Route::get('admin/user/search', ['as' => 'user.search', 'uses' => 'Admin\UserController@search']);
+
 	Route::get('/category', 'Admin\CategoryController@index')->name('admin.category');
 	Route::get('/search', 'Admin\CategoryController@search')->name('admin.search');
 	Route::post('/create_category', 'Admin\CategoryController@create')->name('admin.create_category');
