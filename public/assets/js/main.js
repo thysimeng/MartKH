@@ -93,11 +93,37 @@
         nav: false,
         dots: true,
         autoplay: true,
-        autoplayTimeout: 5000,
+        autoplayTimeout: 6000,
         animateOut: 'fadeOut',
         animateIn: 'fadeIn',
         // animateOut: 'bounceOutDown',
         // animateIn: 'bounceInDown',
+        dotsData : true,
+        // navText: ['<img src="assets/img/icon-img/57.png"> next', 'prev <img src="assets/img/icon-img/58.png">'],
+        item: 1,
+        responsive: {
+            0: {
+                items: 1
+            },
+            768: {
+                items: 1
+            },
+            1000: {
+                items: 1
+            }
+        }
+    })
+
+    $('.slider-active-4').owlCarousel({
+        loop: true,
+        nav: false,
+        dots: true,
+        autoplay: true,
+        autoplayTimeout: 8000,
+        // animateOut: 'fadeOut',
+        // animateIn: 'fadeIn',
+        animateOut: 'bounceOutDown',
+        animateIn: 'bounceInDown',
         dotsData : true,
         // navText: ['<img src="assets/img/icon-img/57.png"> next', 'prev <img src="assets/img/icon-img/58.png">'],
         item: 1,

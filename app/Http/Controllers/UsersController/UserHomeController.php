@@ -15,14 +15,20 @@ class UserHomeController extends Controller
 {
     public function index(){
         $productPopular = DB::table('products')->limit(9)->get();
-        $ads = DB::table('ads')
+        $adsMiddle = DB::table('ads')
                 ->where([
                     ['template_id', '=', '1'],
                     ['position', '=', 'middle1'],
                 ])
                     ->get();
+        $adsLeft = DB::table('ads')
+                ->where([
+                    ['template_id', '=', '1'],
+                    ['position', '=', 'left1'],
+                ])
+                    ->get();
                     // dd($ads);
-        return view('users.userHomePage', compact('productPopular', 'ads'));
+        return view('users.userHomePage', compact('productPopular', 'adsMiddle','adsLeft'));
     }
 
     public function get(Request $request)
