@@ -26,8 +26,15 @@ class PasswordRequest extends FormRequest
     {
         return [
             'old_password' => ['required', 'min:6', new CurrentPasswordCheckRule],
-            'password' => ['required', 'min:6', 'confirmed', 'different:old_password'],
-            'password_confirmation' => ['required', 'min:6'],
+            'password' => ['required', 'min:8','regex:/^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}$/', 'confirmed', 'different:old_password'],
+            'password_confirmation' => ['required', 'min:8'],
+        ];
+    }
+
+    public function messages()
+    {
+        return [
+            'password.regex' => 'Password must contain minimum eight characters, at least one uppercase letter, one lowercase letter and one number.'
         ];
     }
 

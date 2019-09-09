@@ -25,6 +25,8 @@ class UpdateStockFranchiseIdTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::table('stocks', function (Blueprint $table) {
+            $table->integer('franchise_id')->change();
+        });
     }
 }

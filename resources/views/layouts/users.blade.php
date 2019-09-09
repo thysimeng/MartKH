@@ -283,10 +283,16 @@
         <div class="container-fluid">
             <div class="furniture-bottom-wrapper">
                 <div class="furniture-login">
-                    <ul>
+                    <ul class="media align-items-center">
                         @auth
                         @if (Route::has('login'))
-                        <li><a href="/users/profile">Profile</a></li>
+                        <span class="avatar avatar-sm rounded-circle" style="width: 24px; height:24px">
+                            <a href="{{ route('userProfile') }}"><img style="width: 24px; height:24px" alt="Image" src="{{ asset('uploads') }}/avatar/{{ auth()->user()->avatar}}"></a>
+                        </span>
+                        <div class="media-body ml-2">
+                        <li>
+                            <a href="{{ route('userProfile') }}">{{auth()->user()->name}}</a>
+                        </li>
                         <li>
                             <a href="{{ route('logout') }}" onclick="event.preventDefault();
                                                     document.getElementById('logout-form').submit();">
@@ -297,6 +303,8 @@
                                 @csrf
                             </form>
                         </li>
+                        </div>
+                        
                         @endif
                         @endauth
 
@@ -429,7 +437,7 @@
     {{-- <script src="{{asset('assets/js/password-score.js')}}"></script>
     <script src="{{asset('assets/js/password-score-options.js')}}"></script>
     <script src="{{asset('assets/js/bootstrap-strength-meter.js')}}"></script> --}}
-    
+    @include('sweetalert::alert')
     @yield('script')
 </body>
 
@@ -443,4 +451,14 @@
 			  ratings: ["Very Weak", "Weak", "OK", "Strong", "Very strong"]
              });
         });
+</script>
+<script type="text/javascript">
+    $(document).ready(function(){
+    $('#imgProfile').click(function() {
+        $('#upload-avatar').trigger('click');
+    });
+    $('#upload-avatar').change(function() {
+        $(this).parents().submit();
+    });
+});
 </script>
