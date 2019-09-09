@@ -38,7 +38,7 @@ Route::group(['middleware' => ['web','auth','checkUserRole']], function () {
 	Route::resource('admin/products', 'Admin\ProductController');
     // Start ads controller
 	Route::resource('admin/ads', 'Admin\AdsController');
-	
+
     // End ads controller
 	Route::post('/delete/{pid}', 'Admin\ProductController@destroy')->name('products.destroy');
 	Route::post('admin/franchises/linkAccount',['as' => 'franchises.linkAccount', 'uses' => 'Admin\FranchiseController@linkAccount']);
@@ -101,17 +101,17 @@ Route::get('/user', function(){
 	return redirect('/');
 })->name('normalUser');
 
-// Route::get('/users', 'UsersController\UserHomeController@index')->name('home');
+Route::get('/users', 'UsersController\UserHomeController@index')->name('home');
+Route::post('/searchweithwh', 'UsersController\ProductsController@search')->name('search');
+Route::get('/users/all', 'UsersController\ProductsController@get')->name('productFood');
 Route::get('/users/shop', 'UsersController\ProductDisplayController@index')->name('productDisplay');
 Route::get('/users/food', 'UsersController\ProductsController@food')->name('productFood');
-Route::get('/users/all', 'UsersController\ProductsController@get')->name('productFood');
-Route::post('/searchweithwh', 'UsersController\ProductsController@search')->name('search');
 Route::get('/categoriesAll', 'UsersController\ProductsController@categories')->name('categories');
 Route::get('/categories1', 'UsersController\ProductsController@categories1')->name('categories');
 
 Route::get('/users/wishlist', 'UsersController\UserHomeController@wishListIndex')->name('list-wishlist');
 Route::post('/users/wishlist', 'UsersController\UserHomeController@wishList')->name('add-wishlist');
-// Google Account 
+// Google Account
 // Route::get('google', function () {
 //     return view('googleAuth');
 // });
@@ -121,3 +121,7 @@ Route::get('/auth/{provider}', 'Auth\LoginController@redirectToProvider')->name(
 // Route::get('/auth/facebook', 'Auth\LoginController@redirectToFacebook')->name('redirectToFacebook');
 Route::post('/users/delete-wishlist', 'UsersController\UserHomeController@deleteWishList')->name('delete-wishlist');
 
+// Route::get('/{any}', function(){
+//     return view('user');
+// })->where('any', '^(?!api).*$');
+Route::get('/usersTest', 'UsersController\temp\testController@index')->name('get');

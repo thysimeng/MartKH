@@ -11,13 +11,17 @@
           <div class="product-wrapper mb-30">
             <div class="product-img">
               <a href="#">
-                <img :src="'/uploads/product_image/' + products[product-1].image" alt="" />
+                <img :src="'/uploads/product_image/' + products[product-1].image" alt />
               </a>
               <span>hot</span>
               <div class="product-action">
-                <a class="animate-left" title="Wishlist" href="#" type="submit">
+                <!-- <form action @submit="addToWishList">
+                  <input type="hidden" :productID="productID=products[product-1].id" />
+                  <a class="animate-left" title="Wishlist" href @click="addToWishList">
                     <i class="pe-7s-like"></i>
-                </a>
+                  </a>
+                </form>-->
+                <addTowishList :productID="productID=products[product-1].id"></addTowishList>
                 <a class="animate-top" title="Add To Cart" href="#">
                   <i class="pe-7s-cart"></i>
                 </a>
@@ -54,7 +58,7 @@
           <div class="product-wrapper mb-30 single-product-list product-list-right-pr mb-60">
             <div class="product-img list-img-width">
               <a href="#">
-                <img :src="'/uploads/product_image/' + products[product-1].image" alt="" />
+                <img :src="'/uploads/product_image/' + products[product-1].image" alt />
               </a>
               <span>hot</span>
               <div class="product-action-list-style">
@@ -83,9 +87,16 @@
                   <a class="btn-hover list-btn-style" href="#">add to cart</a>
                 </div>
                 <div class="product-list-wishlist">
-                  <a class="btn-hover list-btn-wishlist" href="#">
-                    <i class="pe-7s-like"></i>
-                  </a>
+                  <!-- <form action @submit="addToWishList">
+                    <input type="hidden" :productID="productID=products[product-1].id" />
+                    <a class="btn-hover list-btn-wishlist" href @click="addToWishList">
+                      <i class="pe-7s-like"></i>
+                    </a>
+                  </form>-->
+                  <addTowishList
+                    class="btn-hover list-btn-wishlist"
+                    :productID="productID=products[product-1].id"
+                  ></addTowishList>
                 </div>
               </div>
             </div>
@@ -101,6 +112,7 @@
 <script>
 import { mapGetters } from "vuex";
 import modalQuickView from "./modalQuickView.vue";
+import addTowishList from "../mastercomponent/addTowishList.vue";
 
 export default {
   name: "productsFood",
@@ -108,7 +120,9 @@ export default {
     return {
       seeMore: 1,
       productid: [],
-      add: Number
+      add: Number,
+      productID: Number,
+      addStatus: Boolean
     };
   },
   //   To use props, they must be declared
@@ -121,7 +135,8 @@ export default {
     }
   },
   components: {
-    modalQuickView: modalQuickView
+    modalQuickView: modalQuickView,
+    addTowishList
   }
 };
 </script>
