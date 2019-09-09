@@ -31,7 +31,7 @@ class UserHomeController extends Controller
         }
         $user_id=auth::user()->id;
         $insert=true;
-        $product_id = $request->post('product_id');
+        $product_id = $request->productID;
         date_default_timezone_set('asia/phnom_penh');
         $old_pro_id = WishList::where('user_id', $user_id)->pluck('wishlist_id');
         foreach ($old_pro_id as $id){
@@ -45,11 +45,15 @@ class UserHomeController extends Controller
                 'wishlist_id' => $product_id,
                 'created_at'=>date("YmdHis"),
             ]);
-            return redirect()->back()->with('success', 'product has been added to wishlist.');
+            // return redirect()->back()->with('success', 'product has been added to wishlist.');
+            return response()->json($insert);
         }
         else {
-            return redirect()->back()->with('success', 'You already added this product.');
+            // return redirect()->back()->with('success', 'You already added this product.');
+            return response()->json($insert);
         }
+        // $product_id = $request->productID;
+        // return response()->json($product_id);
     }
 
     public function wishListIndex(){

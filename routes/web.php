@@ -97,10 +97,10 @@ Route::get('/user', function(){
 })->name('normalUser');
 
 Route::get('/users', 'UsersController\UserHomeController@index')->name('home');
+Route::post('/searchweithwh', 'UsersController\ProductsController@search')->name('search');
+Route::get('/users/all', 'UsersController\ProductsController@get')->name('productFood');
 Route::get('/users/shop', 'UsersController\ProductDisplayController@index')->name('productDisplay');
 Route::get('/users/food', 'UsersController\ProductsController@food')->name('productFood');
-Route::get('/users/all', 'UsersController\ProductsController@get')->name('productFood');
-Route::post('/searchweithwh', 'UsersController\ProductsController@search')->name('search');
 Route::get('/categoriesAll', 'UsersController\ProductsController@categories')->name('categories');
 Route::get('/categories1', 'UsersController\ProductsController@categories1')->name('categories');
 
@@ -108,7 +108,7 @@ Route::get('/users/wishlist', 'UsersController\UserHomeController@wishListIndex'
 Route::post('/users/wishlist', 'UsersController\UserHomeController@wishList')->name('add-wishlist');
 Route::post('/users/delete-wishlist', 'UsersController\UserHomeController@deleteWishList')->name('delete-wishlist');
 
-Route::get('/{any}', function(){
-    return view('user');
-})->where('any', '^(?!api).*$');
+// Route::get('/{any}', function(){
+//     return view('user');
+// })->where('any', '^(?!api).*$');
 Route::get('/usersTest', 'UsersController\temp\testController@index')->name('get');

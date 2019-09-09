@@ -14,9 +14,10 @@
                 <img :src="'/uploads/product_image/'+ product.image" alt />
               </a>
               <div class="product-action">
-                <a class="animate-left" title="Wishlist" href="#">
+                <!-- <a class="animate-left" title="Wishlist" href="#">
                   <i class="pe-7s-like"></i>
-                </a>
+                </a> -->
+                <addTowishList :productID="productID = product.id" class="animate-left"></addTowishList>
                 <a class="animate-top" title="Add To Cart" href="#">
                   <i class="pe-7s-cart"></i>
                 </a>
@@ -54,6 +55,7 @@
 </template>
 <script>
 import modalQuickView from "../shopComponent/modalQuickView";
+import addTowishList from "../mastercomponent/addTowishList.vue";
 export default {
   name: "productAll",
   props: {
@@ -62,7 +64,8 @@ export default {
   },
   data: function() {
     return {
-      productid: []
+      productid: [],
+      productID: Number,
     };
   },
   methods: {
@@ -72,7 +75,8 @@ export default {
     }
   },
   components: {
-    modalQuickView: modalQuickView
+    modalQuickView: modalQuickView,
+    addTowishList
   }
 };
 </script>

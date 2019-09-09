@@ -12,6 +12,7 @@
 @endif
 {{-- Home page section --}}
 <div v-if="show">
+    {{-- <slide-Show></slide-Show> --}}
     {{-- Start slide area --}}
     <div class="slider-area">
         <div class="slider-active owl-carousel">
@@ -56,22 +57,23 @@
                                 <img src="{{ asset('uploads/product_image/'.$productValue->image)}}" alt="">
                             </a>
                             <div class="product-action">
-                                <form action="{{ route('list-wishlist') }}" method="post" id="submitWishList">
-                                    @csrf
-                                    <input type="hidden" name="product_id" value="">
-                                    <a onclick="wishList({{ $productValue->id }})" class="animate-left my-click"
-                                        title="Wishlist" href="javascript:void(0)" id="buttonSubmitWishList">
-                                        <i class="pe-7s-like"></i>
-                                    </a>
-                                    <a class="animate-top" title="Add To Cart" href="#">
-                                        <i class="pe-7s-cart"></i>
-                                    </a>
-                                    <a href class="animate-right" title="Quick View" data-toggle="modal"
-                                        data-target="#VUEModal"
-                                        @click="quickView({{ $productValue->id }}, '{{ $productValue->image }}', '{{ $productValue->name }}', '{{ $productValue->description }}')">
-                                        <i class="pe-7s-look"></i>
-                                    </a>
-                                </form>
+                                {{-- <form action="{{ url('/users/wishlist') }}" method="post" id="submitWishList">
+                                @csrf
+                                <input type="hidden" name="product_id" value="">
+                                <a onclick="wishList({{ $productValue->id }})" class="animate-left my-click"
+                                    title="Wishlist" href="javascript:void(0)" id="buttonSubmitWishList">
+                                    <i class="pe-7s-like"></i>
+                                </a>
+                                </form> --}}
+                                <add-Towish-List :product-i-d="{{ $productValue->id }}"></add-Towish-List>
+                                <a class="animate-top" title="Add To Cart" href="#">
+                                    <i class="pe-7s-cart"></i>
+                                </a>
+                                <a href class="animate-right" title="Quick View" data-toggle="modal"
+                                    data-target="#VUEModal"
+                                    @click="quickView({{ $productValue->id }}, '{{ $productValue->image }}', '{{ $productValue->name }}', '{{ $productValue->description }}')">
+                                    <i class="pe-7s-look"></i>
+                                </a>
                             </div>
                         </div>
                         <div class="funiture-product-content text-center">
@@ -97,7 +99,8 @@
                     industry's standard dummy text</p>
             </div>
             {{-- Passed and get data from child component  --}}
-            <product-Food :productshomecate="productshomecate" @senddata="productshomecate = $event" @senddatashowmodal="showmodal = $event"></product-Food>
+            <product-Food :productshomecate="productshomecate" @senddata="productshomecate = $event"
+                @senddatashowmodal="showmodal = $event"></product-Food>
             {{-- Passed to productall component for view --}}
             <product-All :productshomecate="productsCategory" :showmodal="showmodal" v-if="showmodal"></product-All>
             <product-All :productshomecate="productshomecate" :showmodal="showmodal"></product-All>
