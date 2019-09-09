@@ -115,8 +115,9 @@ Route::post('/users/wishlist', 'UsersController\UserHomeController@wishList')->n
 // Route::get('google', function () {
 //     return view('googleAuth');
 // });
-Route::get('/auth/google/callback', 'Auth\LoginController@handleGoogleCallback'); 
-Route::get('/auth/google', 'Auth\LoginController@redirectToGoogle')->name('redirectToGoogle');
-
+Route::get('/auth/{provider}/callback', 'Auth\LoginController@handleProviderCallback'); 
+Route::get('/auth/{provider}', 'Auth\LoginController@redirectToProvider')->name('redirectToProvider');
+// Route::get('/auth/facebook/callback', 'Auth\LoginController@handleFacebookCallback'); 
+// Route::get('/auth/facebook', 'Auth\LoginController@redirectToFacebook')->name('redirectToFacebook');
 Route::post('/users/delete-wishlist', 'UsersController\UserHomeController@deleteWishList')->name('delete-wishlist');
 

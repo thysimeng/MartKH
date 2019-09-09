@@ -720,12 +720,12 @@
     /*--------------------------
         09. ScrollUp
     ---------------------------- */
-    $.scrollUp({
-        scrollText: '<i class="ti-arrow-up"></i>',
-        easingType: 'linear',
-        scrollSpeed: 900,
-        animation: 'fade'
-    });
+    // $.scrollUp({
+    //     scrollText: '<i class="ti-arrow-up"></i>',
+    //     easingType: 'linear',
+    //     scrollSpeed: 900,
+    //     animation: 'fade'
+    // });
     
     
     

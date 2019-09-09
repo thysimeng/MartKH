@@ -12,6 +12,11 @@
         margin-left:10px;
         /* background-color: #f7931e; */
         }
+        input[type=submit]{
+            background:#f7931e;
+            padding:10px 20px 40px;
+            width: 50%;
+        }
         .custom-control-input:checked ~ .custom-control-label::before {
             color: #fff;
             border-color: #f7931e !important;
@@ -28,15 +33,26 @@
                     <div class="card-header bg-gradient-red pb-5">
                         <div class="text-muted text-center mt-2 mb-3"><h4 class="text-white">{{ __('Sign in with') }}</h4></div>
                         <div class="btn-wrapper text-center">
-                            <a href="#" class="btn btn-neutral btn-icon">
-                                <span class="btn-inner--icon"><img src="{{ asset('argon') }}/img/icons/common/github.svg"></span>
-                                <span class="btn-inner--text">{{ __('Github') }}</span>
+                            <a href="{{route('redirectToProvider','facebook')}}" class="btn btn-neutral btn-icon" style="background:#039BE5;">
+                                <span class="btn-inner--icon" ><img src="{{ asset('argon') }}/img/icons/common/facebook.svg"></span>
+                                <span class="btn-inner--text text-white">{{ __('Facebook') }}</span>
                             </a>
-                            <a href="{{route('redirectToGoogle')}}" class="btn btn-neutral btn-icon">
+                            <a href="{{route('redirectToProvider','google')}}" class="btn btn-neutral btn-icon">
                                 <span class="btn-inner--icon"><img src="{{ asset('argon') }}/img/icons/common/google.svg"></span>
                                 <span class="btn-inner--text">{{ __('Google') }}</span>
                             </a>
                         </div>
+                        {{-- <br>
+                        <div class="btn-wrapper text-center">
+                                <a href="#" class="btn btn-neutral btn-icon">
+                                    <span class="btn-inner--icon"><img src="{{ asset('argon') }}/img/icons/common/github.svg"></span>
+                                    <span class="btn-inner--text">{{ __('Github') }}</span>
+                                </a>
+                                <a href="{{route('redirectToGoogle')}}" class="btn btn-neutral btn-icon">
+                                    <span class="btn-inner--icon"><img src="{{ asset('argon') }}/img/icons/common/google.svg"></span>
+                                    <span class="btn-inner--text">{{ __('Google') }}</span>
+                                </a>
+                            </div> --}}
                     </div>
                     <div class="card-body px-lg-5 py-lg-5" style="border:2px solid #f7931e;border-radius:5px;border-top:transparent;">
                         <div class="text-center mb-4">
@@ -88,7 +104,7 @@
                                 </label>
                             </div>
                             <div class="text-center">
-                                <button type="submit" class="btn my-4 text-white" style="background:#f7931e;padding:10px 50px 40px;">{{ __('Sign in') }}</button>
+                                <input type="submit" class="btn my-4 text-white" value="Sign in">
                             </div>
                         </form>
                     </div>

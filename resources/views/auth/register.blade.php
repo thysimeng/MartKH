@@ -3,24 +3,22 @@
 @section('content')
     @include('layouts.headers.guest') --}}
     <style>
-            .custom-control-label::before, 
-            .custom-control-label::after {
-            width: 0.75rem !important;
-            height: 0.75rem !important;
-            border: 1px solid rgb(211,211,211);
-            border-radius: 5px;
-            margin-left:10px;
-            /* background-color: #f7931e; */
-            }
-            .custom-control-input:checked ~ .custom-control-label::before {
-                color: #fff;
-                border-color: #f7931e !important;
-                background-color: #f7931e !important;
-            }
-            .invalid-feedback {
-                font-size: 14px !important;
-            }
-        </style>
+        .custom-control-label::before, 
+        .custom-control-label::after {
+        width: 0.75rem !important;
+        height: 0.75rem !important;
+        border: 1px solid rgb(211,211,211);
+        border-radius: 5px;
+        margin-left:10px;
+        /* background-color: #f7931e; */
+        }
+        .custom-control-input:checked ~ .custom-control-label::before {
+            color: #fff;
+            border-color: #f7931e !important;
+            background-color: #f7931e !important;
+        }
+        
+    </style>
 @extends('layouts.users')
 @section('contents')
     <div class="container mt-4">
@@ -31,11 +29,11 @@
                     <div class="card-header bg-gradient-red pb-5">
                         <div class="text-muted text-center mt-2 mb-4"><h4 class="text-white">{{ __('Sign up with') }}</h4></div>
                         <div class="text-center">
-                            <a href="#" class="btn btn-neutral btn-icon mr-4">
+                            <a href="#" class="btn btn-neutral btn-icon">
                                 <span class="btn-inner--icon"><img src="{{ asset('argon') }}/img/icons/common/github.svg"></span>
                                 <span class="btn-inner--text">{{ __('Github') }}</span>
                             </a>
-                            <a href="#" class="btn btn-neutral btn-icon">
+                            <a href="{{route('redirectToGoogle')}}" class="btn btn-neutral btn-icon">
                                 <span class="btn-inner--icon"><img src="{{ asset('argon') }}/img/icons/common/google.svg"></span>
                                 <span class="btn-inner--text">{{ __('Google') }}</span>
                             </a>
@@ -57,7 +55,7 @@
                                 </div>
                                 @if ($errors->has('name'))
                                     <span class="invalid-feedback" style="display: block;" role="alert">
-                                        <strong>{{ $errors->first('name') }}</strong>
+                                        <strong style="font-size:14px;" >{{ $errors->first('name') }}</strong>
                                     </span>
                                 @endif
                             </div>
@@ -70,7 +68,7 @@
                                 </div>
                                 @if ($errors->has('email'))
                                     <span class="invalid-feedback" style="display: block;" role="alert">
-                                        <strong>{{ $errors->first('email') }}</strong>
+                                        <strong style="font-size:14px;">{{ $errors->first('email') }}</strong>
                                     </span>
                                 @endif
                             </div>
@@ -79,11 +77,11 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
                                     </div>
-                                    <input class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" style="font-size:14px !important;" placeholder="{{ __('Password') }}" type="password" name="password" id="password" required data-toggle="popover">
+                                    <input class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" style="font-size:14px !important;" placeholder="{{ __('Password') }}" type="password" name="password" id="password" required>
                                 </div>
                                 @if ($errors->has('password'))
                                     <span class="invalid-feedback" style="display: block;" role="alert">
-                                        <strong>{{ $errors->first('password') }}</strong>
+                                        <strong style="font-size:14px;">{{ $errors->first('password') }}</strong>
                                     </span>
                                 @endif
                             </div>

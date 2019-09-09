@@ -4,6 +4,8 @@ namespace App\Http\Controllers\Auth;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Foundation\Auth\SendsPasswordResetEmails;
+use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Validator;
 
 class ForgotPasswordController extends Controller
 {
@@ -19,6 +21,16 @@ class ForgotPasswordController extends Controller
     */
 
     use SendsPasswordResetEmails;
+
+    protected function validateEmail(Request $request)
+    {
+        // dd($request);    
+        $this->validate($request, ['email' => 'required|email'], [
+            'email.required' => 'The email field is mandatory.',
+            'email.email' => 'Please insert a valid email.',
+        ]);
+        // dd('validate');
+    }
 
     /**
      * Create a new controller instance.
