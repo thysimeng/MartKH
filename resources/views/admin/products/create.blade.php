@@ -43,7 +43,7 @@
                                     <div class="col-lg-6 col-sm-12">
                                          <div class="form-group{{ $errors->has('code') ? ' has-danger' : '' }}">
                                             <label class="form-control-label" for="input-code">{{ __('Code') }}</label>
-                                            <input type="text" name="code" id="input-code" class="form-control form-control-alternative{{ $errors->has('code') ? ' is-invalid' : '' }}" placeholder="{{ __('Code') }}" required autofocus>
+                                            <input type="text" name="code" id="input-code" class="form-control form-control-alternative{{ $errors->has('code') ? ' is-invalid' : '' }}" placeholder="{{ __('Code') }}" value="{{ old('code') }}" required autofocus>
 
                                             @if ($errors->has('code'))
                                                 <span class="invalid-feedback" role="alert">
@@ -55,7 +55,7 @@
                                     <div class="col-lg-6 col-sm-12">
                                         <div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
                                             <label class="form-control-label" for="input-name">{{ __('Name') }}</label>
-                                            <input type="text" name="name" id="input-name" class="form-control form-control-alternative{{ $errors->has('name') ? ' is-invalid' : '' }}" placeholder="{{ __('Name') }}" required autofocus>
+                                            <input type="text" name="name" id="input-name" class="form-control form-control-alternative{{ $errors->has('name') ? ' is-invalid' : '' }}" placeholder="{{ __('Name') }}" value="{{ old('name') }}" required>
 
                                             @if ($errors->has('name'))
                                                 <span class="invalid-feedback" role="alert">
@@ -71,7 +71,7 @@
                                     <div class="col-lg-6 col-sm-12">
                                         <div class="form-group{{ $errors->has('price') ? ' has-danger' : '' }}">
                                             <label class="form-control-label" for="input-price">{{ __('Price') }}</label>
-                                            <input type="text" name="price" id="input-price" class="form-control form-control-alternative{{ $errors->has('price') ? ' is-invalid' : '' }}" placeholder="{{ __('Price') }}" required autofocus>
+                                            <input type="text" name="price" id="input-price" class="form-control form-control-alternative{{ $errors->has('price') ? ' is-invalid' : '' }}" placeholder="{{ __('Price') }}" value="{{ old('price') }}" required>
 
                                             @if ($errors->has('price'))
                                                 <span class="invalid-feedback" role="alert">
@@ -84,7 +84,7 @@
                                     <div class="col-lg-6 col-sm-12">
                                         <div class="form-group{{ $errors->has('size') ? ' has-danger' : '' }}">
                                             <label class="form-control-label" for="input-size">{{ __('Size') }}</label>
-                                            <input type="text" name="size" id="input-size" class="form-control form-control-alternative{{ $errors->has('size') ? ' is-invalid' : '' }}" placeholder="{{ __('Size') }}" required autofocus>
+                                            <input type="text" name="size" id="input-size" class="form-control form-control-alternative{{ $errors->has('size') ? ' is-invalid' : '' }}" placeholder="{{ __('Size') }}" value="{{ old('size') }}" required>
 
                                             @if ($errors->has('size'))
                                                 <span class="invalid-feedback" role="alert">
@@ -99,7 +99,7 @@
                                     <div class="col-lg-6 col-sm-12">
                                          <div class="form-group{{ $errors->has('brand') ? ' has-danger' : '' }}">
                                             <label class="form-control-label" for="input-brand">{{ __('Brand') }}</label>
-                                            <input type="text" name="brand" id="input-brand" class="form-control form-control-alternative{{ $errors->has('brand') ? ' is-invalid' : '' }}" placeholder="{{ __('Brand') }}" autofocus>
+                                            <input type="text" name="brand" id="input-brand" class="form-control form-control-alternative{{ $errors->has('brand') ? ' is-invalid' : '' }}" placeholder="{{ __('Brand') }}" value="{{ old('brand') }}" >
 
                                             @if ($errors->has('brand'))
                                                 <span class="invalid-feedback" role="alert">
@@ -112,7 +112,7 @@
                                     <div class="col-lg-6 col-sm-12">
                                         <div class="form-group{{ $errors->has('country') ? ' has-danger' : '' }}">
                                             <label class="form-control-label" for="input-country">{{ __('Country') }}</label>
-                                            <input type="text" name="country" id="input-country" class="form-control form-control-alternative{{ $errors->has('country') ? ' is-invalid' : '' }}" placeholder="{{ __('Country') }}" autofocus>
+                                            <input type="text" name="country" id="input-country" class="form-control form-control-alternative{{ $errors->has('country') ? ' is-invalid' : '' }}" placeholder="{{ __('Country') }}" value="{{ old('country') }}" >
 
                                             @if ($errors->has('country'))
                                                 <span class="invalid-feedback" role="alert">
@@ -136,7 +136,7 @@
                                 </div>
                                 <div class="form-group{{ $errors->has('description') ? ' has-danger' : '' }}">
                                         <label class="form-control-label" for="input-description">{{ __('Description') }}</label>
-                                        <textarea class="form-control form-control-alternative{{ $errors->has('description') ? ' is-invalid' : '' }}" placeholder="{{ __('Description') }}" id="input-description" rows="4" name="description" required autofocus></textarea>
+                                        <textarea class="form-control form-control-alternative{{ $errors->has('description') ? ' is-invalid' : '' }}" placeholder="{{ __('Description') }}" id="input-description" rows="4" name="description" required>{{ old('description') }}</textarea>
                                         @if ($errors->has('description'))
                                             <span class="invalid-feedback" role="alert">
                                                 <strong>{{ $errors->first('description') }}</strong>

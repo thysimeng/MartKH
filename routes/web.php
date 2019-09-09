@@ -11,18 +11,19 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/', 'UsersController\UserHomeController@index')->name('home');
 
 Auth::routes();
 
-Route::get('/admin/home', 'Admin\HomeController@index')->name('admin.home')->middleware('checkUserRole');
+Route::get('/admin', 'Admin\HomeController@index')->name('admin.home')->middleware('checkUserRole');
 
 // Route::get('admin/user', 'UserController@user');
 // Admin-related routes
 Route::group(['middleware' => ['web','auth','checkUserRole']], function () {
 
+	Route::get('/admin/dashboard', function () {
+		return view('admin/dashboard');
+	})->name('admin.dashboard');
 
 	Route::get('admin/user/search', ['as' => 'user.search', 'uses' => 'Admin\UserController@search']);
 	Route::resource('admin/user', 'Admin\UserController', ['except' => ['show']]);
@@ -31,9 +32,13 @@ Route::group(['middleware' => ['web','auth','checkUserRole']], function () {
 	Route::put('admin/profile/password', ['as' => 'admin.profile.password', 'uses' => 'Admin\ProfileController@password']);
 	Route::post('admin/profile/upload', ['as' => 'admin.profile.upload', 'uses' => 'Admin\ProfileController@upload']);
 	Route::get('admin/products/search',['as' => 'prouducts.search', 'uses' => 'Admin\ProductController@search']);
+	// Route::get('images-upload', 'HomeController@imagesUpload');
+	Route::post('admin/ads/adsLeft', 'Admin\AdsController@adsLeftUpload')->name('adsLeft.upload');
+	Route::post('admin/ads/adsMiddle', 'Admin\AdsController@adsMiddleUpload')->name('adsMiddle.upload');
 	Route::resource('admin/products', 'Admin\ProductController');
     // Start ads controller
-    Route::resource('admin/ads', 'Admin\AdsController');
+	Route::resource('admin/ads', 'Admin\AdsController');
+
     // End ads controller
 	Route::post('/delete/{pid}', 'Admin\ProductController@destroy')->name('products.destroy');
 	Route::post('admin/franchises/linkAccount',['as' => 'franchises.linkAccount', 'uses' => 'Admin\FranchiseController@linkAccount']);
@@ -93,7 +98,7 @@ Route::group(['middleware' => ['web','auth','checkUserRoleFranchise']], function
 
 // test route for redirecting users when they try to access admin pages
 Route::get('/user', function(){
-	return redirect('/users');
+	return redirect('/');
 })->name('normalUser');
 
 Route::get('/users', 'UsersController\UserHomeController@index')->name('home');
@@ -106,6 +111,13 @@ Route::get('/categories1', 'UsersController\ProductsController@categories1')->na
 
 Route::get('/users/wishlist', 'UsersController\UserHomeController@wishListIndex')->name('list-wishlist');
 Route::post('/users/wishlist', 'UsersController\UserHomeController@wishList')->name('add-wishlist');
+// Google Account
+// Route::get('google', function () {
+//     return view('googleAuth');
+// });
+Route::get('/auth/google/callback', 'Auth\LoginController@handleGoogleCallback');
+Route::get('/auth/google', 'Auth\LoginController@redirectToGoogle')->name('redirectToGoogle');
+
 Route::post('/users/delete-wishlist', 'UsersController\UserHomeController@deleteWishList')->name('delete-wishlist');
 
 // Route::get('/{any}', function(){

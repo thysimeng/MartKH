@@ -13,7 +13,7 @@
                                     <span class="h2 font-weight-bold mb-0">350,897</span>
                                 </div>
                                 <div class="col-auto">
-                                    <div class="icon icon-shape bg-danger text-white rounded-circle shadow">
+                                    <div class="icon icon-shape bg-gradient-red text-white rounded-circle shadow">
                                         <i class="fas fa-chart-bar"></i>
                                     </div>
                                 </div>
@@ -34,7 +34,7 @@
                                     <span class="h2 font-weight-bold mb-0">2,356</span>
                                 </div>
                                 <div class="col-auto">
-                                    <div class="icon icon-shape bg-warning text-white rounded-circle shadow">
+                                    <div class="icon icon-shape bg-gradient-orange text-white rounded-circle shadow">
                                         <i class="fas fa-chart-pie"></i>
                                     </div>
                                 </div>
@@ -55,7 +55,7 @@
                                     <span class="h2 font-weight-bold mb-0">924</span>
                                 </div>
                                 <div class="col-auto">
-                                    <div class="icon icon-shape bg-yellow text-white rounded-circle shadow">
+                                    <div class="icon icon-shape bg-gradient-green text-white rounded-circle shadow">
                                         <i class="fas fa-users"></i>
                                     </div>
                                 </div>
@@ -76,7 +76,7 @@
                                     <span class="h2 font-weight-bold mb-0">49,65%</span>
                                 </div>
                                 <div class="col-auto">
-                                    <div class="icon icon-shape bg-info text-white rounded-circle shadow">
+                                    <div class="icon icon-shape bg-gradient-info text-white rounded-circle shadow">
                                         <i class="fas fa-percent"></i>
                                     </div>
                                 </div>

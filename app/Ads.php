@@ -10,7 +10,7 @@ class Ads extends Model
     // protected $primaryKey = 'pid';
     protected $primaryKey = 'id';
     protected $fillable = [
-        'image', 'name'
+        'image' 
     ];
     public $timestamps = true;
 }

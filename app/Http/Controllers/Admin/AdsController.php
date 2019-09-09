@@ -18,7 +18,8 @@ class AdsController extends Controller
      */
     public function index()
     {
-        $ads = Ads::all();
+        // $ads = Ads::all()->sortByDesc("id");
+        $ads = Ads::latest('id')->get();
         return view('admin.ads.index',compact('ads'));
     }
 
@@ -50,7 +51,7 @@ class AdsController extends Controller
         if($request->hasFile('image')){
             $image = $request->file('image');
             $filename = time() . '.' . $image->getClientOriginalExtension();
-            // Image::make($image)->resize(600, 600)->save( public_path('uploads\ads_image\\' . $filename ) );
+            Image::make($image)->resize(960, 700)->save( public_path('uploads\ads_image\\' . $filename ) );
             Image::make($image)->save( public_path('uploads\ads_image\\' . $filename ) );
             $ads->image = $filename;
             // $ads->save();
@@ -106,7 +107,7 @@ class AdsController extends Controller
             $image = $request->file('image');
             $image_old = $request->input('imgDB');
             $filename = time() . '.' . $image->getClientOriginalExtension();
-            Image::make($image)->resize(600, 600)->save( public_path('uploads\ads_image\\' . $filename ) );
+            Image::make($image)->resize(960, 700)->save( public_path('uploads\ads_image\\' . $filename ) );
             File::delete(public_path('uploads\ads_image\\' . $image_old));
             $ad->image = $filename;
             // $ads->save();
@@ -137,4 +138,36 @@ class AdsController extends Controller
         $ads->delete();
         return redirect()->route('ads.index');
     }
+
+    public function adsLeftUpload(Request $request){
+        // $ads = Ads::all();
+        request()->validate([
+            'adsLeft1' => 'required',
+            'adsLeft1.*' => 'image|mimes:jpeg,png,jpg,gif,svg'
+        ]);
+        if($request->hasFile('adsLeft1')){
+            foreach($request->file('adsLeft1') as $image)
+            {
+                $adsDB = new Ads();
+                // $name = time() . '.' . $image->getClientOriginalExtension(); 
+                $name = time().'.'.$image->getClientOriginalName();      
+                // $image->move(public_path('uploads\Test\\'), $name);  
+                $imageCrop = Image::make($image)->resize(460, 700)->save( public_path('uploads\ads_image\template1\adsLeft\\' . $name ) );
+                $data = $name;
+                // $adsDB->image=json_encode($data);
+                $adsDB->image=$data;
+                $adsDB->position= "left1";
+                $adsDB->save(); 
+                
+            }
+        }
+        
+        // Alert::success('Product Creation', 'Successfully Created');
+        // return redirect()->route('ads.index');
+        return response()->json(['success'=>'Images Uploaded Successfully.']);
+    }
+
+    // public function adsMiddleUpload(Request $request){
+    //     return 1;
+    // }
 }

@@ -134,6 +134,12 @@ return [
         ],
     ],
 
+    // 'custom' => [
+    //     'password' => [
+    //         'regex' => 'Password must contain at least a number, 1 lower-case and capital letter.',
+    //     ],
+    // ],
+
     /*
     |--------------------------------------------------------------------------
     | Custom Validation Attributes

@@ -17,7 +17,10 @@ class CreateAdsTable extends Migration
             Schema::dropIfExists('slide');
             $table->bigIncrements('id');
             $table->longText('image');
-            $table->string('name',100)->unique();
+            // $table->string('name',100)->unique();
+            $table->string('position',100)->nullable();
+            $table->integer('sort')->nullable();
+            $table->integer('template_id')->nullable();
             $table->timestamps();
         });
     }
