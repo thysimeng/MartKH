@@ -10,6 +10,7 @@ use Exception;
 use App\User;
 use Image;
 use Storage;
+use File;
 class LoginController extends Controller
 {
     /*
@@ -114,17 +115,26 @@ class LoginController extends Controller
         $newUser->email_verified_at = now();
         // Avatar
         $avatar                     = $user->getAvatar();
-        $content                    = file_get_contents($avatar);
-        // strrpos gets the position of the last occurrence of the slash; substr returns everything after that position.
-        $basename                   = basename($avatar);
-        // $ext                        = end(explode('.', $basename));
-        $tmpext                     = explode('.', $basename);
-        $ext                        = end($tmpext);
-        // $filename                   = rename($basename,time().'.'.$ext);
-        $filename                   = time().'.'.$ext;
-        $newUser->avatar            = $filename;
-        Storage::disk('uploadsAvatar')->put($filename, $content);
-        dd($newUser);
+        if($provider === 'google'){
+            $content                    = file_get_contents($avatar);
+            // strrpos gets the position of the last occurrence of the slash; substr returns everything after that position.
+            $basename                   = basename($avatar);
+            // $ext                        = end(explode('.', $basename));
+            $tmpext                     = explode('.', $basename);
+            $ext                        = end($tmpext);
+            // $filename                   = rename($basename,time().'.'.$ext);
+            $filename                   = time().'.'.$ext;
+            Storage::disk('uploadsAvatar')->put($filename, $content);
+        }
+        else if($provider === 'facebook'){
+            $fileContents = file_get_contents($user->getAvatar());
+            $filename = time().'.jpg';
+            File::put(public_path() . '/uploads/avatar/' . $filename, $fileContents);
+            //To show picture 
+            // $picture1 = public_path('uploads/avatar/' . time() . ".jpg");
+        }
+        $newUser->avatar = $filename;    
+        // dd($filename);
         $newUser->save();
 
         auth()->login($newUser, true);
