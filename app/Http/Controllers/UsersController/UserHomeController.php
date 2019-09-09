@@ -10,6 +10,11 @@ use DB;
 use Auth;
 use App\Models\WishList;
 use App\Models\Product;
+use App\Http\Requests\ProfileRequest;
+use App\Http\Requests\PasswordRequest;
+use Alert;
+use File;
+use Image;
 
 class UserHomeController extends Controller
 {
@@ -81,4 +86,63 @@ class UserHomeController extends Controller
         DB::delete('delete from wishlists where wishlist_id = ?',[$pro_id]);
         return redirect(route('add-wishlist'));
     }
+
+    // User Profile
+    public function userProfile()
+    {
+        if (session('status'))
+        {
+            Alert::success('Success', session('status'));
+        }
+        if (session('password_status'))
+        {
+            Alert::success('Success', session('password_status'));
+        }
+
+        return view('users.userProfile');
+    }
+
+    public function updateUserProfile(ProfileRequest $request)
+    {
+        auth()->user()->update($request->all());
+        
+        return back()->withStatus(__('Profile successfully updated.'));
+    }
+
+    public function updateUserPassword(PasswordRequest $request)
+    {
+        auth()->user()->update(['password' => Hash::make($request->get('password'))]);
+
+        return back()->withPasswordStatus(__('Password successfully updated.'));
+    }
+
+    public function upload(Request $request)
+    {
+        
+        $request->validate([
+            'avatar' => 'required|image|mimes:jpeg,jpg,png,gif,svg|max:2048|'
+        ]);
+
+        if($request->hasFile('avatar'))
+        {
+            $user = Auth::user();
+            if($user->avatar != 'default.png')
+            {
+                $userImage = public_path('uploads\avatar\\'.$user->avatar);
+                if(file_exists($userImage))
+                {
+                    File::delete($userImage);
+                }
+            }
+            $avatar = $request->file('avatar');
+            $fileName = time().'.'.$avatar->getClientOriginalExtension();
+            Image::make($avatar)->resize(400,400)->save( public_path('uploads\avatar\\'.$fileName));
+
+            $user->avatar = $fileName;
+            $user->save();
+
+            return back()->withStatus(__('Profile picture successfully updated.'));
+        }
+    }
+
 }

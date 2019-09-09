@@ -109,6 +109,9 @@ Route::post('/searchweithwh', 'UsersController\ProductsController@search')->name
 Route::get('/categoriesAll', 'UsersController\ProductsController@categories')->name('categories');
 Route::get('/categories1', 'UsersController\ProductsController@categories1')->name('categories');
 
+Route::post('/users/profile/update','UsersController\UserHomeController@updateUserProfile')->name('updateUserProfile');
+Route::post('/users/profile/upload','UsersController\UserHomeController@upload')->name('uploadProfile');
+Route::get('/users/profile','UsersController\UserHomeController@userProfile')->name('userProfile');
 Route::get('/users/wishlist', 'UsersController\UserHomeController@wishListIndex')->name('list-wishlist');
 Route::post('/users/wishlist', 'UsersController\UserHomeController@wishList')->name('add-wishlist');
 // Google Account 

@@ -117,10 +117,28 @@ class FranchiseController extends Controller
     }
 
     // View Product Only
-    public function viewProduct()
+    public function viewProduct(Request $request)
     {
-        $products = Products::paginate(10);
-        return view('franchise.product',compact('products'));
+        $keyword = $request->get('search');
+        $products = Products::where('name', 'LIKE', '%' . $keyword . '%')
+                            ->orWhere('id','like','%'.$keyword.'%')
+                            ->orWhere('code','like','%'.$keyword.'%')
+                            ->orWhere('price','like','%'.$keyword.'%')
+                            ->orWhere('size','like','%'.$keyword.'%')
+                            ->orWhere('brand','like','%'.$keyword.'%')
+                            ->orWhere('country','like','%'.$keyword.'%')
+                            ->orWhere('subcategory_id','like','%'.$keyword.'%')
+                            ->orWhere('view','like','%'.$keyword.'%')
+                            ->paginate(10);
+        $products->withPath('products');
+        $products->appends($request->all());
+        if ($request->ajax()) {
+            return \Response::json(\View::make('list', array('products' => $products))->render());
+        }
+        return view('franchise.product',compact('products', 'keyword'));
+        
+        // $products = Products::paginate(10);
+        // return view('franchise.product',compact('products'));
     }
 
     // Edit Profile

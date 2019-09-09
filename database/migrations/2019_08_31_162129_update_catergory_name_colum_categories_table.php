@@ -14,7 +14,7 @@ class UpdateCatergoryNameColumCategoriesTable extends Migration
     public function up()
     {
         Schema::table('categories', function (Blueprint $table) {
-            $table->string('categories_name')->change();
+            $table->renameColumn('name','categories_name')->change();
         });
     }
 
@@ -25,6 +25,8 @@ class UpdateCatergoryNameColumCategoriesTable extends Migration
      */
     public function down()
     {
-        //
+        Schema::table('categories', function (Blueprint $table) {
+            $table->renameColumn('categories_name','name');
+        });
     }
 }
