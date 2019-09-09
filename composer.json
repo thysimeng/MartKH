@@ -17,6 +17,7 @@
         "laravel/socialite": "^4.2",
         "laravel/tinker": "^1.0",
         "realrashid/sweet-alert": "^2.0",
+        "socialiteproviders/facebook": "^1.0",
         "yajra/laravel-datatables-oracle": "^9.4"
     },
     "require-dev": {

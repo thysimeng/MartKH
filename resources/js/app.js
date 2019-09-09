@@ -2,14 +2,19 @@ require('./bootstrap');
 
 window.Vue = require('vue');
 import VueRouter from 'vue-router';
+import VueCarousel from 'vue-carousel';
 import { routes } from './routes';
 
 import { mapGetters } from "vuex";
 import modalQuickView from "./components/usersComponent/shopComponent/modalQuickView.vue";
+//Wish List
+import addTowishList from "./components/usersComponent/mastercomponent/addTowishList.vue";
+
 // Home
 import productSearch from './components/usersComponent/search/productSearch.vue';
 import productAll from "./components/usersComponent/homeComponent/productAll.vue";
 import productFood from "./components/usersComponent/homeComponent/productCategories.vue";
+import slideShow from "./components/usersComponent/homeComponent/slideShow.vue";
 
 
 //Shop
@@ -18,6 +23,7 @@ import allProductDisplay from './components/usersComponent/shopComponent/allProd
 // API reader
 import store from './components/usersComponent/mainAPI/productsReader';
 
+Vue.use(VueRouter);
 Vue.use(VueRouter);
 
 const router = new VueRouter({
@@ -34,6 +40,7 @@ const app = new Vue({
         productshomecate: [],
         producthome: [],
         productid: [],
+        productID: Number,
     },
     store,
     router,
@@ -53,7 +60,9 @@ const app = new Vue({
         allProductDisplay: allProductDisplay,
         productFood: productFood,
         productAll: productAll,
-        modalQuickView: modalQuickView
+        modalQuickView: modalQuickView,
+        slideShow: slideShow,
+        addTowishList: addTowishList
     },
     mounted() {
         this.$store.dispatch("fetchProductsFood");
