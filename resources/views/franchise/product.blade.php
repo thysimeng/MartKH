@@ -13,14 +13,13 @@
                                         <h3 class="mb-0">Products</h3>
                                     </div>
                                     <form class="col-4">
-                                            <div class="form-group mb-2 mt-2">
-                                                <div class="input-group input-group-alternative">
-                                                    <div class="input-group-prepend">
-                                                        <span class="input-group-text"><i class="fas fa-search"></i></span>
-                                                    </div>
-                                                    <input class="form-control" placeholder="Search" type="text">
+                                        <div class="input-group input-group-alternative">
+                                                <input class="form-control" placeholder="Search" type="text" name="search" id="search" value="{{$keyword}}" style="border: 1px solid #11cdef">
+                                                <span class="form-clear d-none"><i class="fas fa-times-circle">clear</i></span>   
+                                                <div class="input-group-append">
+                                                    <button class="btn btn-info" type="submit"><i class="fa fa-search"></i></button>
                                                 </div>
-                                            </div>
+                                        </div>
                                     </form>
 
                         </div>
@@ -101,6 +100,40 @@
                 </div>
             </div>
         </div>        
+    <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
+    <script>
+        $(window).on('hashchange', function() {
+            if (window.location.hash) {
+                var page = window.location.hash.replace('#', '');
+                if (page == Number.NaN || page <= 0) {
+                    return false;
+                } else {
+                    getProducts(page);
+                }
+            }
+        });
+        $(document).ready(function() {
+            $(document).on('click', '.pagination a', function (e) {
+                getProducts($(this).attr('href').split('page=')[1]);
+                e.preventDefault();
+            });
+        });
+        function getproducts(page) {
+            $.ajax({
+                url : '?page=' + page,
+                type : "get",
+                dataType: 'json',
+                data:{
+                    search: $('#search').val()
+                },
+            }).done(function (data) {
+                $('.products').html(data);
+                location.hash = page;
+            }).fail(function (msg) {
+                alert('page can\'t be load');
+            });
+        }
+    </script>  
     <script>
         $(document).ready(function(){
             $(function() {
