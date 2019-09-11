@@ -1,9 +1,10 @@
 <template>
   <div class="product-tab-list text-center mb-65 nav" role="tablist">
-    <a href class="active" data-toggle="tab" role="tab" @click="sendDatatoApp()">
+      <!-- <a href="">a{{ productsCategory[0].categories_name }}</a> -->
+    <a href class="active" data-toggle="tab" role="tab" @click="sendDatatoApp()" v-if="productsCategory.length!=0">
       <h4>{{ productsCategory[0].categories_name }}</h4>
     </a>
-    <a href data-toggle="tab" role="tab" @click="sendDatatoAppAll()">
+    <a href data-toggle="tab" role="tab" @click="sendDatatoAppAll()" v-if="productsCategory1.length!=0">
       <h4>{{ productsCategory1[0].categories_name }}</h4>
     </a>
   </div>

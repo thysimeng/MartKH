@@ -11,21 +11,24 @@
 </div>
 @endif
 {{-- Home page section --}}
+
 <div v-if="show">
     {{-- <slide-Show></slide-Show> --}}
     {{-- Start slide area --}}
     <div class="container-fluid mt-4">
         <div class="row row-first .no-gutters">
-                <div class="col-md-12 col-lg-6 order-lg-2 col-xl-3 order-xl-1 nopadding">
-                    <div class="slider-area">
-                        <div class="slider-active-3 owl-carousel owl-theme">
-                            @foreach ($adsLeft as $adLeft)
-                    {{-- <div class="banner-wrapper mrgn-negative"> --}}
-                            <img src="{{ asset('uploads/ads_image/template1/adsLeft/'.$adLeft->image) }}"  class="img-fluid" alt="">
-                            
-                        {{-- <a href="#"><img src="{{ asset('uploads/slide/fruit.jpg')}}" class="img-fluid" alt=""></a> --}}
-                            {{-- <a href="#"><img src="assets/img/banner/8.jpg" alt=""></a>                             --}}
-                            {{-- <div class="banner-wrapper2-content">
+            <div class="col-md-12 col-lg-6 order-lg-2 col-xl-3 order-xl-1 nopadding">
+                <div class="slider-area">
+                    <div class="slider-active-3 owl-carousel owl-theme">
+                        @foreach ($adsLeft as $adLeft)
+                        {{-- <div class="banner-wrapper mrgn-negative"> --}}
+                        <img src="{{ asset('uploads/ads_image/template1/adsLeft/'.$adLeft->image) }}" class="img-fluid"
+                            alt="">
+
+                        {{-- <a href="#"><img src="{{ asset('uploads/slide/fruit.jpg')}}" class="img-fluid" alt=""></a>
+                        --}}
+                        {{-- <a href="#"><img src="assets/img/banner/8.jpg" alt=""></a>                             --}}
+                        {{-- <div class="banner-wrapper2-content">
                                 <h3>Speatial </h3>
                                 <h2>Style</h2>
                                 <span>Start from $299.00</span>
@@ -35,18 +38,20 @@
 
                     </div>
                 </div>
-                    </div>
+            </div>
             <div class="col-md-12 col-lg-12 order-lg-1 col-xl-6 order-xl-2 nopadding">
                 <div class="slider-area">
-                        <div class="slider-active-4 owl-carousel owl-theme">
-                            @foreach ($adsMiddle as $adMiddle)
+                    <div class="slider-active-4 owl-carousel owl-theme">
+                        @foreach ($adsMiddle as $adMiddle)
                         {{-- <div class="single-slider-4 slider-height-6 bg-img ads-img" data-dot="<span></span>"> --}}
                         <div class=" ads-img" data-dot="<span></span>">
-                            {{-- <a href="#"><img src="{{ asset('uploads/slide/spice.jpg')}}" style="width: 960px;height: 700px;" alt=""></a> --}}
-                            {{-- <a href="#"><img src="{{ asset('uploads/slide/drink.jpg')}}" class="img-fluid" alt=""></a>                             --}}
-                            <img src="{{ asset('uploads/ads_image/'.$adMiddle->image) }}"  class="img-fluid" alt="">
-                                {{-- <div class="container"> --}}
-                                    {{-- <div class="row">
+                            {{-- <a href="#"><img src="{{ asset('uploads/slide/spice.jpg')}}" style="width:
+                            960px;height: 700px;" alt=""></a> --}}
+                            {{-- <a href="#"><img src="{{ asset('uploads/slide/drink.jpg')}}" class="img-fluid"
+                            alt=""></a> --}}
+                            <img src="{{ asset('uploads/ads_image/'.$adMiddle->image) }}" class="img-fluid" alt="">
+                            {{-- <div class="container"> --}}
+                            {{-- <div class="row">
                                         <div class="ml-auto col-lg-6" style="background:rgba(255, 0, 0, 0.8);">
                                             <div class="furniture-content fadeinup-animated mt-4 mb-4 ml-4">
                                                 <h2 class="animated" style="color:white;">Dairy Products</h2>
@@ -58,25 +63,25 @@
                                             </div>
                                         </div>
                                     </div> --}}
-                                {{-- </div> --}}
-                            </div>
-                            @endforeach
+                            {{-- </div> --}}
                         </div>
+                        @endforeach
                     </div>
+                </div>
             </div>
             <div class="col-md-12 col-lg-6 order-lg-3 col-xl-3 order-xl-3 nopadding">
                 <div class="row .no-gutters">
                     <div class="col-md-12 nopadding">
                         <div class="slider-area">
                             <div class="slider-active-3 owl-carousel owl-theme">
-                        {{-- <div class="banner-wrapper"> --}}
-                            <img src="{{ asset('uploads/slide/grocery.jpg')}}" class="img-fluid" alt="">
-                            {{-- <div class="banner-wrapper3-content">
+                                {{-- <div class="banner-wrapper"> --}}
+                                <img src="{{ asset('uploads/slide/grocery.jpg')}}" class="img-fluid" alt="">
+                                {{-- <div class="banner-wrapper3-content">
                                 <a href="#">1</a>
                             </div> --}}
-                        {{-- </div> --}}
-                    </div>
-                </div>
+                                {{-- </div> --}}
+                            </div>
+                        </div>
                     </div>
                     {{-- <div class="col-md-12">
                         <div class="banner-wrapper mrgn-b-5">
@@ -89,16 +94,16 @@
                     </div> --}}
                     <div class="col-md-12 nopadding">
                         {{-- <div class="banner-wrapper"> --}}
-                            <div class="slider-area">
-                                <div class="slider-active-3 owl-carousel owl-theme">
-                            <img src="{{ asset('uploads/slide/grocery.jpg')}}" class="img-fluid" alt="">
-                            {{-- <div class="banner-wrapper3-content">
+                        <div class="slider-area">
+                            <div class="slider-active-3 owl-carousel owl-theme">
+                                <img src="{{ asset('uploads/slide/grocery.jpg')}}" class="img-fluid" alt="">
+                                {{-- <div class="banner-wrapper3-content">
                                 3
                                 <a href="#">3</a>
                             </div> --}}
-                        {{-- </div> --}}
-                    </div>
-                </div>
+                                {{-- </div> --}}
+                            </div>
+                        </div>
                     </div>
                     {{-- <div class="col-md-6">
                         <div class="banner-wrapper">
@@ -110,9 +115,9 @@
                         </div>
                     </div> --}}
                 </div>
-            </div> 
+            </div>
         </div>
-        
+
     </div>
     {{-- End slide area --}}
 

@@ -1,3 +1,6 @@
+// Master componnent
+import addTowishList from './components/usersComponent/mastercomponent/addTowishList.vue';
+
 // Search component
 import productSearch from './components/usersComponent/search/productSearch.vue';
 
@@ -14,6 +17,7 @@ export const routes = [
         components: {
             productSearch: productSearch,
             productAll: productAll,
+            addTowishList: addTowishList
         }
     },
     {
@@ -21,6 +25,7 @@ export const routes = [
         components: {
             productSearch: productSearch,
             productAll: productAll,
+            addTowishList: addTowishList
         }
     },
     {
@@ -28,20 +33,23 @@ export const routes = [
         components: {
             productSearch: productSearch,
             productAll: productAll,
+            addTowishList: addTowishList
         }
     },
     {
         path: '/users/shop',
         components: {
             productSearch: productSearch,
-            shop:shop
+            shop:shop,
+            addTowishList: addTowishList
         }
     },
     {
         path: '/users/shop/foodVue',
         components: {
             productSearch: productSearch,
-            food:food
+            food:food,
+            addTowishList: addTowishList
         }
     },
 ];

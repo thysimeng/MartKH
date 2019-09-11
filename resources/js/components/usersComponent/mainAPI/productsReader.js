@@ -14,6 +14,7 @@ Vue.use(Vuex);
             productsFoodHome:[],
             productsFoodDrink:[],
             productsCategories1:[],
+            productsWishList:[],
 
             //Shop
             products:[],
@@ -37,6 +38,9 @@ Vue.use(Vuex);
             },
             fetch_products_food_drink(state, drinkHome){
                 return state.productsFoodDrink = drinkHome
+            },
+            fetch_products_wishList(state, wishList){
+                return state.productsWishList = wishList
             },
 
             //Shop
@@ -93,6 +97,14 @@ Vue.use(Vuex);
                         console.log(err)
                     })
             },
+            fetchProductsWishList({commit}) {
+                axios.get('/wishlistproducts')
+                    .then(res => {
+                        commit('fetch_products_wishList', res.data)
+                    }).catch(err => {
+                        console.log(err)
+                    })
+            },
 
             //Shop
             fetchPosts({commit}) {
@@ -142,6 +154,9 @@ Vue.use(Vuex);
             },
             productsFoodDrink: state => {
                 return state.productsFoodDrink
+            },
+            productsWishList: state => {
+                return state.productsWishList
             },
 
             // Shop
