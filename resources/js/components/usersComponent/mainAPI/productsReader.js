@@ -20,6 +20,9 @@ Vue.use(Vuex);
             products:[],
             productsFood:[],
             productsAll:[],
+
+            //wishlist
+            productWishlistDisplay: []
         },
         mutations:{
             //search
@@ -52,6 +55,11 @@ Vue.use(Vuex);
             },
             fetch_products_all(state, food){
                 return state.productsAll = food
+            },
+
+            //wish list
+            fetch_products_WishlistDisplay(state, Display){
+                return state.productWishlistDisplay = Display
             },
         },
         actions:{
@@ -136,6 +144,16 @@ Vue.use(Vuex);
                     })
             },
 
+            //wishlist
+            fetchProductsWishlistDisplay({commit}) {
+                axios.get('/wishlistdisplay')
+                    .then(res => {
+                        commit('fetch_products_WishlistDisplay', res.data)
+                    }).catch(err => {
+                        console.log(err)
+                    })
+            },
+
         },
         getters:{
             // Search
@@ -168,6 +186,11 @@ Vue.use(Vuex);
             },
             productsAll: state => {
                 return state.productsAll
+            },
+
+            //wishlist
+            productWishlistDisplay: state => {
+                return state.productWishlistDisplay
             }
         }
     })

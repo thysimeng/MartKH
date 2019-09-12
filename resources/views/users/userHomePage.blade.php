@@ -13,7 +13,7 @@
 {{-- Home page section --}}
 
 <div v-if="show">
-    {{-- <slide-Show></slide-Show> --}}
+    <slide-Show></slide-Show>
     {{-- Start slide area --}}
     <div class="container-fluid mt-4">
         <div class="row row-first .no-gutters">
