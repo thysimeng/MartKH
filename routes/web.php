@@ -33,13 +33,18 @@ Route::group(['middleware' => ['web','auth','checkUserRole']], function () {
 	Route::post('admin/profile/upload', ['as' => 'admin.profile.upload', 'uses' => 'Admin\ProfileController@upload']);
 	Route::get('admin/products/search',['as' => 'prouducts.search', 'uses' => 'Admin\ProductController@search']);
 	// Route::get('images-upload', 'HomeController@imagesUpload');
-	Route::post('admin/ads/adsLeft', 'Admin\AdsController@adsLeftUpload')->name('adsLeft.upload');
-	Route::post('admin/ads/adsMiddle', 'Admin\AdsController@adsMiddleUpload')->name('adsMiddle.upload');
 	Route::resource('admin/products', 'Admin\ProductController');
     // Start ads controller
 	Route::resource('admin/ads', 'Admin\AdsController');
-
-    // End ads controller
+	Route::post('admin/ads/adsLeft1', 'Admin\AdsController@adsLeftUpload1')->name('adsLeft1.upload');
+	Route::post('admin/ads/adsMiddle1', 'Admin\AdsController@adsMiddleUpload1')->name('adsMiddle1.upload');
+	Route::post('admin/ads/adsTopRight1', 'Admin\AdsController@adsTopRightUpload1')->name('adsTopRight1.upload');
+	Route::post('admin/ads/adsBottomRight1', 'Admin\AdsController@adsBottomRightUpload1')->name('adsBottomRight1.upload');
+	Route::post('admin/ads/adsLeft2', 'Admin\AdsController@adsLeftUpload2')->name('adsLeft2.upload');
+	Route::post('admin/ads/adsTopRight2', 'Admin\AdsController@adsTopRightUpload2')->name('adsTopRight2.upload');
+	Route::post('admin/ads/adsBottomRight2', 'Admin\AdsController@adsBottomRightUpload2')->name('adsBottomRight2.upload');
+	Route::post('admin/ads/adsMiddle3', 'Admin\AdsController@adsMiddleUpload3')->name('adsMiddle3.upload');	
+	// End ads controller
 	Route::post('/delete/{pid}', 'Admin\ProductController@destroy')->name('products.destroy');
 	Route::post('admin/franchises/linkAccount',['as' => 'franchises.linkAccount', 'uses' => 'Admin\FranchiseController@linkAccount']);
 	Route::get('admin/franchises/unlinkAccount',['as' => 'franchises.unlinkAccount', 'uses' => 'Admin\FranchiseController@unlinkAccount']);

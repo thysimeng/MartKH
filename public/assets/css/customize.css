@@ -1,34 +1,26 @@
-/* .container{
-    width:100%;
-    padding-right:15px;
-    padding-left:15px;
-    margin-right:auto;
-    margin-left:auto
-}
-
-@media (min-width:576px){
-    .container{
-        max-width:540px
-    }
-}@media (min-width:768px){
-    .container{
-        max-width:720px
-    }
-}
-@media (min-width:992px){
-    .container{
-        max-width:960px
-    }
-}
-@media (min-width:1200px){
-    .container{
-        max-width:1200px
-    }
-} */
 .container-custom-1{
     width:100%;
-    padding-right:100px !important; 
-    padding-left:100px !important;
+    padding-right:60px !important; 
+    padding-left:60px !important;
+    margin-right:auto;
+    margin-left:auto;
+    height: 100%;
+}
+
+.container-custom-2{
+    width:100%;
+    padding-right:150px !important; 
+    padding-left:150px !important;
+    margin-right:auto;
+    margin-left:auto;
+    height: 100%;
+
+}
+
+.container-custom-3{
+    width:100%;
+    padding-right:80px !important; 
+    padding-left:80px !important;
     margin-right:auto;
     margin-left:auto;
     height: 100%;
@@ -36,7 +28,7 @@
 }
 
 .ads-img{
-    margin: 0 20px 0;
+    margin: 0;
 }
 
 .row-first{
@@ -49,9 +41,11 @@
     margin: 0 !important;
 }
 
-.owl-item.active {
+/* .owl-item.active {
     padding-right: 15px !important;
-}
+} */
+
+
 
 /* 
 @media (min-width: 992px) and (max-width: 1199.98px) { 
@@ -59,6 +53,42 @@
         height: 920px;
     }
 } */
+/* @media (min-width: 1200px) { 
+    .img-ads{
+        min-height: 420px !important;
+        max-height: auto;
+    }
+ } */
+
+ @media (max-width: 575.98px) { 
+    .container-custom-2{
+        width:100%;
+        padding-right:0 !important; 
+        padding-left:0 !important;
+        margin-right:auto;
+        margin-left:auto;
+        height: 100%;
+    
+    }
+    .container-custom-1{
+        width:100%;
+        padding-right:0 !important; 
+        padding-left:0 !important;
+        margin-right:auto;
+        margin-left:auto;
+        height: 100%;
+    
+    }
+ }
+
+@media (min-width: 1920px) { 
+    .img-ads{
+        min-height: 655px !important;
+    }
+    .ads-img{
+        margin: 0 20px 0 !important;
+    }
+}
 
 .popover.primary {
     border-color:#337ab7;

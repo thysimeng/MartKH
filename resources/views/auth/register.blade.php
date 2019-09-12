@@ -29,11 +29,11 @@
                     <div class="card-header bg-gradient-red pb-5">
                         <div class="text-muted text-center mt-2 mb-4"><h4 class="text-white">{{ __('Sign up with') }}</h4></div>
                         <div class="text-center">
-                            <a href="#" class="btn btn-neutral btn-icon">
-                                <span class="btn-inner--icon"><img src="{{ asset('argon') }}/img/icons/common/github.svg"></span>
-                                <span class="btn-inner--text">{{ __('Github') }}</span>
+                            <a href="{{route('redirectToProvider','facebook')}}" class="btn btn-neutral btn-icon" style="background:#039BE5;">
+                                <span class="btn-inner--icon" ><img src="{{ asset('argon') }}/img/icons/common/facebook.svg"></span>
+                                <span class="btn-inner--text text-white">{{ __('Facebook') }}</span>
                             </a>
-                            <a href="{{route('redirectToGoogle')}}" class="btn btn-neutral btn-icon">
+                            <a href="{{route('redirectToProvider','google')}}" class="btn btn-neutral btn-icon">
                                 <span class="btn-inner--icon"><img src="{{ asset('argon') }}/img/icons/common/google.svg"></span>
                                 <span class="btn-inner--text">{{ __('Google') }}</span>
                             </a>
