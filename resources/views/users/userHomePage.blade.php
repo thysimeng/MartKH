@@ -11,6 +11,7 @@
 </div>
 @endif
 {{-- Home page section --}}
+
 <div v-if="show">
     {{-- <slide-Show></slide-Show> --}}
     {{-- Start slide area --}}
@@ -61,11 +62,11 @@
                                             </div>
                                         </div>
                                     </div> --}}
-                                {{-- </div> --}}
-                            </div>
-                            @endforeach
+                            {{-- </div> --}}
                         </div>
+                        @endforeach
                     </div>
+                </div>
             </div>
             <div class="col-md-12 col-lg-6 order-lg-3 col-xl-3 order-xl-3 nopadding">
                 <div class="row no-gutters">
@@ -117,9 +118,9 @@
                         </div>
                     </div> --}}
                 </div>
-            </div> 
+            </div>
         </div>
-        
+
     </div>
     
     {{-- End slide area --}}

@@ -16,6 +16,11 @@ class ProductsController extends Controller
         $food = DB::table('products')->get();
         return response()->json($food);
     }
+    public function wishlistproducts()
+    {
+        $food = DB::table('wishlists')->get();
+        return response()->json($food);
+    }
     public function food()
     {
         $product = DB::table('products')

@@ -87,12 +87,6 @@
                   <a class="btn-hover list-btn-style" href="#">add to cart</a>
                 </div>
                 <div class="product-list-wishlist">
-                  <!-- <form action @submit="addToWishList">
-                    <input type="hidden" :productID="productID=products[product-1].id" />
-                    <a class="btn-hover list-btn-wishlist" href @click="addToWishList">
-                      <i class="pe-7s-like"></i>
-                    </a>
-                  </form>-->
                   <addTowishList
                     class="btn-hover list-btn-wishlist"
                     :productID="productID=products[product-1].id"
@@ -122,7 +116,8 @@ export default {
       productid: [],
       add: Number,
       productID: Number,
-      addStatus: Boolean
+      addStatus: Boolean,
+      isActive: Boolean
     };
   },
   //   To use props, they must be declared
@@ -140,6 +135,3 @@ export default {
   }
 };
 </script>
-
-<style scoped>
-</style>

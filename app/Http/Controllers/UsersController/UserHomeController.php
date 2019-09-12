@@ -104,6 +104,7 @@ class UserHomeController extends Controller
         }
         else {
             // return redirect()->back()->with('success', 'You already added this product.');
+            DB::table('wishlists')->where('wishlist_id', '=', $product_id)->delete();
             return response()->json($insert);
         }
         // $product_id = $request->productID;
