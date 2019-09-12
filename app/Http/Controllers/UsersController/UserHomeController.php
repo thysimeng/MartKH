@@ -120,7 +120,18 @@ class UserHomeController extends Controller
             array_push($data_product, $product);
         }
         // dd($data_product);
-        return view('users.contents.wishlist')->with(compact('data_product'));
+        return view('users.wishlist')->with(compact('data_product'));
+    }
+
+    public function wishlistdisplay(){
+        $user_id=auth::user()->id;
+        $wishlist = DB::table('wishlists')
+        ->join('products', 'wishlists.wishlist_id', '=', 'products.id')
+        ->where('wishlists.user_id', '=', $user_id)
+        ->select('products.*')
+        ->get();
+        // $wishlist = WishList::all();
+        return response()->json($wishlist);
     }
 
     public function deleteWishList(Request $request) {
@@ -147,7 +158,7 @@ class UserHomeController extends Controller
     public function updateUserProfile(ProfileRequest $request)
     {
         auth()->user()->update($request->all());
-        
+
         return back()->withStatus(__('Profile successfully updated.'));
     }
 
@@ -160,7 +171,7 @@ class UserHomeController extends Controller
 
     public function upload(Request $request)
     {
-        
+
         $request->validate([
             'avatar' => 'required|image|mimes:jpeg,jpg,png,gif,svg|max:2048|'
         ]);

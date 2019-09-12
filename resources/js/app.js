@@ -8,8 +8,10 @@ import Notifications from 'vue-notification';
 
 import { mapGetters } from "vuex";
 import modalQuickView from "./components/usersComponent/shopComponent/modalQuickView.vue";
-//Wish List
+
+//master component
 import addTowishList from "./components/usersComponent/mastercomponent/addTowishList.vue";
+import wishlistDisplay from "./components/usersComponent/mastercomponent/wishlistDisplay.vue";
 // import nitification from "./components/usersComponent/mastercomponent/nitification.vue";
 
 // Home
@@ -69,7 +71,9 @@ const app = new Vue({
         productAll: productAll,
         modalQuickView: modalQuickView,
         slideShow: slideShow,
+        // Master component
         addTowishList: addTowishList,
+        wishlistDisplay: wishlistDisplay
         // nitification: nitification
     },
     mounted() {

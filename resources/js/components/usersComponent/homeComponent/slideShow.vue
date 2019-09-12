@@ -1,11 +1,11 @@
 <template>
   <div>
-    <!-- <div>
-      <templateSlide1></templateSlide1>
-    </div> -->
     <div>
-      <templateSlide2></templateSlide2>
+      <templateSlide1></templateSlide1>
     </div>
+    <!-- <div>
+      <templateSlide2></templateSlide2>
+    </div> -->
   </div>
 </template>
 

@@ -26,7 +26,7 @@ class ProductsController extends Controller
         $product = DB::table('products')
         ->join('subcategories', 'products.subcategory_id', '=', 'subcategories.id')
         ->join('categories', 'subcategories.category_id', '=', 'categories.id')
-        ->select('products.*','subcategories.*','categories.*')
+        ->select('products.*', 'categories.categories_name')
         ->where('category_id', '=', 1)
         ->get();
         // $food = DB::table('products')->where('id', '=', 3)->get();
@@ -37,7 +37,7 @@ class ProductsController extends Controller
         $product = DB::table('products')
         ->join('subcategories', 'products.subcategory_id', '=', 'subcategories.id')
         ->join('categories', 'subcategories.category_id', '=', 'categories.id')
-        ->select('products.*','subcategories.*','categories.*')
+        ->select('products.*', 'categories.categories_name')
         ->where('category_id', '=', 2)
         ->get();
         // $food = DB::table('products')->where('id', '=', 3)->get();
@@ -45,13 +45,8 @@ class ProductsController extends Controller
     }
 
     public function search(Request $request){
-        // dd($request);
         $product = $request->searchInput;
-        // return response()->json($product);
-        // $search = json([$request->searchInput]);
         $product = Products::where('name', 'like', '%'.$product.'%')->get();
-        // $food = DB::table('products')->get();
-        // return response()->json([$request->a]);
         return response()->json($product);
     }
 
