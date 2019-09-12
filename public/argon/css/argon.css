@@ -21916,3 +21916,11 @@ html:not([dir='rtl']) .noUi-horizontal .noUi-handle
     cursor: inherit;
     display: block;
 }
+
+.ads-container{
+    width: 100%;
+    margin-right: 0;
+    margin-left: 0;
+    padding-right: 0;
+    padding-left: 0;
+}

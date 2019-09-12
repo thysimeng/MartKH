@@ -20,20 +20,57 @@ class UserHomeController extends Controller
 {
     public function index(){
         $productPopular = DB::table('products')->limit(9)->get();
-        $adsMiddle = DB::table('ads')
+        $adsMiddle1 = DB::table('ads')
                 ->where([
                     ['template_id', '=', '1'],
                     ['position', '=', 'middle1'],
                 ])
                     ->get();
-        $adsLeft = DB::table('ads')
+        $adsLeft1 = DB::table('ads')
                 ->where([
                     ['template_id', '=', '1'],
                     ['position', '=', 'left1'],
                 ])
                     ->get();
+        $adsTopRight1 = DB::table('ads')
+                ->where([
+                    ['template_id', '=', '1'],
+                    ['position', '=', 'topRight1'],
+                ])
+                ->get();
+        $adsBottomRight1 = DB::table('ads')
+                ->where([
+                    ['template_id', '=', '1'],
+                    ['position', '=', 'bottomRight1'],
+                ])
+                    ->get();
+        
+        $adsLeft2 = DB::table('ads')
+                ->where([
+                    ['template_id', '=', '2'],
+                    ['position', '=', 'left2'],
+                ])
+                    ->get();
+        $adsTopRight2 = DB::table('ads')
+                ->where([
+                    ['template_id', '=', '2'],
+                    ['position', '=', 'topRight2'],
+                ])
+                ->get();
+        $adsBottomRight2 = DB::table('ads')
+                ->where([
+                    ['template_id', '=', '2'],
+                    ['position', '=', 'bottomRight2'],
+                ])
+                    ->get();
+        $adsMiddle3 = DB::table('ads')
+        ->where([
+            ['template_id', '=', '3'],
+            ['position', '=', 'middle3'],
+        ])
+            ->get();
                     // dd($ads);
-        return view('users.userHomePage', compact('productPopular', 'adsMiddle','adsLeft'));
+        return view('users.userHomePage', compact('productPopular', 'adsLeft1','adsMiddle1','adsTopRight1','adsBottomRight1','adsLeft2','adsTopRight2','adsBottomRight2','adsMiddle3'));
     }
 
     public function get(Request $request)
