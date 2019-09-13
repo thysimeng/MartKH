@@ -1,32 +1,5 @@
 <template>
-  <!-- <slide>
-      <div
-        class="single-slider-4 slider-height-6 bg-img"
-        style="background-image: url(https://www.facebook.com/images/fb_icon_325x325.png)"
-      >
-        <div class="container">
-          <div class="row">
-            <div class="ml-auto col-lg-6" style="background:rgba(255, 0, 0, 0.8);">
-              <div class="furniture-content fadeinup-animated mt-4 mb-4 ml-4">
-                <h2 class="animated" style="color:white;">Dairy Products</h2>
-                <p class="animated" style="color:white;">
-                  Lorem Ipsum is simply dummy text of the
-                  printing and typesetting
-                  industry.
-                </p>
-                <a
-                  class="furniture-slider-btn btn-hover animated"
-                  href="product-details.html"
-                  style="color:white;"
-                >Shop Now</a>
-              </div>
-            </div>
-          </div>
-        </div>
-      </div>
-  </slide>-->
-
-  <div class="banner-area3">
+  <!-- <div class="banner-area3">
     <div class="pl-100 pr-100">
       <div class="container">
         <div class="row no-gutters">
@@ -86,7 +59,6 @@
                       </div>
                     </slide>
                   </carousel>
-                  <!-- <div1></div1> -->
                 </div>
               </div>
               <div class="col-md-6">
@@ -172,67 +144,95 @@
         </div>
       </div>
     </div>
-  </div>
-  <!-- <slide>
-    </slide>
-    <slide>
-      <div class="banner-area3">
-        <div class="pl-100 pr-100">
-          <div class="container">
-            <div class="row no-gutters">
-              <div class="col-md-12 col-lg-4 col-xl-4">
-                <div class="banner-wrapper mrgn-negative">
-                  <a href="#">
-                    <img src="assets/img/banner/8.jpg" alt />
-                  </a>
-                  <div class="banner-wrapper2-content">
-                    <h3>Speatial</h3>
-                    <h2>Style</h2>
-                    <span>Start from $299.00</span>
-                  </div>
-                </div>
+  </div>-->
+  <div class="container-custom-1 mt-4">
+    <div class="row row-first no-gutters">
+      <div class="col-md-12 col-lg-6 order-lg-2 col-xl-3 order-xl-1 nopadding">
+        <div class="slider-area">
+          <div class="slider-active-3 owl-carousel owl-theme">
+            <div data-dot="<span></span>">
+              <img
+                :src="'uploads/ads_image/template1/adsLeft/'+ templateid[0].image"
+                style="object-fit:scale-down;max-height:700px;"
+                class="img-fluid float-left mt-2"
+                alt
+              />
+            </div>
+            <div data-dot="<span></span>">
+              <img
+                :src="'uploads/ads_image/template1/adsLeft/'+ templateid[0].image"
+                style="object-fit:scale-down;max-height:700px;"
+                class="img-fluid float-left mt-2"
+                alt
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-12 col-lg-12 order-lg-1 col-xl-6 order-xl-2 nopadding">
+        <div class="slider-area">
+          <div class="slider-active-4 owl-carousel owl-theme">
+            <div class="ads-img" data-dot="<span></span>">
+              <img
+                src="uploads/ads_image/template1/adsMiddle/1568275687.1568107607.1567392981.jpg"
+                style="object-fit:cover;"
+                class="img-fluid img-ads mt-2"
+                alt
+              />
+            </div>
+            <div class="ads-img" data-dot="<span></span>">
+              <img
+                src="uploads/ads_image/template1/adsMiddle/1568275687.1568107607.1567392981.jpg"
+                style="object-fit:cover;"
+                class="img-fluid img-ads mt-2"
+                alt
+              />
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-12 col-lg-6 order-lg-3 col-xl-3 order-xl-3 nopadding">
+        <div class="row no-gutters">
+          <div class="col-md-12 nopadding">
+            <div class="slider-area">
+              <div class="slider-active-3 owl-carousel owl-theme">
+                <img
+                  src="uploads/ads_image/template1/adsTopRight/1568275706.1568109172.grocery (2).jpg"
+                  style="object-fit:scale-down;max-height:350px"
+                  class="img-fluid float-right mt-2"
+                  alt
+                />
+                <img
+                  src="uploads/ads_image/template1/adsTopRight/1568275706.1568109172.grocery (2).jpg"
+                  style="object-fit:scale-down;max-height:350px"
+                  class="img-fluid float-right mt-2"
+                  alt
+                />
               </div>
-              <div class="col-md-12 col-lg-8 col-xl-8">
-                <div class="row no-gutters banner-mrg">
-                  <div class="col-md-6">
-                    <div class="banner-wrapper mrgn-b-5 mrgn-r-5">
-                      <img src="assets/img/banner/9.jpg" alt />
-                      <div class="banner-wrapper3-content">
-                        <a href="#">Shop Now</a>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="banner-wrapper mrgn-b-5">
-                      <img src="assets/img/banner/10.jpg" alt />
-                      <div class="banner-wrapper3-content banner-text-color">
-                        <a href="#">Shop Now</a>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="banner-wrapper mrgn-r-5">
-                      <img src="assets/img/banner/11.jpg" alt />
-                      <div class="banner-wrapper3-content">
-                        <a href="#">Shop Now</a>
-                      </div>
-                    </div>
-                  </div>
-                  <div class="col-md-6">
-                    <div class="banner-wrapper">
-                      <img src="assets/img/banner/12.jpg" alt />
-                      <div class="banner-wrapper3-content">
-                        <a href="#">Shop Now</a>
-                      </div>
-                    </div>
-                  </div>
-                </div>
+            </div>
+          </div>
+          <div class="col-md-12 nopadding">
+            <div class="slider-area">
+              <div class="slider-active-3 owl-carousel owl-theme">
+                <img
+                  src="uploads/ads_image/template1/adsBottomRight/1568275722.1568175438.grocery (2).jpg"
+                  style="object-fit:scale-down;max-height:350px"
+                  class="img-fluid float-right"
+                  alt
+                />
+                <img
+                  src="uploads/ads_image/template1/adsBottomRight/1568275722.1568175438.grocery (2).jpg"
+                  style="object-fit:scale-down;max-height:350px"
+                  class="img-fluid float-right"
+                  alt
+                />
               </div>
             </div>
           </div>
         </div>
       </div>
-  </slide>-->
+    </div>
+  </div>
 </template>
 
 <script>
@@ -240,13 +240,10 @@ import { Carousel, Slide } from "vue-carousel";
 // import div1 from "./subtemplate/div1.vue"
 export default {
   data() {
-    return {
-      //   data: [
-      //     '<div class="example-slide">Slide 1</div>',
-      //     '<div class="example-slide">Slide 2</div>',
-      //     '<div class="example-slide">Slide 3</div>'
-      //   ]
-    };
+    return {};
+  },
+  props:{
+      templateid: Array
   },
   components: {
     Carousel,

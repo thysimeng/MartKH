@@ -2014,12 +2014,31 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
+  name: "slideShow",
+  data: function data() {
+    return {
+      templateid: []
+    };
+  },
   components: {
     templateSlide1: _templateSlide_templateSlide1_vue__WEBPACK_IMPORTED_MODULE_0__["default"],
     templateSlide2: _templateSlide_templateSlide2_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
+  },
+  computed: {
+    templateID: function templateID() {
+      var currentObj = this;
+      axios.get("/slidetemplateID", {}).then(function (response) {
+        currentObj.templateid = response.data;
+      })["catch"](function (error) {
+        currentObj.templateid = error;
+      });
+    }
   }
 });
 
@@ -2277,12 +2296,10 @@ __webpack_require__.r(__webpack_exports__);
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
-    return {//   data: [
-      //     '<div class="example-slide">Slide 1</div>',
-      //     '<div class="example-slide">Slide 2</div>',
-      //     '<div class="example-slide">Slide 3</div>'
-      //   ]
-    };
+    return {};
+  },
+  props: {
+    templateid: Array
   },
   components: {
     Carousel: vue_carousel__WEBPACK_IMPORTED_MODULE_0__["Carousel"],
@@ -39345,7 +39362,34 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", [_c("div", [_c("templateSlide1")], 1)])
+  return _c(
+    "div",
+    [
+      _vm._v("\n  " + _vm._s(_vm.templateID) + "\n  "),
+      _vm._v(" "),
+      _vm._l(_vm.templateid, function(id) {
+        return _c(
+          "div",
+          { key: id.key, attrs: { data: id } },
+          [
+            id.template_id == 1
+              ? _c("templateSlide1", { attrs: { templateid: _vm.templateid } })
+              : _vm._e(),
+            _vm._v(" "),
+            id.template_id == 2
+              ? _c("h1", [_vm._v("Hello template 2")])
+              : _vm._e(),
+            _vm._v(" "),
+            id.template_id == 3
+              ? _c("h1", [_vm._v("Hello template 3")])
+              : _vm._e()
+          ],
+          1
+        )
+      })
+    ],
+    2
+  )
 }
 var staticRenderFns = []
 render._withStripped = true
@@ -39369,301 +39413,207 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "banner-area3" }, [
-    _c("div", { staticClass: "pl-100 pr-100" }, [
-      _c("div", { staticClass: "container" }, [
-        _c("div", { staticClass: "row no-gutters" }, [
-          _c(
-            "div",
-            { staticClass: "col-md-12 col-lg-4 col-xl-4" },
-            [
-              _c(
-                "carousel",
-                {
-                  attrs: {
-                    "per-page": 1,
-                    "navigate-to": _vm.someLocalProperty,
-                    "mouse-drag": true,
-                    autoplay: true,
-                    autoplayTimeout: 2000,
-                    loop: true,
-                    paginationEnabled: false
-                  }
-                },
-                [
-                  _c("slide", [
-                    _c("div", { staticClass: "banner-wrapper mrgn-negative" }, [
-                      _c("a", { attrs: { href: "#" } }, [
-                        _c("img", {
-                          attrs: { src: "assets/img/banner/8.jpg", alt: "" }
-                        })
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "banner-wrapper2-content" }, [
-                        _c("h3", [_vm._v("Speatial")]),
-                        _vm._v(" "),
-                        _c("h2", [_vm._v("Style")]),
-                        _vm._v(" "),
-                        _c("span", [_vm._v("Start from $299.00")])
-                      ])
-                    ])
-                  ]),
-                  _vm._v(" "),
-                  _c("slide", [
-                    _c("div", { staticClass: "banner-wrapper mrgn-negative" }, [
-                      _c("a", { attrs: { href: "#" } }, [
-                        _c("img", {
-                          attrs: { src: "assets/img/banner/8.jpg", alt: "" }
-                        })
-                      ]),
-                      _vm._v(" "),
-                      _c("div", { staticClass: "banner-wrapper2-content" }, [
-                        _c("h3", [_vm._v("Speatial")]),
-                        _vm._v(" "),
-                        _c("h2", [_vm._v("Style")]),
-                        _vm._v(" "),
-                        _c("span", [_vm._v("Start from $299.00")])
-                      ])
-                    ])
-                  ])
-                ],
-                1
-              )
-            ],
-            1
-          ),
-          _vm._v(" "),
-          _c("div", { staticClass: "col-md-12 col-lg-8 col-xl-8" }, [
-            _c("div", { staticClass: "row no-gutters banner-mrg" }, [
-              _c("div", { staticClass: "col-md-6" }, [
-                _c(
-                  "div",
-                  { staticClass: "banner-wrapper mrgn-b-5 mrgn-r-5" },
-                  [
-                    _c(
-                      "carousel",
-                      {
-                        attrs: {
-                          "per-page": 1,
-                          "navigate-to": _vm.someLocalProperty,
-                          "mouse-drag": true,
-                          autoplay: true,
-                          autoplayTimeout: 2000,
-                          loop: true,
-                          paginationEnabled: false
-                        }
-                      },
-                      [
-                        _c("slide", [
-                          _c("img", {
-                            attrs: { src: "assets/img/banner/9.jpg", alt: "" }
-                          }),
-                          _vm._v(" "),
-                          _c(
-                            "div",
-                            { staticClass: "banner-wrapper3-content" },
-                            [
-                              _c("a", { attrs: { href: "#1" } }, [
-                                _vm._v("Shop Now")
-                              ])
-                            ]
-                          )
-                        ])
-                      ],
-                      1
-                    )
-                  ],
-                  1
-                )
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-md-6" }, [
-                _c(
-                  "div",
-                  { staticClass: "banner-wrapper mrgn-b-5" },
-                  [
-                    _c(
-                      "carousel",
-                      {
-                        attrs: {
-                          "per-page": 1,
-                          "navigate-to": _vm.someLocalProperty,
-                          "mouse-drag": true,
-                          autoplay: true,
-                          autoplayTimeout: 3000,
-                          loop: true,
-                          paginationEnabled: false
-                        }
-                      },
-                      [
-                        _c("slide", [
-                          _c("img", {
-                            attrs: { src: "assets/img/banner/10.jpg", alt: "" }
-                          }),
-                          _vm._v(" "),
-                          _c(
-                            "div",
-                            {
-                              staticClass:
-                                "banner-wrapper3-content banner-text-color"
-                            },
-                            [
-                              _c("a", { attrs: { href: "#2" } }, [
-                                _vm._v("Shop Now")
-                              ])
-                            ]
-                          )
-                        ]),
-                        _vm._v(" "),
-                        _c("slide", [
-                          _c("img", {
-                            attrs: { src: "assets/img/banner/10.jpg", alt: "" }
-                          }),
-                          _vm._v(" "),
-                          _c(
-                            "div",
-                            {
-                              staticClass:
-                                "banner-wrapper3-content banner-text-color"
-                            },
-                            [
-                              _c("a", { attrs: { href: "#2" } }, [
-                                _vm._v("Shop Now")
-                              ])
-                            ]
-                          )
-                        ])
-                      ],
-                      1
-                    )
-                  ],
-                  1
-                )
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-md-6" }, [
-                _c(
-                  "div",
-                  { staticClass: "banner-wrapper mrgn-r-5" },
-                  [
-                    _c(
-                      "carousel",
-                      {
-                        attrs: {
-                          "per-page": 1,
-                          "navigate-to": _vm.someLocalProperty,
-                          "mouse-drag": true,
-                          autoplay: true,
-                          autoplayTimeout: 2000,
-                          loop: true,
-                          paginationEnabled: false
-                        }
-                      },
-                      [
-                        _c("slide", [
-                          _c("img", {
-                            attrs: { src: "assets/img/banner/11.jpg", alt: "" }
-                          }),
-                          _vm._v(" "),
-                          _c(
-                            "div",
-                            { staticClass: "banner-wrapper3-content" },
-                            [
-                              _c("a", { attrs: { href: "#3" } }, [
-                                _vm._v("Shop Now")
-                              ])
-                            ]
-                          )
-                        ]),
-                        _vm._v(" "),
-                        _c("slide", [
-                          _c("img", {
-                            attrs: { src: "assets/img/banner/11.jpg", alt: "" }
-                          }),
-                          _vm._v(" "),
-                          _c(
-                            "div",
-                            { staticClass: "banner-wrapper3-content" },
-                            [
-                              _c("a", { attrs: { href: "#3" } }, [
-                                _vm._v("Shop Now")
-                              ])
-                            ]
-                          )
-                        ])
-                      ],
-                      1
-                    )
-                  ],
-                  1
-                )
-              ]),
-              _vm._v(" "),
-              _c("div", { staticClass: "col-md-6" }, [
-                _c(
-                  "div",
-                  { staticClass: "banner-wrapper" },
-                  [
-                    _c(
-                      "carousel",
-                      {
-                        attrs: {
-                          "per-page": 1,
-                          "navigate-to": _vm.someLocalProperty,
-                          "mouse-drag": true,
-                          autoplay: true,
-                          autoplayTimeout: 5000,
-                          loop: true,
-                          paginationEnabled: false
-                        }
-                      },
-                      [
-                        _c("slide", [
-                          _c("img", {
-                            attrs: { src: "assets/img/banner/12.jpg", alt: "" }
-                          }),
-                          _vm._v(" "),
-                          _c(
-                            "div",
-                            { staticClass: "banner-wrapper3-content" },
-                            [
-                              _c("a", { attrs: { href: "#4" } }, [
-                                _vm._v("Shop Now")
-                              ])
-                            ]
-                          )
-                        ]),
-                        _vm._v(" "),
-                        _c("slide", [
-                          _c("img", {
-                            attrs: { src: "assets/img/banner/12.jpg", alt: "" }
-                          }),
-                          _vm._v(" "),
-                          _c(
-                            "div",
-                            { staticClass: "banner-wrapper3-content" },
-                            [
-                              _c("a", { attrs: { href: "#4" } }, [
-                                _vm._v("Shop Now")
-                              ])
-                            ]
-                          )
-                        ])
-                      ],
-                      1
-                    )
-                  ],
-                  1
-                )
-              ])
-            ])
+  return _c("div", { staticClass: "container-custom-1 mt-4" }, [
+    _c("div", { staticClass: "row row-first no-gutters" }, [
+      _c(
+        "div",
+        {
+          staticClass:
+            "col-md-12 col-lg-6 order-lg-2 col-xl-3 order-xl-1 nopadding"
+        },
+        [
+          _c("div", { staticClass: "slider-area" }, [
+            _c(
+              "div",
+              { staticClass: "slider-active-3 owl-carousel owl-theme" },
+              [
+                _c("div", { attrs: { "data-dot": "<span></span>" } }, [
+                  _c("img", {
+                    staticClass: "img-fluid float-left mt-2",
+                    staticStyle: {
+                      "object-fit": "scale-down",
+                      "max-height": "700px"
+                    },
+                    attrs: {
+                      src:
+                        "uploads/ads_image/template1/adsLeft/" +
+                        _vm.templateid[0].image,
+                      alt: ""
+                    }
+                  })
+                ]),
+                _vm._v(" "),
+                _c("div", { attrs: { "data-dot": "<span></span>" } }, [
+                  _c("img", {
+                    staticClass: "img-fluid float-left mt-2",
+                    staticStyle: {
+                      "object-fit": "scale-down",
+                      "max-height": "700px"
+                    },
+                    attrs: {
+                      src:
+                        "uploads/ads_image/template1/adsLeft/" +
+                        _vm.templateid[0].image,
+                      alt: ""
+                    }
+                  })
+                ])
+              ]
+            )
           ])
-        ])
-      ])
+        ]
+      ),
+      _vm._v(" "),
+      _vm._m(0),
+      _vm._v(" "),
+      _vm._m(1)
     ])
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      {
+        staticClass:
+          "col-md-12 col-lg-12 order-lg-1 col-xl-6 order-xl-2 nopadding"
+      },
+      [
+        _c("div", { staticClass: "slider-area" }, [
+          _c("div", { staticClass: "slider-active-4 owl-carousel owl-theme" }, [
+            _c(
+              "div",
+              {
+                staticClass: "ads-img",
+                attrs: { "data-dot": "<span></span>" }
+              },
+              [
+                _c("img", {
+                  staticClass: "img-fluid img-ads mt-2",
+                  staticStyle: { "object-fit": "cover" },
+                  attrs: {
+                    src:
+                      "uploads/ads_image/template1/adsMiddle/1568275687.1568107607.1567392981.jpg",
+                    alt: ""
+                  }
+                })
+              ]
+            ),
+            _vm._v(" "),
+            _c(
+              "div",
+              {
+                staticClass: "ads-img",
+                attrs: { "data-dot": "<span></span>" }
+              },
+              [
+                _c("img", {
+                  staticClass: "img-fluid img-ads mt-2",
+                  staticStyle: { "object-fit": "cover" },
+                  attrs: {
+                    src:
+                      "uploads/ads_image/template1/adsMiddle/1568275687.1568107607.1567392981.jpg",
+                    alt: ""
+                  }
+                })
+              ]
+            )
+          ])
+        ])
+      ]
+    )
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c(
+      "div",
+      {
+        staticClass:
+          "col-md-12 col-lg-6 order-lg-3 col-xl-3 order-xl-3 nopadding"
+      },
+      [
+        _c("div", { staticClass: "row no-gutters" }, [
+          _c("div", { staticClass: "col-md-12 nopadding" }, [
+            _c("div", { staticClass: "slider-area" }, [
+              _c(
+                "div",
+                { staticClass: "slider-active-3 owl-carousel owl-theme" },
+                [
+                  _c("img", {
+                    staticClass: "img-fluid float-right mt-2",
+                    staticStyle: {
+                      "object-fit": "scale-down",
+                      "max-height": "350px"
+                    },
+                    attrs: {
+                      src:
+                        "uploads/ads_image/template1/adsTopRight/1568275706.1568109172.grocery (2).jpg",
+                      alt: ""
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("img", {
+                    staticClass: "img-fluid float-right mt-2",
+                    staticStyle: {
+                      "object-fit": "scale-down",
+                      "max-height": "350px"
+                    },
+                    attrs: {
+                      src:
+                        "uploads/ads_image/template1/adsTopRight/1568275706.1568109172.grocery (2).jpg",
+                      alt: ""
+                    }
+                  })
+                ]
+              )
+            ])
+          ]),
+          _vm._v(" "),
+          _c("div", { staticClass: "col-md-12 nopadding" }, [
+            _c("div", { staticClass: "slider-area" }, [
+              _c(
+                "div",
+                { staticClass: "slider-active-3 owl-carousel owl-theme" },
+                [
+                  _c("img", {
+                    staticClass: "img-fluid float-right",
+                    staticStyle: {
+                      "object-fit": "scale-down",
+                      "max-height": "350px"
+                    },
+                    attrs: {
+                      src:
+                        "uploads/ads_image/template1/adsBottomRight/1568275722.1568175438.grocery (2).jpg",
+                      alt: ""
+                    }
+                  }),
+                  _vm._v(" "),
+                  _c("img", {
+                    staticClass: "img-fluid float-right",
+                    staticStyle: {
+                      "object-fit": "scale-down",
+                      "max-height": "350px"
+                    },
+                    attrs: {
+                      src:
+                        "uploads/ads_image/template1/adsBottomRight/1568275722.1568175438.grocery (2).jpg",
+                      alt: ""
+                    }
+                  })
+                ]
+              )
+            ])
+          ])
+        ])
+      ]
+    )
+  }
+]
 render._withStripped = true
 
 
@@ -58743,15 +58693,14 @@ __webpack_require__.r(__webpack_exports__);
 /*!************************************************************************************!*\
   !*** ./resources/js/components/usersComponent/mastercomponent/wishlistDisplay.vue ***!
   \************************************************************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _wishlistDisplay_vue_vue_type_template_id_447fcb5a___WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ./wishlistDisplay.vue?vue&type=template&id=447fcb5a& */ "./resources/js/components/usersComponent/mastercomponent/wishlistDisplay.vue?vue&type=template&id=447fcb5a&");
 /* harmony import */ var _wishlistDisplay_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ./wishlistDisplay.vue?vue&type=script&lang=js& */ "./resources/js/components/usersComponent/mastercomponent/wishlistDisplay.vue?vue&type=script&lang=js&");
-/* harmony reexport (unknown) */ for(var __WEBPACK_IMPORT_KEY__ in _wishlistDisplay_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__) if(__WEBPACK_IMPORT_KEY__ !== 'default') (function(key) { __webpack_require__.d(__webpack_exports__, key, function() { return _wishlistDisplay_vue_vue_type_script_lang_js___WEBPACK_IMPORTED_MODULE_1__[key]; }) }(__WEBPACK_IMPORT_KEY__));
-/* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
+/* empty/unused harmony star reexport *//* harmony import */ var _node_modules_vue_loader_lib_runtime_componentNormalizer_js__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! ../../../../../node_modules/vue-loader/lib/runtime/componentNormalizer.js */ "./node_modules/vue-loader/lib/runtime/componentNormalizer.js");
 
 
 
@@ -58781,7 +58730,7 @@ component.options.__file = "resources/js/components/usersComponent/mastercompone
 /*!*************************************************************************************************************!*\
   !*** ./resources/js/components/usersComponent/mastercomponent/wishlistDisplay.vue?vue&type=script&lang=js& ***!
   \*************************************************************************************************************/
-/*! no static exports found */
+/*! exports provided: default */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";

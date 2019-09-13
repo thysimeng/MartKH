@@ -29,7 +29,6 @@ class ProductsController extends Controller
         ->select('products.*', 'categories.categories_name')
         ->where('category_id', '=', 1)
         ->get();
-        // $food = DB::table('products')->where('id', '=', 3)->get();
         return response()->json($product);
     }
     public function categories1()
@@ -44,6 +43,10 @@ class ProductsController extends Controller
         return response()->json($product);
     }
 
+    public function slideID(){
+        $slideID = DB::table('ads')->where('id', '=', 1)->get();
+        return response()->json($slideID);
+    }
     public function search(Request $request){
         $product = $request->searchInput;
         $product = Products::where('name', 'like', '%'.$product.'%')->get();

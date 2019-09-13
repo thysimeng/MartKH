@@ -43,7 +43,7 @@ Route::group(['middleware' => ['web','auth','checkUserRole']], function () {
 	Route::post('admin/ads/adsLeft2', 'Admin\AdsController@adsLeftUpload2')->name('adsLeft2.upload');
 	Route::post('admin/ads/adsTopRight2', 'Admin\AdsController@adsTopRightUpload2')->name('adsTopRight2.upload');
 	Route::post('admin/ads/adsBottomRight2', 'Admin\AdsController@adsBottomRightUpload2')->name('adsBottomRight2.upload');
-	Route::post('admin/ads/adsMiddle3', 'Admin\AdsController@adsMiddleUpload3')->name('adsMiddle3.upload');	
+	Route::post('admin/ads/adsMiddle3', 'Admin\AdsController@adsMiddleUpload3')->name('adsMiddle3.upload');
 	// End ads controller
 	Route::post('/delete/{pid}', 'Admin\ProductController@destroy')->name('products.destroy');
 	Route::post('admin/franchises/linkAccount',['as' => 'franchises.linkAccount', 'uses' => 'Admin\FranchiseController@linkAccount']);
@@ -114,6 +114,8 @@ Route::get('/users/food', 'UsersController\ProductsController@food')->name('prod
 Route::get('/categoriesAll', 'UsersController\ProductsController@categories')->name('categories');
 Route::get('/categories1', 'UsersController\ProductsController@categories1')->name('categories1');
 Route::get('/wishlistproducts', 'UsersController\ProductsController@wishlistproducts')->name('wishlistproducts');
+// route for get slide template ID display
+Route::get('/slidetemplateID', 'UsersController\ProductsController@slideID')->name('slide-id');
 
 Route::post('/users/profile/update','UsersController\UserHomeController@updateUserProfile')->name('updateUserProfile');
 Route::post('/users/profile/upload','UsersController\UserHomeController@upload')->name('uploadProfile');
