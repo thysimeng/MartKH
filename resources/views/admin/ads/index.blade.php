@@ -80,7 +80,10 @@
                                     <div class="ads-container mt-1" style="overflow-y:scroll;height:700px;">
                                         <div id="imageLeftPreview1"></div>
                                         @foreach ($adsLeft1 as $adLeft1)
-                                            <img src="{{asset('uploads/ads_image/template1/adsLeft/' . $adLeft1->image)}}" alt="">
+                                            <div class="image-area">
+                                                <img src="{{asset('uploads/ads_image/template1/adsLeft/' . $adLeft1->image)}}" alt="">
+                                                <button class="btn remove-image" style="display: inline;" onclick="deleteAds('<?php echo $adLeft1->id; ?>')">&#215;</button>
+                                            </div>
                                         @endforeach
                                     </div>
                                 </div>
@@ -94,8 +97,10 @@
                                     <div class="ads-container mt-1" style="overflow-y:scroll;height:700px;">
                                         <div id="imageMiddlePreview1"></div>
                                         @foreach ($adsMiddle1 as $adMiddle1)
-                                        {{-- <img src="{{asset('uploads/Test/' . $ad->image)}}" alt=""> --}}
-                                            <img src="{{asset('uploads/ads_image/template1/adsMiddle/' . $adMiddle1->image)}}" alt="">
+                                            <div class="image-area">                                        
+                                                <img src="{{asset('uploads/ads_image/template1/adsMiddle/' . $adMiddle1->image)}}" alt="">
+                                                <button class="btn remove-image" style="display: inline;" onclick="deleteAds('<?php echo $adMiddle1->id; ?>')">&#215;</button>
+                                            </div>
                                         @endforeach
                                     </div>
                                 </div>
@@ -111,8 +116,10 @@
                                             <div class="ads-container mt-1" style="overflow-y:scroll;height:700px;">
                                                 <div id="imageTopRightPreview1"></div>
                                                 @foreach ($adsTopRight1 as $adTopRight1)
-                                                {{-- <img src="{{asset('uploads/Test/' . $ad->image)}}" alt=""> --}}
-                                                    <img src="{{asset('uploads/ads_image/template1/adsTopRight/' . $adTopRight1->image)}}" alt="">
+                                                    <div class="image-area">
+                                                        <img src="{{asset('uploads/ads_image/template1/adsTopRight/' . $adTopRight1->image)}}" alt="">
+                                                        <button class="btn remove-image" style="display: inline;" onclick="deleteAds('<?php echo $adTopRight1->id; ?>')">&#215;</button>
+                                                    </div>
                                                 @endforeach
                                             </div>
                                         </div>
@@ -128,8 +135,10 @@
                                             <div class="ads-container mt-1" style="overflow-y:scroll;height:700px;">
                                                 <div id="imageBottomRightPreview1"></div>
                                                 @foreach ($adsBottomRight1 as $adBottomRight1)
-                                                {{-- <img src="{{asset('uploads/Test/' . $ad->image)}}" alt=""> --}}
-                                                    <img src="{{asset('uploads/ads_image/template1/adsBottomRight/' . $adBottomRight1->image)}}" alt="">
+                                                    <div class="image-area">
+                                                        <img src="{{asset('uploads/ads_image/template1/adsBottomRight/' . $adBottomRight1->image)}}" alt="">
+                                                        <button class="btn remove-image" style="display: inline;" onclick="deleteAds('<?php echo $adBottomRight1->id; ?>')">&#215;</button>
+                                                    </div>
                                                 @endforeach
                                             </div>
                                         </div>
@@ -165,8 +174,10 @@
                                     <div class="ads-container mt-1" style="overflow-y:scroll;height:960px;">
                                         <div id="imageLeftPreview2"></div>
                                         @foreach ($adsLeft2 as $adLeft2)
-                                        {{-- <img src="{{asset('uploads/Test/' . $ad->image)}}" alt=""> --}}
-                                            <img src="{{asset('uploads/ads_image/template2/adsLeft/' . $adLeft2->image)}}" alt="">
+                                            <div class="image-area">
+                                                <img src="{{asset('uploads/ads_image/template2/adsLeft/' . $adLeft2->image)}}" alt="">
+                                                <button class="btn remove-image" style="display: inline;" onclick="deleteAds('<?php echo $adLeft2->id; ?>')">&#215;</button>
+                                            </div>
                                         @endforeach
                                     </div>
                                 </div>
@@ -196,8 +207,10 @@
                                             <div class="ads-container mt-1" style="overflow-y:scroll;height:700px;">
                                                 <div id="imageTopRightPreview2"></div>
                                                 @foreach ($adsTopRight2 as $adTopRight2)
-                                                {{-- <img src="{{asset('uploads/Test/' . $ad->image)}}" alt=""> --}}
-                                                    <img src="{{asset('uploads/ads_image/template2/adsTopRight/' . $adTopRight2->image)}}" alt="">
+                                                    <div class="image-area">                                                
+                                                        <img src="{{asset('uploads/ads_image/template2/adsTopRight/' . $adTopRight2->image)}}" alt="">
+                                                        <button class="btn remove-image" style="display: inline;" onclick="deleteAds('<?php echo $adTopRight2->id; ?>')">&#215;</button>
+                                                    </div>
                                                 @endforeach
                                             </div>
                                         </div>
@@ -213,8 +226,10 @@
                                             <div class="ads-container mt-1" style="overflow-y:scroll;height:700px;">
                                                 <div id="imageBottomRightPreview2"></div>
                                                 @foreach ($adsBottomRight2 as $adBottomRight2)
-                                                {{-- <img src="{{asset('uploads/Test/' . $ad->image)}}" alt=""> --}}
-                                                    <img src="{{asset('uploads/ads_image/template2/adsBottomRight/' . $adBottomRight2->image)}}" alt="">
+                                                    <div class="image-area">
+                                                        <img src="{{asset('uploads/ads_image/template2/adsBottomRight/' . $adBottomRight2->image)}}" alt="">
+                                                        <button class="btn remove-image" style="display: inline;" onclick="deleteAds('<?php echo $adBottomRight2->id; ?>')">&#215;</button>
+                                                    </div>
                                                 @endforeach
                                             </div>
                                         </div>
@@ -250,8 +265,10 @@
                                     <div class="ads-container mt-1" style="overflow-y:scroll;height:700px;">
                                         <div id="imageMiddlePreview3"></div>
                                         @foreach ($adsMiddle3 as $adMiddle3)
-                                        {{-- <img src="{{asset('uploads/Test/' . $ad->image)}}" alt=""> --}}
-                                            <img src="{{asset('uploads/ads_image/template3/adsMiddle/' . $adMiddle3->image)}}" alt="">
+                                            <div class="image-area">                                        
+                                                <img src="{{asset('uploads/ads_image/template3/adsMiddle/' . $adMiddle3->image)}}" alt="">
+                                                <button class="btn remove-image" style="display: inline;" onclick="deleteAds('<?php echo $adMiddle3->id; ?>')">&#215;</button>
+                                            </div>
                                         @endforeach
                                     </div>
                                 </div>
@@ -267,22 +284,6 @@
         @include('layouts.footers.auth')
     </div>
         <script>
-            // $('.delete-btn').click(function(e){
-            //     e.preventDefault();
-            //     Swal.fire({
-            //         title: 'Warning',
-            //         text: "Are you sure you want to delete this ads?",
-            //         type: 'warning',
-            //         showCancelButton: true,
-            //         confirmButtonColor: '#3085d6',
-            //         cancelButtonColor: '#d33',
-            //         confirmButtonText: 'Yes'
-            //     }).then((result) => {
-            //     if (result.value) {
-            //         this.parentElement.submit()
-            //     }
-            //     })
-            // });
             $(document).ready(function(){
                 // click hidden upload button 
                 $("#adsLeftButton1").click(function(){
@@ -420,7 +421,7 @@
                 // if upload success
                 $('form').ajaxForm(function() 
                 {
-                    alert("Uploaded SuccessFully");
+                    // alert("Uploaded SuccessFully");
                     $('#submitFormLeft1').resetForm();
                     $('#submitFormMiddle1').resetForm();
                     $('#submitFormTopRight1').resetForm();
@@ -433,7 +434,45 @@
                 }); 
                 
             });
-                
+            function deleteAds(id){
+                Swal.fire({
+                    position: 'center',
+                    title: 'Warning',
+                    text: "Are you sure you want to remove this ads?",
+                    type: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#2dce89',
+                    cancelButtonColor: '#f5365c',
+                    confirmButtonText: 'Yes',
+                    // showLoaderOnConfirm: true,
+                    // preF
+                }).then((result) => {
+                    if (result.value) {
+                        let URL = '<?php echo URL::to('/') ?>';
+                        console.log(URL);
+                        let token = '<?php echo csrf_token() ?>';
+                        // console.log(token);                        
+                        $.ajax({
+                            type:'DELETE',
+                            url:`${URL}/admin/ads/${id}` ,
+                            // data: { _token: token, product_id: id },
+                            data: { _token: token },
+                            success:function(data) {
+                                window.location.href = `${URL}/admin/ads`;
+                                // Swal.fire(
+                                //     'Deleted!',
+                                //     'Your file has been deleted.',
+                                //     'success'
+                                // )
+                            },
+                            error: function(error){
+                                console.log("Error",error);
+                            }
+                        });
+                        
+                    }   
+                })
+            }
         </script>
 @endsection
 

@@ -9,7 +9,6 @@ use RealRashid\SweetAlert\Facades\Alert;
 use Image;
 use File;
 use DB;
-
 class AdsController extends Controller
 {
     /**
@@ -81,7 +80,7 @@ class AdsController extends Controller
      */
     public function create()
     {
-        return view('admin.ads.create');
+        //
     }
 
     /**
@@ -92,25 +91,7 @@ class AdsController extends Controller
      */
     public function store(Request $request)
     {
-        $this-> validate($request,[
-            'image' => 'image|mimetypes:image/jpg,image/jpeg,image/png|max:2048',
-            'name' => 'required|unique:ads',    
-        ]);
-        // return "yes";
-        $ads = new Ads;
-        // store and resize image to folder uploads/ads_image
-        if($request->hasFile('image')){
-            $image = $request->file('image');
-            $filename = time() . '.' . $image->getClientOriginalExtension();
-            Image::make($image)->resize(960, 700)->save( public_path('uploads\ads_image\\' . $filename ) );
-            Image::make($image)->save( public_path('uploads\ads_image\\' . $filename ) );
-            $ads->image = $filename;
-            // $ads->save();
-        };
-        $ads->name = $request->input('name');
-        $ads->save();
-        Alert::success('Ads Creation', 'Successfully Created');
-        return redirect()->route('ads.index');
+        //
     }
 
     /**
@@ -132,8 +113,7 @@ class AdsController extends Controller
      */
     public function edit($id)
     {
-        $ad = Ads::find($id);
-        return view('admin.ads.edit',compact('ad'));
+        //
     }
 
     /**
@@ -145,34 +125,7 @@ class AdsController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $ad = Ads::findOrFail($id);
-        $this-> validate($request,[
-            'imgDB' => '',
-            'image' => 'max:2048',
-            'name' => 'required|unique:ads,name,'.$ad->id,
-            'page' => '',
-        ]);
-        $page = $request->input('page');
-        if($request->hasFile('image')){
-            // upload a new file
-            $image = $request->file('image');
-            $image_old = $request->input('imgDB');
-            $filename = time() . '.' . $image->getClientOriginalExtension();
-            Image::make($image)->resize(960, 700)->save( public_path('uploads\ads_image\\' . $filename ) );
-            File::delete(public_path('uploads\ads_image\\' . $image_old));
-            $ad->image = $filename;
-            // $ads->save();
-        }
-        else {
-            // existing image file
-            $ad->image = $request->input('imgDB');
-        };
-        $ad->name = $request->input('name');
-        $ad->save();
-        // return redirect('/admin/ads')->withStatus(__('Ads successfully created.'));
-        Alert::success('Ads Update', 'Successfully Updated');
-        return redirect('admin/ads?page='.$page);
-        // return redirect()->route('ads.index')->withStatus(__('Ads successfully updated.'));
+        //
     }
 
     /**
@@ -184,10 +137,37 @@ class AdsController extends Controller
     public function destroy($id)
     {
         $ads = Ads::findOrFail($id);
-        $image_path = $ads->image;
-        File::delete(public_path('uploads\ads_image\\' . $image_path));
+        $image_name = $ads->image;
+        if($ads->position === 'left1'){
+            File::delete(public_path('uploads\ads_image\template1\adsLeft\\' . $image_name));
+        }
+        elseif($ads->position === 'middle1'){
+            File::delete(public_path('uploads\ads_image\template1\adsMiddle\\' . $image_name));            
+        }
+        elseif($ads->position === 'topRight1'){
+            File::delete(public_path('uploads\ads_image\template1\adsTopRight\\' . $image_name));
+        }
+        elseif($ads->position === 'bottomRight1'){
+            File::delete(public_path('uploads\ads_image\template1\adsBottomRight\\' . $image_name));
+        }
+        elseif($ads->position === 'left2'){
+            File::delete(public_path('uploads\ads_image\template2\adsLeft\\' . $image_name));
+        }
+        elseif($ads->position === 'topRight2'){
+            File::delete(public_path('uploads\ads_image\template2\adsTopRight\\' . $image_name));
+        }
+        elseif($ads->position === 'bottomRight2'){
+            File::delete(public_path('uploads\ads_image\template2\adsBottomRight\\' . $image_name));            
+        }
+        elseif($ads->position === 'middle3'){
+            File::delete(public_path('uploads\ads_image\template3\adsMiddle\\' . $image_name));            
+        }
         $ads->delete();
-        return redirect()->route('ads.index');
+        // return redirect()->route('ads.index');
+        Alert::success('Delete Ads', 'Successfully Deleted Ads');
+        return response()->json([
+            'success' => 'Record deleted successfully!'
+        ]);
     }
 
     public function adsLeftUpload1(Request $request){
@@ -213,8 +193,7 @@ class AdsController extends Controller
                 $adsDB->save(); 
             }
         }
-        
-        // Alert::success('Product Creation', 'Successfully Created');
+        Alert::success('Ads Uploading Status', 'Successfully Uploaded');
         // return redirect()->route('ads.index');
         return response()->json(['success'=>'Images Uploaded Successfully.']);
     }
@@ -242,7 +221,7 @@ class AdsController extends Controller
                 $adsDB->save(); 
             }
         }
-        // Alert::success('Product Creation', 'Successfully Created');
+        Alert::success('Ads Uploading Status', 'Successfully Uploaded');
         // return redirect()->route('ads.index');
         return response()->json(['success'=>'Images Uploaded Successfully.']);
     }
@@ -270,7 +249,7 @@ class AdsController extends Controller
                 $adsDB->save(); 
             }
         }
-        // Alert::success('Product Creation', 'Successfully Created');
+        Alert::success('Ads Uploading Status', 'Successfully Uploaded');
         // return redirect()->route('ads.index');
         return response()->json(['success'=>'Images Uploaded Successfully.']);
     }
@@ -298,7 +277,7 @@ class AdsController extends Controller
                 $adsDB->save(); 
             }
         }
-        // Alert::success('Product Creation', 'Successfully Created');
+        Alert::success('Ads Uploading Status', 'Successfully Uploaded');
         // return redirect()->route('ads.index');
         return response()->json(['success'=>'Images Uploaded Successfully.']);
     }
@@ -325,7 +304,8 @@ class AdsController extends Controller
                 // dd($adsDB);
                 $adsDB->save(); 
             }
-        }    
+        }
+        Alert::success('Ads Uploading Status', 'Successfully Uploaded');    
         return response()->json(['success'=>'Images Uploaded Successfully.']);
     }
 
@@ -352,6 +332,7 @@ class AdsController extends Controller
                 $adsDB->save(); 
             }
         }
+        Alert::success('Ads Uploading Status', 'Successfully Uploaded');
         return response()->json(['success'=>'Images Uploaded Successfully.']);
     }
 
@@ -378,6 +359,7 @@ class AdsController extends Controller
                 $adsDB->save(); 
             }
         }
+        Alert::success('Ads Uploading Status', 'Successfully Uploaded');
         return response()->json(['success'=>'Images Uploaded Successfully.']);
     }
     
@@ -404,7 +386,7 @@ class AdsController extends Controller
                 $adsDB->save(); 
             }
         }
-        // Alert::success('Product Creation', 'Successfully Created');
+        Alert::success('Ads Uploading Status', 'Successfully Uploaded');
         // return redirect()->route('ads.index');
         return response()->json(['success'=>'Images Uploaded Successfully.']);
     }
