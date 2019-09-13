@@ -115,7 +115,9 @@ Route::get('/categoriesAll', 'UsersController\ProductsController@categories')->n
 Route::get('/categories1', 'UsersController\ProductsController@categories1')->name('categories1');
 Route::get('/wishlistproducts', 'UsersController\ProductsController@wishlistproducts')->name('wishlistproducts');
 // route for get slide template ID display
-Route::get('/slidetemplateID', 'UsersController\ProductsController@slideID')->name('slide-id');
+Route::get('/adsTemplateID', 'UsersController\ProductsController@adsID')->name('ads.id');
+Route::get('/setTemplateID', 'UsersController\ProductsController@setTemplateID')->name('setTemplate.id');
+Route::get('/slidedatadisplay', 'UsersController\ProductsController@slidedatadisplay')->name('slide-data-display');
 
 Route::post('/users/profile/update','UsersController\UserHomeController@updateUserProfile')->name('updateUserProfile');
 Route::post('/users/profile/upload','UsersController\UserHomeController@upload')->name('uploadProfile');

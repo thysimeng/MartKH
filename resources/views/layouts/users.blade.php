@@ -42,6 +42,8 @@
 <body>
     <div id="app">
         <!-- header start -->
+        {{-- template id getter --}}
+        <span style="display:none;">@{{ templateID }}</span>
         <header>
             <div class="header-top-furniture wrapper-padding-2 res-header-sm">
                 <div class="container-fluid">

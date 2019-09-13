@@ -148,7 +148,10 @@
                         </div>
                     </div>
                     <div class="card-footer text-center">
-                        <button class="align-items-center btn btn-success">Apply</button>
+                        <form action="{{route('ads.id')}}" method="GET">
+                            <input type="hidden" name="template_id" value="1">
+                            <input type="submit" class="align-items-center btn btn-success" value="Apply">
+                        </form>
                     </div>
                 </div>
                 {{-- template 2 --}}
@@ -239,7 +242,11 @@
                         </div>
                     </div>
                     <div class="card-footer text-center">
-                        <button class="align-items-center btn btn-success">Apply</button>
+                        {{-- <button class="align-items-center btn btn-success">Apply</button> --}}
+                        <form action="{{route('ads.id')}}" method="GET">
+                            <input type="hidden" name="template_id" value="2">
+                            <input type="submit" class="align-items-center btn btn-success" value="Apply">
+                        </form>
                     </div>
                 </div>
                 {{-- template 3 --}}
@@ -276,7 +283,11 @@
                         </div>
                     </div>
                     <div class="card-footer text-center">
-                        <button class="align-items-center btn btn-success">Apply</button>
+                        {{-- <button class="align-items-center btn btn-success">Apply</button> --}}
+                        <form action="{{route('ads.id')}}" method="GET">
+                            <input type="hidden" name="template_id" value="3">
+                            <input type="submit" class="align-items-center btn btn-success" value="Apply">
+                        </form>
                     </div>
                 </div>  
             </div>
@@ -430,7 +441,7 @@
                     $('#submitFormTopRight2').resetForm();
                     $('#submitFormBottomRight2').resetForm();
                     $('#submitFormMiddle3').resetForm();
-                    window.location.href = "{{ URL::route('ads.index') }}"
+                    // window.location.href = "{{ URL::route('ads.index') }}"
                 }); 
                 
             });

@@ -7540,7 +7540,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../../node_module
 
 
 // module
-exports.push([module.i, "\n.example-slide[data-v-33355f42] {\n  align-items: center;\n  background-color: #666;\n  color: #999;\n  display: flex;\n  font-size: 1.5rem;\n  justify-content: center;\n  min-height: 10rem;\n}\n", ""]);
+exports.push([module.i, "\n.example-slide[data-v-33355f42] {\r\n  align-items: center;\r\n  background-color: #666;\r\n  color: #999;\r\n  display: flex;\r\n  font-size: 1.5rem;\r\n  justify-content: center;\r\n  min-height: 10rem;\n}\r\n", ""]);
 
 // exports
 
@@ -7559,7 +7559,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../../node_module
 
 
 // module
-exports.push([module.i, "\n.template-slide[data-v-334376c3] {\n  /* align-items: center;\n  background-color: #666;\n  color: #999;\n  display: flex;\n  font-size: 1.5rem;\n  justify-content: center; */\n  min-height: 10rem;\n}\n*[data-v-334376c3] {\n  box-sizing: border-box;\n}\n/* Create two equal columns that floats next to each other */\n.column[data-v-334376c3] {\n  float: left;\n  width: 50%;\n  padding: 10px;\n  height: 300px; /* Should be removed. Only for demonstration */\n}\n\n/* Clear floats after the columns */\n.row[data-v-334376c3]:after {\n  content: \"\";\n  display: table;\n  clear: both;\n}\n", ""]);
+exports.push([module.i, "\n.template-slide[data-v-334376c3] {\r\n  /* align-items: center;\r\n  background-color: #666;\r\n  color: #999;\r\n  display: flex;\r\n  font-size: 1.5rem;\r\n  justify-content: center; */\r\n  min-height: 10rem;\n}\n*[data-v-334376c3] {\r\n  box-sizing: border-box;\n}\r\n/* Create two equal columns that floats next to each other */\n.column[data-v-334376c3] {\r\n  float: left;\r\n  width: 50%;\r\n  padding: 10px;\r\n  height: 300px; /* Should be removed. Only for demonstration */\n}\r\n\r\n/* Clear floats after the columns */\n.row[data-v-334376c3]:after {\r\n  content: \"\";\r\n  display: table;\r\n  clear: both;\n}\r\n", ""]);
 
 // exports
 
@@ -7578,7 +7578,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, "\n.backgroundred[data-v-0dfa003e] {\n  background: red;\n}\n", ""]);
+exports.push([module.i, "\n.backgroundred[data-v-0dfa003e] {\r\n  background: red;\n}\r\n", ""]);
 
 // exports
 
@@ -57926,7 +57926,8 @@ var app = new Vue({
     producthome: [],
     productid: [],
     productID: Number,
-    shownitification: false
+    shownitification: false,
+    templateid: 1
   },
   store: _components_usersComponent_mainAPI_productsReader__WEBPACK_IMPORTED_MODULE_13__["default"],
   router: router,
@@ -57962,6 +57963,14 @@ var app = new Vue({
   computed: _objectSpread({}, Object(vuex__WEBPACK_IMPORTED_MODULE_4__["mapGetters"])(["productsFoodHome"]), {
     productsCategory: function productsCategory() {
       return this.$store.getters.productsFoodHome;
+    },
+    templateID: function templateID() {
+      var currentObj = this;
+      axios.get("/setTemplateID", {}).then(function (response) {
+        currentObj.templateid = response.data;
+      })["catch"](function (error) {
+        currentObj.templateid = error;
+      });
     }
   })
 });
@@ -59184,8 +59193,8 @@ var routes = [{
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! E:\Project_IP\MartKH\MartKH Git\MartKH\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! E:\Project_IP\MartKH\MartKH Git\MartKH\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\asd\Documents\GitHub\MartKH\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\asd\Documents\GitHub\MartKH\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })

@@ -46,7 +46,8 @@ const app = new Vue({
         producthome: [],
         productid: [],
         productID: Number,
-        shownitification: false
+        shownitification: false,
+        templateid: 1
     },
     store,
     router,
@@ -83,7 +84,18 @@ const app = new Vue({
         ...mapGetters(["productsFoodHome"]),
         productsCategory() {
             return this.$store.getters.productsFoodHome;
-        }
+        },
+        templateID() {
+            let currentObj = this;
+            axios
+              .get("/setTemplateID", {})
+              .then(function(response) {
+                currentObj.templateid = response.data;
+              })
+              .catch(function(error) {
+                currentObj.templateid = error;
+              });
+          }
     },
 
 });
