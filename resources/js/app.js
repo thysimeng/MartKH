@@ -4,11 +4,15 @@ window.Vue = require('vue');
 import VueRouter from 'vue-router';
 import VueCarousel from 'vue-carousel';
 import { routes } from './routes';
+import Notifications from 'vue-notification';
 
 import { mapGetters } from "vuex";
 import modalQuickView from "./components/usersComponent/shopComponent/modalQuickView.vue";
-//Wish List
+
+//master component
 import addTowishList from "./components/usersComponent/mastercomponent/addTowishList.vue";
+import wishlistDisplay from "./components/usersComponent/mastercomponent/wishlistDisplay.vue";
+// import nitification from "./components/usersComponent/mastercomponent/nitification.vue";
 
 // Home
 import productSearch from './components/usersComponent/search/productSearch.vue';
@@ -24,7 +28,8 @@ import allProductDisplay from './components/usersComponent/shopComponent/allProd
 import store from './components/usersComponent/mainAPI/productsReader';
 
 Vue.use(VueRouter);
-Vue.use(VueRouter);
+Vue.use(VueCarousel);
+Vue.use(Notifications);
 
 const router = new VueRouter({
     routes,
@@ -41,6 +46,8 @@ const app = new Vue({
         producthome: [],
         productid: [],
         productID: Number,
+        shownitification: false,
+        templateid: 1
     },
     store,
     router,
@@ -52,8 +59,11 @@ const app = new Vue({
             return this.show = true
         },
         quickView(PID, v, name, description) {
-            return this.producthome.push(PID, v, name, description), this.showmodal=true;
+            return this.producthome.push(PID, v, name, description), this.showmodal = true;
         },
+        datachange(){
+            this.shownitification = true;
+        }
     },
     components: {
         productSearch: productSearch,
@@ -62,7 +72,10 @@ const app = new Vue({
         productAll: productAll,
         modalQuickView: modalQuickView,
         slideShow: slideShow,
-        addTowishList: addTowishList
+        // Master component
+        addTowishList: addTowishList,
+        wishlistDisplay: wishlistDisplay
+        // nitification: nitification
     },
     mounted() {
         this.$store.dispatch("fetchProductsFood");
@@ -71,6 +84,18 @@ const app = new Vue({
         ...mapGetters(["productsFoodHome"]),
         productsCategory() {
             return this.$store.getters.productsFoodHome;
-        }
+        },
+        templateID() {
+            let currentObj = this;
+            axios
+              .get("/setTemplateID", {})
+              .then(function(response) {
+                currentObj.templateid = response.data;
+              })
+              .catch(function(error) {
+                currentObj.templateid = error;
+              });
+          }
     },
+
 });

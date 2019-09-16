@@ -35,13 +35,15 @@
     <link rel="stylesheet" href="{{asset('assets/css/jquery-ui.structure.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/jquery-ui.theme.min.css')}}"> --}}
     <link rel="stylesheet" href="{{asset('assets/css/customize.css')}}">
-    
+
     <script src="{{asset('assets/js/vendor/modernizr-2.8.3.min.js')}}"></script>
 </head>
 
 <body>
     <div id="app">
         <!-- header start -->
+        {{-- template id getter --}}
+        <span style="display:none;">@{{ templateID }}</span>
         <header>
             <div class="header-top-furniture wrapper-padding-2 res-header-sm">
                 <div class="container-fluid">
@@ -304,7 +306,7 @@
                             </form>
                         </li>
                         </div>
-                        
+
                         @endif
                         @endauth
 
@@ -411,12 +413,12 @@
     </footer>
     {{-- footer end --}}
     </div>
-    
+
 
     <!-- all js here -->
     <script src="{{asset('/js/app.js')}}"></script>
     {{-- <script src="{{asset('/js/all.js')}}"></script> --}}
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    {{-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script> --}}
     {{-- <script src="{{asset('assets/js/vendor/jquery-1.12.0.min.js')}}"></script> --}}
     {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script> --}}
     <script src="{{asset('assets/js/popper.js')}}"></script>
@@ -437,6 +439,7 @@
     {{-- <script src="{{asset('assets/js/password-score.js')}}"></script>
     <script src="{{asset('assets/js/password-score-options.js')}}"></script>
     <script src="{{asset('assets/js/bootstrap-strength-meter.js')}}"></script> --}}
+
     @include('sweetalert::alert')
     @yield('script')
 </body>
@@ -445,7 +448,7 @@
 
 <script>
         $(document).ready(function(){
-            $("#StrengthProgressBar").zxcvbnProgressBar({ 
+            $("#StrengthProgressBar").zxcvbnProgressBar({
 			  passwordInput: "#password",
 			//   userInputs: userInputs,
 			  ratings: ["Very Weak", "Weak", "OK", "Strong", "Very strong"]

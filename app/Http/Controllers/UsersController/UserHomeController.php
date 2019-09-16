@@ -20,20 +20,57 @@ class UserHomeController extends Controller
 {
     public function index(){
         $productPopular = DB::table('products')->limit(9)->get();
-        $adsMiddle = DB::table('ads')
+        $adsMiddle1 = DB::table('ads')
                 ->where([
                     ['template_id', '=', '1'],
                     ['position', '=', 'middle1'],
                 ])
                     ->get();
-        $adsLeft = DB::table('ads')
+        $adsLeft1 = DB::table('ads')
                 ->where([
                     ['template_id', '=', '1'],
                     ['position', '=', 'left1'],
                 ])
                     ->get();
+        $adsTopRight1 = DB::table('ads')
+                ->where([
+                    ['template_id', '=', '1'],
+                    ['position', '=', 'topRight1'],
+                ])
+                ->get();
+        $adsBottomRight1 = DB::table('ads')
+                ->where([
+                    ['template_id', '=', '1'],
+                    ['position', '=', 'bottomRight1'],
+                ])
+                    ->get();
+        
+        $adsLeft2 = DB::table('ads')
+                ->where([
+                    ['template_id', '=', '2'],
+                    ['position', '=', 'left2'],
+                ])
+                    ->get();
+        $adsTopRight2 = DB::table('ads')
+                ->where([
+                    ['template_id', '=', '2'],
+                    ['position', '=', 'topRight2'],
+                ])
+                ->get();
+        $adsBottomRight2 = DB::table('ads')
+                ->where([
+                    ['template_id', '=', '2'],
+                    ['position', '=', 'bottomRight2'],
+                ])
+                    ->get();
+        $adsMiddle3 = DB::table('ads')
+        ->where([
+            ['template_id', '=', '3'],
+            ['position', '=', 'middle3'],
+        ])
+            ->get();
                     // dd($ads);
-        return view('users.userHomePage', compact('productPopular', 'adsMiddle','adsLeft'));
+        return view('users.userHomePage', compact('productPopular', 'adsLeft1','adsMiddle1','adsTopRight1','adsBottomRight1','adsLeft2','adsTopRight2','adsBottomRight2','adsMiddle3'));
     }
 
     public function get(Request $request)
@@ -67,6 +104,7 @@ class UserHomeController extends Controller
         }
         else {
             // return redirect()->back()->with('success', 'You already added this product.');
+            DB::table('wishlists')->where('wishlist_id', '=', $product_id)->delete();
             return response()->json($insert);
         }
         // $product_id = $request->productID;
@@ -82,7 +120,18 @@ class UserHomeController extends Controller
             array_push($data_product, $product);
         }
         // dd($data_product);
-        return view('users.contents.wishlist')->with(compact('data_product'));
+        return view('users.wishlist')->with(compact('data_product'));
+    }
+
+    public function wishlistdisplay(){
+        $user_id=auth::user()->id;
+        $wishlist = DB::table('wishlists')
+        ->join('products', 'wishlists.wishlist_id', '=', 'products.id')
+        ->where('wishlists.user_id', '=', $user_id)
+        ->select('products.*')
+        ->get();
+        // $wishlist = WishList::all();
+        return response()->json($wishlist);
     }
 
     public function deleteWishList(Request $request) {
@@ -109,7 +158,7 @@ class UserHomeController extends Controller
     public function updateUserProfile(ProfileRequest $request)
     {
         auth()->user()->update($request->all());
-        
+
         return back()->withStatus(__('Profile successfully updated.'));
     }
 
@@ -122,7 +171,7 @@ class UserHomeController extends Controller
 
     public function upload(Request $request)
     {
-        
+
         $request->validate([
             'avatar' => 'required|image|mimes:jpeg,jpg,png,gif,svg|max:2048|'
         ]);

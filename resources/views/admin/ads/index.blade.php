@@ -57,11 +57,12 @@
     <div class="container-fluid mt--7">
         <div class="row">
             <div class="col">
+                {{-- template 1 --}}
                 <div class="card shadow">
                     <div class="card-header border-0">
                         <div class="row align-items-center">
                             <div class="col-4">
-                                <h3 class="mb-0">Ads Animated</h3>
+                                <h3 class="mb-0">Animated Ads Template 1</h3>
                             </div>
                             {{-- <div class="col-8 text-right">
                                     <a href="ads/create" class="btn btn-sm btn-primary">{{ __('Add Ads') }}</a>
@@ -69,130 +70,421 @@
                         </div>
                         <div class="card-body p-0 pt-3">
                             <div class="row align-items-center">
-                                <div class="col-3" style="height:700px;border:1px solid black; overflow:hidden;">
-                                    <form action="{{ route('adsLeft.upload') }}" method="post" enctype="multipart/form-data" id="submitForm">
+                                <div class="col-3 border-right-0" style="height:700px;border:2px solid #f7931e; overflow:hidden;border-radius:5px;">
+                                    <form action="{{ route('adsLeft1.upload') }}" method="post" enctype="multipart/form-data" id="submitFormLeft1">
                                         @csrf
                                         <input type="file" id="adsLeft1" style="display: none;" name="adsLeft1[]" multiple/>
-                                        <button  class="btn" id="adsLeftButton1" style="width:100%;background:transparent;"><i class="fas fa-plus-circle"></i>Add Left</button>
-                                        <input type="submit" id="submitLeft" class="btn btn-success" style="width:100%;" name='submitImage' value="Upload Image"/>
+                                        <button  class="btn shadow-none--hover shadow-none" id="adsLeftButton1" style="width:100%;background:transparent;"><i class="fas fa-plus-circle text-success"></i>Add Left</button>
+                                        <input type="submit" id="submitLeft1" class="btn btn-success" style="width:100%;" name='submitImage' value="Upload Image"/>
                                     </form>
-                                    <div class="container mt-2" style="overflow-y:scroll;height:700px;">
-                                        <div id="image_preview"></div>
-                                        @foreach ($ads as $ad)
-                                        {{-- <img src="{{asset('uploads/Test/' . $ad->image)}}" alt=""> --}}
-                                            <img src="{{asset('uploads/ads_image/template1/adsLeft/' . $ad->image)}}" alt="">
+                                    <div class="ads-container mt-1" style="overflow-y:scroll;height:700px;">
+                                        <div id="imageLeftPreview1"></div>
+                                        @foreach ($adsLeft1 as $adLeft1)
+                                            <div class="image-area">
+                                                <img src="{{asset('uploads/ads_image/template1/adsLeft/' . $adLeft1->image)}}" alt="">
+                                                <button class="btn remove-image" style="display: inline;" onclick="deleteAds('<?php echo $adLeft1->id; ?>')">&#215;</button>
+                                            </div>
                                         @endforeach
                                     </div>
                                 </div>
-                                <div class="col-6" style="height:700px;overflow:hidden;border:1px solid black">
-                                        <input type="file" id="adsMiddle1" style="display:none;">
-                                        <button class="btn" id="adsMiddleButton1" style="width:100%;background:transparent;"><i class="fas fa-plus-circle"></i>Add Middle</button>
-                                    {{-- <form action="{{route('adsMiddle.upload')}}" method="post" enctype="multipart/form-data">
-                                        <input type="file" name="images[]" id="fileInput" multiple >
-                                        <input type="submit" name="submit" value="UPLOAD"/>
+                                <div class="col-6" style="height:700px;overflow:hidden;border:2px solid #f7931e;border-radius:5px;">
+                                    <form action="{{ route('adsMiddle1.upload') }}" method="post" enctype="multipart/form-data" id="submitFormMiddle1">
+                                        @csrf
+                                        <input type="file" id="adsMiddle1" style="display: none;" name="adsMiddle1[]" multiple/>
+                                        <button  class="btn shadow-none--hover shadow-none" id="adsMiddleButton1" style="width:100%;background:transparent;"><i class="fas fa-plus-circle text-success"></i>Add Middle</button>
+                                        <input type="submit" id="submitMiddle1" class="btn btn-success" style="width:100%;" name='submitImage' value="Upload Image"/>
                                     </form>
-                                    <div class="container mt-2" style="overflow-y:scroll;height:700px;">
-                                        <div id="show-image"></div>
-                                    </div> --}}
+                                    <div class="ads-container mt-1" style="overflow-y:scroll;height:700px;">
+                                        <div id="imageMiddlePreview1"></div>
+                                        @foreach ($adsMiddle1 as $adMiddle1)
+                                            <div class="image-area">                                        
+                                                <img src="{{asset('uploads/ads_image/template1/adsMiddle/' . $adMiddle1->image)}}" alt="">
+                                                <button class="btn remove-image" style="display: inline;" onclick="deleteAds('<?php echo $adMiddle1->id; ?>')">&#215;</button>
+                                            </div>
+                                        @endforeach
+                                    </div>
                                 </div>
-                                <div class="col-3" style="height:700px;overflow:hidden;border:1px solid black">
+                                <div class="col-3 border-left-0" style="height:700px;overflow:hidden;border:2px solid #f7931e;border-radius:5px;">
                                     <div class="row">
-                                        <div class="col-12" style="height:350px;overflow:hidden;border:1px solid black">
-                                                <input type="file" id="adsTopRight1" style="display:none;">
-                                                <button class="btn" id="adsTopRightButton1" style="width:100%;background:transparent;"><i class="fas fa-plus-circle"></i>Add Top Right</button>
+                                        <div class="col-12" style="height:350px;overflow:hidden;border-bottom:2px solid #f7931e">
+                                            <form action="{{ route('adsTopRight1.upload') }}" method="post" enctype="multipart/form-data" id="submitFormTopRight1">
+                                                @csrf
+                                                <input type="file" id="adsTopRight1" style="display: none;" name="adsTopRight1[]" multiple/>
+                                                <button  class="btn shadow-none--hover shadow-none" id="adsTopRightButton1" style="width:100%;background:transparent;"><i class="fas fa-plus-circle text-success"></i>Add Top Right</button>
+                                                <input type="submit" id="submitTopRight1" class="btn btn-success" style="width:100%;" name='submitImage' value="Upload Image"/>
+                                            </form>
+                                            <div class="ads-container mt-1" style="overflow-y:scroll;height:700px;">
+                                                <div id="imageTopRightPreview1"></div>
+                                                @foreach ($adsTopRight1 as $adTopRight1)
+                                                    <div class="image-area">
+                                                        <img src="{{asset('uploads/ads_image/template1/adsTopRight/' . $adTopRight1->image)}}" alt="">
+                                                        <button class="btn remove-image" style="display: inline;" onclick="deleteAds('<?php echo $adTopRight1->id; ?>')">&#215;</button>
+                                                    </div>
+                                                @endforeach
+                                            </div>
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-12" style="height:350px;overflow:hidden;border:1px solid black">
-                                                <input type="file" id="adsBottomRight1" style="display:none;">
-                                                <button class="btn" id="adsBottomRightButton1" style="width:100%;background:transparent;"><i class="fas fa-plus-circle"></i>Add Bottom Right</button>
+                                        <div class="col-12" style="height:350px;overflow:hidden;">
+                                            <form action="{{ route('adsBottomRight1.upload') }}" method="post" enctype="multipart/form-data" id="submitFormBottomRight1">
+                                                @csrf
+                                                <input type="file" id="adsBottomRight1" style="display: none;" name="adsBottomRight1[]" multiple/>
+                                                <button  class="btn shadow-none--hover shadow-none" id="adsBottomRightButton1" style="width:100%;background:transparent;"><i class="fas fa-plus-circle text-success"></i>Add BottomRight</button>
+                                                <input type="submit" id="submitBottomRight1" class="btn btn-success" style="width:100%;" name='submitImage' value="Upload Image"/>
+                                            </form>
+                                            <div class="ads-container mt-1" style="overflow-y:scroll;height:700px;">
+                                                <div id="imageBottomRightPreview1"></div>
+                                                @foreach ($adsBottomRight1 as $adBottomRight1)
+                                                    <div class="image-area">
+                                                        <img src="{{asset('uploads/ads_image/template1/adsBottomRight/' . $adBottomRight1->image)}}" alt="">
+                                                        <button class="btn remove-image" style="display: inline;" onclick="deleteAds('<?php echo $adBottomRight1->id; ?>')">&#215;</button>
+                                                    </div>
+                                                @endforeach
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
                             </div>        
                         </div>
                     </div>
-
-                    
+                    <div class="card-footer text-center">
+                        <form action="{{route('ads.id')}}" method="GET">
+                            <input type="hidden" name="template_id" value="1">
+                            <input type="submit" class="align-items-center btn btn-success" value="Apply">
+                        </form>
+                    </div>
                 </div>
+                {{-- template 2 --}}
+                <div class="card shadow mt-4">
+                    <div class="card-header border-0">
+                        <div class="row align-items-center">
+                            <div class="col-4">
+                                <h3 class="mb-0">Animated Ads Template 2</h3>
+                            </div>
+                            {{-- <div class="col-8 text-right">
+                                    <a href="ads/create" class="btn btn-sm btn-primary">{{ __('Add Ads') }}</a>
+                            </div> --}}
+                        </div>
+                        <div class="card-body p-0 pt-3">
+                            <div class="row align-items-center">
+                                <div class="col-8" style="height:960px;border:2px solid #f7931e; overflow:hidden;border-radius:5px;">
+                                    <form action="{{ route('adsLeft2.upload') }}" method="post" enctype="multipart/form-data" id="submitFormLeft2">                                    
+                                        @csrf
+                                        <input type="file" id="adsLeft2" style="display: none;" name="adsLeft2[]" multiple/>
+                                        <button  class="btn shadow-none--hover shadow-none" id="adsLeftButton2" style="width:100%;background:transparent;"><i class="fas fa-plus-circle text-success"></i>Add Left</button>
+                                        <input type="submit" id="submitLeft2" class="btn btn-success" style="width:100%;" name='submitImage' value="Upload Image"/>
+                                    </form>
+                                    <div class="ads-container mt-1" style="overflow-y:scroll;height:960px;">
+                                        <div id="imageLeftPreview2"></div>
+                                        @foreach ($adsLeft2 as $adLeft2)
+                                            <div class="image-area">
+                                                <img src="{{asset('uploads/ads_image/template2/adsLeft/' . $adLeft2->image)}}" alt="">
+                                                <button class="btn remove-image" style="display: inline;" onclick="deleteAds('<?php echo $adLeft2->id; ?>')">&#215;</button>
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                </div>
+                                {{-- <div class="col-6" style="height:700px;overflow:hidden;border:2px solid #f7931e;border-radius:5px;">
+                                    <form action="{{ route('adsMiddle1.upload') }}" method="post" enctype="multipart/form-data" id="submitFormMiddle1">
+                                        @csrf
+                                        <input type="file" id="adsMiddle1" style="display: none;" name="adsMiddle1[]" multiple/>
+                                        <button  class="btn" id="adsMiddleButton1" style="width:100%;background:transparent;"><i class="fas fa-plus-circle text-success"></i>Add Middle</button>
+                                        <input type="submit" id="submitMiddle" class="btn btn-success" style="width:100%;" name='submitImage' value="Upload Image"/>
+                                    </form>
+                                    <div class="container mt-2" style="overflow-y:scroll;height:700px;">
+                                        <div id="imageMiddlePreview1"></div>
+                                        @foreach ($ads as $ad)
+                                            <img src="{{asset('uploads/ads_image/template1/adsMiddle/' . $ad->image)}}" alt="">
+                                        @endforeach
+                                    </div>
+                                </div> --}}
+                                <div class="col-4 border-left-0" style="height:960px;overflow:hidden;border:2px solid #f7931e;border-radius:5px;">
+                                    <div class="row">
+                                        <div class="col-12" style="height:480px;overflow:hidden;border-bottom:2px solid #f7931e">
+                                            <form action="{{ route('adsTopRight2.upload') }}" method="post" enctype="multipart/form-data" id="submitFormTopRight2">
+                                                @csrf
+                                                <input type="file" id="adsTopRight2" style="display: none;" name="adsTopRight2[]" multiple/>
+                                                <button  class="btn shadow-none--hover shadow-none" id="adsTopRightButton2" style="width:100%;background:transparent;"><i class="fas fa-plus-circle text-success"></i>Add Top Right</button>
+                                                <input type="submit" id="submitTopRight2" class="btn btn-success" style="width:100%;" name='submitImage' value="Upload Image"/>
+                                            </form>
+                                            <div class="ads-container mt-1" style="overflow-y:scroll;height:700px;">
+                                                <div id="imageTopRightPreview2"></div>
+                                                @foreach ($adsTopRight2 as $adTopRight2)
+                                                    <div class="image-area">                                                
+                                                        <img src="{{asset('uploads/ads_image/template2/adsTopRight/' . $adTopRight2->image)}}" alt="">
+                                                        <button class="btn remove-image" style="display: inline;" onclick="deleteAds('<?php echo $adTopRight2->id; ?>')">&#215;</button>
+                                                    </div>
+                                                @endforeach
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-12" style="height:480px;overflow:hidden;">
+                                            <form action="{{ route('adsBottomRight2.upload') }}" method="post" enctype="multipart/form-data" id="submitFormBottomRight2">
+                                                @csrf
+                                                <input type="file" id="adsBottomRight2" style="display: none;" name="adsBottomRight2[]" multiple/>
+                                                <button  class="btn shadow-none--hover shadow-none" id="adsBottomRightButton2" style="width:100%;background:transparent;"><i class="fas fa-plus-circle text-success"></i>Add BottomRight</button>
+                                                <input type="submit" id="submitBottomRight" class="btn btn-success" style="width:100%;" name='submitImage' value="Upload Image"/>
+                                            </form>
+                                            <div class="ads-container mt-1" style="overflow-y:scroll;height:700px;">
+                                                <div id="imageBottomRightPreview2"></div>
+                                                @foreach ($adsBottomRight2 as $adBottomRight2)
+                                                    <div class="image-area">
+                                                        <img src="{{asset('uploads/ads_image/template2/adsBottomRight/' . $adBottomRight2->image)}}" alt="">
+                                                        <button class="btn remove-image" style="display: inline;" onclick="deleteAds('<?php echo $adBottomRight2->id; ?>')">&#215;</button>
+                                                    </div>
+                                                @endforeach
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>        
+                        </div>
+                    </div>
+                    <div class="card-footer text-center">
+                        {{-- <button class="align-items-center btn btn-success">Apply</button> --}}
+                        <form action="{{route('ads.id')}}" method="GET">
+                            <input type="hidden" name="template_id" value="2">
+                            <input type="submit" class="align-items-center btn btn-success" value="Apply">
+                        </form>
+                    </div>
+                </div>
+                {{-- template 3 --}}
+                <div class="card shadow mt-4">
+                    <div class="card-header border-0">
+                        <div class="row align-items-center">
+                            <div class="col-4">
+                                <h3 class="mb-0">Animated Ads Template 3</h3>
+                            </div>
+                            {{-- <div class="col-8 text-right">
+                                    <a href="ads/create" class="btn btn-sm btn-primary">{{ __('Add Ads') }}</a>
+                            </div> --}}
+                        </div>
+                        <div class="card-body p-0 pt-3">
+                            <div class="row align-items-center">
+                                <div class="col-12" style="height:1080x;overflow:hidden;border:2px solid #f7931e;border-radius:5px;">
+                                    <form action="{{ route('adsMiddle3.upload') }}" method="post" enctype="multipart/form-data" id="submitFormMiddle3" class="form-inline justify-content-center">
+                                        @csrf
+                                        <input type="file" id="adsMiddle3" style="display: none;" name="adsMiddle3[]" multiple/>
+                                        <button  class="btn shadow-none--hover shadow-none" id="adsMiddleButton3" style="width:100%;background:transparent;border:transparent;"><i class="fas fa-plus-circle text-success"></i>Add Middle</button>
+                                        <input type="submit" id="submitMiddle3" class="btn btn-success mt-2" style="width:100%;" name='submitImage' value="Upload Image"/>
+                                    </form>
+                                    <div class="ads-container mt-1" style="overflow-y:scroll;height:700px;">
+                                        <div id="imageMiddlePreview3"></div>
+                                        @foreach ($adsMiddle3 as $adMiddle3)
+                                            <div class="image-area">                                        
+                                                <img src="{{asset('uploads/ads_image/template3/adsMiddle/' . $adMiddle3->image)}}" alt="">
+                                                <button class="btn remove-image" style="display: inline;" onclick="deleteAds('<?php echo $adMiddle3->id; ?>')">&#215;</button>
+                                            </div>
+                                        @endforeach
+                                    </div>
+                                </div>
+                            </div>        
+                        </div>
+                    </div>
+                    <div class="card-footer text-center">
+                        {{-- <button class="align-items-center btn btn-success">Apply</button> --}}
+                        <form action="{{route('ads.id')}}" method="GET">
+                            <input type="hidden" name="template_id" value="3">
+                            <input type="submit" class="align-items-center btn btn-success" value="Apply">
+                        </form>
+                    </div>
+                </div>  
             </div>
         </div>
-    <script>
-        $('.delete-btn').click(function(e){
-            e.preventDefault();
-            Swal.fire({
-                title: 'Warning',
-                text: "Are you sure you want to delete this ads?",
-                type: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes'
-            }).then((result) => {
-            if (result.value) {
-                this.parentElement.submit()
-            }
-            })
-        });
-        $(document).ready(function(){
-            $("#adsLeftButton1").click(function(){
-                $("#adsLeft1").click();
-            });
-            $("#adsMiddleButton1").click(function(){
-                $("#adsMiddle1").click();
-            });
-            $("#adsTopRightButton1").click(function(){
-                $("#adsTopRight1").click();
-            });
-            $("#adsBottomRightButton1").click(function(){
-                $("#adsBottomRight1").click();
-            });
-
-            $("#adsLeft1").change(function(){
-                $('#image_preview').html("");
-                var total_file=document.getElementById("adsLeft1").files.length;
-                for(var i=0;i<total_file;i++)
-                {
-                    $('#image_preview').append("<img src='"+URL.createObjectURL(event.target.files[i])+"'>");
-                }
-                // $("#submitForm").submit();
-                // $('#image_preview').empty();
-            });
-            // $("#submitLeft").click(function(){            
-            $("#submitForm").on('submit',function(e){
-                // $('#image_preview').html("");
-                // var total_file=document.getElementById("adsLeft1").files.length;
-                // for(var i=0;i<total_file;i++)
-                // {
-                //     $('#image_preview').empty();
-                // }
-                e.preventDefault();
-                $('#image_preview').empty("");
-                $.ajax({
-                    type: "POST",
-                    url: 'admin/ads/adsLeft',
-                    data: $('#submitForm').serialize(),
-                    success: function(response){
-                        console.log(response)
-                    }
-                });
-            });
-            $('form').ajaxForm(function() 
-            {
-                alert("Uploaded SuccessFully");
-                $('#submitForm').resetForm();
-            }); 
-
-           
-
-            
-            });
-            
-    </script>
-
-
         @include('layouts.footers.auth')
     </div>
+        <script>
+            $(document).ready(function(){
+                // click hidden upload button 
+                $("#adsLeftButton1").click(function(){
+                    $("#adsLeft1").click();
+                });
+                $("#adsMiddleButton1").click(function(){
+                    $("#adsMiddle1").click();
+                });
+                $("#adsTopRightButton1").click(function(){
+                    $("#adsTopRight1").click();
+                });
+                $("#adsBottomRightButton1").click(function(){
+                    $("#adsBottomRight1").click();
+                });
+                $("#adsLeftButton2").click(function(){
+                    $("#adsLeft2").click();
+                });
+                $("#adsTopRightButton2").click(function(){
+                    $("#adsTopRight2").click();
+                });
+                $("#adsBottomRightButton2").click(function(){
+                    $("#adsBottomRight2").click();
+                });
+                $("#adsMiddleButton3").click(function(){
+                    $("#adsMiddle3").click();
+                });
+                //image preview
+                $("#adsLeft1").change(function(){
+                    $('#imageLeftPreview1').html("");
+                    var total_file=document.getElementById("adsLeft1").files.length;
+                    for(var i=0;i<total_file;i++)
+                    {
+                        $('#imageLeftPreview1').append("<img src='"+URL.createObjectURL(event.target.files[i])+"'>");
+                    }
+                    // $("#submitForm").submit();
+                    // $('#imageLeftPreview1').empty();
+                });
+                $("#adsMiddle1").change(function(){
+                    $('#imageMiddlePreview1').html("");
+                    var total_file=document.getElementById("adsMiddle1").files.length;
+                    for(var i=0;i<total_file;i++)
+                    {
+                        $('#imageMiddlePreview1').append("<img src='"+URL.createObjectURL(event.target.files[i])+"'>");
+                    }
+                });
+                $("#adsTopRight1").change(function(){
+                    $('#imageTopRightPreview1').html("");
+                    var total_file=document.getElementById("adsTopRight1").files.length;
+                    for(var i=0;i<total_file;i++)
+                    {
+                        $('#imageTopRightPreview1').append("<img src='"+URL.createObjectURL(event.target.files[i])+"'>");
+                    }
+                });
+                $("#adsBottomRight1").change(function(){
+                    $('#imageBottomRightPreview1').html("");
+                    var total_file=document.getElementById("adsBottomRight1").files.length;
+                    for(var i=0;i<total_file;i++)
+                    {
+                        $('#imageBottomRightPreview1').append("<img src='"+URL.createObjectURL(event.target.files[i])+"'>");
+                    }
+                });
+                $("#adsLeft2").change(function(){
+                    $('#imageLeftPreview2').html("");
+                    var total_file=document.getElementById("adsLeft2").files.length;
+                    for(var i=0;i<total_file;i++)
+                    {
+                        $('#imageLeftPreview2').append("<img src='"+URL.createObjectURL(event.target.files[i])+"'>");
+                    }
+                });
+                $("#adsTopRight2").change(function(){
+                    $('#imageTopRightPreview2').html("");
+                    var total_file=document.getElementById("adsTopRight2").files.length;
+                    for(var i=0;i<total_file;i++)
+                    {
+                        $('#imageTopRightPreview2').append("<img src='"+URL.createObjectURL(event.target.files[i])+"'>");
+                    }
+                });
+                $("#adsBottomRight2").change(function(){
+                    $('#imageBottomRightPreview2').html("");
+                    var total_file=document.getElementById("adsBottomRight2").files.length;
+                    for(var i=0;i<total_file;i++)
+                    {
+                        $('#imageBottomRightPreview2').append("<img src='"+URL.createObjectURL(event.target.files[i])+"'>");
+                    }
+                });
+                $("#adsMiddle3").change(function(){
+                    $('#imageMiddlePreview3').html("");
+                    var total_file=document.getElementById("adsMiddle3").files.length;
+                    for(var i=0;i<total_file;i++)
+                    {
+                        $('#imageMiddlePreview3').append("<img src='"+URL.createObjectURL(event.target.files[i])+"'>");
+                    }
+                });
+                //clear form after upload
+                // $("#submitLeft").click(function(){            
+                $("#submitFormLeft1").on('submit',function(){
+                    // $('#image_preview').html("");
+                    // var total_file=document.getElementById("adsLeft1").files.length;
+                    // for(var i=0;i<total_file;i++)
+                    // {
+                    //     $('#image_preview').empty();
+                    // }
+                    // e.preventDefault();
+                    $('#imageLeftPreview1').empty("");
+                    // $.ajax({
+                    //     type: "POST",
+                    //     url: 'admin/ads/adsLeft1',
+                    //     data: $('#submitForm').serialize(),
+                    //     success: function(response){
+                    //         console.log(response)
+                    //     }
+                    // });
+                });
+                $("#submitFormMiddle1").on('submit',function(){
+                    $('#imageMiddlePreview1').empty("");
+                });
+                $("#submitFormTopRight1").on('submit',function(){
+                    $('#imageTopRightPreview1').empty("");
+                });
+                $("#submitFormBottomRight1").on('submit',function(){
+                    $('#imageBottomRightPreview1').empty("");
+                });
+                $("#submitFormLeft2").on('submit',function(){
+                    $('#imageLeftPreview2').empty("");
+                });
+                $("#submitFormTopRight2").on('submit',function(){
+                    $('#imageTopRightPreview2').empty("");
+                });
+                $("#submitFormBottomRight2").on('submit',function(){
+                    $('#imageBottomRightPreview2').empty("");
+                });
+                $("#submitFormMiddle3").on('submit',function(){
+                    $('#imageMiddlePreview3').empty("");
+                });
+                // if upload success
+                $('form').ajaxForm(function() 
+                {
+                    // alert("Uploaded SuccessFully");
+                    $('#submitFormLeft1').resetForm();
+                    $('#submitFormMiddle1').resetForm();
+                    $('#submitFormTopRight1').resetForm();
+                    $('#submitFormBottomRight1').resetForm();
+                    $('#submitFormLeft2').resetForm();
+                    $('#submitFormTopRight2').resetForm();
+                    $('#submitFormBottomRight2').resetForm();
+                    $('#submitFormMiddle3').resetForm();
+                    // window.location.href = "{{ URL::route('ads.index') }}"
+                }); 
+                
+            });
+            function deleteAds(id){
+                Swal.fire({
+                    position: 'center',
+                    title: 'Warning',
+                    text: "Are you sure you want to remove this ads?",
+                    type: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#2dce89',
+                    cancelButtonColor: '#f5365c',
+                    confirmButtonText: 'Yes',
+                    // showLoaderOnConfirm: true,
+                    // preF
+                }).then((result) => {
+                    if (result.value) {
+                        let URL = '<?php echo URL::to('/') ?>';
+                        console.log(URL);
+                        let token = '<?php echo csrf_token() ?>';
+                        // console.log(token);                        
+                        $.ajax({
+                            type:'DELETE',
+                            url:`${URL}/admin/ads/${id}` ,
+                            // data: { _token: token, product_id: id },
+                            data: { _token: token },
+                            success:function(data) {
+                                window.location.href = `${URL}/admin/ads`;
+                                // Swal.fire(
+                                //     'Deleted!',
+                                //     'Your file has been deleted.',
+                                //     'success'
+                                // )
+                            },
+                            error: function(error){
+                                console.log("Error",error);
+                            }
+                        });
+                        
+                    }   
+                })
+            }
+        </script>
 @endsection
 
 
