@@ -15,7 +15,8 @@
     {{-- <slide-Show></slide-Show> --}}
     {{-- Start slide area --}}
     {{-- template 1  --}}
-    <div class="container-custom-1 mt-4" v-if="templateid==1">
+    {{-- @{{ templateid }} --}}
+    <div v-if="templateid==1" class="container-custom-1 mt-4">
         <div class="row row-first no-gutters">
             <div class="col-md-12 col-lg-6 order-lg-2 col-xl-3 order-xl-1 nopadding">
                 <div class="slider-area">
@@ -69,7 +70,7 @@
             </div>
         </div>
     </div>
-{{-- 
+{{--
     <div v-if="templateid==2"><h1>hello template 2</h1></div>
     <div v-if="templateid==3"><h1>hello template 3</h1></div> --}}
     {{-- End template 1  --}}
@@ -122,7 +123,7 @@
         </div>
     </div>
     {{-- End test template 2 --}}
-    
+
     {{-- test template 3 --}}
     <div v-if="templateid==3" class="container-custom-3 mt-3">
         <div class="row row-first">

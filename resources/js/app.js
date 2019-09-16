@@ -18,7 +18,7 @@ import wishlistDisplay from "./components/usersComponent/mastercomponent/wishlis
 import productSearch from './components/usersComponent/search/productSearch.vue';
 import productAll from "./components/usersComponent/homeComponent/productAll.vue";
 import productFood from "./components/usersComponent/homeComponent/productCategories.vue";
-import slideShow from "./components/usersComponent/homeComponent/slideShow.vue";
+// import slideShow from "./components/usersComponent/homeComponent/slideShow.vue";
 
 
 //Shop
@@ -71,7 +71,7 @@ const app = new Vue({
         productFood: productFood,
         productAll: productAll,
         modalQuickView: modalQuickView,
-        slideShow: slideShow,
+        // slideShow: slideShow,
         // Master component
         addTowishList: addTowishList,
         wishlistDisplay: wishlistDisplay
