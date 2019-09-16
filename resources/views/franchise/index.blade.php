@@ -23,6 +23,7 @@
                                             </div>
                                     </form>
                                     <div class="col-4 text-right">
+                                            <a href="{{ route('franchise.requestHistory') }}" class="btn btn-sm btn-primary">{{ __('Request History') }}</a>
                                             <a href="{{ route('franchise.request') }}" class="btn btn-sm btn-primary">{{ __('Request Stock') }}</a>
                                     </div>
                                     

@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Products;
 use App\Stock_Franchise;
+use App\Request_Stock;
 use DB;
 use Auth;
 use Image;
@@ -35,6 +36,11 @@ class FranchiseController extends Controller
      */
     public function index()
     {
+        if (session('status'))
+        {
+            Alert::success('Success', session('status'));
+        }
+
         $stock_fran = Stock_Franchise::paginate(10);
         return view('franchise.index',compact('stock_fran'));
     }
@@ -108,12 +114,53 @@ class FranchiseController extends Controller
     // request stock from admin
     public function requestForm()
     {
-        return view('franchise.requestStock');
+        $current_franchise = DB::table('franchise_user')
+                                ->join('franchises','franchise_user.franchise_id','=','franchises.id')
+                                ->join('users','franchise_user.user_id','=','users.id')
+                                ->select('franchises.*')
+                                ->where('users.id','=',auth()->user()->id)
+                                ->first();
+        return view('franchise.requestStock',compact('current_franchise'));
     }
 
-    public function requestStock()
+    public function requestStock(Request $request)
     {
-        // 
+        $request->validate([
+            'product_name' => 'required',
+            'amount' => 'required|integer',
+            'franchise_id' => 'required',
+        ]);
+
+        // $products = DB::table('products')->where('name','=',$request->post('product_name'))->first();
+        $products = Products::where('name',$request->post('product_name'))->first();
+        $products = $products->toArray();
+        // dd($products);
+        $product_id = $products['id'];
+        // dd($product_id);
+        date_default_timezone_set('asia/phnom_penh');
+        $requestStock = new Request_Stock([
+            'product_id' => $product_id,
+            'amount' => $request->post('amount'),
+            'franchise_id' => $request->post('franchise_id'),
+            'status' => 'pending',
+        ]);
+        // dd($requestStock);
+        $requestStock->save();
+        $stock_fran = Stock_Franchise::paginate(10);
+        return view('franchise.index',compact('stock_fran'))->withStatus(__('Pending Admins Approval.'));
+    }
+
+    public function requestHistory()
+    {
+        $requestStocks = Request_Stock::paginate(10);
+
+        return view('franchise.requestHistory',compact('requestStocks'));
+    }
+
+    public function autocomplete(Request $request)
+    {
+        $data = DB::table('products')->where("name","LIKE","%{$request->input('query')}%")->get();
+        return response()->json($data);
     }
 
     // View Product Only

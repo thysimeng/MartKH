@@ -1,4 +1,4 @@
-@extends('layouts.app', ['title' => __('Stocks')])
+@extends('layouts.app', ['title' => __('Request Stock')])
 
 @section('content')
     @include('layouts.headers.cards')
@@ -18,35 +18,46 @@
                         </div>
                     </div>
                     <div class="card-body">
-                        <form method="post" action="{{ route('franchises.store') }}" autocomplete="off">
+                        <form method="post" action="{{ route('franchise.requestStock') }}" autocomplete="off">
                             @csrf
-                            
-                            <h6 class="heading-small text-muted mb-4">{{ __('Franchise information') }}</h6>
+                            <h6 class="heading-small text-muted mb-4">{{ __('Request Form') }}</h6>
                             <div class="pl-lg-4">
-                                <!-- <div class="form-group{{ $errors->has('franchise_name') ? ' has-danger' : '' }}">
-                                    <label class="form-control-label" for="input_franchise_name">{{ __('Name') }}</label>
-                                    <input type="text" name="franchise_name" id="input_franchise_name" class="form-control form-control-alternative{{ $errors->has('franchise_name') ? ' is-invalid' : '' }}" placeholder="{{ __('Name') }}" value="{{ old('franchise_name') }}" required autofocus>
-
-                                    @if ($errors->has('franchise_name'))
+                                <div class="form-group{{ $errors->has('product_name') ? ' has-danger' : '' }}">
+                                    <label class="form-control-label" for="input_product_name">{{ __('Product Name') }}</label>
+                                    <input type="text" class="typeahead form-control form-control-alternative{{ $errors->has('product_name') ? ' is-invalid' : '' }}" name="product_name" id="input_product_name" placeholder="{{ __('Search Products') }}" value="{{ old('product_name') }}" required autocomplete="off">
+                                    @if ($errors->has('product_name'))
                                         <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $errors->first('franchise_name') }}</strong>
+                                            <strong>{{ $errors->first('product_name') }}</strong>
                                         </span>
                                     @endif
                                 </div>
 
-                                <div class="form-group{{ $errors->has('address') ? ' has-danger' : '' }}">
-                                    <label class="form-control-label" for="input-address">{{ __('Address') }}</label>
-                                    <input type="text" name="address" id="input-address" class="form-control form-control-alternative{{ $errors->has('address') ? ' is-invalid' : '' }}" placeholder="{{ __('Address') }}" value="{{ old('address') }}" required autofocus>
+                                <div class="form-group{{ $errors->has('amount') ? ' has-danger' : '' }}">
+                                    <label class="form-control-label" for="input-amount">{{ __('Amount') }}</label>
+                                    <input type="number" name="amount" id="input-amount" class="form-control form-control-alternative{{ $errors->has('amount') ? ' is-invalid' : '' }}" placeholder="{{ __('Amount') }}" value="{{ old('amount') }}" required>
 
-                                    @if ($errors->has('address'))
+                                    @if ($errors->has('amount'))
                                         <span class="invalid-feedback" role="alert">
-                                            <strong>{{ $errors->first('address') }}</strong>
+                                            <strong>{{ $errors->first('amount') }}</strong>
+                                        </span>
+                                    @endif
+                                </div>
+
+                                <input type="hidden" name="franchise_id" value="{{$current_franchise->id}}">
+
+                                <!-- <div class="form-group{{ $errors->has('amount') ? ' has-danger' : '' }}">
+                                    <label class="form-control-label" for="input-amount">{{ __('Amount') }}</label>
+                                    <input type="text" name="amount" id="input-amount" class="form-control form-control-alternative{{ $errors->has('amount') ? ' is-invalid' : '' }}" placeholder="{{ __('Amount') }}" value="{{ old('amount') }}" required>
+
+                                    @if ($errors->has('amount'))
+                                        <span class="invalid-feedback" role="alert">
+                                            <strong>{{ $errors->first('amount') }}</strong>
                                         </span>
                                     @endif
                                 </div> -->
 
                                 <div class="text-center">
-                                    <button type="submit" class="btn btn-success mt-4">{{ __('Save') }}</button>
+                                    <button type="submit" class="btn btn-success mt-4">{{ __('Send') }}</button>
                                 </div>
                             </div>
                         </form>
@@ -57,5 +68,26 @@
 
         @include('layouts.footers.auth')
     </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.1/bootstrap3-typeahead.min.js"></script>  
+    <script type="text/javascript">
+        var pathstock = "{{ route('franchise.stock.autocomplete') }}";
+        $stockInput = $('input[name="product_name"]');
+        $stockInput.typeahead({
+            source:  function (query, process) {
+            return $.get(pathstock, { query: query }, function (data) {
+                    return process(data);
+                });
+            }
+        });
+        
+        // $stockInput.change(function() {
+        //     var current = $stockInput.typeahead("getActive");
+        //     if (current) {
+        //         $('input[name="product_id"]').val(current.id);
+        //     }
+        
+        // });
+    </script>
 
 @endsection

@@ -16,16 +16,22 @@ use Validator;
 
 class RequestController extends Controller
 {
+    // Status Key Words in DB: pending, approved, declined
     public function index()
     {   
-        $notifications = RequestNotification::where('status',0)->paginate(10);
-        $allNotifications = RequestNotification::where('status',0)->get();
+        $notifications = RequestNotification::where('status','pending')->paginate(10);
+        $allNotifications = RequestNotification::where('status','pending')->get();
         $data = [
             'notifications_data'=>$notifications,
             'allNotifications_data'=>$allNotifications,
             'queryParams' => [],
         ];
         return view('admin.requests.index')->with($data);
+    }
+
+    public function store(Request $request)
+    {
+        // 
     }
 
     public function edit(Request $request) {
@@ -37,7 +43,7 @@ class RequestController extends Controller
             'updated_at'=>date("YmdHis"),      
         ]);
         
-     }
+    }
 
     // public function search(Request $request){
     //     $search = $request->get('search');
@@ -57,8 +63,8 @@ class RequestController extends Controller
 
     public function ApprovedRequest()
     {   
-        $notifications = RequestNotification::where('status',1)->paginate(10);
-        $allNotifications = RequestNotification::where('status',1)->get();
+        $notifications = RequestNotification::where('status','approved')->paginate(10);
+        $allNotifications = RequestNotification::where('status','approved')->get();
         $data = [
             'notifications_data'=>$notifications,
             'allNotifications_data'=>$allNotifications,
