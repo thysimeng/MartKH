@@ -7,7 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\Stock;
-use Illuminate\Support\Facades\DB;
+use DB;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
 use Validator;
@@ -62,6 +62,7 @@ class StockController extends Controller
             'product_id' => $product_id,
             'amount' => $amount,
             'created_at'=>date("YmdHis"),
+            'enter_by' => $request->post('enter_by'),
         );
         DB::table('stocks')->insert($data_stock);
         return redirect(route('admin.stock'));
@@ -88,5 +89,18 @@ class StockController extends Controller
             'updated_at'=>date("YmdHis"),      
         ]);
         return redirect(route('admin.stock'));
-     }
+    }
+
+    // View Franchise Stock
+
+    public function viewFranchiseStock()
+    {
+        $stock_franchises = DB::table('stock_franchise as sf')
+                                ->join('products as p','sf.product_id','=','p.id')
+                                ->join('franchises as f','sf.franchise_id','=','f.id')
+                                ->select('sf.*','sf.created_at as sf_created','sf.id as sfid','p.*','f.*')
+                                ->paginate(10);
+        return view('admin.stock.stockFranchise',compact('stock_franchises'));
+        dd($stock_franchises);
+    }
 }

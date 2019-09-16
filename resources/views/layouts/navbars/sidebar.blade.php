@@ -139,11 +139,28 @@
                     </a>
                 </li>
 
-                <li class="nav-item">
+                <!-- <li class="nav-item">
                     <a class="nav-link" href="{{ route('admin.stock') }}">
                         {{-- <i class="ni ni-tv-2 text-primary"></i>  --}}
                         <i class="fas fa-cubes" style="color:#ffd600;"></i> {{ __('Stock') }}
                     </a>
+                </li> -->
+
+                <li class="nav-item">
+                    <a class="nav-link " data-toggle="collapse" data-target="#collapse_stock" aria-expanded="false" aria-controls="collapse_user">
+                        <i class="fas fa-cubes" style="color: #ffd600;"></i>
+                        <span class="nav-link-text">{{ __('Stock') }}</span>
+                    </a>
+                    <div class="collapse" id="collapse_stock">
+                        <ul class="nav nav-sm flex-column">
+                        <li class="nav-item">
+                            <a href="{{ route('admin.stock') }}" class="nav-link">{{ __('Main Stock') }}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('admin.viewFranchiseStock') }}" class="nav-link">{{ __('Franchise Stock') }}</a>
+                        </li>
+                        </ul>
+                    </div>
                 </li>
 
                 {{-- <li class="nav-item">
@@ -153,21 +170,24 @@
                     </a>
                 </li> --}}
                 <li class="nav-item">
-                        <a class="nav-link " data-toggle="collapse" data-target="#collapse_stock" aria-expanded="false" aria-controls="collapse_user">
-                            <i class="fas fa-envelope" style="color: #de6800;"></i>
-                            <span class="nav-link-text">{{ __('Stock Requests') }}</span>
-                        </a>
-                        <div class="collapse" id="collapse_stock">
-                            <ul class="nav nav-sm flex-column">
-                            <li class="nav-item">
-                                <a href="{{ route('admin.notification') }}" class="nav-link">{{ __('New Requests') }}</a>
-                            </li>
-                            <li class="nav-item">
-                                <a href="{{ route('admin.stock.approved_request') }}" class="nav-link">{{ __('Approved Requests') }}</a>
-                            </li>
-                            </ul>
-                        </div>
-                    </li>
+                    <a class="nav-link " data-toggle="collapse" data-target="#collapse_request" aria-expanded="false" aria-controls="collapse_user">
+                        <i class="fas fa-envelope" style="color: #de6800;"></i>
+                        <span class="nav-link-text">{{ __('Stock Requests') }}</span>
+                    </a>
+                    <div class="collapse" id="collapse_request">
+                        <ul class="nav nav-sm flex-column">
+                        <li class="nav-item">
+                            <a href="{{ route('admin.notification') }}" class="nav-link">{{ __('Requests') }}</a>
+                        </li>
+                        <!-- <li class="nav-item">
+                            <a href="{{ route('admin.stock.approved_request') }}" class="nav-link">{{ __('Approved Requests') }}</a>
+                        </li> -->
+                        <li class="nav-item">
+                            <a href="{{ route('admin.viewFranchiseStock') }}" class="nav-link">{{ __('History') }}</a>
+                        </li>
+                        </ul>
+                    </div>
+                </li>
 
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('franchises.index') }}">
