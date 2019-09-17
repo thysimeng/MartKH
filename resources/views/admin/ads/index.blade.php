@@ -2,7 +2,7 @@
 
 @section('content')
     @include('layouts.headers.cards')
-    
+
     {{-- <div class="container-fluid mt--7">
         <div class="row">
             <div class="col">
@@ -17,7 +17,7 @@
                             </div>
                         </div>
                     </div>
-                   
+
                     <div class="table-responsive">
                             <table class="table table-flush dataTable no-footer" id="datatable-basic" role="grid" aria-describedby="datatable-basic_info">
                                 <thead class="thead-light">
@@ -97,7 +97,7 @@
                                     <div class="ads-container mt-1" style="overflow-y:scroll;height:700px;">
                                         <div id="imageMiddlePreview1"></div>
                                         @foreach ($adsMiddle1 as $adMiddle1)
-                                            <div class="image-area">                                        
+                                            <div class="image-area">
                                                 <img src="{{asset('uploads/ads_image/template1/adsMiddle/' . $adMiddle1->image)}}" alt="">
                                                 <button class="btn remove-image" style="display: inline;" onclick="deleteAds('<?php echo $adMiddle1->id; ?>')">&#215;</button>
                                             </div>
@@ -144,11 +144,14 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>        
+                            </div>
                         </div>
                     </div>
                     <div class="card-footer text-center">
-                        <button class="align-items-center btn btn-success">Apply</button>
+                        <form action="{{route('ads.id')}}" method="GET">
+                            <input type="hidden" name="template_id" value="1">
+                            <input type="submit" class="align-items-center btn btn-success" value="Apply">
+                        </form>
                     </div>
                 </div>
                 {{-- template 2 --}}
@@ -165,7 +168,7 @@
                         <div class="card-body p-0 pt-3">
                             <div class="row align-items-center">
                                 <div class="col-8" style="height:960px;border:2px solid #f7931e; overflow:hidden;border-radius:5px;">
-                                    <form action="{{ route('adsLeft2.upload') }}" method="post" enctype="multipart/form-data" id="submitFormLeft2">                                    
+                                    <form action="{{ route('adsLeft2.upload') }}" method="post" enctype="multipart/form-data" id="submitFormLeft2">
                                         @csrf
                                         <input type="file" id="adsLeft2" style="display: none;" name="adsLeft2[]" multiple/>
                                         <button  class="btn shadow-none--hover shadow-none" id="adsLeftButton2" style="width:100%;background:transparent;"><i class="fas fa-plus-circle text-success"></i>Add Left</button>
@@ -207,7 +210,7 @@
                                             <div class="ads-container mt-1" style="overflow-y:scroll;height:700px;">
                                                 <div id="imageTopRightPreview2"></div>
                                                 @foreach ($adsTopRight2 as $adTopRight2)
-                                                    <div class="image-area">                                                
+                                                    <div class="image-area">
                                                         <img src="{{asset('uploads/ads_image/template2/adsTopRight/' . $adTopRight2->image)}}" alt="">
                                                         <button class="btn remove-image" style="display: inline;" onclick="deleteAds('<?php echo $adTopRight2->id; ?>')">&#215;</button>
                                                     </div>
@@ -235,11 +238,15 @@
                                         </div>
                                     </div>
                                 </div>
-                            </div>        
+                            </div>
                         </div>
                     </div>
                     <div class="card-footer text-center">
-                        <button class="align-items-center btn btn-success">Apply</button>
+                        {{-- <button class="align-items-center btn btn-success">Apply</button> --}}
+                        <form action="{{route('ads.id')}}" method="GET">
+                            <input type="hidden" name="template_id" value="2">
+                            <input type="submit" class="align-items-center btn btn-success" value="Apply">
+                        </form>
                     </div>
                 </div>
                 {{-- template 3 --}}
@@ -265,27 +272,31 @@
                                     <div class="ads-container mt-1" style="overflow-y:scroll;height:700px;">
                                         <div id="imageMiddlePreview3"></div>
                                         @foreach ($adsMiddle3 as $adMiddle3)
-                                            <div class="image-area">                                        
+                                            <div class="image-area">
                                                 <img src="{{asset('uploads/ads_image/template3/adsMiddle/' . $adMiddle3->image)}}" alt="">
                                                 <button class="btn remove-image" style="display: inline;" onclick="deleteAds('<?php echo $adMiddle3->id; ?>')">&#215;</button>
                                             </div>
                                         @endforeach
                                     </div>
                                 </div>
-                            </div>        
+                            </div>
                         </div>
                     </div>
                     <div class="card-footer text-center">
-                        <button class="align-items-center btn btn-success">Apply</button>
+                        {{-- <button class="align-items-center btn btn-success">Apply</button> --}}
+                        <form action="{{route('ads.id')}}" method="GET">
+                            <input type="hidden" name="template_id" value="3">
+                            <input type="submit" class="align-items-center btn btn-success" value="Apply">
+                        </form>
                     </div>
-                </div>  
+                </div>
             </div>
         </div>
         @include('layouts.footers.auth')
     </div>
         <script>
             $(document).ready(function(){
-                // click hidden upload button 
+                // click hidden upload button
                 $("#adsLeftButton1").click(function(){
                     $("#adsLeft1").click();
                 });
@@ -378,7 +389,7 @@
                     }
                 });
                 //clear form after upload
-                // $("#submitLeft").click(function(){            
+                // $("#submitLeft").click(function(){
                 $("#submitFormLeft1").on('submit',function(){
                     // $('#image_preview').html("");
                     // var total_file=document.getElementById("adsLeft1").files.length;
@@ -419,7 +430,7 @@
                     $('#imageMiddlePreview3').empty("");
                 });
                 // if upload success
-                $('form').ajaxForm(function() 
+                $('form').ajaxForm(function()
                 {
                     // alert("Uploaded SuccessFully");
                     $('#submitFormLeft1').resetForm();
@@ -431,8 +442,8 @@
                     $('#submitFormBottomRight2').resetForm();
                     $('#submitFormMiddle3').resetForm();
                     window.location.href = "{{ URL::route('ads.index') }}"
-                }); 
-                
+                });
+
             });
             function deleteAds(id){
                 Swal.fire({
@@ -451,7 +462,7 @@
                         let URL = '<?php echo URL::to('/') ?>';
                         console.log(URL);
                         let token = '<?php echo csrf_token() ?>';
-                        // console.log(token);                        
+                        // console.log(token);
                         $.ajax({
                             type:'DELETE',
                             url:`${URL}/admin/ads/${id}` ,
@@ -469,8 +480,8 @@
                                 console.log("Error",error);
                             }
                         });
-                        
-                    }   
+
+                    }
                 })
             }
         </script>

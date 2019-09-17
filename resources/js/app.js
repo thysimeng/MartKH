@@ -18,7 +18,7 @@ import wishlistDisplay from "./components/usersComponent/mastercomponent/wishlis
 import productSearch from './components/usersComponent/search/productSearch.vue';
 import productAll from "./components/usersComponent/homeComponent/productAll.vue";
 import productFood from "./components/usersComponent/homeComponent/productCategories.vue";
-import slideShow from "./components/usersComponent/homeComponent/slideShow.vue";
+// import slideShow from "./components/usersComponent/homeComponent/slideShow.vue";
 
 
 //Shop
@@ -47,7 +47,8 @@ const app = new Vue({
         producthome: [],
         productid: [],
         productID: Number,
-        shownitification: false
+        shownitification: false,
+        templateid: 1
     },
     store,
     router,
@@ -72,7 +73,7 @@ const app = new Vue({
         productFood: productFood,
         productAll: productAll,
         modalQuickView: modalQuickView,
-        slideShow: slideShow,
+        // slideShow: slideShow,
         // Master component
         addTowishList: addTowishList,
         wishlistDisplay: wishlistDisplay
@@ -85,7 +86,18 @@ const app = new Vue({
         ...mapGetters(["productsFoodHome"]),
         productsCategory() {
             return this.$store.getters.productsFoodHome;
-        }
+        },
+        templateID() {
+            let currentObj = this;
+            axios
+              .get("/setTemplateID", {})
+              .then(function(response) {
+                currentObj.templateid = response.data;
+              })
+              .catch(function(error) {
+                currentObj.templateid = error;
+              });
+          }
     },
 
 });

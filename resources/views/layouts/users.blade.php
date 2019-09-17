@@ -22,7 +22,8 @@
     <link rel="stylesheet" href="{{asset('assets/css/bootstrap.min.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/magnific-popup.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/animate.css')}}">
-    <link rel="stylesheet" href="{{asset('assets/css/owl.carousel.min.css')}}">
+    {{-- <link rel="stylesheet" href="{{asset('assets/css/owl.carousel.min.css')}}"> --}}
+    <link rel="stylesheet" href="{{asset('assets/css/owl.carousel.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/owl.theme.default.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/themify-icons.css')}}">
     <link rel="stylesheet" href="{{asset('assets/css/pe-icon-7-stroke.css')}}">
@@ -42,6 +43,8 @@
 <body>
     <div id="app">
         <!-- header start -->
+        {{-- template id getter --}}
+        <span style="display:none;">@{{ templateID }}</span>
         <header>
             <div class="header-top-furniture wrapper-padding-2 res-header-sm">
                 <div class="container-fluid">

@@ -1,4 +1,4 @@
-@extends('layouts.app', ['title' => __('Products')])
+@extends('layouts.app', ['title' => __('Franchise Stock')])
 
 @section('content')
     @include('layouts.headers.cards')
@@ -10,11 +10,11 @@
                     <div class="card-header border-0">
                         <div class="row align-items-center">
                                     <div class="col-4">
-                                        <h3 class="mb-0">Products</h3>
+                                        <h3 class="mb-0">Franchise Stock</h3>
                                     </div>
                                     <form class="col-4">
                                         <div class="input-group input-group-alternative">
-                                                <input class="form-control" placeholder="Search" type="text" name="search" id="search" value="{{$keyword}}" style="border: 1px solid #11cdef">
+                                                <input class="form-control" placeholder="Search" type="text" name="search" id="search" value="" style="border: 1px solid #11cdef">
                                                 <span class="form-clear d-none"><i class="fas fa-times-circle">clear</i></span>   
                                                 <div class="input-group-append">
                                                     <button class="btn btn-info" type="submit"><i class="fa fa-search"></i></button>
@@ -41,52 +41,26 @@
                             <thead class="thead-light">
                                 <tr>
                                     <th scope="col">{{ __('ID') }}</th>
-                                    <th scope="col">{{ __('Code') }}</th>
                                     <th scope="col">{{ __('Image') }}</th>
-                                    <th scope="col">{{ __('Name') }}</th>
-                                    <th scope="col">{{ __('Price') }}</th>
-                                    <th scope="col">{{ __('Size') }}</th>
-                                    <th scope="col">{{ __('Brand') }}</th>
-                                    <th scope="col">{{ __('Country') }}</th>
-                                    {{-- <th scope="col">{{ __('Subcategory ID') }}</th> --}}
-                                    {{-- <th scope="col">{{ __('Stock ID') }}</th> --}}
-                                    {{-- <th scope="col">{{ __('View') }}</th> --}}
+                                    <th scope="col">{{ __('Amount') }}</th>
+                                    <th scope="col">{{ __('Code') }}</th>
+                                    <th scope="col">{{ __('Product Name') }}</th>
+                                    <th scope="col">{{ __('price') }}</th>
+                                    <th scope="col">{{ __('Franchise Name') }}</th>
                                     <th scope="col">{{ __('Created Date') }}</th>
-                                    {{-- <th scope="col">{{ __('Updated Date') }}</th> --}}
-                                    {{-- <th scope="col">{{ __('Description') }}</th> --}}
-                                    <th scope="col">{{ __('Action') }}</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                @foreach ($products as $product)
+                                @foreach ($stock_franchises as $stock_franchise)
                                     <tr>
-                                        <td>{{ $product->id }}</td>
-                                        <td>{{ $product->code }}</td>
-                                        <td><img src="{{asset( 'uploads/product_image/' . $product->image )}}" alt="" class="img-thumbnail " style="width:100px;heigth:100px;"></td>                                      
-                                        <td>{{ $product->name }}</td>
-                                        <td>{{ $product->price }}</td>
-                                        <td>{{ $product->size }}</td>
-                                        <td>{{ $product->brand }}</td>
-                                        <td>{{ $product->country }}</td>
-                                        <td>{{ $product->created_at->format('d/m/Y H:i') }}</td>
-                                        {{-- <td>{{ $product->description }}</td> --}}
-                                        <td>
-                                        {{-- dot button to right most --}}
-                                        {{-- <td class="text-right"> --}}
-                                            <div class="dropdown">
-                                                <a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                    <i class="fas fa-ellipsis-v"></i>
-                                                </a>
-                                                <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                                    <button type="button" class="dropdown-item openImageDialog" data-toggle="modal" data-target="#viewProduct" data-id="{{ $product->id }}" data-name="{{ $product->name }}" 
-                                                        data-code="{{ $product->code }}" data-price="{{ $product->price }}" data-brand="{{ $product->brand }}" 
-                                                        data-country="{{ $product->country }}" data-size="{{ $product->size }}" data-image="{{ $product->image }}"
-                                                        data-description="{{ $product->description }}" data-created_at="{{ $product->created_at->format('d/m/Y H:i') }}"
-                                                        data-update="{{ $product->updated_at->format('d/m/Y H:i') }}" data-subcategory_id="{{ $product->subcategory_id }}">{{ __('View') }}
-                                                    </button> 
-                                                </div>
-                                            </div>
-                                        </td>
+                                        <td>{{ $stock_franchise->sfid }}</td>
+                                        <td><img src="{{asset( 'uploads/product_image/' . $stock_franchise->image )}}" alt="" class="img-thumbnail " style="width:100px;heigth:100px;"></td>                                      
+                                        <td>{{ $stock_franchise->amount }}</td>
+                                        <td>{{ $stock_franchise->code }}</td>
+                                        <td>{{ $stock_franchise->name }}</td>
+                                        <td>{{ $stock_franchise->price }}</td>
+                                        <td>{{ $stock_franchise->franchise_name }}</td>
+                                        <td>{{ Carbon\Carbon::parse($stock_franchise->sf_created)->format('d/m/Y H:i') }}</td>
                                     </tr>
                                 @endforeach
                             </tbody>
@@ -94,7 +68,7 @@
                     </div>
                     <div class="card-footer py-4">
                         <nav class="d-flex justify-content-end" aria-label="...">
-                            {{ $products->links() }}
+                            {{ $stock_franchises->links() }}
                         </nav>
                     </div>
                 </div>

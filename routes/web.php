@@ -74,10 +74,11 @@ Route::group(['middleware' => ['web','auth','checkUserRole']], function () {
 
 	Route::get('admin/stock', 'Admin\StockController@index')->name('admin.stock');
 	Route::get('admin/stock/search', 'Admin\StockController@stockSearch')->name('admin.stock.search');
-	Route::post('admin/create_stock', 'Admin\StockController@create')->name('admin.create_stock');
-	Route::post('admin/update_stock', 'Admin\StockController@edit')->name('admin.update_stock');
-	Route::get('admin/search_stock', 'Admin\StockController@stockSearch')->name('admin.search_stock');
-	Route::post('admin/delete_stock', 'Admin\StockController@delete')->name('admin.delete_stock');
+	Route::post('admin/stock/create', 'Admin\StockController@create')->name('admin.create_stock');
+	Route::post('admin/stock/update', 'Admin\StockController@edit')->name('admin.update_stock');
+	Route::get('admin/stock/search', 'Admin\StockController@stockSearch')->name('admin.search_stock');
+	Route::post('admin/stock/delete', 'Admin\StockController@delete')->name('admin.delete_stock');
+	Route::get('admin/stock/franchises_stock','Admin\StockController@viewFranchiseStock')->name('admin.viewFranchiseStock');
 
 	Route::get('admin/stock/autocomplete',array('as'=>'admin.stock.autocomplete','uses'=>'Admin\StockController@autocomplete'));
 	Route::get('admin/stock/autocompleteFranchise',array('as'=>'admin.stock.autocompleteFranchise','uses'=>'Admin\StockController@autocompleteFranchise'));
@@ -95,10 +96,13 @@ Route::group(['middleware' => ['web','auth','checkUserRoleFranchise']], function
 	Route::get('/franchise/products','Franchise\FranchiseController@viewProduct')->name('franchise.products');
 	Route::get('/franchise/stocks','Franchise\FranchiseController@index')->name('franchise.stock');
 	Route::get('/franchise/stocks/request','Franchise\FranchiseController@requestForm')->name('franchise.request');
-	Route::get('/franchise/profile','Franchise\FranchiseController@editProfile')->name('franchise.edit.profile');
-	Route::put('/franchise/profile','Franchise\FranchiseController@updateProfile')->name('franchise.update.profile');
+	Route::post('/franchise/stocks/store','Franchise\FranchiseController@requestStock')->name('franchise.requestStock');
+	Route::get('/franchise/stocks/history','Franchise\FranchiseController@requestHistory')->name('franchise.requestHistory');
+	Route::get('/franchise/stock/autocomplete',array('as'=>'franchise.stock.autocomplete','uses'=>'Franchise\FranchiseController@autocomplete'));
 	Route::put('franchise/profile/password','Franchise\FranchiseController@password')->name('franchise.profile.password');
 	Route::post('franchise/profile/upload','Franchise\FranchiseController@upload')->name('franchise.profile.upload');
+	Route::get('/franchise/profile','Franchise\FranchiseController@editProfile')->name('franchise.edit.profile');
+	Route::put('/franchise/profile','Franchise\FranchiseController@updateProfile')->name('franchise.update.profile');
 });
 
 // test route for redirecting users when they try to access admin pages
@@ -117,7 +121,9 @@ Route::get('/categoriesAll', 'UsersController\ProductsController@categories')->n
 Route::get('/categories1', 'UsersController\ProductsController@categories1')->name('categories1');
 Route::get('/wishlistproducts', 'UsersController\ProductsController@wishlistproducts')->name('wishlistproducts');
 // route for get slide template ID display
-Route::get('/slidetemplateID', 'UsersController\ProductsController@slideID')->name('slide-id');
+Route::get('/adsTemplateID', 'UsersController\ProductsController@adsID')->name('ads.id');
+Route::get('/setTemplateID', 'UsersController\ProductsController@setTemplateID')->name('setTemplate.id');
+Route::get('/slidedatadisplay', 'UsersController\ProductsController@slidedatadisplay')->name('slide-data-display');
 
 Route::post('/users/profile/update','UsersController\UserHomeController@updateUserProfile')->name('updateUserProfile');
 Route::post('/users/profile/upload','UsersController\UserHomeController@upload')->name('uploadProfile');

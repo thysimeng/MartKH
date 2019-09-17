@@ -10,7 +10,7 @@
                     <div class="card-header border-0">
                             <div class="row align-items-center">
                                     <div class="col-4">
-                                        <h3 class="mb-0">All Products Stock  <button class="btn btn-danger btn-sm" style="border-radius: 50%; width: 40px; height: 40px;">{{count($allStocks_data)}}</button></h3>
+                                        <h3 class="mb-0">Main Stock  <button class="btn btn-danger btn-sm" style="border-radius: 50%; width: 40px; height: 40px;">{{count($allStocks_data)}}</button></h3>
                                     </div>
                                             <form class="col-4" id="search-stocks" method="get" action="{{ route('admin.search_stock') }}" autocomplete="off">
                                                     <div class="form-group mb-4">
@@ -59,6 +59,7 @@
                                                         <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
                                                         <button type="submit" class="btn btn-primary">Save changes</button>
                                                     </div>
+                                                    <input type="hidden" name="enter_by" value="{{auth()->user()->name}}">
                                                 </div>
                                             </div>
                                         </div>
@@ -88,8 +89,8 @@
                                                     <th scope="col">{{ __('Image') }}</th>
                                                     <th scope="col">{{ __('Product Name') }}</th>
                                                     <th scope="col">{{ __('Amount') }}</th>
-                                                    <th scope="col">{{ __('Create Date') }}</th>
-                                                    <th scope="col">{{ __('Update Date') }}</th>
+                                                    <th scope="col">{{ __('Enter By') }}</th>
+                                                    <th scope="col">{{ __('Created Date') }}</th>
                                                     <th scope="col">{{ __('Action') }}</th>
                                                 </tr>
                                             </thead>
@@ -101,8 +102,8 @@
                                                         <td><img src="{{asset( 'uploads/product_image/' . $item->product->image )}}" alt="" class="img-thumbnail " style="width:50px;"></td>
                                                         <td>{{$item->product->name}}</td>
                                                         <td>{{$item->amount}}</td>
+                                                        <td>{{$item->enter_by}}</td>
                                                         <td>{{$item->created_at}}</td>
-                                                        <td>{{$item->updated_at}}</td>
                                                         <td class="">
                                                             <div class="dropdown">
                                                                 <a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
