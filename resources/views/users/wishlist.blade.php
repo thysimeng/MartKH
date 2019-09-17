@@ -1,4 +1,4 @@
 @extends('layouts.users')
 @section('contents')
-<wishlist-Display></wishlist-Display>
+<wishlist-Display  v-if="show"></wishlist-Display>
 @endsection

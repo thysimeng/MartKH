@@ -44,7 +44,7 @@ class UserHomeController extends Controller
                     ['position', '=', 'bottomRight1'],
                 ])
                     ->get();
-        
+
         $adsLeft2 = DB::table('ads')
                 ->where([
                     ['template_id', '=', '2'],
@@ -73,11 +73,11 @@ class UserHomeController extends Controller
         return view('users.userHomePage', compact('productPopular', 'adsLeft1','adsMiddle1','adsTopRight1','adsBottomRight1','adsLeft2','adsTopRight2','adsBottomRight2','adsMiddle3'));
     }
 
-    public function get(Request $request)
-    {
-        $posts = User::orderBy('created_at', 'desc')->get();
-        return response()->json($posts);
-    }
+    // public function get(Request $request)
+    // {
+    //     $posts = User::orderBy('created_at', 'desc')->get();
+    //     return response()->json($posts);
+    // }
 
     public function wishList(Request $request){
         if (!Auth::user()){

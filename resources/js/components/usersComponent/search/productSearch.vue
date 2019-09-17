@@ -1,10 +1,11 @@
 <template>
   <div class="furniture-search">
+    {{ ChangeData }}
     <form action @submit="searchProduct">
       <input placeholder="I am Searching for . . ." type="text" v-model="searchInput" />
-      <button :disabled="!isValid" @click="[ChangeData(), ChangeShow()]">
-        <!-- <router-link to="/search"> -->
-            <i class="ti-search"></i>
+      <button :disabled="!isValid" @click="ChangeShow">
+        <!-- <router-link to="/products/search"> -->
+        <i class="ti-search"></i>
         <!-- </router-link> -->
       </button>
     </form>
@@ -20,15 +21,11 @@ export default {
   },
   props: {
     products: Array,
-    show: Boolean
+    show: Number
   },
   methods: {
-    ChangeData() {
-      this.products = this.products;
-      this.$emit("changedatabyemit", this.products);
-    },
     ChangeShow() {
-      this.show = false;
+      this.show = 3;
       this.$emit("changeshowbyemit", this.show);
     },
     searchProduct(e) {
@@ -49,6 +46,10 @@ export default {
   computed: {
     isValid() {
       return this.searchInput.dataInput !== "";
+    },
+    ChangeData() {
+      this.products = this.products;
+      this.$emit("changedatabyemit", this.products);
     }
   }
 };

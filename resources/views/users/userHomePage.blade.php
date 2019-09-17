@@ -11,7 +11,7 @@
 </div>
 @endif
 {{-- Home page section --}}
-<div v-if="show">
+<div v-if="show==1">
     <slide-Show></slide-Show>
     {{-- Start slide area --}}
     {{-- template 1  --}}
@@ -23,126 +23,126 @@
                         @foreach ($adsLeft1 as $adLeft1)
                         <div data-dot="<span></span>">
                             <img src="{{ asset('uploads/ads_image/template1/adsLeft/'.$adLeft1->image) }}"
-                                style="object-fit:scale-down;max-height:700px;" class="img-fluid float-left mt-2"
-                                alt="">
-                        </div>
-                        @endforeach
+    style="object-fit:scale-down;max-height:700px;" class="img-fluid float-left mt-2"
+    alt="">
+</div>
+@endforeach
 
-                    </div>
-                </div>
+</div>
+</div>
+</div>
+<div class="col-md-12 col-lg-12 order-lg-1 col-xl-6 order-xl-2 nopadding">
+    <div class="slider-area">
+        <div class="slider-active-4 owl-carousel owl-theme">
+            @foreach ($adsMiddle1 as $adMiddle1)
+            <div class=" ads-img" data-dot="<span></span>">
+                <img src="{{ asset('uploads/ads_image/template1/adsMiddle/'.$adMiddle1->image) }}"
+                    style="object-fit:cover;" class="img-fluid img-ads mt-2" alt="">
             </div>
-            <div class="col-md-12 col-lg-12 order-lg-1 col-xl-6 order-xl-2 nopadding">
-                <div class="slider-area">
-                    <div class="slider-active-4 owl-carousel owl-theme">
-                        @foreach ($adsMiddle1 as $adMiddle1)
-                        <div class=" ads-img" data-dot="<span></span>">
-                            <img src="{{ asset('uploads/ads_image/template1/adsMiddle/'.$adMiddle1->image) }}"
-                                style="object-fit:cover;" class="img-fluid img-ads mt-2" alt="">
-                        </div>
-                        @endforeach
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-12 col-lg-6 order-lg-3 col-xl-3 order-xl-3 nopadding">
-                <div class="row no-gutters">
-                    <div class="col-md-12 nopadding">
-                        <div class="slider-area">
-                            <div class="slider-active-3 owl-carousel owl-theme">
-                                @foreach ($adsTopRight1 as $adTopRight1)
-                                <img src="{{ asset('uploads/ads_image/template1/adsTopRight/'.$adTopRight1->image)}}"
-                                    style="object-fit:scale-down;max-height:350px" class="img-fluid float-right mt-2"
-                                    alt="">
-                                @endforeach
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-md-12 nopadding">
-                        <div class="slider-area">
-                            <div class="slider-active-3 owl-carousel owl-theme">
-                                @foreach ($adsBottomRight1 as $adBottomRight1)
-                                <img src="{{ asset('uploads/ads_image/template1/adsBottomRight/'.$adBottomRight1->image)}}"
-                                    style="object-fit:scale-down;max-height:350px" class="img-fluid float-right" alt="">
-                                @endforeach
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+            @endforeach
         </div>
-    </div> --}}
-    {{-- End template 1  --}}
-    {{-- End slide area --}}
-
-    <!-- product popular area start -->
-    <div class="popular-product-area wrapper-padding-3 pt-115 pb-115">
-        <div class="container-fluid">
-            <div class="section-title-6 text-center mb-50">
-                <h2>Popular Product</h2>
-                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
-                    the
-                    industry's standard dummy text</p>
-            </div>
-            <div class="product-style">
-                <div class="popular-product-active owl-carousel">
-                    @foreach ($productPopular as $productValue)
-                    <div class="product-wrapper">
-                        <div class="product-img">
-                            <a href="#">
-                                <img src="{{ asset('uploads/product_image/'.$productValue->image)}}" alt="">
-                            </a>
-                            <div class="product-action">
-                                {{-- <form action="{{ url('/users/wishlist') }}" method="post" id="submitWishList">
-                                @csrf
-                                <input type="hidden" name="product_id" value="">
-                                <a onclick="wishList({{ $productValue->id }})" class="animate-left my-click"
-                                    title="Wishlist" href="javascript:void(0)" id="buttonSubmitWishList">
-                                    <i class="pe-7s-like"></i>
-                                </a>
-                                </form> --}}
-                                <add-Towish-List :product-i-d="{{ $productValue->id }}"></add-Towish-List>
-                                <a class="animate-top" title="Add To Cart" href="#">
-                                    <i class="pe-7s-cart"></i>
-                                </a>
-                                <a href class="animate-right" title="Quick View" data-toggle="modal" data-target="#VUEModal"
-                                    @click="quickView({{ $productValue->id }}, '{{ $productValue->image }}', '{{ $productValue->name }}', '{{ $productValue->description }}')">
-                                    <i class="pe-7s-look"></i>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="funiture-product-content text-center">
-                            <h4><a href="product-details.html">{{$productValue->name}}</a></h4>
-                            <span>${{$productValue->price}}</span>
-                        </div>
-                    </div>
+    </div>
+</div>
+<div class="col-md-12 col-lg-6 order-lg-3 col-xl-3 order-xl-3 nopadding">
+    <div class="row no-gutters">
+        <div class="col-md-12 nopadding">
+            <div class="slider-area">
+                <div class="slider-active-3 owl-carousel owl-theme">
+                    @foreach ($adsTopRight1 as $adTopRight1)
+                    <img src="{{ asset('uploads/ads_image/template1/adsTopRight/'.$adTopRight1->image)}}"
+                        style="object-fit:scale-down;max-height:350px" class="img-fluid float-right mt-2" alt="">
                     @endforeach
                 </div>
             </div>
         </div>
-
-    </div>
-    <!-- product popular area end -->
-
-    <!-- product all area start -->
-    <div class="product-style-area pt-120">
-        <div class="coustom-container-fluid">
-            <div class="section-title-7 text-center">
-                <h2>All Products</h2>
-                <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
-                    the
-                    industry's standard dummy text</p>
-            </div>
-            {{-- Passed and get data from child component  --}}
-            <product-Food :productshomecate="productshomecate" @senddata="productshomecate = $event"
-                @senddatashowmodal="showmodal = $event"></product-Food>
-            {{-- Passed to productall component for view --}}
-            <product-All :productshomecate="productsCategory" :showmodal="showmodal" v-if="showmodal"></product-All>
-            <product-All :productshomecate="productshomecate" :showmodal="showmodal"></product-All>
-            <div class="view-all-product text-center">
-                <router-link to="/users/shop" @click.native="showPage()">View All Product</router-link>
+        <div class="col-md-12 nopadding">
+            <div class="slider-area">
+                <div class="slider-active-3 owl-carousel owl-theme">
+                    @foreach ($adsBottomRight1 as $adBottomRight1)
+                    <img src="{{ asset('uploads/ads_image/template1/adsBottomRight/'.$adBottomRight1->image)}}"
+                        style="object-fit:scale-down;max-height:350px" class="img-fluid float-right" alt="">
+                    @endforeach
+                </div>
             </div>
         </div>
     </div>
-    <modal-Quick-View :productid="producthome"></modal-Quick-View>
+</div>
+</div>
+</div> --}}
+{{-- End template 1  --}}
+{{-- End slide area --}}
+
+<!-- product popular area start -->
+<div class="popular-product-area wrapper-padding-3 pt-115 pb-115">
+    <div class="container-fluid">
+        <div class="section-title-6 text-center mb-50">
+            <h2>Popular Product</h2>
+            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
+                the
+                industry's standard dummy text</p>
+        </div>
+        <div class="product-style">
+            <div class="popular-product-active owl-carousel">
+                @foreach ($productPopular as $productValue)
+                <div class="product-wrapper">
+                    <div class="product-img">
+                        <a href title="Quick View" data-toggle="modal" data-target="#VUEModal"
+                            @click="quickView({{ $productValue->id }}, '{{ $productValue->image }}', '{{ $productValue->name }}', '{{ $productValue->description }}')">
+                            <img src="{{ asset('uploads/product_image/'.$productValue->image)}}" alt="">
+                        </a>
+                        <div class="product-action">
+                            {{-- <form action="{{ url('/users/wishlist') }}" method="post" id="submitWishList">
+                            @csrf
+                            <input type="hidden" name="product_id" value="">
+                            <a onclick="wishList({{ $productValue->id }})" class="animate-left my-click"
+                                title="Wishlist" href="javascript:void(0)" id="buttonSubmitWishList">
+                                <i class="pe-7s-like"></i>
+                            </a>
+                            </form> --}}
+                            <add-Towish-List :product-i-d="{{ $productValue->id }}"></add-Towish-List>
+                            <a class="animate-top" title="Add To Cart" href="#">
+                                <i class="pe-7s-cart"></i>
+                            </a>
+                            <a href class="animate-right" title="Quick View" data-toggle="modal" data-target="#VUEModal"
+                                @click="quickView({{ $productValue->id }}, '{{ $productValue->image }}', '{{ $productValue->name }}', '{{ $productValue->description }}')">
+                                <i class="pe-7s-look"></i>
+                            </a>
+                        </div>
+                    </div>
+                    <div class="funiture-product-content text-center">
+                        <h4><a href="product-details.html">{{$productValue->name}}</a></h4>
+                        <span>${{$productValue->price}}</span>
+                    </div>
+                </div>
+                @endforeach
+            </div>
+        </div>
+    </div>
+
+</div>
+<!-- product popular area end -->
+
+<!-- product all area start -->
+<div class="product-style-area pt-120">
+    <div class="coustom-container-fluid">
+        <div class="section-title-7 text-center">
+            <h2>All Products</h2>
+            <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
+                the
+                industry's standard dummy text</p>
+        </div>
+        {{-- Passed and get data from child component  --}}
+        <product-Food :productshomecate="productshomecate" @senddata="productshomecate = $event"
+            @senddatashowmodal="showmodal = $event"></product-Food>
+        {{-- Passed to productall component for view --}}
+        <product-All :productshomecate="productsCategory" :showmodal="showmodal" v-if="showmodal"></product-All>
+        <product-All :productshomecate="productshomecate" :showmodal="showmodal"></product-All>
+        <div class="view-all-product text-center">
+            <router-link to="/users/shop" @click.native="showPage()">View All Product</router-link>
+        </div>
+    </div>
+</div>
+<modal-Quick-View :productid="producthome"></modal-Quick-View>
 </div>
 {{-- End home page section --}}
 
@@ -216,8 +216,15 @@
 </div>
 {{-- End test template 3 --}}
 
+{{-- Vue route --}}
+<router-view v-if="show==2"></router-view>
+<shop-Home-Page :products="products" :show="show" v-if="show==3"></shop-Home-Page>
+<router-view name="userProfile"></router-view>
+<router-view name="wishlistDisplay"></router-view>
+{{--End  Vue route --}}
+
 {{-- Start shop page --}}
-<div class="shop-page-wrapper shop-page-padding ptb-100" v-if="!show">
+{{-- <div class="shop-page-wrapper shop-page-padding ptb-100" v-if="!show">
     <div class="breadcrumb-area pt-205 breadcrumb-padding pb-210"
         style="background-image: url(https://www.facebook.com/images/fb_icon_325x325.png)">
         <div class="container-fluid">
@@ -429,9 +436,6 @@
                         </div>
                         <router-view name="shop" v-if="products.length==0"></router-view>
                         <router-view name="food" v-if="products.length==0"></router-view>
-                        {{-- <router-view name="allProductDisplay"></router-view> --}}
-                        {{-- <product-Search></product-Search> --}}
-                        {{-- <search-Result></search-Result> --}}
                         <all-Product-Display :products="products" v-if="products.length!=0"></all-Product-Display>
                     </div>
                 </div>
@@ -448,7 +452,7 @@
             </div>
         </div>
     </div>
-</div>
+</div> --}}
 {{-- End shop page --}}
 @endsection
 

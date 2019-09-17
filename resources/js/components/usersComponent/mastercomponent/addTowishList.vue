@@ -3,7 +3,7 @@
     <form action @submit="addToWishList">
       <input type="hidden" :productID="productID" />
       <div>
-        {{ normalizedList }}
+        {{ testwishlist }}
         <a
           v-if="showwishlish"
           title="Wishlist"
@@ -79,7 +79,7 @@ export default {
         backgroundred: !this.addStatus
       };
     },
-    normalizedList() {
+    testwishlist() {
       for (var i = 0; i < this.productsWishlist.length; i++) {
         if (this.productsWishlist[i].wishlist_id == this.productID) {
           (this.showwishlish = true)

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <allProductDisplay :products="products"></allProductDisplay>
+    <allProductDisplay :products="products" :orderBy="orderBy= selected"></allProductDisplay>
   </div>
 </template>
 
@@ -12,8 +12,11 @@ export default {
   name: "shop",
   data: function () {
       return {
-
+        orderBy: Number
       }
+  },
+  props:{
+      selected: Number
   },
   mounted() {
     this.$store.dispatch("fetchPosts");
