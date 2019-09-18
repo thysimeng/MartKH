@@ -106,14 +106,14 @@
                                 </div>
                                 <div class="col-3 border-left-0" style="height:700px;overflow:hidden;border:2px solid #f7931e;border-radius:5px;">
                                     <div class="row">
-                                        <div class="col-12" style="height:350px;overflow:hidden;border-bottom:2px solid #f7931e">
+                                        <div class="col-12" style="height:350px;overflow-y:hidden;border-bottom:2px solid #f7931e">
                                             <form action="{{ route('adsTopRight1.upload') }}" method="post" enctype="multipart/form-data" id="submitFormTopRight1">
                                                 @csrf
                                                 <input type="file" id="adsTopRight1" style="display: none;" name="adsTopRight1[]" multiple/>
                                                 <button  class="btn shadow-none--hover shadow-none" id="adsTopRightButton1" style="width:100%;background:transparent;"><i class="fas fa-plus-circle text-success"></i>Add Top Right</button>
                                                 <input type="submit" id="submitTopRight1" class="btn btn-success" style="width:100%;" name='submitImage' value="Upload Image"/>
                                             </form>
-                                            <div class="ads-container mt-1" style="overflow-y:scroll;height:700px;">
+                                            <div class="ads-container mt-1" style="overflow-y:scroll;height:350px;">
                                                 <div id="imageTopRightPreview1"></div>
                                                 @foreach ($adsTopRight1 as $adTopRight1)
                                                     <div class="image-area">
@@ -150,7 +150,7 @@
                     <div class="card-footer text-center">
                         <form action="{{route('ads.id')}}" method="GET">
                             <input type="hidden" name="template_id" value="1">
-                            <input type="submit" class="align-items-center btn btn-success" value="Apply">
+                            <input type="submit" class="align-items-center btn btn-success apply-template" value="Apply">
                         </form>
                     </div>
                 </div>
@@ -184,56 +184,46 @@
                                         @endforeach
                                     </div>
                                 </div>
-                                {{-- <div class="col-6" style="height:700px;overflow:hidden;border:2px solid #f7931e;border-radius:5px;">
-                                    <form action="{{ route('adsMiddle1.upload') }}" method="post" enctype="multipart/form-data" id="submitFormMiddle1">
-                                        @csrf
-                                        <input type="file" id="adsMiddle1" style="display: none;" name="adsMiddle1[]" multiple/>
-                                        <button  class="btn" id="adsMiddleButton1" style="width:100%;background:transparent;"><i class="fas fa-plus-circle text-success"></i>Add Middle</button>
-                                        <input type="submit" id="submitMiddle" class="btn btn-success" style="width:100%;" name='submitImage' value="Upload Image"/>
-                                    </form>
-                                    <div class="container mt-2" style="overflow-y:scroll;height:700px;">
-                                        <div id="imageMiddlePreview1"></div>
-                                        @foreach ($ads as $ad)
-                                            <img src="{{asset('uploads/ads_image/template1/adsMiddle/' . $ad->image)}}" alt="">
-                                        @endforeach
-                                    </div>
-                                </div> --}}
-                                <div class="col-4 border-left-0" style="height:960px;overflow:hidden;border:2px solid #f7931e;border-radius:5px;">
+                                <div class="col-4 border-left-0" style="height:960px;border:2px solid #f7931e;border-radius:5px;position:relative;">
                                     <div class="row">
-                                        <div class="col-12" style="height:480px;overflow:hidden;border-bottom:2px solid #f7931e">
+                                        <div class="col-12">
                                             <form action="{{ route('adsTopRight2.upload') }}" method="post" enctype="multipart/form-data" id="submitFormTopRight2">
                                                 @csrf
                                                 <input type="file" id="adsTopRight2" style="display: none;" name="adsTopRight2[]" multiple/>
                                                 <button  class="btn shadow-none--hover shadow-none" id="adsTopRightButton2" style="width:100%;background:transparent;"><i class="fas fa-plus-circle text-success"></i>Add Top Right</button>
                                                 <input type="submit" id="submitTopRight2" class="btn btn-success" style="width:100%;" name='submitImage' value="Upload Image"/>
                                             </form>
-                                            <div class="ads-container mt-1" style="overflow-y:scroll;height:700px;">
-                                                <div id="imageTopRightPreview2"></div>
-                                                @foreach ($adsTopRight2 as $adTopRight2)
-                                                    <div class="image-area">
-                                                        <img src="{{asset('uploads/ads_image/template2/adsTopRight/' . $adTopRight2->image)}}" alt="">
-                                                        <button class="btn remove-image" style="display: inline;" onclick="deleteAds('<?php echo $adTopRight2->id; ?>')">&#215;</button>
-                                                    </div>
-                                                @endforeach
+                                            <div style="max-height:360px;overflow:auto;border-bottom:2px solid #f7931e">
+                                                <div class="ads-container mt-1" style="overflow-y:scroll;height:715px;">
+                                                    <div id="imageTopRightPreview2"></div>
+                                                    @foreach ($adsTopRight2 as $adTopRight2)
+                                                        <div class="image-area">
+                                                            <img src="{{asset('uploads/ads_image/template2/adsTopRight/' . $adTopRight2->image)}}" alt="">
+                                                            <button class="btn remove-image" style="display: inline;" onclick="deleteAds('<?php echo $adTopRight2->id; ?>')">&#215;</button>
+                                                        </div>
+                                                    @endforeach
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                     <div class="row">
-                                        <div class="col-12" style="height:480px;overflow:hidden;">
+                                        <div class="col-12" >
                                             <form action="{{ route('adsBottomRight2.upload') }}" method="post" enctype="multipart/form-data" id="submitFormBottomRight2">
                                                 @csrf
                                                 <input type="file" id="adsBottomRight2" style="display: none;" name="adsBottomRight2[]" multiple/>
                                                 <button  class="btn shadow-none--hover shadow-none" id="adsBottomRightButton2" style="width:100%;background:transparent;"><i class="fas fa-plus-circle text-success"></i>Add BottomRight</button>
                                                 <input type="submit" id="submitBottomRight" class="btn btn-success" style="width:100%;" name='submitImage' value="Upload Image"/>
                                             </form>
-                                            <div class="ads-container mt-1" style="overflow-y:scroll;height:700px;">
-                                                <div id="imageBottomRightPreview2"></div>
-                                                @foreach ($adsBottomRight2 as $adBottomRight2)
-                                                    <div class="image-area">
-                                                        <img src="{{asset('uploads/ads_image/template2/adsBottomRight/' . $adBottomRight2->image)}}" alt="">
-                                                        <button class="btn remove-image" style="display: inline;" onclick="deleteAds('<?php echo $adBottomRight2->id; ?>')">&#215;</button>
-                                                    </div>
-                                                @endforeach
+                                            <div style="max-height:360px;overflow:auto;border-bottom:2px solid #f7931e">
+                                                <div class="ads-container mt-1" style="overflow-y:scroll;height:715px;">
+                                                    <div id="imageBottomRightPreview2"></div>
+                                                    @foreach ($adsBottomRight2 as $adBottomRight2)
+                                                        <div class="image-area">
+                                                            <img src="{{asset('uploads/ads_image/template2/adsBottomRight/' . $adBottomRight2->image)}}" alt="">
+                                                            <button class="btn remove-image" style="display: inline;" onclick="deleteAds('<?php echo $adBottomRight2->id; ?>')">&#215;</button>
+                                                        </div>
+                                                    @endforeach
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
@@ -245,7 +235,7 @@
                         {{-- <button class="align-items-center btn btn-success">Apply</button> --}}
                         <form action="{{route('ads.id')}}" method="GET">
                             <input type="hidden" name="template_id" value="2">
-                            <input type="submit" class="align-items-center btn btn-success" value="Apply">
+                            <input type="submit" class="align-items-center btn btn-success apply-template" value="Apply">
                         </form>
                     </div>
                 </div>
@@ -262,21 +252,23 @@
                         </div>
                         <div class="card-body p-0 pt-3">
                             <div class="row align-items-center">
-                                <div class="col-12" style="height:1080x;overflow:hidden;border:2px solid #f7931e;border-radius:5px;">
+                                <div class="col-12">
                                     <form action="{{ route('adsMiddle3.upload') }}" method="post" enctype="multipart/form-data" id="submitFormMiddle3" class="form-inline justify-content-center">
                                         @csrf
                                         <input type="file" id="adsMiddle3" style="display: none;" name="adsMiddle3[]" multiple/>
                                         <button  class="btn shadow-none--hover shadow-none" id="adsMiddleButton3" style="width:100%;background:transparent;border:transparent;"><i class="fas fa-plus-circle text-success"></i>Add Middle</button>
                                         <input type="submit" id="submitMiddle3" class="btn btn-success mt-2" style="width:100%;" name='submitImage' value="Upload Image"/>
                                     </form>
-                                    <div class="ads-container mt-1" style="overflow-y:scroll;height:700px;">
-                                        <div id="imageMiddlePreview3"></div>
-                                        @foreach ($adsMiddle3 as $adMiddle3)
-                                            <div class="image-area">
-                                                <img src="{{asset('uploads/ads_image/template3/adsMiddle/' . $adMiddle3->image)}}" alt="">
-                                                <button class="btn remove-image" style="display: inline;" onclick="deleteAds('<?php echo $adMiddle3->id; ?>')">&#215;</button>
-                                            </div>
-                                        @endforeach
+                                    <div style="max-height:1080x;overflow:auto;border:2px solid #f7931e;border-radius:5px;">
+                                        <div class="ads-container mt-1" style="overflow-y:scroll;height:700px;">
+                                            <div id="imageMiddlePreview3"></div>
+                                            @foreach ($adsMiddle3 as $adMiddle3)
+                                                <div class="image-area">
+                                                    <img src="{{asset('uploads/ads_image/template3/adsMiddle/' . $adMiddle3->image)}}" alt="">
+                                                    <button class="btn remove-image" style="display: inline;" onclick="deleteAds('<?php echo $adMiddle3->id; ?>')">&#215;</button>
+                                                </div>
+                                            @endforeach
+                                        </div>
                                     </div>
                                 </div>
                             </div>
@@ -286,7 +278,7 @@
                         {{-- <button class="align-items-center btn btn-success">Apply</button> --}}
                         <form action="{{route('ads.id')}}" method="GET">
                             <input type="hidden" name="template_id" value="3">
-                            <input type="submit" class="align-items-center btn btn-success" value="Apply">
+                            <input type="submit" class="align-items-center btn btn-success apply-template" value="Apply">
                         </form>
                     </div>
                 </div>
@@ -295,6 +287,22 @@
         @include('layouts.footers.auth')
     </div>
         <script>
+            $('.apply-template').click(function(e){
+                e.preventDefault();
+                Swal.fire({
+                    title: 'Warning',
+                    text: "Are you sure you want to apply this product?",
+                    type: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#2dce89',
+                    cancelButtonColor: '#f5365c',
+                    confirmButtonText: 'Yes'
+                }).then((result) => {
+                if (result.value) {
+                    this.parentElement.submit();
+                }
+                })
+            });
             $(document).ready(function(){
                 // click hidden upload button
                 $("#adsLeftButton1").click(function(){
@@ -470,11 +478,6 @@
                             data: { _token: token },
                             success:function(data) {
                                 window.location.href = `${URL}/admin/ads`;
-                                // Swal.fire(
-                                //     'Deleted!',
-                                //     'Your file has been deleted.',
-                                //     'success'
-                                // )
                             },
                             error: function(error){
                                 console.log("Error",error);
@@ -484,6 +487,7 @@
                     }
                 })
             }
+
         </script>
 @endsection
 

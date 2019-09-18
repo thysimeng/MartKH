@@ -12,6 +12,5 @@ class Products extends Model
     protected $fillable = [
         'image','code', 'name', 'description', 'price', 'size','brand','country'
     ];
-    
     public $timestamps = true;
 }

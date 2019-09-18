@@ -12,11 +12,12 @@
 @endif
 {{-- Home page section --}}
 <div v-if="show">
-    {{-- <slide-Show></slide-Show> --}}
     {{-- Start slide area --}}
+
     {{-- template 1  --}}
     {{-- @{{ templateid }} --}}
-    <div v-if="templateid==1" class="container-custom-1 mt-4">
+    @if($set_template_data==1)
+    <div class="container-custom-1 mt-4">
         <div class="row row-first no-gutters">
             <div class="col-md-12 col-lg-6 order-lg-2 col-xl-3 order-xl-1 nopadding">
                 <div class="slider-area">
@@ -70,13 +71,14 @@
             </div>
         </div>
     </div>
-{{--
+    {{--
     <div v-if="templateid==2"><h1>hello template 2</h1></div>
     <div v-if="templateid==3"><h1>hello template 3</h1></div> --}}
     {{-- End template 1  --}}
 
     {{-- test template 2 --}}
-    <div v-if="templateid==2" class="container-custom-2">
+    @elseif($set_template_data==2)
+    <div class="container-custom-2">
         <div class="row row-first ">
             <div class="col-md-12 col-lg-8 col-xl-8 ">
                 <div class="slider-area">
@@ -98,10 +100,12 @@
                         <div class="slider-area">
                             <div class="slider-active-3 owl-carousel owl-theme">
                                 @foreach ($adsTopRight2 as $adTopRight2)
-                                <img src="{{ asset('uploads/ads_image/template2/adsTopRight/'.$adTopRight2->image)}}"
-                                    style="object-fit:scale-down;max-height:480px;" class="img-fluid mt-3" alt="">
-                                {{-- <a href="#"><img src="{{ asset('uploads/slide/supermarket (1).jpg')}}"
-                                style="object-fit:scale-down;max-height:480px;" class="img-fluid mt-3" alt=""></a> --}}
+                                    <div data-dot="<span></span>">
+                                        <img src="{{ asset('uploads/ads_image/template2/adsTopRight/'.$adTopRight2->image)}}"
+                                            style="object-fit:scale-down;max-height:480px;" class="img-fluid mt-3" alt="">
+                                        {{-- <a href="#"><img src="{{ asset('uploads/slide/supermarket (1).jpg')}}"
+                                        style="object-fit:scale-down;max-height:480px;" class="img-fluid mt-3" alt=""></a> --}}
+                                    </div>
                                 @endforeach
                             </div>
                         </div>
@@ -110,10 +114,12 @@
                         <div class="slider-area">
                             <div class="slider-active-3 owl-carousel owl-theme">
                                 @foreach ($adsBottomRight2 as $adBottomRight2)
-                                <img src="{{ asset('uploads/ads_image/template2/adsBottomRight/'.$adBottomRight2->image)}}"
-                                    style="object-fit:scale-down;max-height:480px;" class="img-fluid mt-3" alt="">
-                                {{-- <a href="#"><img src="{{ asset('uploads/slide/supermarket (1).jpg')}}"
-                                style="object-fit:scale-down;max-height:480px;" class="img-fluid mt-3" alt=""></a> --}}
+                                    <div data-dot="<span></span>">
+                                        <img src="{{ asset('uploads/ads_image/template2/adsBottomRight/'.$adBottomRight2->image)}}"
+                                            style="object-fit:scale-down;max-height:480px;" class="img-fluid mt-3" alt="">
+                                        {{-- <a href="#"><img src="{{ asset('uploads/slide/supermarket (1).jpg')}}"
+                                        style="object-fit:scale-down;max-height:480px;" class="img-fluid mt-3" alt=""></a> --}}
+                                    </div>
                                 @endforeach
                             </div>
                         </div>
@@ -125,11 +131,12 @@
     {{-- End test template 2 --}}
 
     {{-- test template 3 --}}
-    <div v-if="templateid==3" class="container-custom-3 mt-3">
+    @elseif($set_template_data==3)
+    <div class="container-custom-3 mt-3">
         <div class="row row-first">
             <div class="col-12">
                 <div class="slider-area">
-                    <div class="slider-active-4 owl-carousel owl-theme">
+                    <div class="slider-active-5 owl-carousel owl-theme">
                         @foreach ($adsMiddle3 as $adMiddle3)
                         <div data-dot="<span></span>">
                             {{-- <a href="#"><img src="{{ asset('uploads/slide/vegetables (1).jpg')}}"
@@ -143,6 +150,7 @@
             </div>
         </div>
     </div>
+    @endif
     {{-- End test template 3 --}}
     {{-- End slide area --}}
 

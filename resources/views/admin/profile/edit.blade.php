@@ -5,8 +5,8 @@
         'title' => __('Hello') . ' '. auth()->user()->name,
         'description' => __('This is your profile page.'),
         'class' => 'col-lg-12'
-    ])   
-    
+    ])
+
 
     <div class="container-fluid mt--7">
         {{-- <div class="row"> --}}
@@ -66,7 +66,7 @@
                     </div>
                 </div>
             </div> --}}
-            <div class="offset-xl-2 col-xl-8">                 
+            <div class="offset-xl-2 col-xl-8">
                 <div class="card bg-secondary shadow">
                     <div class="card-header bg-white border-0">
                         <div class="row align-items-center">
@@ -76,7 +76,7 @@
                     <div class="card-body">
 
                     <h6 class="heading-small text-muted mb-5">{{ __('User information') }}</h6>
-                            
+
                         <!-- Success Message -->
                         <!-- @if (session('status'))
                             <div class="alert alert-success alert-dismissible fade show mb-5" role="alert">
@@ -86,7 +86,7 @@
                                 </button>
                             </div>
                         @endif -->
-                        
+
                         <!-- img -->
                         <div class="justify-content-center pt-lg-4" >
                                 <!-- {{-- <div class="pl-lg-4"> --}} -->
@@ -115,9 +115,9 @@
                                     <div class="text-center mt-3">
                                         <input type="submit" class="btn btn-success rounded upload-btn" value="{{ __('Upload') }}">
                                     </div>
-                                    
-                                    
-                                        
+
+
+
                                     @if ($errors->has('avatar'))
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $errors->first('avatar') }}</strong>
@@ -182,7 +182,7 @@
                                 <div class="form-group{{ $errors->has('old_password') ? ' has-danger' : '' }}">
                                     <label class="form-control-label" for="input-current-password">{{ __('Current Password') }}</label>
                                     <input type="password" name="old_password" id="input-current-password" class="form-control form-control-alternative{{ $errors->has('old_password') ? ' is-invalid' : '' }}" placeholder="{{ __('Current Password') }}" value="" required>
-                                    
+
                                     @if ($errors->has('old_password'))
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $errors->first('old_password') }}</strong>
@@ -192,7 +192,7 @@
                                 <div class="form-group{{ $errors->has('password') ? ' has-danger' : '' }}">
                                     <label class="form-control-label" for="input-password">{{ __('New Password') }}</label>
                                     <input type="password" name="password" id="input-password" class="form-control form-control-alternative{{ $errors->has('password') ? ' is-invalid' : '' }}" placeholder="{{ __('New Password') }}" value="" required>
-                                    
+
                                     @if ($errors->has('password'))
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $errors->first('password') }}</strong>
@@ -213,18 +213,18 @@
                 </div>
             </div>
         {{-- </div> --}}
-        
+
         @include('layouts.footers.auth')
     </div>
 
     <script type="text/javascript">
         $(document).ready(function() {
             // preview image before upload
-            
+
             function readURL(input) {
                 if (input.files && input.files[0]) {
                     var reader = new FileReader();
-                    
+
                     reader.onload = function(e) {
                         $('#img-preview').attr('src', e.target.result);
                     };

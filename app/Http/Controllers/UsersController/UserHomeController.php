@@ -15,10 +15,15 @@ use App\Http\Requests\PasswordRequest;
 use Alert;
 use File;
 use Image;
+use App\Customize;
 
 class UserHomeController extends Controller
 {
     public function index(){
+        $set_template = DB::table('customize')
+                        ->where('id',1)
+                        ->first();
+        $set_template_data = $set_template->data;
         $productPopular = DB::table('products')->limit(9)->get();
         $adsMiddle1 = DB::table('ads')
                 ->where([
@@ -44,7 +49,7 @@ class UserHomeController extends Controller
                     ['position', '=', 'bottomRight1'],
                 ])
                     ->get();
-        
+
         $adsLeft2 = DB::table('ads')
                 ->where([
                     ['template_id', '=', '2'],
@@ -70,7 +75,7 @@ class UserHomeController extends Controller
         ])
             ->get();
                     // dd($ads);
-        return view('users.userHomePage', compact('productPopular', 'adsLeft1','adsMiddle1','adsTopRight1','adsBottomRight1','adsLeft2','adsTopRight2','adsBottomRight2','adsMiddle3'));
+        return view('users.userHomePage', compact('set_template_data','productPopular', 'adsLeft1','adsMiddle1','adsTopRight1','adsBottomRight1','adsLeft2','adsTopRight2','adsBottomRight2','adsMiddle3'));
     }
 
     public function get(Request $request)
