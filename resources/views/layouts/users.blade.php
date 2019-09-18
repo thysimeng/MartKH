@@ -128,10 +128,10 @@
                     </div>
                     </li> --}}
                     <li>
-                        <router-link to="/users/shop" @click.native="showPage()">Shop</router-link>
+                        <router-link to="/products/all" @click.native="showPage()">Shop</router-link>
                         <ul class="single-dropdown">
                             <li>
-                                <router-link to="/users/shop/foodVue" @click.native="showPage()">Food</router-link>
+                                <router-link to="/products/food" @click.native="showPage()">Food</router-link>
                             </li>
                             {{-- <li><a href="blog-2-col.html">blog 2 colunm</a></li>
                                             <li><a href="blog-sidebar.html">blog sidebar</a></li>
@@ -324,7 +324,8 @@
                     <ul>
                         <li><a data-toggle="modal" data-target="#exampleCompare" href="#"><i class="ti-reload"></i>
                                 Compare</a></li>
-                        <li><a href="{{ route('add-wishlist') }}"><i class="ti-heart"></i> Wishlist</a></li>
+                        {{-- <li><a href="{{ route('add-wishlist') }}"><i class="ti-heart"></i> Wishlist</a></li> --}}
+                        <li><router-link to="/wishlists" @click.native="showPage()"><i class="ti-heart"></i> Wishlist</router-link></li>
                     </ul>
                 </div>
             </div>

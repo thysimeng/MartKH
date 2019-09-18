@@ -10,12 +10,12 @@
               <table>
                 <thead>
                   <tr>
-                    <th>remove</th>
                     <th>images</th>
                     <th>Product</th>
                     <th>Price</th>
                     <th>Quantity</th>
                     <th>Total</th>
+                    <th>remove</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -23,15 +23,15 @@
                     v-for="(wishlist, index) in productWishlistDisplay"
                     :data="index"
                     :key="index.key"
-                    >
-                    <td class="product-remove">
-                      <a href="#">
-                        <i class="pe-7s-close"></i>
-                      </a>
-                    </td>
+                  >
                     <td class="product-thumbnail">
                       <a href="#">
-                        <img :src="'/uploads/product_image/' + wishlist.image" alt  width="85px" height="101px"/>
+                        <img
+                          :src="'/uploads/product_image/' + wishlist.image"
+                          alt
+                          width="85px"
+                          height="101px"
+                        />
                       </a>
                     </td>
                     <td class="product-name">
@@ -41,54 +41,18 @@
                       <span class="amount">${{ wishlist.price }}</span>
                     </td>
                     <td class="product-quantity">
-                      <input value="1" type="number" v-model="quantity[index]"/>
+                      <input value="1" type="number" v-model="quantity[index]" />
                     </td>
                     <td class="product-subtotal">${{ wishlist.price*quantity[index] }}</td>
-                  </tr>
-                  <!-- <tr>
                     <td class="product-remove">
-                      <a href="#">
-                        <i class="pe-7s-close"></i>
-                      </a>
+                      <form action @submit="addToWishList">
+                        <input type="hidden" :productID="productID = wishlist.id" />
+                        <a href @click="addToWishList">
+                          <i class="pe-7s-close"></i>
+                        </a>
+                      </form>
                     </td>
-                    <td class="product-thumbnail">
-                      <a href="#">
-                        <img src="assets/img/cart/2.jpg" alt />
-                      </a>
-                    </td>
-                    <td class="product-name">
-                      <a href="#">Vestibulum dictum</a>
-                    </td>
-                    <td class="product-price-cart">
-                      <span class="amount">$150.00</span>
-                    </td>
-                    <td class="product-quantity">
-                      <input value="1" type="number" />
-                    </td>
-                    <td class="product-subtotal">$150.00</td>
                   </tr>
-                  <tr>
-                    <td class="product-remove">
-                      <a href="#">
-                        <i class="pe-7s-close"></i>
-                      </a>
-                    </td>
-                    <td class="product-thumbnail">
-                      <a href="#">
-                        <img src="assets/img/cart/3.jpg" alt />
-                      </a>
-                    </td>
-                    <td class="product-name">
-                      <a href="#">Vestibulum dictum</a>
-                    </td>
-                    <td class="product-price-cart">
-                      <span class="amount">$150.00</span>
-                    </td>
-                    <td class="product-quantity">
-                      <input value="1" type="number" />
-                    </td>
-                    <td class="product-subtotal">$150.00</td>
-                  </tr> -->
                 </tbody>
               </table>
             </div>
@@ -106,9 +70,67 @@ export default {
   name: "wishlistDiplay",
   data: function() {
     return {
-        total: Number,
-        quantity: [1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1,1],
+      total: Number,
+      quantity: [
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1,
+        1
+      ]
     };
+  },
+  methods: {
+    addToWishList(e) {
+      e.preventDefault();
+      let currentObj = this;
+      axios
+        .post("/users/wishlist", {
+          productID: this.productID
+        })
+        .then(function(response) {
+          currentObj.showwishlish = response.data;
+        })
+        .catch(function(error) {
+          currentObj.showwishlish = error;
+        });
+    }
   },
   mounted() {
     this.$store.dispatch("fetchProductsWishlistDisplay");
@@ -117,7 +139,7 @@ export default {
     ...mapGetters(["productWishlistDisplay"]),
     productWishlistDisplay() {
       return this.$store.getters.productWishlistDisplay;
-    },
+    }
     // totalPrice(){
     //     for (var i=0; i<this.productWishlistDisplay.length; i++){
     //         this.quantity[i]=[1];

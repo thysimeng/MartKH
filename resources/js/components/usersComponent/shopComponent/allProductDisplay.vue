@@ -10,8 +10,14 @@
         >
           <div class="product-wrapper mb-30">
             <div class="product-img">
-              <a href="#">
-                <img :src="'/uploads/product_image/' + products[product-1].image" alt />
+              <a
+                href
+                title="Quick View"
+                data-toggle="modal"
+                data-target="#VUEModal"
+                @click="quickView(orderedProducts[product-1].id, orderedProducts[product-1].image, orderedProducts[product-1].name, orderedProducts[product-1].description)"
+              >
+                <img :src="'/uploads/product_image/' + orderedProducts[product-1].image" alt />
               </a>
               <span>hot</span>
               <div class="product-action">
@@ -21,7 +27,7 @@
                     <i class="pe-7s-like"></i>
                   </a>
                 </form>-->
-                <addTowishList :productID="productID=products[product-1].id"></addTowishList>
+                <addTowishList :productID="productID=orderedProducts[product-1].id"></addTowishList>
                 <a class="animate-top" title="Add To Cart" href="#">
                   <i class="pe-7s-cart"></i>
                 </a>
@@ -31,7 +37,7 @@
                   title="Quick View"
                   data-toggle="modal"
                   data-target="#VUEModal"
-                  @click="quickView(products[product-1].id, products[product-1].image, products[product-1].name, products[product-1].description)"
+                  @click="quickView(orderedProducts[product-1].id, orderedProducts[product-1].image, orderedProducts[product-1].name, orderedProducts[product-1].description)"
                 >
                   <i class="pe-7s-look"></i>
                 </a>
@@ -39,9 +45,9 @@
             </div>
             <div class="product-content">
               <h4>
-                <a href="#">{{ products[product-1].name }}</a>
+                <a href="#">{{ orderedProducts[product-1].name }}</a>
               </h4>
-              <span>${{ products[product-1].price }}</span>
+              <span>${{ orderedProducts[product-1].price }}</span>
             </div>
           </div>
         </div>
@@ -57,8 +63,14 @@
         >
           <div class="product-wrapper mb-30 single-product-list product-list-right-pr mb-60">
             <div class="product-img list-img-width">
-              <a href="#">
-                <img :src="'/uploads/product_image/' + products[product-1].image" alt />
+              <a
+                href
+                title="Quick View"
+                data-toggle="modal"
+                data-target="#VUEModal"
+                @click="quickView(orderedProducts[product-1].id, orderedProducts[product-1].image, orderedProducts[product-1].name, orderedProducts[product-1].description)"
+              >
+                <img :src="'/uploads/product_image/' + orderedProducts[product-1].image" alt />
               </a>
               <span>hot</span>
               <div class="product-action-list-style">
@@ -68,7 +80,7 @@
                   title="Quick View"
                   data-toggle="modal"
                   data-target="#VUEModal"
-                  @click="quickView(products[product-1].id, products[product-1].image, products[product-1].name, products[product-1].description)"
+                  @click="quickView(orderedProducts[product-1].id, orderedProducts[product-1].image, orderedProducts[product-1].name, orderedProducts[product-1].description)"
                 >
                   <i class="pe-7s-look"></i>
                 </a>
@@ -77,9 +89,9 @@
             <div class="product-content-list">
               <div class="product-list-info">
                 <h4>
-                  <a href="#">{{ products[product-1].name }}</a>
+                  <a href="#">{{ orderedProducts[product-1].name }}</a>
                 </h4>
-                <span>${{ products[product-1].price }}</span>
+                <span>${{ orderedProducts[product-1].price }}</span>
                 <p>Lorem ipsum dolor sit amet, mana consectetur adipisicing elit, sed do eiusmod tempor labore.</p>
               </div>
               <div class="product-list-cart-wishlist">
@@ -89,7 +101,7 @@
                 <div class="product-list-wishlist">
                   <addTowishList
                     class="btn-hover list-btn-wishlist"
-                    :productID="productID=products[product-1].id"
+                    :productID="productID=orderedProducts[product-1].id"
                   ></addTowishList>
                 </div>
               </div>
@@ -98,7 +110,7 @@
         </div>
       </div>
     </div>
-    <button @click="seeMore++">See more</button>
+    <button class="btn-hover list-btn-style" @click="seeMore++">See more</button>
     <modalQuickView :productid="productid" @clearData="productid = $event"></modalQuickView>
   </div>
 </template>
@@ -122,7 +134,8 @@ export default {
   },
   //   To use props, they must be declared
   props: {
-    products: Array
+    products: Array,
+    orderBy: Number
   },
   methods: {
     quickView(PID, v, name, description) {
@@ -132,6 +145,17 @@ export default {
   components: {
     modalQuickView: modalQuickView,
     addTowishList
+  },
+  computed: {
+    orderedProducts: function () {
+      if (this.orderBy==1){
+        return _.orderBy(this.products, 'name')
+      }
+
+      else if (this.orderBy==2){
+        return _.orderBy(this.products, 'name').reverse()
+      }
+  }
   }
 };
 </script>

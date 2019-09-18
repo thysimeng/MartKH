@@ -23,6 +23,7 @@ import productFood from "./components/usersComponent/homeComponent/productCatego
 
 //Shop
 import allProductDisplay from './components/usersComponent/shopComponent/allProductDisplay.vue';
+import shopHomePage from './components/usersComponent/shopComponent/shopHomePage.vue';
 
 // API reader
 import store from './components/usersComponent/mainAPI/productsReader';
@@ -39,7 +40,7 @@ const router = new VueRouter({
 const app = new Vue({
     el: '#app',
     data: {
-        show: true,
+        show: 1,
         showmodal: true,
         products: [],
         productshomecate: [],
@@ -53,7 +54,7 @@ const app = new Vue({
     router,
     methods: {
         showPage() {
-            return this.show = false, this.products = []
+            return this.show = 2, this.products = []
         },
         showHomePage() {
             return this.show = true
@@ -67,6 +68,7 @@ const app = new Vue({
     },
     components: {
         productSearch: productSearch,
+        shopHomePage: shopHomePage,
         allProductDisplay: allProductDisplay,
         productFood: productFood,
         productAll: productAll,
