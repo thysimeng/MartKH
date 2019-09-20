@@ -16,7 +16,9 @@ export default {
   name: "searchButton",
   data() {
     return {
-      searchInput: ""
+      searchInput: "",
+      showProps: this.show,
+      productsProps: this.products
     };
   },
   props: {
@@ -25,8 +27,8 @@ export default {
   },
   methods: {
     ChangeShow() {
-      this.show = 3;
-      this.$emit("changeshowbyemit", this.show);
+      this.showProps = 3;
+      this.$emit("changeshowbyemit", this.showProps);
     },
     searchProduct(e) {
       e.preventDefault();
@@ -36,10 +38,10 @@ export default {
           searchInput: this.searchInput
         })
         .then(function(response) {
-          currentObj.products = response.data;
+          currentObj.productsProps = response.data;
         })
         .catch(function(error) {
-          currentObj.products = error;
+          currentObj.productsProps = error;
         });
     }
   },
@@ -48,8 +50,8 @@ export default {
       return this.searchInput.dataInput !== "";
     },
     ChangeData() {
-      this.products = this.products;
-      this.$emit("changedatabyemit", this.products);
+      this.productsProps = this.productsProps;
+      this.$emit("changedatabyemit", this.productsProps);
     }
   }
 };

@@ -56,21 +56,21 @@ export const routes = [
             // addTowishList: addTowishList
         // }
     // },
-    {
-        path: '/users/shop',
-        components: {
-            shopHomePage: shopHomePage,
-            productSearch: productSearch,
-            shop: shop,
-            addTowishList: addTowishList
-        }
-    },
-    {
-        path: '/users/shop/foodVue',
-        components: {
-            productSearch: productSearch,
-            food: food,
-            addTowishList: addTowishList
-        }
-    },
+    // {
+    //     path: '/users/shop',
+    //     components: {
+    //         shopHomePage: shopHomePage,
+    //         productSearch: productSearch,
+    //         shop: shop,
+    //         addTowishList: addTowishList
+    //     }
+    // },
+    // {
+    //     path: '/users/shop/foodVue',
+    //     components: {
+    //         productSearch: productSearch,
+    //         food: food,
+    //         addTowishList: addTowishList
+    //     }
+    // },
 ];

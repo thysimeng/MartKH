@@ -15,8 +15,14 @@ class ProductsController extends Controller
     function __construct() { $this->template = "1";}
     public function get()
     {
-        $food = DB::table('products')->get();
-        return response()->json($food);
+        // $food = DB::table('products')->get();
+        // return response()->json($food);
+        $product = DB::table('products')
+        ->join('subcategories', 'products.subcategory_id', '=', 'subcategories.id')
+        ->join('categories', 'subcategories.category_id', '=', 'categories.id')
+        ->select('products.*', 'categories.categories_name')
+        ->get();
+        return response()->json($product);
     }
     public function wishlistproducts()
     {

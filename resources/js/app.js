@@ -43,6 +43,7 @@ const app = new Vue({
         show: 1,
         showmodal: true,
         products: [],
+        productsShop: [],
         productshomecate: [],
         producthome: [],
         productid: [],
@@ -85,6 +86,7 @@ const app = new Vue({
     computed: {
         ...mapGetters(["productsFoodHome"]),
         productsCategory() {
+            this.products=this.productsShop;
             return this.$store.getters.productsFoodHome;
         },
         templateID() {
