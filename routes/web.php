@@ -102,9 +102,11 @@ Route::group(['middleware' => ['web','auth','checkUserRole']], function () {
 Route::group(['middleware' => ['web','auth','checkUserRoleFranchise']], function () {
 	Route::get('/franchise','Franchise\FranchiseController@showDashboard')->name('franchise');
 	Route::get('/franchise/products','Franchise\FranchiseController@viewProduct')->name('franchise.products');
+	Route::get('/franchise/stocks/search','Franchise\FranchiseController@search')->name('franchise.stock.search');
 	Route::get('/franchise/stocks','Franchise\FranchiseController@index')->name('franchise.stock');
 	Route::get('/franchise/stocks/request','Franchise\FranchiseController@requestForm')->name('franchise.request');
 	Route::post('/franchise/stocks/store','Franchise\FranchiseController@requestStock')->name('franchise.requestStock');
+	Route::get('/franchise/stocks/history/search','Franchise\FranchiseController@searchRequestHistory')->name('franchise.searchRequestHistory');
 	Route::get('/franchise/stocks/history','Franchise\FranchiseController@requestHistory')->name('franchise.requestHistory');
 	Route::get('/franchise/stock/autocomplete',array('as'=>'franchise.stock.autocomplete','uses'=>'Franchise\FranchiseController@autocomplete'));
 	Route::put('franchise/profile/password','Franchise\FranchiseController@password')->name('franchise.profile.password');

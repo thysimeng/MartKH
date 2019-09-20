@@ -12,7 +12,7 @@
                                     <div class="col-4">
                                         <h3 class="mb-0">Stocks</h3>
                                     </div>
-                                    <form class="col-4" id="search-stockFranchise" method="get" action="{{ route('franchises.search') }}">
+                                    <form class="col-4" id="search-stockFranchise" method="get" action="{{ route('franchise.stock.search') }}">
                                             <div class="form-group mb-2 mt-2">
                                                 <div class="input-group input-group-alternative">
                                                     <div class="input-group-prepend">
