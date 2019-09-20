@@ -3,7 +3,11 @@
 @section('content')
     @include('admin.users.partials.header', ['title' => __('Add Product')])
 
-    <div class="container-fluid mt--7">
+    @if($sidebar==0)
+        <div class="container-fluid mt--7">
+    @elseif($sidebar==1)
+        <div class="container-fluid bg-dark mt--7">
+    @endif
         <div class="row">
             <div class="col-xl-12 order-xl-1">
                 <div class="card bg-secondary shadow">
@@ -126,11 +130,11 @@
                                 <div class="form-group{{ $errors->has('subcategory_id') ? ' has-danger' : '' }}">
                                     <label class="form-control-label" for="input-subcategory_id">{{ __('subcategory') }}</label>
                                     <select class="form-control" name="subcategory_id" id="subcategory_id" required>
-                                        @if(count($subcategories)>0)   
+                                        @if(count($subcategories)>0)
                                             @foreach ($subcategories as $subcategory)
-                                                <option value="{{$subcategory->id}}" 
-                                                >{{ $subcategory->subcategory_name}} </option>               
-                                            @endforeach  
+                                                <option value="{{$subcategory->id}}"
+                                                >{{ $subcategory->subcategory_name}} </option>
+                                            @endforeach
                                         @endif
                                     </select>
                                 </div>

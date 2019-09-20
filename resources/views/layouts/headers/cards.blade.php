@@ -1,11 +1,20 @@
 {{-- <div class="header bg-gradient-custom pb-8 pt-5 pt-md-8"> --}}
-<div class="header pb-8 pt-5 pt-md-8">
+@if($sidebar==0)
+    <div class="header pb-8 pt-5 pt-md-8">
+@elseif($sidebar==1)
+    <div class="header bg-dark pb-8 pt-5 pt-md-8">
+@endif
     <div class="container-fluid">
         <div class="header-body">
             <!-- Card stats -->
             <div class="row">
                 <div class="col-xl-3 col-lg-6">
-                    <div class="card card-stats mb-4 mb-xl-0">
+                    @if($sidebar==0)
+                        <div class="card card-stats mb-4 mb-xl-0">
+                    @elseif($sidebar==1)
+                        <div class="card bg-dark card-stats mb-4 mb-xl-0">
+                    @endif
+                    {{-- <div class="card card-stats mb-4 mb-xl-0"> --}}
                         <div class="card-body">
                             <div class="row">
                                 <div class="col">

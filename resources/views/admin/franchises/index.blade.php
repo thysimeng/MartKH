@@ -3,7 +3,11 @@
 @section('content')
     @include('layouts.headers.cards')
 
-    <div class="container-fluid mt--7">
+    @if($sidebar==0)
+        <div class="container-fluid mt--7">
+    @elseif($sidebar==1)
+        <div class="container-fluid bg-dark mt--7">
+    @endif
         <div class="row">
             <div class="col">
                 <div class="card shadow">

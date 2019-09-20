@@ -1,9 +1,13 @@
 @extends('layouts.app', ['title' => __('Franchise Management')])
 
 @section('content')
-    @include('admin.users.partials.header', ['title' => __('Edit Franchise')])   
+    @include('admin.users.partials.header', ['title' => __('Edit Franchise')])
 
-    <div class="container-fluid mt--7">
+    @if($sidebar==0)
+        <div class="container-fluid mt--7">
+    @elseif($sidebar==1)
+        <div class="container-fluid bg-dark mt--7">
+    @endif
         <div class="row">
             <div class="col-xl-12 order-xl-1">
                 <div class="card bg-secondary shadow">
@@ -54,7 +58,7 @@
                 </div>
             </div>
         </div>
-        
+
         @include('layouts.footers.auth')
     </div>
 @endsection

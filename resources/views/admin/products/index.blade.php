@@ -3,7 +3,11 @@
 @section('content')
     @include('layouts.headers.cards')
 
-    <div class="container-fluid mt--7">
+    @if($sidebar==0)
+        <div class="container-fluid mt--7">
+    @elseif($sidebar==1)
+        <div class="container-fluid bg-dark mt--7">
+    @endif
         <div class="row">
             <div class="col">
                 <div class="card shadow">
@@ -18,9 +22,9 @@
                                                         <span class="input-group-text"><i class="fas fa-search"></i></span>
                                                     </div> --}}
                                                 <input class="form-control" placeholder="Search" type="text" name="search" id="search" value="{{$keyword}}" style="border: 1px solid #11cdef">
-                                                <span class="form-clear d-none"><i class="fas fa-times-circle">clear</i></span>   
+                                                <span class="form-clear d-none"><i class="fas fa-times-circle">clear</i></span>
                                                 <div class="input-group-append">
-                                                     
+
                                                     <button class="btn btn-info" type="submit"><i class="fa fa-search"></i></button>
                                                     </div>
                                             </div>
@@ -83,7 +87,7 @@
                                     <tr>
                                         <td>{{ $product->id }}</td>
                                         <td>{{ $product->code }}</td>
-                                        <td><img src="{{asset( 'uploads/product_image/' . $product->image )}}" alt="" class="img-thumbnail " style="width:100px;heigth:100px;"></td>                                      
+                                        <td><img src="{{asset( 'uploads/product_image/' . $product->image )}}" alt="" class="img-thumbnail " style="width:100px;heigth:100px;"></td>
                                         <td>{{ $product->name }}</td>
                                         <td>{{ $product->price }}</td>
                                         <td>{{ $product->size }}</td>
@@ -106,15 +110,15 @@
                                                             @csrf
                                                             @method('delete')
                                                             {{-- <a class="dropdown-item" href="{{ route('user.edit', $user) }}">{{ __('Edit') }}</a> --}}
-                                                            <button type="button" class="dropdown-item openImageDialog" data-toggle="modal" data-target="#viewProduct" data-id="{{ $product->id }}" data-name="{{ $product->name }}" 
-                                                                data-code="{{ $product->code }}" data-price="{{ $product->price }}" data-brand="{{ $product->brand }}" 
+                                                            <button type="button" class="dropdown-item openImageDialog" data-toggle="modal" data-target="#viewProduct" data-id="{{ $product->id }}" data-name="{{ $product->name }}"
+                                                                data-code="{{ $product->code }}" data-price="{{ $product->price }}" data-brand="{{ $product->brand }}"
                                                                 data-country="{{ $product->country }}" data-size="{{ $product->size }}" data-image="{{ $product->image }}"
                                                                 data-description="{{ $product->description }}" data-created_at="{{ $product->created_at->format('d/m/Y H:i') }}"
-                                                                data-update="{{ $product->updated_at->format('d/m/Y H:i') }}" data-subcategory_id="{{ $product->subcategory_id }}">{{ __('View') }}</button> 
+                                                                data-update="{{ $product->updated_at->format('d/m/Y H:i') }}" data-subcategory_id="{{ $product->subcategory_id }}">{{ __('View') }}</button>
                                                             <a class="dropdown-item" href="/admin/products/{{$product->id}}/edit?page={{$products->currentPage()}}" id="edit">{{ __('Edit') }}</a>
                                                             <button class="dropdown-item delete-btn" type="submit">Delete</button>
- 
-                                                            
+
+
                                                         </form>
                                                     {{-- @else
                                                         <a class="dropdown-item" href="{{ route('admin.profile.edit') }}">{{ __('Edit') }}</a>
@@ -152,7 +156,7 @@
             $(document).ready(function() {
                 // $(document).on('click', '.pagination a', function (e) {
                 //     $('.products').append('<img style="position: absolute; left: 0; top: 0; z-index: 100000;" src="../public/images/loading.gif" />');
-                //     var url = $(this).attr('href'); 
+                //     var url = $(this).attr('href');
                 //     getProducts($(this).attr('href').split('page=')[1]);
                 //     e.preventDefault();
                 // });
@@ -176,10 +180,10 @@
                     alert('page can\'t be load');
                 });
             }
-        </script>        
-        
+        </script>
+
     <script>
-        // bootstrap filter 
+        // bootstrap filter
         // $(document).ready(function(){
         // $("#search").on("keyup", function() {
         //     var value = $(this).val().toLowerCase();
@@ -204,7 +208,7 @@
                     $("#subcategory_id").html($(e.relatedTarget).data('subcategory_id'));
                     $("#created_at").html($(e.relatedTarget).data('created_at'));
                     // $("#update").html($(e.relatedTarget).data('updated_at'));
-                    
+
                     // $('#imagesrc').attr('src',$("#image").html($(e.relatedTarget).data('image'));
                 });
             });
@@ -228,7 +232,7 @@
             }).then((result) => {
             if (result.value) {
                 this.parentElement.submit()
-            }   
+            }
             })
             // $(document).ready(function(){
             //     fetch_products();
@@ -248,8 +252,8 @@
 
         });
     </script>
-        
-        
+
+
         @include('layouts.footers.auth')
     </div>
     <div class="modal fade" id="viewProduct" tabindex="-1" role="dialog" aria-labelledby="viewProductTitle" aria-hidden="true">
@@ -262,7 +266,7 @@
                   </button>
                 </div>
                 <div class="modal-body">
-                    <div class="row">    
+                    <div class="row">
                         <div class="col-lg-6">
                             <img id="imagesrc" style="width:auto;"/>
                         </div>

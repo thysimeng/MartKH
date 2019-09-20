@@ -8,7 +8,11 @@
     ])
 
 
-    <div class="container-fluid mt--7">
+    @if($sidebar==0)
+        <div class="container-fluid mt--7">
+    @elseif($sidebar==1)
+        <div class="container-fluid bg-dark mt--7">
+    @endif
         {{-- <div class="row"> --}}
             {{-- <div class="col-xl-4 order-xl-2 mb-5 mb-xl-0">
                 <div class="card card-profile shadow">

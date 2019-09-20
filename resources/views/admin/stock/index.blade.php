@@ -3,7 +3,11 @@
 @section('content')
     @include('layouts.headers.cards')
 
-    <div class="container-fluid mt--7">
+    @if($sidebar==0)
+        <div class="container-fluid mt--7">
+    @elseif($sidebar==1)
+        <div class="container-fluid bg-dark mt--7">
+    @endif
         <div class="row">
             <div class="col">
                 <div class="card shadow">
@@ -26,11 +30,11 @@
                                                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addStock">{{ __('Add Stock') }}</button>
                                             </div>
                             </div>
-                                    
-                                    
-                                        
+
+
+
                                     <!-- Add stocks -->
-                                    
+
                                     <form class="form-horizontal" action="{{ route('admin.create_stock') }}" enctype="multipart/form-data" method="post">
                                         @csrf
                                         <div class="modal fade" id="addStock" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -50,7 +54,7 @@
                                                     {{-- <div class="modal-body">
                                                         <label for="exampleFormControlSelect1">Select Franchies</label>
                                                         <input type="hidden" class="form-control" name="franchise_id" id="" value="">
-                                                        <input type="text" class="typeahead form-control" name="franchise_name" required placeholder="Search Franchise"> 
+                                                        <input type="text" class="typeahead form-control" name="franchise_name" required placeholder="Search Franchise">
                                                     </div> --}}
                                                     <div class="modal-body">
                                                         <input type="text" class="form-control" name="amount" id="" value="" required placeholder="Amount">
@@ -65,7 +69,7 @@
                                         </div>
                                     </form>
                     </div>
-                    
+
                     <div class="col-12">
                         @if (session('status'))
                             <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -76,7 +80,7 @@
                             </div>
                         @endif
                     </div>
-                    
+
                     <!-- Users Table -->
                     <div class="tab-content" id="nav-tabContent">
                         <!-- Admin List -->
@@ -96,7 +100,7 @@
                                             </thead>
                                             <tbody>
                                                     @foreach($stocks_data as $item)
-                                                    
+
                                                     <tr>
                                                         <td>{{$item->id}}</td>
                                                         <td><img src="{{asset( 'uploads/product_image/' . $item->product->image )}}" alt="" class="img-thumbnail " style="width:50px;"></td>
@@ -111,7 +115,7 @@
                                                                 </a>
                                                                 <div data-id="{{$item->id}}"  class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
                                                                     <a onclick="edit({{$item->id}}, '{{$item->amount}}')" class="dropdown-item" data-toggle="modal" data-target="#editModalCenter" href="">{{ __('Edit') }}</a>
-                                                            
+
                                                                     {{-- <a class="dropdown-item" href="">{{ __('View') }}</a> --}}
                                                                     <a onclick="delet({{$item->id}})" class="dropdown-item" data-toggle="modal" data-target="#deleteModalCenter" href="">{{ __('Delete') }}</a>
                                                                     {{-- <a class="dropdown-item" href="/admin/delete_stock/{{ $item->id }}">{{ __('Delete') }}</a> --}}
@@ -170,8 +174,8 @@
                                                         </form>
                                                     </div>
                                                     @endforeach
-                                            </tbody>        
-                                </table>    
+                                            </tbody>
+                                </table>
                             </div>
                         </div>
                          <!-- User List -->
@@ -189,7 +193,7 @@
                                             </thead>
                                             <tbody>
                                                     @foreach($stocks_franch_data as $item)
-                                                    
+
                                                     <tr>
                                                         <td>{{$item->id}}</td>
                                                         <td>{{$item->franchise_name}}</td>
@@ -198,8 +202,8 @@
                                                         <td>{{$item->updated_at}}</td>
                                                     </tr>
                                                     @endforeach
-                                            </tbody>  
-                                    
+                                            </tbody>
+
                                 </table>
                             </div>
                         </div> --}}
@@ -208,12 +212,12 @@
                                     {{$stocks_data->appends($queryParams)->render()}}
                                 </div>
                             </div>
-                        
+
                     </div>
                 </div>
             </div>
         </div>
-            
+
         @include('layouts.footers.auth')
     </div>
 
@@ -221,7 +225,7 @@
         document.getElementById('search-stocks').submit();
     </script>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.1/bootstrap3-typeahead.min.js"></script>  
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.1/bootstrap3-typeahead.min.js"></script>
     <script type="text/javascript">
         var pathstock = "{{ route('admin.stock.autocomplete') }}";
         $stockInput = $('input[name="product_name"]');
@@ -232,13 +236,13 @@
                 });
             }
         });
-        
+
         $stockInput.change(function() {
             var current = $stockInput.typeahead("getActive");
             if (current) {
                 $('input[name="product_id"]').val(current.id);
             }
-        
+
         });
     </script>
 
@@ -246,20 +250,20 @@
         var franchise = "{{ route('admin.stock.autocompleteFranchise') }}";
         $franchiseInput = $('input[name="franchise_name"]');
         $franchiseInput.typeahead({
-            
+
             source:  function (query, process) {
             return $.get(franchise, { query: query }, function ($data_franchise) {
                     return process($data_franchise);
                 });
             }
         });
-        
+
         $franchiseInput.change(function() {
             var currentFranchise = $franchiseInput.typeahead("getActive");
             if (currentFranchise) {
                 $('input[name="franchise_id"]').val(currentFranchise.id);
             }
-        
+
         });
     </script> --}}
 

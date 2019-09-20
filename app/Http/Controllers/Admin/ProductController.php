@@ -9,6 +9,7 @@ use App\Models\SubCategory;
 use DB;
 use Image;
 use File;
+use Cookie;
 use RealRashid\SweetAlert\Facades\Alert;
 class ProductController extends Controller
 {
@@ -65,6 +66,7 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
+        dd(Cookie::has('godark'));
         $this-> validate($request,[
             'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'code' => 'required|unique:products',
@@ -202,7 +204,7 @@ class ProductController extends Controller
     }
     // Filter product
     // public function filter()
-    // {   
+    // {
     //     $product_list = Products::query();
     //     // $product_list->whereRaw("date(users.created_at) >= '" . $start_date . "' AND date(users.created_at) <= '" . $end_date . "'");
     //     $product_list->whereRaw("CONCAT(id,code,name,price,size,brand,country,created_at) like ");
@@ -214,7 +216,7 @@ class ProductController extends Controller
     // function search(Request $request){
     //     if($request->ajax()){
     //         $query = $request->get('query');
-    //         // if not search 
+    //         // if not search
     //         if($query != ''){
     //             $data = DB::table('products')
     //                     // ->where('id','like','%'.$query.'%')
@@ -253,7 +255,7 @@ class ProductController extends Controller
     //             $output = '
     //                 <tr>
     //                     <td>No Data Found</td>
-    //                 </tr>    
+    //                 </tr>
     //             ';
     //         }
     //         $data = array(

@@ -3,7 +3,11 @@
 @section('content')
     @include('layouts.headers.cards')
 
-    <div class="container-fluid mt--7">
+    @if($sidebar==0)
+        <div class="container-fluid mt--7">
+    @elseif($sidebar==1)
+        <div class="container-fluid bg-dark mt--7">
+    @endif
         <div class="row">
             <div class="col">
                 <div class="card shadow">
@@ -15,7 +19,7 @@
                                     <form class="col-4">
                                         <div class="input-group input-group-alternative">
                                                 <input class="form-control" placeholder="Search" type="text" name="search" id="search" value="" style="border: 1px solid #11cdef">
-                                                <span class="form-clear d-none"><i class="fas fa-times-circle">clear</i></span>   
+                                                <span class="form-clear d-none"><i class="fas fa-times-circle">clear</i></span>
                                                 <div class="input-group-append">
                                                     <button class="btn btn-info" type="submit"><i class="fa fa-search"></i></button>
                                                 </div>
@@ -54,7 +58,7 @@
                                 @foreach ($stock_franchises as $stock_franchise)
                                     <tr>
                                         <td>{{ $stock_franchise->sfid }}</td>
-                                        <td><img src="{{asset( 'uploads/product_image/' . $stock_franchise->image )}}" alt="" class="img-thumbnail " style="width:100px;heigth:100px;"></td>                                      
+                                        <td><img src="{{asset( 'uploads/product_image/' . $stock_franchise->image )}}" alt="" class="img-thumbnail " style="width:100px;heigth:100px;"></td>
                                         <td>{{ $stock_franchise->amount }}</td>
                                         <td>{{ $stock_franchise->code }}</td>
                                         <td>{{ $stock_franchise->name }}</td>
@@ -73,7 +77,7 @@
                     </div>
                 </div>
             </div>
-        </div>        
+        </div>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
     <script>
         $(window).on('hashchange', function() {
@@ -107,7 +111,7 @@
                 alert('page can\'t be load');
             });
         }
-    </script>  
+    </script>
     <script>
         $(document).ready(function(){
             $(function() {
@@ -123,7 +127,7 @@
                     $("#subcategory_id").html($(e.relatedTarget).data('subcategory_id'));
                     $("#created_at").html($(e.relatedTarget).data('created_at'));
                     // $("#update").html($(e.relatedTarget).data('updated_at'));
-                    
+
                     // $('#imagesrc').attr('src',$("#image").html($(e.relatedTarget).data('image'));
                 });
             });
@@ -147,12 +151,12 @@
             }).then((result) => {
             if (result.value) {
                 this.parentElement.submit()
-            }   
+            }
             })
         });
     </script>
-        
-        
+
+
         @include('layouts.footers.auth')
     </div>
     <div class="modal fade" id="viewProduct" tabindex="-1" role="dialog" aria-labelledby="viewProductTitle" aria-hidden="true">
@@ -165,7 +169,7 @@
                   </button>
                 </div>
                 <div class="modal-body">
-                    <div class="row">    
+                    <div class="row">
                         <div class="col-lg-6">
                             <img id="imagesrc" style="width:auto;"/>
                         </div>

@@ -54,7 +54,11 @@
             </div>
         </div>
     </div> --}}
-    <div class="container-fluid mt--7">
+    @if($sidebar==0)
+        <div class="container-fluid mt--7">
+    @elseif($sidebar==1)
+        <div class="container-fluid bg-dark mt--7">
+    @endif
         <div class="row">
             <div class="col">
                 {{-- template 1 --}}
@@ -313,30 +317,42 @@
                 }
                 })
             });
+            // $(document).on('click', '.remove-div', function(){
+            //         $(this).parents('.image-area').remove();
+            // });
+
             $(document).ready(function(){
                 // click hidden upload button
-                $("#adsLeftButton1").click(function(){
+                $("#adsLeftButton1").click(function(e){
+                    e.preventDefault();
                     $("#adsLeft1").click();
                 });
-                $("#adsMiddleButton1").click(function(){
+                $("#adsMiddleButton1").click(function(e){
+                    e.preventDefault();
                     $("#adsMiddle1").click();
                 });
-                $("#adsTopRightButton1").click(function(){
+                $("#adsTopRightButton1").click(function(e){
+                    e.preventDefault();
                     $("#adsTopRight1").click();
                 });
-                $("#adsBottomRightButton1").click(function(){
+                $("#adsBottomRightButton1").click(function(e){
+                    e.preventDefault();
                     $("#adsBottomRight1").click();
                 });
-                $("#adsLeftButton2").click(function(){
+                $("#adsLeftButton2").click(function(e){
+                    e.preventDefault();
                     $("#adsLeft2").click();
                 });
-                $("#adsTopRightButton2").click(function(){
+                $("#adsTopRightButton2").click(function(e){
+                    e.preventDefault();
                     $("#adsTopRight2").click();
                 });
-                $("#adsBottomRightButton2").click(function(){
+                $("#adsBottomRightButton2").click(function(e){
+                    e.preventDefault();
                     $("#adsBottomRight2").click();
                 });
-                $("#adsMiddleButton3").click(function(){
+                $("#adsMiddleButton3").click(function(e){
+                    e.preventDefault();
                     $("#adsMiddle3").click();
                 });
                 //image preview
@@ -350,12 +366,15 @@
                     // $("#submitForm").submit();
                     // $('#imageLeftPreview1').empty();
                 });
-                $("#adsMiddle1").change(function(){
+                $("#adsMiddle1").on('change',function(e){
                     $('#imageMiddlePreview1').html("");
                     var total_file=document.getElementById("adsMiddle1").files.length;
+                    var file = e.target.files;
                     for(var i=0;i<total_file;i++)
                     {
-                        $('#imageMiddlePreview1').append("<img src='"+URL.createObjectURL(event.target.files[i])+"'>");
+                        var fileURL = URL.createObjectURL(e.target.files[i]);
+                        $('#imageMiddlePreview1').append("<div class='image-area'><img src='"+fileURL+"'><button class='btn remove-image remove-div' style='display: inline;' onclick=myFunction(\'"+fileURL+"\')>&#215;</button></div>");
+
                     }
                 });
                 $("#adsTopRight1").change(function(){
@@ -463,6 +482,16 @@
                 });
 
             });
+            function myFunction(file){
+                console.log(file);
+                window.URL.revokeObjectURL(file);
+                var total = document.getElementById("adsMiddle1").files;
+                array = Array.from(total);
+                array.splice(1,1);
+                // var arr = Array()
+                // total_file.pop();
+                console.log(array);
+            }
             function deleteAds(id){
                 Swal.fire({
                     position: 'center',

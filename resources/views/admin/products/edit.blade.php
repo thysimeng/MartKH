@@ -1,8 +1,12 @@
 @extends('layouts.app', ['title' => __('Product Management')])
 
 @section('content')
-    @include('admin.users.partials.header', ['title' => __('Edit Product')])   
-    <div class="container-fluid mt--7">
+    @include('admin.users.partials.header', ['title' => __('Edit Product')])
+    @if($sidebar==0)
+        <div class="container-fluid mt--7">
+    @elseif($sidebar==1)
+        <div class="container-fluid bg-dark mt--7">
+    @endif
         <div class="row">
             <div class="col-xl-12 order-xl-1">
                 <div class="card bg-secondary shadow">
@@ -140,12 +144,12 @@
                                 <div class="form-group{{ $errors->has('subcategory_id') ? ' has-danger' : '' }}">
                                     <label class="form-control-label" for="input-subcategory_id">{{ __('Subcategory') }}</label>
                                     <select class="form-control" name="subcategory_id" id="subcategory_id" required>
-                                        @if(count($subcategories)>0)   
+                                        @if(count($subcategories)>0)
                                             @foreach ($subcategories as $subcategory)
-                                                <option value="{{$subcategory->id}}" 
+                                                <option value="{{$subcategory->id}}"
                                                 {{ ( $product['subcategory_id'] == $subcategory['id'] )? 'selected' : '' }}
-                                                >{{ $subcategory->subcategory_name}} </option>               
-                                            @endforeach  
+                                                >{{ $subcategory->subcategory_name}} </option>
+                                            @endforeach
                                         @endif
                                     </select>
                                 </div>
@@ -175,31 +179,31 @@
                 input.trigger('fileselect', [label]);
                 });
                 $('.btn-file :file').on('fileselect', function(event, label) {
-                    
+
                     var input = $(this).parents('.input-group').find(':text'),
                         log = label;
-                    
+
                     if( input.length ) {
                         input.val(log);
                     } else {
                         if( log ) alert(log);
                     }
-                
+
                 });
                 function readURL(input) {
                     if (input.files && input.files[0]) {
                         var reader = new FileReader();
-                        
+
                         reader.onload = function (e) {
                             $('#img-upload').attr('src', e.target.result);
                         }
-                        
+
                         reader.readAsDataURL(input.files[0]);
                     }
                 }
                 $("#imgInp").change(function(){
                     readURL(this);
-                }); 	
+                });
             });
         </script>
         @include('layouts.footers.auth')

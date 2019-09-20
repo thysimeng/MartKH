@@ -3,7 +3,11 @@
 @section('content')
     @include('layouts.headers.cards')
 
-    <div class="container-fluid mt--7">
+    @if($sidebar==0)
+        <div class="container-fluid mt--7">
+    @elseif($sidebar==1)
+        <div class="container-fluid bg-dark mt--7">
+    @endif
         <div class="row">
             <div class="col">
                 <div class="card shadow">
@@ -34,7 +38,7 @@
                                     <th scope="col">{{ __('Product Name') }}</th>
                                     <th scope="col">{{ __('Product Image') }}</th>
                                     <th scope="col">{{ __('Amount') }}</th>
-                                    
+
                                     <th scope="col">{{ __('Request Date') }}</th>
                                     <th scope="col">{{ __('Status') }}</th>
                                 </tr>
@@ -77,34 +81,34 @@
                     method: "POST",
                     url: "/admin/edit_notification",
                     data: { 'id': id, 'status': status },
-                   
+
                 }
             )
         }
 
         function aprove_status(id) {
             update_status(id, 1)
-        } 
+        }
         function deny_status(id) {
             update_status(id, 0);
         }
 
-    
-        
+
+
         $(document).ready(function(){
             $('.checkToggle').bootstrapToggle({
                 on: 'Aproved',
                 off: 'New!'
             });
-            
+
             $('.checkToggle').change(function() {
                 var id = $(this).data('id');
                 var status = $(this).prop('checked')?1:0;
                 update_status(id, status);
             })
         });
-            
-        
+
+
         })
     </script>
 @endsection

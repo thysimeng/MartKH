@@ -1,9 +1,13 @@
 @extends('layouts.app', ['title' => __('Franchise Management')])
 
 @section('content')
-    @include('admin.users.partials.header', ['title' => __('Add Franchise')])   
+    @include('admin.users.partials.header', ['title' => __('Add Franchise')])
 
-    <div class="container-fluid mt--7">
+    @if($sidebar==0)
+        <div class="container-fluid mt--7">
+    @elseif($sidebar==1)
+        <div class="container-fluid bg-dark mt--7">
+    @endif
         <div class="row">
             <div class="col-xl-12 order-xl-1">
                 <div class="card bg-secondary shadow">
@@ -20,7 +24,7 @@
                     <div class="card-body">
                         <form method="post" action="{{ route('franchises.store') }}" autocomplete="off">
                             @csrf
-                            
+
                             <h6 class="heading-small text-muted mb-4">{{ __('Franchise information') }}</h6>
                             <div class="pl-lg-4">
                                 <div class="form-group{{ $errors->has('franchise_name') ? ' has-danger' : '' }}">
@@ -76,7 +80,7 @@
                 </div>
             </div>
         </div>
-        
+
         @include('layouts.footers.auth')
     </div>
 @endsection

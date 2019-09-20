@@ -1,8 +1,13 @@
 <!-- Top navbar -->
 <nav class="navbar navbar-top navbar-expand-md navbar-dark d-none d-md-flex" id="navbar-main">
     <div class="container-fluid">
+        {{-- nav  --}}
+        {{-- <button class="navbar-toggler"  type="button" data-toggle="collapse" data-target="#sidenav-main">Hello</button> --}}
+        <button class="navbar-toggler shadow-none--hover shadow-none" style="display:block !important;" type="button" onclick="closeNav()" id="nav-toggle-icon">
+                <span class="navbar-toggler-icon"></span>
+        </button>
         <!-- Brand -->
-        <a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="{{ route('home') }}">{{ __('Dashboard') }}</a>
+        {{-- <a class="h4 mb-0 text-white text-uppercase d-none d-lg-inline-block" href="{{ route('home') }}">{{ __('Dashboard') }}</a> --}}
         <!-- Form -->
         {{-- <form class="navbar-search navbar-search-dark form-inline mr-3 d-none d-md-flex ml-lg-auto">
             <div class="form-group mb-0">
@@ -43,14 +48,18 @@
                         <span>{{ __('My profile') }}</span>
                     </a>
                     @endif
-                    <a href="#" class="dropdown-item">
+                    <a href="{{route('settings.index')}}" class="dropdown-item">
                         <i class="ni ni-settings-gear-65"></i>
                         <span>{{ __('Settings') }}</span>
                     </a>
-                    <a href="#" class="dropdown-item">
+                    {{-- <a href="#" class="dropdown-item">
                         <i class="ni ni-calendar-grid-58"></i>
-                        <span>{{ __('Activity') }}</span>
-                    </a>
+                        <span>{{ __('Dark Mode') }}</span>
+                        <label class="custom-toggle">
+                            <input type="checkbox" checked="">
+                            <span class="custom-toggle-slider rounded-circle" data-label-off="No" data-label-on="Yes"></span>
+                        </label>
+                    </a> --}}
                     <a href="#" class="dropdown-item">
                         <i class="ni ni-support-16"></i>
                         <span>{{ __('Support') }}</span>
