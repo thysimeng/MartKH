@@ -12,7 +12,7 @@
                             <div class="col-4">
                                 <h3 class="mb-0">Request History
                             </div>
-                            <form class="col-4" action="{{route('franchise.searchRequestHistory')}}" method="get" role="search">
+                            <form class="col-4" action="{{route('admin.requestHistorySearch')}}" method="get" role="search">
                                     {{ csrf_field() }}
                                     <div class="form-group mb-2 mt-2">
                                         <div class="input-group input-group-alternative">
@@ -23,9 +23,7 @@
                                         </div>
                                     </div>
                             </form>
-                            <div class="col-4 text-right">
-                                <a href="{{ route('franchise.stock') }}" class="btn btn-sm btn-primary">{{ __('Back to list') }}</a>
-                            </div>
+                            
                         </div>
                     </div>
                     <div class="table-responsive">
@@ -50,7 +48,7 @@
                                         <td>{{ $requestStock->product->name }}</td>
                                         <td><img src="{{asset( 'uploads/product_image/' .$requestStock->product->image  )}}" alt="" class="img-thumbnail " style="width:50px"></td>
                                         <td>{{ $requestStock->amount }}</td>
-                                        <td>{{ $requestStock->created_at->diffForHumans() }}</td>
+                                        <td>{{ $requestStock->created_at->format('d/m/Y H:i') }}</td>
                                         <td>
                                             @if ($requestStock->status == 'pending') 
                                                 <span class="badge badge-primary text-white" style="background-color:#fb6340; font-size:.8rem">{{ $requestStock->status }}</span>

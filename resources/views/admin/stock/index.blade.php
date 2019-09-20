@@ -14,10 +14,10 @@
                     <div class="card-header border-0">
                             <div class="row align-items-center">
                                     <div class="col-4">
-                                        <h3 class="mb-0">Main Stock  <button class="btn btn-danger btn-sm" style="border-radius: 50%; width: 40px; height: 40px;">{{count($allStocks_data)}}</button></h3>
+                                        <h3 class="mb-0">Main Stock
                                     </div>
-                                            <form class="col-4" id="search-stocks" method="get" action="{{ route('admin.search_stock') }}" autocomplete="off">
-                                                    <div class="form-group mb-4">
+                                            <form class="col-4 mt-2" id="search-stocks" method="get" action="{{ route('admin.search_stock') }}" autocomplete="off">
+                                                    <div class="form-group mb-2">
                                                         <div class="input-group input-group-alternative">
                                                             <div class="input-group-prepend">
                                                                 <span class="input-group-text"><i class="fas fa-search"></i></span>
@@ -90,6 +90,7 @@
                                         <thead class="thead-light">
                                                 <tr>
                                                     <th scope="col">{{ __('Stock ID') }}</th>
+                                                    <th scope="col">{{ __('Code') }}</th>
                                                     <th scope="col">{{ __('Image') }}</th>
                                                     <th scope="col">{{ __('Product Name') }}</th>
                                                     <th scope="col">{{ __('Amount') }}</th>
@@ -103,6 +104,7 @@
 
                                                     <tr>
                                                         <td>{{$item->id}}</td>
+                                                        <td>{{$item->product->code}}</td>
                                                         <td><img src="{{asset( 'uploads/product_image/' . $item->product->image )}}" alt="" class="img-thumbnail " style="width:50px;"></td>
                                                         <td>{{$item->product->name}}</td>
                                                         <td>{{$item->amount}}</td>

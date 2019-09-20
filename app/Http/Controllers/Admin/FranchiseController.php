@@ -142,8 +142,13 @@ class FranchiseController extends Controller
                     ->orWhereRaw('LOWER(`address`) LIKE ?','%'.trim(strtolower($search)).'%')
                     ->orWhereRaw('LOWER(`id`) LIKE ?','%'.trim(strtolower($search)).'%')
                     ->paginate(10);
+        $users = User::get();
+        $linkUsers = DB::table('franchise_user')
+                            ->join('users','franchise_user.user_id','=','users.id')
+                            ->select('franchise_user.franchise_id','users.*')
+                            ->get();
         
-        return view('admin.franchises.index',['franchises'=> $franchises]);
+        return view('admin.franchises.index',['franchises'=> $franchises],compact('users','linkUsers'));
     }
 
     // Link Franchise with a Franchise User Account

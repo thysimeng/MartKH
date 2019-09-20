@@ -169,26 +169,26 @@
                 </li>
 
                 {{-- <li class="nav-item">
-                    <a class="nav-link" href="{{ route('admin.notification') }}">
-                        <i class="ni ni-tv-2 text-primary"></i>
+                    <a class="nav-link" href="{{ route('admin.request') }}">
+                        <i class="ni ni-tv-2 text-primary"></i> 
                         <i class="fas fa-envelope" style="color: #de6800;"></i> {{ __('Stock Requests') }}
                     </a>
                 </li> --}}
                 <li class="nav-item">
                     <a class="nav-link " data-toggle="collapse" data-target="#collapse_request" aria-expanded="false" aria-controls="collapse_user">
                         <i class="fas fa-envelope" style="color: #de6800;"></i>
-                        <span class="nav-link-text">{{ __('Stock Requests') }}</span>
+                        <span class="nav-link-text">{{ __('Stock Requests') }}</span> @if($requestData>0)<span class="badge badge-danger text-white ml-2" style="background-color:#fd0202">new</span>@endif
                     </a>
                     <div class="collapse" id="collapse_request">
                         <ul class="nav nav-sm flex-column">
                         <li class="nav-item">
-                            <a href="{{ route('admin.notification') }}" class="nav-link">{{ __('Requests') }}</a>
+                            <a href="{{ route('admin.request') }}" class="nav-link">{{ __('Requests') }} @if($requestData>0)<span class="badge badge-danger text-white ml-2" style="background-color:#fd0202">{{$requestData}}</span>@endif</a>
                         </li>
                         <!-- <li class="nav-item">
                             <a href="{{ route('admin.stock.approved_request') }}" class="nav-link">{{ __('Approved Requests') }}</a>
                         </li> -->
                         <li class="nav-item">
-                            <a href="{{ route('admin.viewFranchiseStock') }}" class="nav-link">{{ __('History') }}</a>
+                            <a href="{{ route('admin.requestHistory') }}" class="nav-link">{{ __('History') }}</a>
                         </li>
                         </ul>
                     </div>

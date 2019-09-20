@@ -11,7 +11,9 @@
 </div>
 @endif
 {{-- Home page section --}}
-<div v-if="show">
+<div v-if="show==1">
+    {{-- <slide-Show></slide-Show> --}}
+
     {{-- Start slide area --}}
 
     {{-- template 1  --}}
@@ -152,6 +154,7 @@
     </div>
     @endif
     {{-- End test template 3 --}}
+
     {{-- End slide area --}}
 
     <!-- product popular area start -->
@@ -221,7 +224,7 @@
             <product-All :productshomecate="productsCategory" :showmodal="showmodal" v-if="showmodal"></product-All>
             <product-All :productshomecate="productshomecate" :showmodal="showmodal"></product-All>
             <div class="view-all-product text-center">
-                <router-link to="/users/shop" @click.native="showPage()">View All Product</router-link>
+                <router-link to="/products/all" @click.native="showPage()">View All Product</router-link>
             </div>
         </div>
     </div>
@@ -231,7 +234,7 @@
 
 {{-- Vue route --}}
 <router-view v-if="show==2"></router-view>
-<shop-Home-Page :products="products" :show="show" v-if="show==3"></shop-Home-Page>
+<shop-Home-Page :productsShop="productsShop" :show="show" v-if="show==3"></shop-Home-Page>
 <router-view name="userProfile"></router-view>
 <router-view name="wishlistDisplay"></router-view>
 {{--End  Vue route --}}

@@ -48,7 +48,7 @@
                 </div>
               </div>
             </div>
-            <div class="sidebar-widget mb-45">
+            <!-- <div class="sidebar-widget mb-45">
               <h3 class="sidebar-title">Categories</h3>
               <div class="sidebar-categories">
                 <ul>
@@ -84,8 +84,8 @@
                   </li>
                 </ul>
               </div>
-            </div>
-            <div class="sidebar-widget sidebar-overflow mb-45">
+            </div>-->
+            <!-- <div class="sidebar-widget sidebar-overflow mb-45">
               <h3 class="sidebar-title">color</h3>
               <div class="product-color">
                 <ul>
@@ -97,8 +97,8 @@
                   <li class="purple">g</li>
                 </ul>
               </div>
-            </div>
-            <div class="sidebar-widget mb-40">
+            </div> -->
+            <!-- <div class="sidebar-widget mb-40">
               <h3 class="sidebar-title">size</h3>
               <div class="product-size">
                 <ul>
@@ -119,7 +119,7 @@
                   </li>
                 </ul>
               </div>
-            </div>
+            </div> -->
             <div class="sidebar-widget mb-40">
               <h3 class="sidebar-title">tag</h3>
               <div class="product-tags">
@@ -142,7 +142,7 @@
                 </ul>
               </div>
             </div>
-            <div class="sidebar-widget mb-50">
+            <!-- <div class="sidebar-widget mb-50">
               <h3 class="sidebar-title">Top rated products</h3>
               <div class="sidebar-top-rated-all">
                 <div class="sidebar-top-rated mb-30">
@@ -282,7 +282,11 @@
                   </div>
                 </div>
               </div>
-            </div>
+            </div>-->
+            <categories :showCategory="showCategory"
+            @showCategoryUpdated="showCategory=$event"
+            :productsAllFromParent="productsAllFromParent"
+            @productsCategoryUpdated="productsAllFromParent=$event"></categories>
           </div>
         </div>
         <div class="col-lg-9">
@@ -323,8 +327,13 @@
                   </div>
                 </div>
               </div>
-              <!-- <h1>{{ show }}</h1> -->
-              <food v-if="categories=='food'&show!=3" :selected="selected"></food>
+              <allProductDisplay
+                v-if="categories==showCategory&show!=3"
+                :products="products=productsAllFromParent"
+                :orderBy="orderBy= selected"
+              >
+              </allProductDisplay>
+              <food v-else-if="categories=='food'&show!=3" :selected="selected"></food>
               <shop v-else-if="categories=='all'&show!=3" :selected="selected"></shop>
               <allProductDisplay
                 v-else-if="show==3"
@@ -358,7 +367,7 @@
                 </a>
               </li>
             </ul>
-          </div> -->
+          </div>-->
         </div>
       </div>
     </div>
@@ -373,17 +382,21 @@
 import shop from "./shop.vue";
 import food from "./food.vue";
 import allProductDisplay from "./allProductDisplay.vue";
+import categories from "./categories.vue";
 export default {
   name: "shopHomePage",
   data() {
     return {
       categories: this.$route.params.categories,
       selected: 1,
-      orderBy: Number
+      orderBy: Number,
+      showCategory: '',
+      productsAllFromParent:[],
+      products: this.productsShop
     };
   },
   props: {
-    products: Array,
+    productsShop: Array,
     show: Number
   },
   watch: {
@@ -394,7 +407,8 @@ export default {
   components: {
     shop: shop,
     food: food,
-    allProductDisplay: allProductDisplay
+    allProductDisplay: allProductDisplay,
+    categories
   }
 };
 </script>

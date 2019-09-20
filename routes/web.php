@@ -79,11 +79,19 @@ Route::group(['middleware' => ['web','auth','checkUserRole']], function () {
 	Route::get('admin/stock/search', 'Admin\StockController@stockSearch')->name('admin.search_stock');
 	Route::post('admin/stock/delete', 'Admin\StockController@delete')->name('admin.delete_stock');
 	Route::get('admin/stock/franchises_stock','Admin\StockController@viewFranchiseStock')->name('admin.viewFranchiseStock');
+	Route::get('admin/stock/franchises_stock/search','Admin\StockController@franchiseStockSearch')->name('admin.franchiseStockSearch');
 
 	Route::get('admin/stock/autocomplete',array('as'=>'admin.stock.autocomplete','uses'=>'Admin\StockController@autocomplete'));
 	Route::get('admin/stock/autocompleteFranchise',array('as'=>'admin.stock.autocompleteFranchise','uses'=>'Admin\StockController@autocompleteFranchise'));
 
-	Route::get('admin/stock_notification', 'Admin\RequestController@index')->name('admin.notification');
+	Route::get('admin/stock/requestHistory/search', 'Admin\RequestController@requestHistorySearch')->name('admin.requestHistorySearch');
+	Route::get('admin/stock/requestHistory', 'Admin\RequestController@requestHistory')->name('admin.requestHistory');
+	Route::get('admin/stock/requests/search', 'Admin\RequestController@search')->name('admin.request.search');
+	Route::get('admin/stock/requests', 'Admin\RequestController@index')->name('admin.request');
+	Route::get('admin/stock/approve/{id}', 'Admin\RequestController@approve')->name('admin.request.approve');
+	Route::get('admin/stock/decline/{id}', 'Admin\RequestController@decline')->name('admin.request.decline');
+
+	// old (probably) unused routes
 	Route::get('admin/approved_request_stocks', 'Admin\RequestController@ApprovedRequest')->name('admin.stock.approved_request');
 	Route::post('admin/edit_notification', 'Admin\RequestController@edit')->name('admin.manage_stock');
 	Route::get('admin/request_stock/search', 'Admin\RequestController@search')->name('admin.request_stock.search');
@@ -95,9 +103,11 @@ Route::group(['middleware' => ['web','auth','checkUserRole']], function () {
 Route::group(['middleware' => ['web','auth','checkUserRoleFranchise']], function () {
 	Route::get('/franchise','Franchise\FranchiseController@showDashboard')->name('franchise');
 	Route::get('/franchise/products','Franchise\FranchiseController@viewProduct')->name('franchise.products');
+	Route::get('/franchise/stocks/search','Franchise\FranchiseController@search')->name('franchise.stock.search');
 	Route::get('/franchise/stocks','Franchise\FranchiseController@index')->name('franchise.stock');
 	Route::get('/franchise/stocks/request','Franchise\FranchiseController@requestForm')->name('franchise.request');
 	Route::post('/franchise/stocks/store','Franchise\FranchiseController@requestStock')->name('franchise.requestStock');
+	Route::get('/franchise/stocks/history/search','Franchise\FranchiseController@searchRequestHistory')->name('franchise.searchRequestHistory');
 	Route::get('/franchise/stocks/history','Franchise\FranchiseController@requestHistory')->name('franchise.requestHistory');
 	Route::get('/franchise/stock/autocomplete',array('as'=>'franchise.stock.autocomplete','uses'=>'Franchise\FranchiseController@autocomplete'));
 	Route::put('franchise/profile/password','Franchise\FranchiseController@password')->name('franchise.profile.password');
