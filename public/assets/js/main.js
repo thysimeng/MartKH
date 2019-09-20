@@ -6,15 +6,15 @@
     //         container: $('#example-progress-bar-container')
     //     });
     // });
-    
-    
+
+
 
     /* jQuery MeanMenu */
     $('#mobile-menu-active').meanmenu({
         meanScreenWidth: "991",
         meanMenuContainer: ".mobile-menu-area .mobile-menu",
     });
-    
+
     /*--
     One Page Nav
     -----------------------------------*/
@@ -23,8 +23,8 @@
         currentClass: 'active',
         scrollOffset: top_offset,
     });
-    
-    
+
+
     /*--- clickable menu active ----*/
     const slinky = $('#menu').slinky()
     /*====== sidebarmenu ======*/
@@ -41,8 +41,8 @@
         });
     };
     sidebarMainmenu();
-    
-    
+
+
     /* slider active */
     $('.slider-active').owlCarousel({
         loop: true,
@@ -64,8 +64,8 @@
             }
         }
     })
-    
-    
+
+
     $('.slider-active-2').owlCarousel({
         loop: true,
         nav: true,
@@ -87,7 +87,7 @@
             }
         }
     })
-    
+
     $('.slider-active-3').owlCarousel({
         loop: true,
         nav: false,
@@ -141,7 +141,31 @@
             }
         }
     })
-    
+
+    $('.slider-active-5').owlCarousel({
+        loop: true,
+        nav: false,
+        dots: true,
+        autoplay: true,
+        autoplayTimeout: 2000,
+        animateOut: 'flipOutX',
+        animateIn: 'flipInX',
+        dotsData : true,
+        // navText: ['<img src="assets/img/icon-img/57.png"> next', 'prev <img src="assets/img/icon-img/58.png">'],
+        item: 1,
+        responsive: {
+            0: {
+                items: 1
+            },
+            768: {
+                items: 1
+            },
+            1000: {
+                items: 1
+            }
+        }
+    })
+
     /* arrival active */
     $('.arrival-active').owlCarousel({
         loop: true,
@@ -165,8 +189,8 @@
             }
         }
     })
-    
-    
+
+
     /* brand logo active */
     $('.brand-logo-active').owlCarousel({
         loop: true,
@@ -190,8 +214,8 @@
             }
         }
     })
-    
-    
+
+
     /* brand logo active */
     $('.brand-logo-active2').owlCarousel({
         loop: true,
@@ -212,8 +236,8 @@
             }
         }
     })
-    
-    
+
+
     /* book list active */
     $('.book-list-active').owlCarousel({
         loop: true,
@@ -236,8 +260,8 @@
             }
         }
     })
-    
-    
+
+
     /* testimonials active */
     $('.testimonials-active').owlCarousel({
         loop: true,
@@ -260,8 +284,8 @@
             }
         }
     })
-    
-    
+
+
     /* testimonials active */
     $('.brand-logo-active3').owlCarousel({
         loop: true,
@@ -310,7 +334,7 @@
             }
         }
     })
-    
+
     /* instafeed active */
     $('.instafeed-active').owlCarousel({
         loop: true,
@@ -334,8 +358,8 @@
             }
         }
     })
-    
-    
+
+
     /* testimonials active */
     $('.special-food-active').owlCarousel({
         loop: true,
@@ -359,8 +383,8 @@
             }
         }
     })
-    
-    
+
+
     /* testimonials active */
     $('.smart-watch-product-active').owlCarousel({
         loop: true,
@@ -384,8 +408,8 @@
             }
         }
     })
-    
-    
+
+
     /* testimonials active */
     $('.related-product-active').owlCarousel({
         loop: true,
@@ -409,8 +433,8 @@
             }
         }
     })
-    
-    
+
+
     /* popular-product-active active */
     $('.popular-product-active').owlCarousel({
         loop: true,
@@ -436,8 +460,8 @@
             }
         }
     })
-    
-    
+
+
     /* popular-product-active-2 active */
     $('.popular-product-active-2').owlCarousel({
         loop: true,
@@ -462,8 +486,8 @@
             }
         }
     })
-    
-    
+
+
     /* trandy-product-active active */
     $('.trandy-product-active').owlCarousel({
         loop: true,
@@ -487,8 +511,8 @@
             }
         }
     })
-    
-    
+
+
     /* feadback-silder-active active */
     $('.feadback-silder-active').owlCarousel({
         loop: true,
@@ -512,14 +536,14 @@
             }
         }
     })
-    
-    
+
+
     /*category left menu*/
     $('.category-heading-2').on('click', function() {
         $('.category-menu-list').slideToggle(300);
     });
-    
-    
+
+
     /*--
     menu-toggle
     ------------------------*/
@@ -530,8 +554,8 @@
             $('.hamburger-menu nav').addClass('menu-open');
         }
     });
-    
-    
+
+
     /*--
     	Hamburger js
     -----------------------------------*/
@@ -541,7 +565,7 @@
         else
             for (var e = 0, l = t.length; l > e; e++) o.call(r, t[e], e, t)
     };
-    
+
     var hamburgers = document.querySelectorAll(".hamburger");
     if (hamburgers.length > 0) {
         forEach(hamburgers, function(hamburger) {
@@ -550,14 +574,14 @@
             }, false);
         });
     }
-    
-    
+
+
     /* magnificPopup video popup */
     $('.video-popup').magnificPopup({
         type: 'iframe'
     });
-    
-    
+
+
     /*----------------------------
         text-animation
     ------------------------------ */
@@ -570,7 +594,7 @@
             effect: 'flip',
         },
     });
-    
+
     /*--
     Menu Stick
     -----------------------------------*/
@@ -582,7 +606,7 @@
             $('.sticker').addClass('stick');
         }
     });
-    
+
     /* hover 3d init for tilt */
     if ($('.tilter').length > 0) {
         $('.tilter').tilt({
@@ -594,7 +618,7 @@
             transition: true,
         });
     }
-    
+
     /* hover 3d init for tilt */
     if ($('.tilter-2').length > 0) {
         $('.tilter-2').tilt({
@@ -606,7 +630,7 @@
             transition: true,
         });
     }
-    
+
     /* hover 3d init for tilt */
     if ($('.tilter-3').length > 0) {
         $('.tilter-3').tilt({
@@ -618,27 +642,27 @@
             transition: true,
         });
     }
-    
-    
+
+
     /*--- showlogin toggle function ----*/
     $('#showlogin').on('click', function() {
         $('#checkout-login').slideToggle(900);
     });
-    
+
     /*--- showlogin toggle function ----*/
     $('#showcoupon').on('click', function() {
         $('#checkout_coupon').slideToggle(900);
     });
-    
+
     /*--- showlogin toggle function ----*/
     $('#ship-box').on('click', function() {
         $('#ship-box-info').slideToggle(1000);
     });
-    
+
     // Instantiate EasyZoom instances
     var $easyzoom = $('.easyzoom').easyZoom();
-    
-    
+
+
     /*---------------------
     sidebar sticky
     --------------------- */
@@ -647,19 +671,19 @@
         bottomSpacing: 30,
         minWidth: 991,
     });
-    
+
     $('.sidebar-active1').stickySidebar({
         topSpacing: 80,
         bottomSpacing: 30,
         minWidth: 991,
     });
-    
+
     $('.sidebar-active3').stickySidebar({
         topSpacing: 80,
         bottomSpacing: 30,
         minWidth: 991,
     });
-    
+
     /* isotop active */
     // filter items on button click
     $('.blog-mesonry').imagesLoaded(function() {
@@ -673,12 +697,12 @@
             }
         });
     });
-    
+
     $('.notification-close button').on('click', function() {
         $('.notification-section').slideUp();
     });
-    
-    
+
+
     /*----------------------------
     	Cart Plus Minus Button
     ------------------------------ */
@@ -699,7 +723,7 @@
         }
         $button.parent().find("input").val(newVal);
     });
-    
+
     /*---------------------
     price slider
     --------------------- */
@@ -718,7 +742,7 @@
         amountprice.val("$" + sliderrange.slider("values", 0) +
             " - $" + sliderrange.slider("values", 1));
     });
-    
+
     /*--------------------------
         09. ScrollUp
     ---------------------------- */
@@ -728,9 +752,9 @@
     //     scrollSpeed: 900,
     //     animation: 'fade'
     // });
-    
-    
-    
+
+
+
     /*---------------------
     countdown
   --------------------- */
@@ -740,10 +764,10 @@
 		$this.html(event.strftime('<span class="cdown day">%-D <p>Days</p></span> <span class="cdown hour">%-H <p>Hour</p></span> <span class="cdown minutes">%M <p>Min</p></span class="cdown second"> <span>%S <p>Sec</p></span>'));
 		});
     });
-    
+
     /*------ Wow Active ----*/
     new WOW().init();
-    
+
     /*--
 	Header Search Toggle
     -----------------------------------*/
@@ -757,8 +781,8 @@
            $(this).siblings('.handicraft-content').addClass('open');
         }
     })
-    
-    
+
+
 
 
 

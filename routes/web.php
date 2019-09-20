@@ -119,9 +119,11 @@ Route::get('/user', function(){
 })->name('normalUser');
 
 Route::get('/users', 'UsersController\UserHomeController@index')->name('home');
+Route::get('/products/all', 'UsersController\ProductDisplayController@index')->name('productDisplay');
+Route::get('/products/food', 'UsersController\ProductDisplayController@index')->name('productDisplay-food');
+Route::get('/wishlists', 'UsersController\ProductDisplayController@index')->name('wishlists');
 Route::post('/searchweithwh', 'UsersController\ProductsController@search')->name('search');
 Route::get('/users/all', 'UsersController\ProductsController@get')->name('productFood');
-Route::get('/users/shop', 'UsersController\ProductDisplayController@index')->name('productDisplay');
 Route::get('/users/food', 'UsersController\ProductsController@food')->name('productFood');
 Route::get('/categoriesAll', 'UsersController\ProductsController@categories')->name('categories');
 Route::get('/categories1', 'UsersController\ProductsController@categories1')->name('categories1');

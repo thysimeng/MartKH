@@ -237,7 +237,6 @@
 
 <script>
 import { Carousel, Slide } from "vue-carousel";
-// import div1 from "./subtemplate/div1.vue"
 export default {
   data() {
     return {};
@@ -248,7 +247,6 @@ export default {
   components: {
     Carousel,
     Slide
-    // div1
   }
 };
 </script>

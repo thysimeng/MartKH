@@ -10,13 +10,19 @@
         >
           <div class="product-wrapper">
             <div class="product-img">
-              <a href="#">
+              <a
+                href
+                title="Quick View"
+                data-toggle="modal"
+                data-target="#VUEModal"
+                @click="quickView(product.id, product.image, product.name, product.description)"
+              >
                 <img :src="'/uploads/product_image/'+ product.image" alt />
               </a>
               <div class="product-action">
                 <!-- <a class="animate-left" title="Wishlist" href="#">
                   <i class="pe-7s-like"></i>
-                </a> -->
+                </a>-->
                 <addTowishList :productID="productID = product.id" class="animate-left"></addTowishList>
                 <a class="animate-top" title="Add To Cart" href="#">
                   <i class="pe-7s-cart"></i>
@@ -65,7 +71,7 @@ export default {
   data: function() {
     return {
       productid: [],
-      productID: Number,
+      productID: Number
     };
   },
   methods: {
