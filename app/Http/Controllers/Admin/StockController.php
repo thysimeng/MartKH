@@ -7,6 +7,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Category;
 use App\Models\Product;
 use App\Models\Stock;
+use App\Request_Stock;
 use DB;
 use Illuminate\Support\Str;
 use Illuminate\Support\Facades\Auth;
@@ -30,7 +31,8 @@ class StockController extends Controller
     {
         $search = $request->get('search');
         $stocks= Stock::whereHas('product', function($query) use ($search){
-            $query->where('name', 'like', '%' . $search . '%');
+            $query->where('name', 'like', '%' . $search . '%')
+                ->orWhere('enter_by','like','%'.$search.'%');
        })->paginate(10);
         $data = [
             'stocks_data'=>$stocks,
@@ -101,6 +103,23 @@ class StockController extends Controller
                                 ->select('sf.*','sf.created_at as sf_created','sf.id as sfid','p.*','f.*')
                                 ->paginate(10);
         return view('admin.stock.stockFranchise',compact('stock_franchises'));
-        dd($stock_franchises);
+    }
+
+    public function franchiseStockSearch(Request $request)
+    {
+        $search = $request->get('search');
+        
+        $stock_franchises = DB::table('stock_franchise as sf')
+                                ->join('products as p','sf.product_id','=','p.id')
+                                ->join('franchises as f','sf.franchise_id','=','f.id')
+                                ->where(function($query) use ($search){
+                                    $query->where('p.name','like','%'.$search.'%')
+                                    ->orWhere('p.code','like','%'.$search.'%')
+                                    ->orWhere('f.franchise_name','like','%'.$search.'%');
+                                })
+                                ->select('sf.*','sf.created_at as sf_created','sf.id as sfid','p.*','f.*')
+                                ->paginate(10);
+                                // dd($stock_franchises);
+        return view('admin.stock.stockFranchise',compact('stock_franchises'));
     }
 }

@@ -12,7 +12,7 @@
                                     <div class="col-4">
                                         <h3 class="mb-0">Franchise Stock</h3>
                                     </div>
-                                    <form class="col-4">
+                                    <form class="col-4" method="get" action="{{route('admin.franchiseStockSearch')}}">
                                         <div class="input-group input-group-alternative">
                                                 <input class="form-control" placeholder="Search" type="text" name="search" id="search" value="" style="border: 1px solid #11cdef">
                                                 <span class="form-clear d-none"><i class="fas fa-times-circle">clear</i></span>   
@@ -41,9 +41,9 @@
                             <thead class="thead-light">
                                 <tr>
                                     <th scope="col">{{ __('ID') }}</th>
+                                    <th scope="col">{{ __('Code') }}</th>
                                     <th scope="col">{{ __('Image') }}</th>
                                     <th scope="col">{{ __('Amount') }}</th>
-                                    <th scope="col">{{ __('Code') }}</th>
                                     <th scope="col">{{ __('Product Name') }}</th>
                                     <th scope="col">{{ __('price') }}</th>
                                     <th scope="col">{{ __('Franchise Name') }}</th>
@@ -54,9 +54,9 @@
                                 @foreach ($stock_franchises as $stock_franchise)
                                     <tr>
                                         <td>{{ $stock_franchise->sfid }}</td>
-                                        <td><img src="{{asset( 'uploads/product_image/' . $stock_franchise->image )}}" alt="" class="img-thumbnail " style="width:100px;heigth:100px;"></td>                                      
-                                        <td>{{ $stock_franchise->amount }}</td>
                                         <td>{{ $stock_franchise->code }}</td>
+                                        <td><img src="{{asset( 'uploads/product_image/' . $stock_franchise->image )}}" alt="" class="img-thumbnail " style="width:50px;heigth:50px;"></td>                                      
+                                        <td>{{ $stock_franchise->amount }}</td>
                                         <td>{{ $stock_franchise->name }}</td>
                                         <td>{{ $stock_franchise->price }}</td>
                                         <td>{{ $stock_franchise->franchise_name }}</td>

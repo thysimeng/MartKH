@@ -10,6 +10,6 @@ class Product extends Model
 
     public function stocks()
     {
-        return $this->hasMany('App\Model\Stock', 'product_id');
+        return $this->hasOne('App\Models\Stock', 'product_id');
     }
 }
