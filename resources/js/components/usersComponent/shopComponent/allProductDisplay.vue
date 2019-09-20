@@ -4,30 +4,24 @@
       <div class="row">
         <div
           class="col-lg-6 col-md-6 col-xl-3"
-          v-for="product in seeMore"
+          v-for="(product, index) in orderedProducts"
           v-bind:data="product"
           v-bind:key="product.key"
         >
-          <div class="product-wrapper mb-30">
+          <div class="product-wrapper mb-30" v-if="index<seeMore">
             <div class="product-img">
               <a
                 href
                 title="Quick View"
                 data-toggle="modal"
                 data-target="#VUEModal"
-                @click="quickView(orderedProducts[product-1].id, orderedProducts[product-1].image, orderedProducts[product-1].name, orderedProducts[product-1].description)"
+                @click="quickView(product.id, product.image, product.name, product.description)"
               >
-                <img :src="'/uploads/product_image/' + orderedProducts[product-1].image" alt />
+                <img :src="'/uploads/product_image/'+product.image" alt />
               </a>
               <span>hot</span>
               <div class="product-action">
-                <!-- <form action @submit="addToWishList">
-                  <input type="hidden" :productID="productID=products[product-1].id" />
-                  <a class="animate-left" title="Wishlist" href @click="addToWishList">
-                    <i class="pe-7s-like"></i>
-                  </a>
-                </form>-->
-                <addTowishList :productID="productID=orderedProducts[product-1].id"></addTowishList>
+                <addTowishList :productID="productID=product.id"></addTowishList>
                 <a class="animate-top" title="Add To Cart" href="#">
                   <i class="pe-7s-cart"></i>
                 </a>
@@ -37,7 +31,7 @@
                   title="Quick View"
                   data-toggle="modal"
                   data-target="#VUEModal"
-                  @click="quickView(orderedProducts[product-1].id, orderedProducts[product-1].image, orderedProducts[product-1].name, orderedProducts[product-1].description)"
+                  @click="quickView(product.id, product.image, product.name, product.description)"
                 >
                   <i class="pe-7s-look"></i>
                 </a>
@@ -45,9 +39,9 @@
             </div>
             <div class="product-content">
               <h4>
-                <a href="#">{{ orderedProducts[product-1].name }}</a>
+                <a href="#">{{ product.name }}</a>
               </h4>
-              <span>${{ orderedProducts[product-1].price }}</span>
+              <span>${{ product.price }}</span>
             </div>
           </div>
         </div>
@@ -57,20 +51,20 @@
       <div class="row">
         <div
           class="col-lg-12 col-xl-6"
-          v-for="product in seeMore"
+          v-for="(product, index) in orderedProducts"
           v-bind:data="product"
           v-bind:key="product.key"
         >
-          <div class="product-wrapper mb-30 single-product-list product-list-right-pr mb-60">
+          <div v-if="index<seeMore" class="product-wrapper mb-30 single-product-list product-list-right-pr mb-60">
             <div class="product-img list-img-width">
               <a
                 href
                 title="Quick View"
                 data-toggle="modal"
                 data-target="#VUEModal"
-                @click="quickView(orderedProducts[product-1].id, orderedProducts[product-1].image, orderedProducts[product-1].name, orderedProducts[product-1].description)"
+                @click="quickView(product.id, product.image, product.name, product.description)"
               >
-                <img :src="'/uploads/product_image/' + orderedProducts[product-1].image" alt />
+                <img :src="'/uploads/product_image/'+product.image" alt />
               </a>
               <span>hot</span>
               <div class="product-action-list-style">
@@ -80,7 +74,7 @@
                   title="Quick View"
                   data-toggle="modal"
                   data-target="#VUEModal"
-                  @click="quickView(orderedProducts[product-1].id, orderedProducts[product-1].image, orderedProducts[product-1].name, orderedProducts[product-1].description)"
+                  @click="quickView(product.id, product.image, product.name, product.description)"
                 >
                   <i class="pe-7s-look"></i>
                 </a>
@@ -89,9 +83,9 @@
             <div class="product-content-list">
               <div class="product-list-info">
                 <h4>
-                  <a href="#">{{ orderedProducts[product-1].name }}</a>
+                  <a href="#">{{ product.name }}</a>
                 </h4>
-                <span>${{ orderedProducts[product-1].price }}</span>
+                <span>${{ product.price }}</span>
                 <p>Lorem ipsum dolor sit amet, mana consectetur adipisicing elit, sed do eiusmod tempor labore.</p>
               </div>
               <div class="product-list-cart-wishlist">
@@ -101,7 +95,7 @@
                 <div class="product-list-wishlist">
                   <addTowishList
                     class="btn-hover list-btn-wishlist"
-                    :productID="productID=orderedProducts[product-1].id"
+                    :productID="productID=product.id"
                   ></addTowishList>
                 </div>
               </div>
