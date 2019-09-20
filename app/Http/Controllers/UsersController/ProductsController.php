@@ -10,6 +10,8 @@ use App\Products;
 use DB;
 use Config;
 use Session;
+use Alert;
+use App\Customize;
 class ProductsController extends Controller
 {
     function __construct() { $this->template = "1";}
@@ -51,39 +53,63 @@ class ProductsController extends Controller
         return response()->json($product);
     }
 
+    // using session
+    // public function adsID(Request $request){
+    //     $template_id = $request->template_id;
+    //     if($template_id == '1'){
+    //         session()->put('template_id', 1);
+    //         $set_template = session()->get('template_id');
+    //     }elseif($template_id == '2'){
+    //         session()->put('template_id', 2);
+    //         $set_template = session()->get('template_id');
+    //     }
+    //     elseif($template_id == '3'){
+    //         session()->put('template_id', 3);
+    //         $set_template = session()->get('template_id');
+    //     }
+    //     Alert::success('Update Template', 'Successfully Updated');
+    //     return response()->json($set_template);
+    // }
+
+    // using data table
     public function adsID(Request $request){
         $template_id = $request->template_id;
         if($template_id == '1'){
-            // session(['template_id' => '1']);
-            session()->put('template_id', 1);
-            $set_template = session()->get('template_id');
-        }elseif($template_id == '2'){
-            // session(['template_id' => '2']);
-            session()->put('template_id', 2);
-            $set_template = session()->get('template_id');
+            DB::table('customize')
+            ->where('id', 1)
+            ->update(['data' => '1']);
+        }
+        elseif($template_id == '2'){
+            DB::table('customize')
+            ->where('id', 1)
+            ->update(['data' => '2']);
         }
         elseif($template_id == '3'){
-            // session(['template_id' => '3']);
-            session()->put('template_id', 3);
-            $set_template = session()->get('template_id');
+            DB::table('customize')
+            ->where('id', 1)
+            ->update(['data' => '3']);
         }
-        // return($this->template);
-        // $adsID = DB::table('ads')->where('id', '=', $template_id)->get();
-        // return 2;
-        // return ;
-        // dd($template_id);
-        // Session::flush();
-        // session(['ik' => '2']);
-        return response()->json($set_template);
+        Alert::success('Update Template', 'Successfully Updated');
+        return redirect()->route('ads.index');
     }
 
+    // set Template using session
+    // public function setTemplateID(){
+    //     // if(session()->get('template_id') === NULL){
+    //     //     return 3;
+    //     // }else{
+    //         $set_template = session()->get('template_id');
+    //         return response()->json($set_template);
+    //     // }
+    // }
+
+    //set template using data table
     public function setTemplateID(){
-        // if(session()->get('template_id') === NULL){
-        //     return 3;
-        // }else{
-            $set_template = session()->get('template_id');
-            return response()->json($set_template);
-        // }
+        $set_template = DB::table('customize')
+                        ->where('id',1)
+                        ->first();
+        $set_template_data = $set_template->data;
+        return response()->json($set_template_data);
     }
 
     public function slidedatadisplay(){

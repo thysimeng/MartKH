@@ -35,19 +35,25 @@
                             <thead class="thead-light">
                                 <tr>
                                     <th scope="col">{{ __('Stock ID') }}</th>
+                                    <th scope="col">{{ __('Code') }}</th>
+                                    <th scope="col">{{ __('Image') }}</th>
+                                    <th scope="col">{{ __('Product Name') }}</th>
                                     <th scope="col">{{ __('Amount') }}</th>
-                                    <th scope="col">{{ __('Product ID') }}</th>
-                                    <th scope="col">{{ __('Creation Date') }}</th>
+                                    <th scope="col">{{ __('Price') }}</th>
+                                    <th scope="col">{{ __('Created Date') }}</th>
                                     <!-- <th scope="col">{{ __('Action') }}</th> -->
                                 </tr>
                             </thead>
                             <tbody>
                                 @foreach ($stock_fran as $stock_frans)
                                     <tr>
-                                        <td>{{ $stock_frans->id }}</td>
-                                        <td>{{ $stock_frans->amount }}</td>
-                                        <td>{{ $stock_frans->product_id }}</td>
-                                        <td>{{ Carbon\Carbon::parse($stock_frans->created_at)->format('d/m/Y H:i') }}</td>
+                                        <td>{{ $stock_frans->sfid }}</td>
+                                        <td>{{ $stock_frans->code }}</td>
+                                        <td><img src="{{asset( 'uploads/product_image/' . $stock_frans->image )}}" alt="" class="img-thumbnail " style="width:50px;"></td>
+                                        <td>{{$stock_frans->name}}</td>
+                                        <td>{{$stock_frans->amount}}</td>
+                                        <td>{{$stock_frans->price}}</td>
+                                        <td>{{ Carbon\Carbon::parse($stock_frans->sf_created)->format('d/m/Y H:i') }}</td>
                                     </tr>
                                 @endforeach
                                 

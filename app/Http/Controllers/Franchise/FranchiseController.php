@@ -42,7 +42,21 @@ class FranchiseController extends Controller
         }
 
         $stock_fran = Stock_Franchise::paginate(10);
+        $franchise_user = auth()->user();
+        $current_franchise = DB::table('franchise_user')
+                                ->join('franchises','franchise_user.franchise_id','=','franchises.id')
+                                ->join('users','franchise_user.user_id','=','users.id')
+                                ->select('franchises.*')
+                                ->where('users.id','=',$franchise_user->id)
+                                ->first();
+        $stock_fran = DB::table('stock_franchise as sf')
+                    ->join('products as p','sf.product_id','=','p.id')
+                    ->join('franchises as f','sf.franchise_id','=','f.id')
+                    ->where('sf.franchise_id','=',$current_franchise->id)
+                    ->select('sf.*','sf.created_at as sf_created','sf.id as sfid','p.*','f.*')
+                    ->paginate(10);
         return view('franchise.index',compact('stock_fran'));
+        // return view('franchise.index')->with($stock_fran);
     }
 
     /**
@@ -144,17 +158,21 @@ class FranchiseController extends Controller
             'franchise_id' => $request->post('franchise_id'),
             'status' => 'pending',
         ]);
-        // dd($requestStock);
         $requestStock->save();
-        $stock_fran = Stock_Franchise::paginate(10);
-        return view('franchise.index',compact('stock_fran'))->withStatus(__('Pending Admins Approval.'));
+        return redirect()->route('franchise.stock')->withStatus(__('Pending Admin Approval.'));
     }
 
     public function requestHistory()
     {
-        $requestStocks = Request_Stock::paginate(10);
+        $requestStocks = Request_Stock::orderBy('created_at','desc')->paginate(10);
+        $current_franchise = DB::table('franchise_user')
+                                ->join('franchises','franchise_user.franchise_id','=','franchises.id')
+                                ->join('users','franchise_user.user_id','=','users.id')
+                                ->select('franchises.*')
+                                ->where('users.id','=',auth()->user()->id)
+                                ->first();
 
-        return view('franchise.requestHistory',compact('requestStocks'));
+        return view('franchise.requestHistory',compact('requestStocks','current_franchise'));
     }
 
     public function autocomplete(Request $request)
