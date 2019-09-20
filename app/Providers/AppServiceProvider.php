@@ -36,8 +36,6 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Schema::defaultStringLength(191);
-
-
         $sidebar = Customize::where('name','sidebar')->first();
         $sidebarValue = $sidebar->data;
         View::share('sidebar', $sidebarValue);
