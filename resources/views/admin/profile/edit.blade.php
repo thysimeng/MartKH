@@ -72,15 +72,26 @@
             </div> --}}
             <div class="offset-xl-2 col-xl-8">
                 <div class="card bg-secondary shadow">
-                    <div class="card-header bg-white border-0">
-                        <div class="row align-items-center">
-                            <h3 class="col-12 mb-0">{{ __('Edit Profile') }}</h3>
+                    @if($sidebar==0)
+                        <div class="card-header bg-white border-0">
+                            <div class="row align-items-center">
+                                <h3 class="col-12 mb-0">{{ __('Edit Profile') }}</h3>
+                            </div>
                         </div>
-                    </div>
-                    <div class="card-body">
-
-                    <h6 class="heading-small text-muted mb-5">{{ __('User information') }}</h6>
-
+                    @elseif($sidebar==1)
+                        <div class="card-header bg-dark border-0">
+                            <div class="row align-items-center">
+                                <h3 class="col-12 mb-0 text-white">{{ __('Edit Profile') }}</h3>
+                            </div>
+                        </div>
+                    @endif
+                    @if($sidebar==0)
+                        <div class="card-body">
+                            <h6 class="heading-small text-muted mb-5">{{ __('User information') }}</h6>
+                    @elseif($sidebar==1)
+                        <div class="card-body bg-dark border">
+                            <h6 class="heading-small text-muted mb-5 text-white">{{ __('User information') }}</h6>
+                    @endif
                         <!-- Success Message -->
                         <!-- @if (session('status'))
                             <div class="alert alert-success alert-dismissible fade show mb-5" role="alert">
@@ -90,7 +101,6 @@
                                 </button>
                             </div>
                         @endif -->
-
                         <!-- img -->
                         <div class="justify-content-center pt-lg-4" >
                                 <!-- {{-- <div class="pl-lg-4"> --}} -->
@@ -101,9 +111,11 @@
                                         </div>
                                 <!-- {{-- </div> --}} -->
                         </div>
-
-                        <h6 class="heading-small text-muted mb-4">{{ __('Profile Picture') }}</h6>
-
+                        @if($sidebar==0)
+                            <h6 class="heading-small text-muted mb-4">{{ __('Profile Picture') }}</h6>
+                        @elseif($sidebar==1)
+                            <h6 class="heading-small text-muted mb-4 text-white">{{ __('Profile Picture') }}</h6>
+                        @endif
                         <div class="pl-lg-4">
                             <div class="form-group{{ $errors->has('avatar') ? ' has-danger' : '' }}">
                                 <form action="{{ route('admin.profile.upload') }}" enctype="multipart/form-data" method="post">
@@ -119,9 +131,6 @@
                                     <div class="text-center mt-3">
                                         <input type="submit" class="btn btn-success rounded upload-btn" value="{{ __('Upload') }}">
                                     </div>
-
-
-
                                     @if ($errors->has('avatar'))
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $errors->first('avatar') }}</strong>
@@ -130,17 +139,23 @@
                                 </form>
                             </div>
                         </div>
-
-                        <hr>
-
-                        <h6 class="heading-small text-muted mb-4">{{ __('Name and Email') }}</h6>
-
+                        @if($sidebar==0)
+                            <hr>
+                            <h6 class="heading-small text-muted mb-4">{{ __('Name and Email') }}</h6>
+                        @elseif($sidebar==1)
+                            <hr style="border:1px solid white">
+                            <h6 class="heading-small text-muted mb-4 text-white">{{ __('Name and Email') }}</h6>
+                        @endif
                         <form method="post" action="{{ route('admin.profile.update') }}" autocomplete="off">
                             @csrf
                             @method('put')
                             <div class="pl-lg-4">
                                 <div class="form-group{{ $errors->has('name') ? ' has-danger' : '' }}">
-                                    <label class="form-control-label" for="input-name">{{ __('Name') }}</label>
+                                    @if($sidebar==0)
+                                        <label class="form-control-label" for="input-name">{{ __('Name') }}</label>
+                                    @elseif($sidebar==1)
+                                        <label class="form-control-label text-white" for="input-name">{{ __('Name') }}</label>
+                                    @endif
                                     <input type="text" name="name" id="input-name" class="form-control form-control-alternative{{ $errors->has('name') ? ' is-invalid' : '' }}" placeholder="{{ __('Name') }}" value="{{ old('name', auth()->user()->name) }}" required>
 
                                     @if ($errors->has('name'))
@@ -169,9 +184,7 @@
                         <form method="post" action="{{ route('admin.profile.password') }}" autocomplete="off">
                             @csrf
                             @method('put')
-
                             <h6 class="heading-small text-muted mb-4">{{ __('Password') }}</h6>
-
                             <!-- Password Success Status -->
                             <!-- @if (session('password_status'))
                                 <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -181,12 +194,10 @@
                                     </button>
                                 </div>
                             @endif -->
-
                             <div class="pl-lg-4">
                                 <div class="form-group{{ $errors->has('old_password') ? ' has-danger' : '' }}">
                                     <label class="form-control-label" for="input-current-password">{{ __('Current Password') }}</label>
                                     <input type="password" name="old_password" id="input-current-password" class="form-control form-control-alternative{{ $errors->has('old_password') ? ' is-invalid' : '' }}" placeholder="{{ __('Current Password') }}" value="" required>
-
                                     @if ($errors->has('old_password'))
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $errors->first('old_password') }}</strong>
@@ -196,7 +207,6 @@
                                 <div class="form-group{{ $errors->has('password') ? ' has-danger' : '' }}">
                                     <label class="form-control-label" for="input-password">{{ __('New Password') }}</label>
                                     <input type="password" name="password" id="input-password" class="form-control form-control-alternative{{ $errors->has('password') ? ' is-invalid' : '' }}" placeholder="{{ __('New Password') }}" value="" required>
-
                                     @if ($errors->has('password'))
                                         <span class="invalid-feedback" role="alert">
                                             <strong>{{ $errors->first('password') }}</strong>
@@ -207,7 +217,6 @@
                                     <label class="form-control-label" for="input-password-confirmation">{{ __('Confirm New Password') }}</label>
                                     <input type="password" name="password_confirmation" id="input-password-confirmation" class="form-control form-control-alternative" placeholder="{{ __('Confirm New Password') }}" value="" required>
                                 </div>
-
                                 <div class="text-center">
                                     <button type="submit" class="btn btn-success mt-4">{{ __('Change password') }}</button>
                                 </div>

@@ -49,6 +49,7 @@
                                 <div class="col-md-2"></div>
                                 <div class="col-md-5"> --}}
                                     <label class="switch text-right">
+                                        {{-- <input type='checkbox' onclick='godark(0)'> --}}
                                         <span class="slider round"></span>
                                     </label>
                                 </div>
@@ -586,8 +587,12 @@
             });
         }
         $(document).ready(function(){
+            // console.log('ready');
+            if(Cookies.get('godark')==='undefined'){
+                Cookies.set('godark',0);
+            }
             $godarkVal = Cookies.get('godark');
-            // console.log($godarkVal);
+            console.log(Cookies.get('godark'));
             if($godarkVal == 1){
                 $(".switch").prepend("<input type='checkbox' onclick='godark(0)' checked>");
             }
