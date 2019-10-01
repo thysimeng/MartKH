@@ -588,11 +588,12 @@
         }
         $(document).ready(function(){
             // console.log('ready');
-            if(Cookies.get('godark')==='undefined'){
-                Cookies.set('godark',0);
-            }
             $godarkVal = Cookies.get('godark');
             console.log(Cookies.get('godark'));
+            if(typeof $godarkVal==='undefined'){
+                Cookies.set('godark',0);
+                // console.log(Cookies.get('godark'));
+            }
             if($godarkVal == 1){
                 $(".switch").prepend("<input type='checkbox' onclick='godark(0)' checked>");
             }
