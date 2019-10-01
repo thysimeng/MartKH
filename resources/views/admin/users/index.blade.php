@@ -3,17 +3,32 @@
 @section('content')
     @include('layouts.headers.cards')
 
-    <div class="container-fluid mt--7">
-        <div class="row">
-            <div class="col">
-                <div class="card shadow">
-                    <div class="card-header border-0">
-                        <!-- Tabs -->
-                        <div class="row align-items-center">
-                        <!-- <ul class="nav nav-tabs card-header-tabs" id="bologna-list" role="tablist"> -->
+    @if($sidebar==1)
+        <div class="container-fluid bg-dark mt--7">
+            <div class="row">
+                <div class="col">
+                    <div class="card bg-dark shadow">
+                        <div class="card-header bg-transparent border border-bottom-0">
+                            <!-- Tabs -->
+                                <div class="row align-items-center">
+                                <!-- <ul class="nav nav-tabs card-header-tabs" id="bologna-list" role="tablist"> -->
                                     <div class="col-4">
-                                        <h3 class="mb-0">User Management</h3>
+                                        <h3 class="mb-0 text-white">User Management</h3>
                                     </div>
+    @else
+        <div class="container-fluid mt--7">
+            <div class="row">
+                <div class="col">
+                    <div class="card shadow">
+                        <div class="card-header border-0">
+                        <!-- Tabs -->
+                            <div class="row align-items-center">
+                            <!-- <ul class="nav nav-tabs card-header-tabs" id="bologna-list" role="tablist"> -->
+                                <div class="col-4">
+                                    <h3 class="mb-0">User Management</h3>
+                                </div>
+    @endif
+
                                     <!-- <li class="nav-item col-2">
                                       <a class="nav-link active" id="nav-admin-tab" href="#nav-admin" data-toggle="tab" role="tab" aria-controls="admin" aria-selected="true">{{ __('Admin') }}</a>
                                     </li>
@@ -23,7 +38,7 @@
                                     <li class="nav-item col-2">
                                       <a class="nav-link" href="#nav-franchise" data-toggle="tab" role="tab" aria-controls="franchise" aria-selected="false">{{ __('Franchise') }}</a>
                                     </li> -->
-                                    
+
                                     <!-- Search -->
                                     <form class="col-4" id="search-user" method="get" action="{{ route('user.search') }}">
                                             <div class="form-group mb-2 mt-2">
@@ -35,14 +50,25 @@
                                                 </div>
                                             </div>
                                     </form>
-                                        
+
                                     <!-- Add users -->
                                     <div class="col-4 text-right">
                                             <a href="{{ route('user.create') }}" class="btn btn-sm btn-primary">{{ __('Add user') }}</a>
                                     </div>
                         <!-- </ul> --> </div>
+
+                    <!-- Users Table -->
+                        <!-- Admin List -->
+                        <div class="row align-items-center">
+                            <div class="col-4">
+                                @if($sidebar==1)
+                                    <h3 class="mt-4 font-italic text-white">Admin</h3>
+                                @else
+                                    <h3 class="mt-4 font-italic">Admin</h3>
+                                @endif
+                            </div>
+                        </div>
                     </div>
-                    
                     <!-- success message -->
                     <!-- <div class="col-12">
                         @if (session('status'))
@@ -54,15 +80,13 @@
                             </div>
                         @endif
                     </div> -->
-                    
-                    <!-- Users Table -->
-                        <!-- Admin List -->
-                        <div class="col-4">
-                            <h3 class="mb-3 font-italic">Admin</h3>
-                        </div>
                             <div class="table-responsive">
-                                <table class="table align-items-center table-flush">
-                                    <thead class="thead-light">
+                                @if($sidebar==1)
+                                    <table class="table align-items-center table-flush table-dark table-hover">
+                                @else
+                                    <table class="table align-items-center table-flush table-hover">
+                                @endif
+                                        <thead class="thead-light">
                                         <tr>
                                             <th scope="col">{{ __('Name') }}</th>
                                             <th scope="col">{{ __('Email') }}</th>
@@ -74,14 +98,18 @@
                                     <tbody>
                                         @foreach ($admins as $user)
                                             @if ($user->role == 'admin')
-                                                <tr>
+                                                @if($sidebar==1)
+                                                    <tr style="border:2px solid white;border-bottom:0;">
+                                                @else
+                                                    <tr>
+                                                @endif
                                                     <td>{{ $user->name }}</td>
                                                     <td>
-                                                        <a href="mailto:{{ $user->email }}">{{ $user->email }}</a>
+                                                        <a style="color:#f49628;" href="mailto:{{ $user->email }}">{{ $user->email }}</a>
                                                     </td>
                                                     <td>{{ $user->role }}</td>
                                                     <td>{{ Carbon\Carbon::parse($user->created_at)->format('d/m/Y H:i') }}</td>
-                                                    <td class="text-right">
+                                                    <td>
                                                         <div class="dropdown">
                                                             <a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                                 <i class="fas fa-ellipsis-v"></i>
@@ -91,12 +119,12 @@
                                                                     <form action="{{ route('user.destroy', $user) }}" method="post">
                                                                         @csrf
                                                                         @method('delete')
-                                                                        
+
                                                                         <a class="dropdown-item" href="{{ route('user.edit', $user) }}">{{ __('Edit') }}</a>
                                                                         <button type="button" class="dropdown-item delete-btn">
                                                                             {{ __('Delete') }}
                                                                         </button>
-                                                                    </form>    
+                                                                    </form>
                                                                 @else
                                                                     <a class="dropdown-item" href="{{ route('admin.profile.edit') }}">{{ __('Edit') }}</a>
                                                                 @endif
@@ -109,7 +137,11 @@
                                     </tbody>
                                 </table>
                             </div>
-                        <div class="card-footer py-4">
+                        @if($sidebar==1)
+                            <div class="card-footer bg-dark py-4 border">
+                        @else
+                            <div class="card-footer py-4">
+                        @endif
                             <nav class="d-flex justify-content-end" aria-label="...">
                                 {{ $admins->links() }}
                             </nav>
@@ -117,60 +149,85 @@
                     </div>
                         <br>
                          <!-- User List -->
-                    <div class="card shadow pt-3">
-                        <div class="col-4 pr-4">
-                            <h3 class="mb-3 font-italic align-items-center">User</h3>
+                    @if($sidebar==1)
+                    <div class="card bg-dark shadow">
+                        <div class="card-header bg-transparent border border-bottom-0">
+                            <div class="row align-items-center">
+                                <div class="col-4">
+                                    <h3 class="font-italic align-items-center text-white">User</h3>
+                                </div>
+                            </div>
                         </div>
                             <div class="table-responsive">
-                                <table class="table align-items-center table-flush">
-                                    <thead class="thead-light">
-                                        <tr>
-                                            <th scope="col">{{ __('Name') }}</th>
-                                            <th scope="col">{{ __('Email') }}</th>
-                                            <th scope="col">{{ __('Role') }}</th>
-                                            <th scope="col">{{ __('Creation Date') }}</th>
-                                            <th scope="col"></th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        @foreach ($users as $user)
-                                            @if($user->role == 'user')
-                                                <tr>
-                                                    <td>{{ $user->name }}</td>
-                                                    <td>
-                                                        <a href="mailto:{{ $user->email }}">{{ $user->email }}</a>
-                                                    </td>
-                                                    <td>{{ $user->role }}</td>
-                                                    <td>{{ Carbon\Carbon::parse($user->created_at)->format('d/m/Y H:i') }}</td>
-                                                    <td class="text-right">
-                                                        <div class="dropdown">
-                                                            <a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                                                <i class="fas fa-ellipsis-v"></i>
-                                                            </a>
-                                                            <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
-                                                                @if ($user->id != auth()->id())
-                                                                    <form action="{{ route('user.destroy', $user) }}" method="post">
-                                                                        @csrf
-                                                                        @method('delete')
-                                                                        
-                                                                        <a class="dropdown-item" href="{{ route('user.edit', $user) }}">{{ __('Edit') }}</a>
-                                                                        <button type="button" class="dropdown-item delete-btn">
-                                                                            {{ __('Delete') }}
-                                                                        </button>
-                                                                    </form>    
-                                                                @else
-                                                                    <a class="dropdown-item" href="{{ route('admin.profile.edit') }}">{{ __('Edit') }}</a>
-                                                                @endif
-                                                            </div>
-                                                        </div>
-                                                    </td>
-                                                </tr>
-                                            @endif
-                                        @endforeach
-                                    </tbody>
-                                </table>
+                                <table class="table align-items-center table-flush table-dark table-hover">
+                    @else
+                    <div class="card shadow">
+                            <div class="card-header">
+                                <div class="row align-items-center">
+                                    <div class="col-4">
+                                        <h3 class="font-italic align-items-center">User</h3>
+                                    </div>
+                                </div>
                             </div>
-                        <div class="card-footer py-4">
+                                <div class="table-responsive">
+                                    <table class="table align-items-center table-flush table-hover">
+                    @endif
+                                        <thead class="thead-light">
+                                            <tr>
+                                                <th scope="col">{{ __('Name') }}</th>
+                                                <th scope="col">{{ __('Email') }}</th>
+                                                <th scope="col">{{ __('Role') }}</th>
+                                                <th scope="col">{{ __('Creation Date') }}</th>
+                                                <th scope="col">Action</th>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                            @foreach ($users as $user)
+                                                @if($user->role == 'user')
+                                                    @if($sidebar==1)
+                                                        <tr style="border:2px solid white;border-bottom:0;">
+                                                    @else
+                                                        <tr>
+                                                    @endif
+                                                        <td>{{ $user->name }}</td>
+                                                        <td>
+                                                            <a style="color:#f49628;" href="mailto:{{ $user->email }}">{{ $user->email }}</a>
+                                                        </td>
+                                                        <td>{{ $user->role }}</td>
+                                                        <td>{{ Carbon\Carbon::parse($user->created_at)->format('d/m/Y H:i') }}</td>
+                                                        <td>
+                                                            <div class="dropdown">
+                                                                <a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                                                    <i class="fas fa-ellipsis-v"></i>
+                                                                </a>
+                                                                <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+                                                                    @if ($user->id != auth()->id())
+                                                                        <form action="{{ route('user.destroy', $user) }}" method="post">
+                                                                            @csrf
+                                                                            @method('delete')
+
+                                                                            <a class="dropdown-item" href="{{ route('user.edit', $user) }}">{{ __('Edit') }}</a>
+                                                                            <button type="button" class="dropdown-item delete-btn">
+                                                                                {{ __('Delete') }}
+                                                                            </button>
+                                                                        </form>
+                                                                    @else
+                                                                        <a class="dropdown-item" href="{{ route('admin.profile.edit') }}">{{ __('Edit') }}</a>
+                                                                    @endif
+                                                                </div>
+                                                            </div>
+                                                        </td>
+                                                    </tr>
+                                                @endif
+                                            @endforeach
+                                        </tbody>
+                                    </table>
+                                </div>
+                        @if($sidebar==1)
+                            <div class="card-footer bg-dark py-4 border">
+                        @else
+                            <div class="card-footer py-4">
+                        @endif
                             <nav class="d-flex justify-content-end" aria-label="...">
                                 {{ $users->links() }}
                             </nav>
@@ -178,32 +235,53 @@
                     </div>
                     <br>
                         <!-- Franchise List -->
-                    <div class="card shadow pt-3">
-                        <div class="col-4 pr-4">
-                            <h3 class="mb-3 font-italic">Franchise</h3>
+                    @if($sidebar==1)
+                    <div class="card bg-dark shadow">
+                        <div class="card-header bg-transparent border border-bottom-0">
+                            <div class="row align-items-center">
+                                <div class="col-4">
+                                    <h3 class="font-italic align-items-center text-white">Franchise</h3>
+                                </div>
+                            </div>
                         </div>
                             <div class="table-responsive">
-                                <table class="table align-items-center table-flush">
+                                <table class="table align-items-center table-flush table-dark table-hover">
+                    @else
+                    <div class="card shadow">
+                            <div class="card-header">
+                                <div class="row align-items-center">
+                                    <div class="col-4">
+                                        <h3 class="font-italic align-items-center">Franchise</h3>
+                                    </div>
+                                </div>
+                            </div>
+                                <div class="table-responsive">
+                                    <table class="table align-items-center table-flush table-hover">
+                    @endif
                                     <thead class="thead-light">
                                         <tr>
                                             <th scope="col">{{ __('Name') }}</th>
                                             <th scope="col">{{ __('Email') }}</th>
                                             <th scope="col">{{ __('Role') }}</th>
                                             <th scope="col">{{ __('Creation Date') }}</th>
-                                            <th scope="col"></th>
+                                            <th scope="col">Action</th>
                                         </tr>
                                     </thead>
                                     <tbody>
                                         @foreach ($franchises as $user)
                                             @if($user->role == 'franchise')
-                                                <tr>
+                                                @if($sidebar==1)
+                                                    <tr style="border:2px solid white;border-bottom:0;">
+                                                @else
+                                                    <tr>
+                                                @endif
                                                     <td>{{ $user->name }}</td>
                                                     <td>
-                                                        <a href="mailto:{{ $user->email }}">{{ $user->email }}</a>
+                                                        <a style="color:#f49628;" href="mailto:{{ $user->email }}">{{ $user->email }}</a>
                                                     </td>
                                                     <td>{{ $user->role }}</td>
                                                     <td>{{ Carbon\Carbon::parse($user->created_at)->format('d/m/Y H:i') }}</td>
-                                                    <td class="text-right">
+                                                    <td>
                                                         <div class="dropdown">
                                                             <a class="btn btn-sm btn-icon-only text-light" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                                                 <i class="fas fa-ellipsis-v"></i>
@@ -213,12 +291,12 @@
                                                                     <form action="{{ route('user.destroy', $user) }}" method="post">
                                                                         @csrf
                                                                         @method('delete')
-                                                                        
+
                                                                         <a class="dropdown-item" href="{{ route('user.edit', $user) }}">{{ __('Edit') }}</a>
                                                                         <button type="button" class="dropdown-item delete-btn">
                                                                             {{ __('Delete') }}
                                                                         </button>
-                                                                    </form>    
+                                                                    </form>
                                                                 @else
                                                                     <a class="dropdown-item" href="{{ route('admin.profile.edit') }}">{{ __('Edit') }}</a>
                                                                 @endif
@@ -232,14 +310,18 @@
                                 </table>
                             </div>
                         </div>
-                    <div class="card-footer py-4">
+                    @if($sidebar==1)
+                        <div class="card-footer bg-dark py-4 border">
+                    @else
+                        <div class="card-footer py-4">
+                    @endif
                         <nav class="d-flex justify-content-end" aria-label="...">
                             {{ $franchises->links() }}
                         </nav>
                     </div>
             </div>
         </div>
-            
+
         @include('layouts.footers.auth')
     </div>
 

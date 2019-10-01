@@ -3,19 +3,27 @@
 @section('content')
     @include('layouts.headers.cards')
 
-    @if($sidebar==0)
-        <div class="container-fluid mt--7">
-    @elseif($sidebar==1)
+    @if($sidebar==1)
         <div class="container-fluid bg-dark mt--7">
-    @endif
-        <div class="row">
-            <div class="col">
-                <div class="card shadow">
-                    <div class="card-header border-0">
-                        <div class="row align-items-center">
+            <div class="row">
+                    <div class="col">
+                        <div class="card bg-dark shadow text-white border">
+                            <div class="card-header bg-transparent">
+                                <div class="row align-items-center">
+                                    <div class="col-4">
+                                        <h3 class="mb-0 text-white">Products</h3>
+                                    </div>
+    @else
+        <div class="container-fluid mt--7">
+            <div class="row">
+                    <div class="col">
+                        <div class="card shadow">
+                            <div class="card-header border-0">
+                                <div class="row align-items-center">
                                     <div class="col-4">
                                         <h3 class="mb-0">Products</h3>
                                     </div>
+    @endif
                                     <form class="col-4 mb-2 mt-2" method="get" action="{{ route('products.index') }}">
                                                 <div class="input-group input-group-alternative">
                                                     {{-- <div class="input-group-prepend">
@@ -24,7 +32,6 @@
                                                 <input class="form-control" placeholder="Search" type="text" name="search" id="search" value="{{$keyword}}" style="border: 1px solid #11cdef">
                                                 <span class="form-clear d-none"><i class="fas fa-times-circle">clear</i></span>
                                                 <div class="input-group-append">
-
                                                     <button class="btn btn-info" type="submit"><i class="fa fa-search"></i></button>
                                                     </div>
                                             </div>
@@ -62,7 +69,11 @@
                     </div>
 
                     <div class="table-responsive">
-                        <table class="table align-items-center table-flush table-hover">
+                        @if($sidebar==1)
+                            <table class="table align-items-center table-flush table-hover table-dark">
+                        @else
+                            <table class="table align-items-center table-flush table-hover">
+                        @endif
                             <thead class="thead-light">
                                 <tr>
                                     <th scope="col">{{ __('ID') }}</th>
@@ -84,7 +95,11 @@
                             </thead>
                             <tbody id="products_table">
                                 @foreach ($products as $product)
-                                    <tr>
+                                    @if($sidebar==1)
+                                        <tr style="border:2px solid white;border-bottom:0;">
+                                    @else
+                                        <tr>
+                                    @endif
                                         <td>{{ $product->id }}</td>
                                         <td>{{ $product->code }}</td>
                                         <td><img src="{{asset( 'uploads/product_image/' . $product->image )}}" alt="" class="img-thumbnail " style="width:100px;heigth:100px;"></td>
@@ -117,8 +132,6 @@
                                                                 data-update="{{ $product->updated_at->format('d/m/Y H:i') }}" data-subcategory_id="{{ $product->subcategory_id }}">{{ __('View') }}</button>
                                                             <a class="dropdown-item" href="/admin/products/{{$product->id}}/edit?page={{$products->currentPage()}}" id="edit">{{ __('Edit') }}</a>
                                                             <button class="dropdown-item delete-btn" type="submit">Delete</button>
-
-
                                                         </form>
                                                     {{-- @else
                                                         <a class="dropdown-item" href="{{ route('admin.profile.edit') }}">{{ __('Edit') }}</a>
@@ -133,7 +146,11 @@
                         </table>
                         {{-- {{ $products->links() }}  --}}
                     </div>
-                    <div class="card-footer py-4">
+                    @if($sidebar==1)
+                        <div class="card-footer bg-dark py-4 border">
+                    @else
+                        <div class="card-footer py-4">
+                    @endif
                         <nav class="d-flex justify-content-end" aria-label="...">
                             {{ $products->links() }}
                         </nav>
@@ -183,16 +200,6 @@
         </script>
 
     <script>
-        // bootstrap filter
-        // $(document).ready(function(){
-        // $("#search").on("keyup", function() {
-        //     var value = $(this).val().toLowerCase();
-        //     $("#products_table tr").filter(function() {
-        //     $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-        //     });
-        // });
-        // });
-
         //view modal
         $(document).ready(function(){
             $(function() {
@@ -208,7 +215,6 @@
                     $("#subcategory_id").html($(e.relatedTarget).data('subcategory_id'));
                     $("#created_at").html($(e.relatedTarget).data('created_at'));
                     // $("#update").html($(e.relatedTarget).data('updated_at'));
-
                     // $('#imagesrc').attr('src',$("#image").html($(e.relatedTarget).data('image'));
                 });
             });
@@ -234,30 +240,12 @@
                 this.parentElement.submit()
             }
             })
-            // $(document).ready(function(){
-            //     fetch_products();
-            //     function fetch_products(query = ''){
-            //         $.ajax({
-            //             url:"{{route('prouducts.search')}}",
-            //             method:'GET',
-            //             data:{query:query},
-            //             dataType:'json',
-            //             success:function(data){
-            //                 $('tbody').html(data.table_data);
-            //                 $('#total_records').text(data.total_data);
-            //             }
-            //         })
-            //     }
-            // }
-
         });
     </script>
-
-
         @include('layouts.footers.auth')
     </div>
     <div class="modal fade" id="viewProduct" tabindex="-1" role="dialog" aria-labelledby="viewProductTitle" aria-hidden="true">
-            <div class="modal-dialog modal-xxl modal-dialog-centered " role="document">
+            <div class="modal-dialog modal-xxl modal-dialog-centered" role="document">
               <div class="modal-content">
                 <div class="modal-header red-brown">
                 <h3 class="modal-title text-white">Product Information :</h3>
@@ -265,7 +253,11 @@
                     <span aria-hidden="true" class="text-white">&times;</span>
                   </button>
                 </div>
-                <div class="modal-body">
+                @if($sidebar==1)
+                    <div class="modal-body text-white" style="background: #000;">
+                @else
+                    <div class="modal-body">
+                @endif
                     <div class="row">
                         <div class="col-lg-6">
                             <img id="imagesrc" style="width:auto;"/>
@@ -340,7 +332,11 @@
                                     <span>Description : </span>
                                 </div>
                                 <div class="col-lg-8">
-                                    <span><h5 id="description"></h5></span>
+                                    @if($sidebar==1)
+                                        <span><h5 id="description" class="text-white"></h5></span>
+                                    @else
+                                        <span><h5 id="description"></h5></span>
+                                    @endif
                                 </div>
                             </div>
                         </div>

@@ -54,14 +54,27 @@
             </div>
         </div>
     </div> --}}
-    @if($sidebar==0)
-        <div class="container-fluid mt--7">
-    @elseif($sidebar==1)
+    @if($sidebar==1)
         <div class="container-fluid bg-dark mt--7">
+    @else
+        <div class="container-fluid mt--7">
     @endif
         <div class="row">
             <div class="col">
                 {{-- template 1 --}}
+                @if($sidebar==1)
+                <div class="card bg-dark border shadow">
+                    <div class="card-header bg-transparent border-0">
+                        <div class="row align-items-center">
+                            <div class="col-4">
+                                <h3 class="mb-0 text-white">Animated Ads Template 1</h3>
+                            </div>
+                            {{-- <div class="col-8 text-right">
+                                    <a href="ads/create" class="btn btn-sm btn-primary">{{ __('Add Ads') }}</a>
+                            </div> --}}
+                        </div>
+                        <div class="card-body p-0 pt-3">
+                @else
                 <div class="card shadow">
                     <div class="card-header border-0">
                         <div class="row align-items-center">
@@ -73,12 +86,17 @@
                             </div> --}}
                         </div>
                         <div class="card-body p-0 pt-3">
+                @endif
                             <div class="row align-items-center">
                                 <div class="col-3 border-right-0" style="border:2px solid #f7931e; border-radius:5px;position:relative;">
                                     <form action="{{ route('adsLeft1.upload') }}" method="post" enctype="multipart/form-data" id="submitFormLeft1">
                                         @csrf
                                         <input type="file" id="adsLeft1" style="display: none;" name="adsLeft1[]" multiple/>
-                                        <button  class="btn shadow-none--hover shadow-none" id="adsLeftButton1" style="width:100%;background:transparent;"><i class="fas fa-plus-circle text-success"></i>Add Left</button>
+                                        @if($sidebar==1)
+                                            <button class="btn shadow-none--hover shadow-none text-white" id="adsLeftButton1" style="width:100%;background:transparent;"><i class="fas fa-plus-circle text-success"></i>Add Left</button>
+                                        @else
+                                            <button class="btn shadow-none--hover shadow-none" id="adsLeftButton1" style="width:100%;background:transparent;"><i class="fas fa-plus-circle text-success"></i>Add Left</button>
+                                        @endif
                                         <input type="submit" id="submitLeft1" class="btn btn-success" style="width:100%;" name='submitImage' value="Upload Image"/>
                                     </form>
                                     <div style="max-height:750px;overflow:auto;">
@@ -97,7 +115,11 @@
                                     <form action="{{ route('adsMiddle1.upload') }}" method="post" enctype="multipart/form-data" id="submitFormMiddle1">
                                         @csrf
                                         <input type="file" id="adsMiddle1" style="display: none;" name="adsMiddle1[]" multiple/>
-                                        <button  class="btn shadow-none--hover shadow-none" id="adsMiddleButton1" style="width:100%;background:transparent;"><i class="fas fa-plus-circle text-success"></i>Add Middle</button>
+                                        @if($sidebar==1)
+                                            <button class="btn shadow-none--hover shadow-none text-white" id="adsMiddleButton1" style="width:100%;background:transparent;"><i class="fas fa-plus-circle text-success"></i>Add Middle</button>
+                                        @else
+                                            <button class="btn shadow-none--hover shadow-none" id="adsMiddleButton1" style="width:100%;background:transparent;"><i class="fas fa-plus-circle text-success"></i>Add Middle</button>
+                                        @endif
                                         <input type="submit" id="submitMiddle1" class="btn btn-success" style="width:100%;" name='submitImage' value="Upload Image"/>
                                     </form>
                                     <div style="max-height:750px;overflow:auto;">
@@ -118,7 +140,11 @@
                                             <form action="{{ route('adsTopRight1.upload') }}" method="post" enctype="multipart/form-data" id="submitFormTopRight1">
                                                 @csrf
                                                 <input type="file" id="adsTopRight1" style="display: none;" name="adsTopRight1[]" multiple/>
-                                                <button  class="btn shadow-none--hover shadow-none" id="adsTopRightButton1" style="width:100%;background:transparent;"><i class="fas fa-plus-circle text-success"></i>Add Top Right</button>
+                                                @if($sidebar==1)
+                                                    <button class="btn shadow-none--hover shadow-none text-white" id="adsTopRightButton1" style="width:100%;background:transparent;"><i class="fas fa-plus-circle text-success"></i>Add Top Right</button>
+                                                @else
+                                                    <button class="btn shadow-none--hover shadow-none" id="adsTopRightButton1" style="width:100%;background:transparent;"><i class="fas fa-plus-circle text-success"></i>Add Top Right</button>
+                                                @endif
                                                 <input type="submit" id="submitTopRight1" class="btn btn-success" style="width:100%;" name='submitImage' value="Upload Image"/>
                                             </form>
                                             <div style="overflow:auto;max-height:350px;border-bottom:2px solid #f7931e;">
@@ -139,7 +165,11 @@
                                             <form action="{{ route('adsBottomRight1.upload') }}" method="post" enctype="multipart/form-data" id="submitFormBottomRight1">
                                                 @csrf
                                                 <input type="file" id="adsBottomRight1" style="display: none;" name="adsBottomRight1[]" multiple/>
-                                                <button  class="btn shadow-none--hover shadow-none" id="adsBottomRightButton1" style="width:100%;background:transparent;"><i class="fas fa-plus-circle text-success"></i>Add BottomRight</button>
+                                                @if($sidebar==1)
+                                                    <button class="btn shadow-none--hover shadow-none text-white" id="adsBottomRightButton1" style="width:100%;background:transparent;"><i class="fas fa-plus-circle text-success"></i>Add BottomRight</button>
+                                                @else
+                                                    <button class="btn shadow-none--hover shadow-none" id="adsBottomRightButton1" style="width:100%;background:transparent;"><i class="fas fa-plus-circle text-success"></i>Add BottomRight</button>
+                                                @endif
                                                 <input type="submit" id="submitBottomRight1" class="btn btn-success" style="width:100%;" name='submitImage' value="Upload Image"/>
                                             </form>
                                             <div style="overflow:auto;max-height:350px;border-bottom:2px solid #f7931e;">
@@ -159,7 +189,11 @@
                             </div>
                         </div>
                     </div>
-                    <div class="card-footer text-center">
+                    @if($sidebar==1)
+                        <div class="card-footer bg-dark text-center">
+                    @else
+                        <div class="card-footer text-center">
+                    @endif
                         <form action="{{route('ads.id')}}" method="GET">
                             <input type="hidden" name="template_id" value="1">
                             <input type="submit" class="align-items-center btn btn-success apply-template" value="Apply">
@@ -167,23 +201,34 @@
                     </div>
                 </div>
                 {{-- template 2 --}}
+                @if($sidebar==1)
+                <div class="card shadow mt-4 bg-dark border">
+                    <div class="card-header border-0 bg-transparent">
+                        <div class="row align-items-center">
+                            <div class="col-4">
+                                <h3 class="mb-0 text-white">Animated Ads Template 2</h3>
+                            </div>
+                        </div>
+                @else
                 <div class="card shadow mt-4">
                     <div class="card-header border-0">
                         <div class="row align-items-center">
                             <div class="col-4">
                                 <h3 class="mb-0">Animated Ads Template 2</h3>
                             </div>
-                            {{-- <div class="col-8 text-right">
-                                    <a href="ads/create" class="btn btn-sm btn-primary">{{ __('Add Ads') }}</a>
-                            </div> --}}
                         </div>
+                @endif
                         <div class="card-body p-0 pt-3">
                             <div class="row align-items-center">
                                 <div class="col-8" style="border:2px solid #f7931e;border-radius:5px;">
                                     <form action="{{ route('adsLeft2.upload') }}" method="post" enctype="multipart/form-data" id="submitFormLeft2">
                                         @csrf
                                         <input type="file" id="adsLeft2" style="display: none;" name="adsLeft2[]" multiple/>
-                                        <button  class="btn shadow-none--hover shadow-none" id="adsLeftButton2" style="width:100%;background:transparent;"><i class="fas fa-plus-circle text-success"></i>Add Left</button>
+                                        @if($sidebar==1)
+                                            <button class="btn shadow-none--hover shadow-none text-white" id="adsLeftButton2" style="width:100%;background:transparent;"><i class="fas fa-plus-circle text-success"></i>Add Left</button>
+                                        @else
+                                            <button class="btn shadow-none--hover shadow-none" id="adsLeftButton2" style="width:100%;background:transparent;"><i class="fas fa-plus-circle text-success"></i>Add Left</button>
+                                        @endif
                                         <input type="submit" id="submitLeft2" class="btn btn-success" style="width:100%;" name='submitImage' value="Upload Image"/>
                                     </form>
                                     <div style="max-height:960px;overflow:auto;">
@@ -204,7 +249,11 @@
                                             <form action="{{ route('adsTopRight2.upload') }}" method="post" enctype="multipart/form-data" id="submitFormTopRight2">
                                                 @csrf
                                                 <input type="file" id="adsTopRight2" style="display: none;" name="adsTopRight2[]" multiple/>
-                                                <button  class="btn shadow-none--hover shadow-none" id="adsTopRightButton2" style="width:100%;background:transparent;"><i class="fas fa-plus-circle text-success"></i>Add Top Right</button>
+                                                @if($sidebar==1)
+                                                    <button class="btn shadow-none--hover shadow-none text-white" id="adsTopRightButton2" style="width:100%;background:transparent;"><i class="fas fa-plus-circle text-success"></i>Add Top Right</button>
+                                                @else
+                                                    <button class="btn shadow-none--hover shadow-none" id="adsTopRightButton2" style="width:100%;background:transparent;"><i class="fas fa-plus-circle text-success"></i>Add Top Right</button>
+                                                @endif
                                                 <input type="submit" id="submitTopRight2" class="btn btn-success" style="width:100%;" name='submitImage' value="Upload Image"/>
                                             </form>
                                             <div style="max-height:360px;overflow:auto;border-bottom:2px solid #f7931e">
@@ -225,7 +274,11 @@
                                             <form action="{{ route('adsBottomRight2.upload') }}" method="post" enctype="multipart/form-data" id="submitFormBottomRight2">
                                                 @csrf
                                                 <input type="file" id="adsBottomRight2" style="display: none;" name="adsBottomRight2[]" multiple/>
-                                                <button  class="btn shadow-none--hover shadow-none" id="adsBottomRightButton2" style="width:100%;background:transparent;"><i class="fas fa-plus-circle text-success"></i>Add BottomRight</button>
+                                                @if($sidebar==1)
+                                                    <button class="btn shadow-none--hover shadow-none text-white" id="adsBottomRightButton2" style="width:100%;background:transparent;"><i class="fas fa-plus-circle text-success"></i>Add BottomRight</button>
+                                                @else
+                                                    <button class="btn shadow-none--hover shadow-none" id="adsBottomRightButton2" style="width:100%;background:transparent;"><i class="fas fa-plus-circle text-success"></i>Add BottomRight</button>
+                                                @endif
                                                 <input type="submit" id="submitBottomRight" class="btn btn-success" style="width:100%;" name='submitImage' value="Upload Image"/>
                                             </form>
                                             <div style="max-height:360px;overflow:auto;border-bottom:2px solid #f7931e">
@@ -245,7 +298,11 @@
                             </div>
                         </div>
                     </div>
-                    <div class="card-footer text-center">
+                    @if($sidebar==1)
+                        <div class="card-footer text-center bg-dark">
+                    @else
+                        <div class="card-footer text-center">
+                    @endif
                         {{-- <button class="align-items-center btn btn-success">Apply</button> --}}
                         <form action="{{route('ads.id')}}" method="GET">
                             <input type="hidden" name="template_id" value="2">
@@ -254,23 +311,34 @@
                     </div>
                 </div>
                 {{-- template 3 --}}
+                @if($sidebar==1)
+                <div class="card shadow mt-4">
+                    <div class="card-header border-0 bg-dark border">
+                        <div class="row align-items-center">
+                            <div class="col-4">
+                                <h3 class="mb-0 text-white">Animated Ads Template 3</h3>
+                            </div>
+                        </div>
+                @else
                 <div class="card shadow mt-4">
                     <div class="card-header border-0">
                         <div class="row align-items-center">
                             <div class="col-4">
                                 <h3 class="mb-0">Animated Ads Template 3</h3>
                             </div>
-                            {{-- <div class="col-8 text-right">
-                                    <a href="ads/create" class="btn btn-sm btn-primary">{{ __('Add Ads') }}</a>
-                            </div> --}}
                         </div>
+                @endif
                         <div class="card-body p-0 pt-3">
                             <div class="row align-items-center">
                                 <div class="col-12" style="border:2px solid #f7931e;border-radius:5px;position:relative;">
                                     <form action="{{ route('adsMiddle3.upload') }}" method="post" enctype="multipart/form-data" id="submitFormMiddle3" class="form-inline justify-content-center">
                                         @csrf
                                         <input type="file" id="adsMiddle3" style="display: none;" name="adsMiddle3[]" multiple/>
-                                        <button  class="btn shadow-none--hover shadow-none" id="adsMiddleButton3" style="width:100%;background:transparent;border:transparent;"><i class="fas fa-plus-circle text-success"></i>Add Middle</button>
+                                        @if($sidebar==1)
+                                            <button class="btn shadow-none--hover shadow-none text-white" id="adsMiddleButton3" style="width:100%;background:transparent;border:transparent;"><i class="fas fa-plus-circle text-success"></i>Add Middle</button>
+                                        @else
+                                            <button class="btn shadow-none--hover shadow-none" id="adsMiddleButton3" style="width:100%;background:transparent;border:transparent;"><i class="fas fa-plus-circle text-success"></i>Add Middle</button>
+                                        @endif
                                         <input type="submit" id="submitMiddle3" class="btn btn-success mt-2" style="width:100%;" name='submitImage' value="Upload Image"/>
                                     </form>
                                     <div style="max-height:1080x;overflow:auto;">
@@ -288,7 +356,11 @@
                             </div>
                         </div>
                     </div>
-                    <div class="card-footer text-center">
+                    @if($sidebar==1)
+                        <div class="card-footer text-center bg-dark">
+                    @else
+                        <div class="card-footer text-center">
+                    @endif
                         {{-- <button class="align-items-center btn btn-success">Apply</button> --}}
                         <form action="{{route('ads.id')}}" method="GET">
                             <input type="hidden" name="template_id" value="3">

@@ -2218,7 +2218,7 @@ pre code
 .table-dark
 {
     color: #f8f9fe;
-    background-color: #172b4d;
+    background-color: #212529 !important;
 }
 .table-dark th,
 .table-dark td,

@@ -3,71 +3,75 @@
 @section('content')
     @include('layouts.headers.cards')
 
-    @if($sidebar==0)
-        <div class="container-fluid mt--7">
-    @elseif($sidebar==1)
+    @if($sidebar==1)
         <div class="container-fluid bg-dark mt--7">
-    @endif
-        <div class="row">
-            <div class="col">
-                <div class="card shadow">
-                    <div class="card-header border-0">
+            <div class="row">
+                <div class="col">
+                    <div class="card bg-dark shadow border">
+                        <div class="card-header bg-transparent border-0">
                             <div class="row align-items-center">
                                     <div class="col-4">
-                                        <h3 class="mb-0">Main Stock
+                                        <h3 class="mb-0 text-white">Main Stock<h3>
                                     </div>
-                                            <form class="col-4 mt-2" id="search-stocks" method="get" action="{{ route('admin.search_stock') }}" autocomplete="off">
-                                                    <div class="form-group mb-2">
-                                                        <div class="input-group input-group-alternative">
-                                                            <div class="input-group-prepend">
-                                                                <span class="input-group-text"><i class="fas fa-search"></i></span>
-                                                            </div>
-                                                            <input class="form-control" placeholder="Search" type="search" name="search">
-                                                        </div>
+    @else
+        <div class="container-fluid mt--7">
+            <div class="row">
+                <div class="col">
+                    <div class="card shadow">
+                        <div class="card-header border-0">
+                            <div class="row align-items-center">
+                                    <div class="col-4">
+                                        <h3 class="mb-0">Main Stock<h3>
+                                    </div>
+    @endif
+                                    <form class="col-4 mt-2" id="search-stocks" method="get" action="{{ route('admin.search_stock') }}" autocomplete="off">
+                                            <div class="form-group mb-2">
+                                                <div class="input-group input-group-alternative">
+                                                    <div class="input-group-prepend">
+                                                        <span class="input-group-text"><i class="fas fa-search"></i></span>
                                                     </div>
-                                            </form>
-                                        <div class="col-4 text-right">
-                                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addStock">{{ __('Add Stock') }}</button>
-                                            </div>
-                            </div>
-
-
-
-                                    <!-- Add stocks -->
-
-                                    <form class="form-horizontal" action="{{ route('admin.create_stock') }}" enctype="multipart/form-data" method="post">
-                                        @csrf
-                                        <div class="modal fade" id="addStock" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                                            <div class="modal-dialog modal-dialog-centered" role="document">
-                                                <div class="modal-content">
-                                                    <div class="modal-header">
-                                                        <h5 class="modal-title" id="exampleModalCenterTitle">Add New Stock</h5>
-                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                        <span aria-hidden="true">&times;</span>
-                                                        </button>
-                                                    </div>
-                                                    <div class="modal-body">
-                                                            <label for="exampleFormControlSelect1">Select Product</label>
-                                                            <input type="hidden" class="form-control" name="product_id" id="" value="">
-                                                            <input type="text" class="typeahead form-control" name="product_name" required placeholder="Search Products" autocomplete="off">
-                                                      </div>
-                                                    {{-- <div class="modal-body">
-                                                        <label for="exampleFormControlSelect1">Select Franchies</label>
-                                                        <input type="hidden" class="form-control" name="franchise_id" id="" value="">
-                                                        <input type="text" class="typeahead form-control" name="franchise_name" required placeholder="Search Franchise">
-                                                    </div> --}}
-                                                    <div class="modal-body">
-                                                        <input type="text" class="form-control" name="amount" id="" value="" required placeholder="Amount">
-                                                    </div>
-                                                    <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                        <button type="submit" class="btn btn-primary">Save changes</button>
-                                                    </div>
-                                                    <input type="hidden" name="enter_by" value="{{auth()->user()->name}}">
+                                                    <input class="form-control" placeholder="Search" type="search" name="search">
                                                 </div>
                                             </div>
-                                        </div>
                                     </form>
+                                    <div class="col-4 text-right">
+                                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addStock">{{ __('Add Stock') }}</button>
+                                    </div>
+                            </div>
+                            <!-- Add stocks -->
+                            <form class="form-horizontal" action="{{ route('admin.create_stock') }}" enctype="multipart/form-data" method="post">
+                                @csrf
+                                <div class="modal fade" id="addStock" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalCenterTitle">Add New Stock</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                    <label for="exampleFormControlSelect1">Select Product</label>
+                                                    <input type="hidden" class="form-control" name="product_id" id="" value="">
+                                                    <input type="text" class="typeahead form-control" name="product_name" required placeholder="Search Products" autocomplete="off">
+                                                </div>
+                                            {{-- <div class="modal-body">
+                                                <label for="exampleFormControlSelect1">Select Franchies</label>
+                                                <input type="hidden" class="form-control" name="franchise_id" id="" value="">
+                                                <input type="text" class="typeahead form-control" name="franchise_name" required placeholder="Search Franchise">
+                                            </div> --}}
+                                            <div class="modal-body">
+                                                <input type="text" class="form-control" name="amount" id="" value="" required placeholder="Amount">
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                <button type="submit" class="btn btn-primary">Save changes</button>
+                                            </div>
+                                            <input type="hidden" name="enter_by" value="{{auth()->user()->name}}">
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
                     </div>
 
                     <div class="col-12">
@@ -86,7 +90,11 @@
                         <!-- Admin List -->
                         <div class="tab-pane active" id="nav-admin" role="tabpanel1">
                             <div class="table-responsive">
-                                <table class="table align-items-center table-flush">
+                                @if($sidebar==1)
+                                    <table class="table align-items-center table-flush table-hover table-dark">
+                                @else
+                                    <table class="table align-items-center table-flush table-hover">
+                                @endif
                                         <thead class="thead-light">
                                                 <tr>
                                                     <th scope="col">{{ __('Stock ID') }}</th>
