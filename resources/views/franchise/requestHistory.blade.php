@@ -1,7 +1,7 @@
 @extends('layouts.app', ['title' => __('Stock Request History')])
 
 @section('content')
-    @include('layouts.headers.cards')
+    @include('franchise.layouts.headers.cards')
 
     <div class="container-fluid mt--7">
         <div class="row">
@@ -73,7 +73,7 @@
                 </div>
             </div>
         </div>
-        @include('layouts.footers.auth')
+        @include('franchise.layouts.footers.auth')
     </div>
     
 @endsection

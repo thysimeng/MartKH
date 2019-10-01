@@ -1,7 +1,7 @@
 @extends('layouts.app', ['title' => __('Products')])
 
 @section('content')
-    @include('layouts.headers.cards')
+    @include('franchise.layouts.headers.cards')
 
     <div class="container-fluid mt--7">
         <div class="row">
@@ -179,7 +179,7 @@
     </script>
         
         
-        @include('layouts.footers.auth')
+        @include('franchise.layouts.footers.auth')
     </div>
     <div class="modal fade" id="viewProduct" tabindex="-1" role="dialog" aria-labelledby="viewProductTitle" aria-hidden="true">
             <div class="modal-dialog modal-xxl modal-dialog-centered " role="document">
