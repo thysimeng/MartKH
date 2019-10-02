@@ -3,15 +3,27 @@
 @section('content')
     @include('layouts.headers.cards')
 
-    <div class="container-fluid mt--7">
-        <div class="row">
-            <div class="col">
-                <div class="card shadow">
-                    <div class="card-header border-0">
-                        <div class="row align-items-center">
-                            <div class="col-4">
-                                <h3 class="mb-0">Stock Requests
-                            </div>
+    @if($sidebar==1)
+        <div class="container-fluid bg-dark mt--7">
+            <div class="row">
+                <div class="col">
+                    <div class="card shadow bg-dark border">
+                        <div class="card-header bg-transparent border-0">
+                            <div class="row align-items-center">
+                                <div class="col-4">
+                                    <h3 class="mb-0 text-white">Stock Requests</h3>
+                                </div>
+    @else
+        <div class="container-fluid mt--7">
+            <div class="row">
+                <div class="col">
+                    <div class="card shadow">
+                        <div class="card-header border-0">
+                            <div class="row align-items-center">
+                                <div class="col-4">
+                                    <h3 class="mb-0">Stock Requests</h3>
+                                </div>
+    @endif
                             <form class="col-4" action="{{route('admin.request_stock.search')}}" method="get" role="search">
                                     {{ csrf_field() }}
                                     <div class="form-group mb-2 mt-2">
@@ -26,7 +38,11 @@
                         </div>
                     </div>
                     <div class="table-responsive">
-                        <table class="table align-items-center table-flush table-hover">
+                        @if($sidebar==1)
+                            <table class="table align-items-center table-flush table-hover table-dark">
+                        @else
+                            <table class="table align-items-center table-flush table-hover">
+                        @endif
                             <thead class="thead-light">
                                 <tr>
                                     <th scope="col">{{ __('ID') }} </th>
@@ -51,7 +67,7 @@
                                         <td>{{ $requestStock->product->stocks->amount }}</td>
                                         <td>{{ $requestStock->created_at->diffForHumans() }}</td>
                                         <td>
-                                            @if ($requestStock->status == 'pending') 
+                                            @if ($requestStock->status == 'pending')
                                                 <span class="badge badge-primary text-white" style="background-color:#fb6340; font-size:.8rem">{{ $requestStock->status }}</span>
                                             @elseif ($requestStock->status == 'approved')
                                                 <span class="badge badge-success" style="font-size:.8rem">{{ $requestStock->status }}</span>
@@ -67,7 +83,7 @@
                                                 <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
                                                     <form method="get" action="{{ route('admin.request.approve', $requestStock->id) }}" id="approveForm">
                                                         @csrf
-                                                        <button type="button" class="dropdown-item text-success" data-toggle="modal" data-target="#approveModal" 
+                                                        <button type="button" class="dropdown-item text-success" data-toggle="modal" data-target="#approveModal"
                                                         data-franchise_name="{{ $requestStock->franchise->franchise_name}}" data-product_name="{{ $requestStock->product->name }}"
                                                         data-amount="{{$requestStock->amount}}" data-stock="{{$requestStock->product->stocks->amount}}">
                                                             {{ __('Approve') }}
@@ -153,7 +169,7 @@
                     $("#product_name").html($(e.relatedTarget).data('product_name'));
                     $("#amount").html($(e.relatedTarget).data('amount'));
                     $("#stock").html($(e.relatedTarget).data('stock'));
-                    
+
                 });
             });
         });
@@ -176,7 +192,7 @@
             }).then((result) => {
             if (result.value) {
                 window.location.href = link;
-            }   
+            }
             })
         });
     </script>

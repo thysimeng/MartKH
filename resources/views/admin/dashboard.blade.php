@@ -2,8 +2,12 @@
 
 @section('content')
     @include('layouts.headers.cards')
-    
-    <div class="container-fluid mt--7">
+
+    @if($sidebar==1)
+        <div class="container-fluid bg-dark mt--7" style="min-height:660px;">
+    @else
+        <div class="container-fluid mt--7">
+    @endif
         {{-- <div class="row">
             <div class="col-xl-8 mb-5 mb-xl-0">
                 <div class="card bg-gradient-default shadow">

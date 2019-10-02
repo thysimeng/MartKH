@@ -3,10 +3,14 @@
 @section('content')
     @include('layouts.headers.cards')
 
-    <div class="container-fluid mt--7">
+    @if($sidebar==1)
+        <div class="container-fluid bg-dark mt--7">
+    @else
+        <div class="container-fluid mt--7">
+    @endif
         <div class="row">
             <div class="col">
-                <div class="card shadow"> 
+                <div class="card shadow">
                         <div class="card-header border-0">
                                 <ul class="nav nav-tabs card-header-tabs" id="bologna-list" role="tablist">
                                             <div class="col-2 text-left">
@@ -31,7 +35,7 @@
                                             <div class="col-6 text-right">
                                                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">{{ __('Add Category') }}</button>
                                             </div>
-                                           
+
                                             <form class="form-horizontal" action="/create_category" enctype="multipart/form-data" method="post">
                                                 @csrf
                                                 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
@@ -54,7 +58,7 @@
                                                     </div>
                                                 </div>
                                             </form>
-                                            
+
                                 </ul>
                             </div>
 
@@ -71,7 +75,7 @@
                             </thead>
                             <tbody>
                                     @foreach($categories_data as $item)
-                                    
+
                                     <tr>
                                         <td>{{$item->id}}</td>
                                         <td>{{$item->categories_name}}</td>
@@ -84,14 +88,14 @@
                                                 </a>
                                                 <div data-id="{{$item->id}}"  class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
                                                     <a onclick="edit({{$item->id}}, '{{$item->categories_name}}')"  class="dropdown-item" data-toggle="modal" data-target="#editModalCenter" href="">{{ __('Edit') }}</a>
-                                            
+
                                                     {{-- <a class="dropdown-item" href="">{{ __('View') }}</a> --}}
                                                     <a class="dropdown-item" href="/delete/{{ $item->id }}">{{ __('Delete') }}</a>
                                                 </div>
                                             </div>
                                         </td>
                                     </tr>
-                               
+
                                     <div class="modal fade" id="editModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                                         <form action="/edit" method="post">
                                             <div class="modal-dialog modal-dialog-centered" role="document">

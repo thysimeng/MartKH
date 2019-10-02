@@ -3,10 +3,14 @@
 @section('content')
     @include('layouts.headers.cards')
 
-    <div class="container-fluid mt--7">
+    @if($sidebar==1)
+        <div class="container-fluid bg-dark mt--7">
+    @else
+        <div class="container-fluid mt--7">
+    @endif
         <div class="row">
             <div class="col">
-                <div class="card shadow"> 
+                <div class="card shadow">
                         <div class="card-header border-0">
                                 <ul class="nav nav-tabs card-header-tabs" id="bologna-list" role="tablist">
                                             <div class="col-2 text-left">
@@ -27,10 +31,10 @@
                                                         </div>
                                                     </div>
                                             </form>
-                                                
+
                                             <div class="col-6 text-right">
                                                 <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">{{ __('Add Sub Category') }}</button>
-                                                
+
                                             </div>
                                             <form class="form-horizontal" action="/admin/create_sub_category" enctype="multipart/form-data" method="post">
                                                 @csrf
@@ -45,7 +49,7 @@
                                                             </div>
                                                             <div class="modal-body">
                                                                 <label for="exampleFormControlSelect1">Category select</label>
-                                                                
+
                                                                 <select class="form-control" id="exampleFormControlSelect1" name="category_id">
                                                                     @foreach($categories_data as $sub_item)
                                                                         <option @if(old('category_id') == $sub_item->id) selected @endif value="{{$sub_item->id}}">{{$sub_item->categories_name}}</option>
@@ -63,7 +67,7 @@
                                                     </div>
                                                 </div>
                                             </form>
-                                            
+
                                 </ul>
                             </div>
 
@@ -94,7 +98,7 @@
                                                 </a>
                                                 <div data-id="{{$item->id}}" class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
                                                     <a onclick="edit({{$item->id}}, '{{$item->subcategory_name}}')" class="dropdown-item" data-toggle="modal" data-target="#editModalCenter" href="">{{ __('Edit') }}</a>
-                                            
+
                                                     {{-- <a class="dropdown-item" href="">{{ __('View') }}</a> --}}
                                                     <a onclick="delet({{$item->id}})" class="dropdown-item" data-toggle="modal" data-target="#deleteModalCenter" href="">{{ __('Delete') }}</a>
                                                 </div>

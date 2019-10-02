@@ -3,19 +3,31 @@
 @section('content')
     @include('layouts.headers.cards')
 
-    <div class="container-fluid mt--7">
-        <div class="row">
-            <div class="col">
-                <div class="card shadow">
-                    <div class="card-header border-0">
-                        <div class="row align-items-center">
-                                    <div class="col-4">
-                                        <h3 class="mb-0">Franchise Stock</h3>
-                                    </div>
+    @if($sidebar==1)
+        <div class="container-fluid bg-dark mt--7">
+            <div class="row">
+                <div class="col">
+                    <div class="card bg-dark shadow border">
+                        <div class="card-header bg-transparent border-0">
+                            <div class="row align-items-center">
+                                <div class="col-4">
+                                    <h3 class="mb-0 text-white">Franchise Stock</h3>
+                                </div>
+    @else
+        <div class="container-fluid mt--7">
+            <div class="row">
+                <div class="col">
+                    <div class="card shadow">
+                        <div class="card-header border-0">
+                            <div class="row align-items-center">
+                                <div class="col-4">
+                                    <h3 class="mb-0">Franchise Stock</h3>
+                                </div>
+    @endif
                                     <form class="col-4" method="get" action="{{route('admin.franchiseStockSearch')}}">
                                         <div class="input-group input-group-alternative">
                                                 <input class="form-control" placeholder="Search" type="text" name="search" id="search" value="" style="border: 1px solid #11cdef">
-                                                <span class="form-clear d-none"><i class="fas fa-times-circle">clear</i></span>   
+                                                <span class="form-clear d-none"><i class="fas fa-times-circle">clear</i></span>
                                                 <div class="input-group-append">
                                                     <button class="btn btn-info" type="submit"><i class="fa fa-search"></i></button>
                                                 </div>
@@ -37,7 +49,11 @@
                     </div>
 
                     <div class="table-responsive">
-                        <table class="table align-items-center table-flush table-hover">
+                        @if($sidebar==1)
+                            <table class="table align-items-center table-flush table-hover table-dark">
+                        @else
+                            <table class="table align-items-center table-flush table-hover">
+                        @endif
                             <thead class="thead-light">
                                 <tr>
                                     <th scope="col">{{ __('ID') }}</th>
@@ -55,7 +71,7 @@
                                     <tr>
                                         <td>{{ $stock_franchise->sfid }}</td>
                                         <td>{{ $stock_franchise->code }}</td>
-                                        <td><img src="{{asset( 'uploads/product_image/' . $stock_franchise->image )}}" alt="" class="img-thumbnail " style="width:50px;heigth:50px;"></td>                                      
+                                        <td><img src="{{asset( 'uploads/product_image/' . $stock_franchise->image )}}" alt="" class="img-thumbnail " style="width:50px;heigth:50px;"></td>
                                         <td>{{ $stock_franchise->amount }}</td>
                                         <td>{{ $stock_franchise->name }}</td>
                                         <td>{{ $stock_franchise->price }}</td>
@@ -66,14 +82,18 @@
                             </tbody>
                         </table>
                     </div>
-                    <div class="card-footer py-4">
+                    @if($sidebar==1)
+                        <div class="card-footer bg-dark py-4 border">
+                    @else
+                        <div class="card-footer py-4">
+                    @endif
                         <nav class="d-flex justify-content-end" aria-label="...">
                             {{ $stock_franchises->links() }}
                         </nav>
                     </div>
                 </div>
             </div>
-        </div>        
+        </div>
     <script src="//ajax.googleapis.com/ajax/libs/jquery/1.10.1/jquery.min.js"></script>
     <script>
         $(window).on('hashchange', function() {
@@ -107,7 +127,7 @@
                 alert('page can\'t be load');
             });
         }
-    </script>  
+    </script>
     <script>
         $(document).ready(function(){
             $(function() {
@@ -123,7 +143,7 @@
                     $("#subcategory_id").html($(e.relatedTarget).data('subcategory_id'));
                     $("#created_at").html($(e.relatedTarget).data('created_at'));
                     // $("#update").html($(e.relatedTarget).data('updated_at'));
-                    
+
                     // $('#imagesrc').attr('src',$("#image").html($(e.relatedTarget).data('image'));
                 });
             });
@@ -147,12 +167,12 @@
             }).then((result) => {
             if (result.value) {
                 this.parentElement.submit()
-            }   
+            }
             })
         });
     </script>
-        
-        
+
+
         @include('layouts.footers.auth')
     </div>
     <div class="modal fade" id="viewProduct" tabindex="-1" role="dialog" aria-labelledby="viewProductTitle" aria-hidden="true">
@@ -165,7 +185,7 @@
                   </button>
                 </div>
                 <div class="modal-body">
-                    <div class="row">    
+                    <div class="row">
                         <div class="col-lg-6">
                             <img id="imagesrc" style="width:auto;"/>
                         </div>

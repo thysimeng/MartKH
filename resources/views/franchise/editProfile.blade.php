@@ -157,7 +157,7 @@
             </div>
         {{-- </div> --}}
         
-        @include('layouts.footers.auth')
+        @include('franchise.layouts.footers.auth')
     </div>
 
     <script type="text/javascript">

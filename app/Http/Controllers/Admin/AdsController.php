@@ -44,7 +44,7 @@ class AdsController extends Controller
                     ['position', '=', 'bottomRight1'],
                 ])
                     ->get();
-        
+
         $adsLeft2 = DB::table('ads')
                 ->where([
                     ['template_id', '=', '2'],
@@ -69,7 +69,7 @@ class AdsController extends Controller
             ['position', '=', 'middle3'],
         ])
             ->get();
-        
+
         return view('admin.ads.index',compact('adsLeft1','adsMiddle1','adsTopRight1','adsBottomRight1','adsLeft2','adsTopRight2','adsBottomRight2','adsMiddle3'));
     }
 
@@ -142,7 +142,7 @@ class AdsController extends Controller
             File::delete(public_path('uploads\ads_image\template1\adsLeft\\' . $image_name));
         }
         elseif($ads->position === 'middle1'){
-            File::delete(public_path('uploads\ads_image\template1\adsMiddle\\' . $image_name));            
+            File::delete(public_path('uploads\ads_image\template1\adsMiddle\\' . $image_name));
         }
         elseif($ads->position === 'topRight1'){
             File::delete(public_path('uploads\ads_image\template1\adsTopRight\\' . $image_name));
@@ -157,10 +157,10 @@ class AdsController extends Controller
             File::delete(public_path('uploads\ads_image\template2\adsTopRight\\' . $image_name));
         }
         elseif($ads->position === 'bottomRight2'){
-            File::delete(public_path('uploads\ads_image\template2\adsBottomRight\\' . $image_name));            
+            File::delete(public_path('uploads\ads_image\template2\adsBottomRight\\' . $image_name));
         }
         elseif($ads->position === 'middle3'){
-            File::delete(public_path('uploads\ads_image\template3\adsMiddle\\' . $image_name));            
+            File::delete(public_path('uploads\ads_image\template3\adsMiddle\\' . $image_name));
         }
         $ads->delete();
         // return redirect()->route('ads.index');
@@ -180,9 +180,9 @@ class AdsController extends Controller
             foreach($request->file('adsLeft1') as $image)
             {
                 $adsDB = new Ads();
-                // $name = time() . '.' . $image->getClientOriginalExtension(); 
-                $name = time().'.'.$image->getClientOriginalName();      
-                // $image->move(public_path('uploads\Test\\'), $name);  
+                // $name = time() . '.' . $image->getClientOriginalExtension();
+                $name = time().'.'.$image->getClientOriginalName();
+                // $image->move(public_path('uploads\Test\\'), $name);
                 $imageCrop = Image::make($image)->resize(480, 700)->save( public_path('uploads\ads_image\template1\adsLeft\\' . $name ) );
                 $data = $name;
                 // $adsDB->image=json_encode($data);
@@ -190,7 +190,7 @@ class AdsController extends Controller
                 $adsDB->position= "left1";
                 $adsDB->template_id = 1;
                 // dd($adsDB);
-                $adsDB->save(); 
+                $adsDB->save();
             }
         }
         Alert::success('Ads Uploading Status', 'Successfully Uploaded');
@@ -208,17 +208,17 @@ class AdsController extends Controller
             foreach($request->file('adsMiddle1') as $image)
             {
                 $adsDB = new Ads();
-                // $name = time() . '.' . $image->getClientOriginalExtension(); 
-                $name = time().'.'.$image->getClientOriginalName();      
-                // $image->move(public_path('uploads\Test\\'), $name);  
+                // $name = time() . '.' . $image->getClientOriginalExtension();
+                $name = time().'.'.$image->getClientOriginalName();
+                // $image->move(public_path('uploads\Test\\'), $name);
                 $imageCrop = Image::make($image)->resize(960, 700)->save( public_path('uploads\ads_image\template1\adsMiddle\\' . $name ) );
                 $data = $name;
                 // $adsDB->image=json_encode($data);
                 $adsDB->image=$data;
                 $adsDB->position= "middle1";
-                $adsDB->template_id = 1;   
-                // dd($adsDB);           
-                $adsDB->save(); 
+                $adsDB->template_id = 1;
+                // dd($adsDB);
+                $adsDB->save();
             }
         }
         Alert::success('Ads Uploading Status', 'Successfully Uploaded');
@@ -236,17 +236,17 @@ class AdsController extends Controller
             foreach($request->file('adsTopRight1') as $image)
             {
                 $adsDB = new Ads();
-                // $name = time() . '.' . $image->getClientOriginalExtension(); 
-                $name = time().'.'.$image->getClientOriginalName();      
-                // $image->move(public_path('uploads\Test\\'), $name);  
+                // $name = time() . '.' . $image->getClientOriginalExtension();
+                $name = time().'.'.$image->getClientOriginalName();
+                // $image->move(public_path('uploads\Test\\'), $name);
                 $imageCrop = Image::make($image)->resize(480, 350)->save( public_path('uploads\ads_image\template1\adsTopRight\\' . $name ) );
                 $data = $name;
                 // $adsDB->image=json_encode($data);
                 $adsDB->image=$data;
                 $adsDB->position= "topRight1";
-                $adsDB->template_id = 1;   
-                // dd($adsDB);           
-                $adsDB->save(); 
+                $adsDB->template_id = 1;
+                // dd($adsDB);
+                $adsDB->save();
             }
         }
         Alert::success('Ads Uploading Status', 'Successfully Uploaded');
@@ -264,17 +264,17 @@ class AdsController extends Controller
             foreach($request->file('adsBottomRight1') as $image)
             {
                 $adsDB = new Ads();
-                // $name = time() . '.' . $image->getClientOriginalExtension(); 
-                $name = time().'.'.$image->getClientOriginalName();      
-                // $image->move(public_path('uploads\Test\\'), $name);  
+                // $name = time() . '.' . $image->getClientOriginalExtension();
+                $name = time().'.'.$image->getClientOriginalName();
+                // $image->move(public_path('uploads\Test\\'), $name);
                 $imageCrop = Image::make($image)->resize(480, 350)->save( public_path('uploads\ads_image\template1\adsBottomRight\\' . $name ) );
                 $data = $name;
                 // $adsDB->image=json_encode($data);
                 $adsDB->image=$data;
                 $adsDB->position= "bottomRight1";
-                $adsDB->template_id = 1;   
-                // dd($adsDB);           
-                $adsDB->save(); 
+                $adsDB->template_id = 1;
+                // dd($adsDB);
+                $adsDB->save();
             }
         }
         Alert::success('Ads Uploading Status', 'Successfully Uploaded');
@@ -292,9 +292,9 @@ class AdsController extends Controller
             foreach($request->file('adsLeft2') as $image)
             {
                 $adsDB = new Ads();
-                // $name = time() . '.' . $image->getClientOriginalExtension(); 
-                $name = time().'.'.$image->getClientOriginalName();      
-                // $image->move(public_path('uploads\Test\\'), $name);  
+                // $name = time() . '.' . $image->getClientOriginalExtension();
+                $name = time().'.'.$image->getClientOriginalName();
+                // $image->move(public_path('uploads\Test\\'), $name);
                 $imageCrop = Image::make($image)->resize(1280, 960)->save( public_path('uploads\ads_image\template2\adsLeft\\' . $name ) );
                 $data = $name;
                 // $adsDB->image=json_encode($data);
@@ -302,10 +302,10 @@ class AdsController extends Controller
                 $adsDB->position= "left2";
                 $adsDB->template_id = 2;
                 // dd($adsDB);
-                $adsDB->save(); 
+                $adsDB->save();
             }
         }
-        Alert::success('Ads Uploading Status', 'Successfully Uploaded');    
+        Alert::success('Ads Uploading Status', 'Successfully Uploaded');
         return response()->json(['success'=>'Images Uploaded Successfully.']);
     }
 
@@ -319,17 +319,17 @@ class AdsController extends Controller
             foreach($request->file('adsTopRight2') as $image)
             {
                 $adsDB = new Ads();
-                // $name = time() . '.' . $image->getClientOriginalExtension(); 
-                $name = time().'.'.$image->getClientOriginalName();      
-                // $image->move(public_path('uploads\Test\\'), $name);  
+                // $name = time() . '.' . $image->getClientOriginalExtension();
+                $name = time().'.'.$image->getClientOriginalName();
+                // $image->move(public_path('uploads\Test\\'), $name);
                 $imageCrop = Image::make($image)->resize(640, 480)->save( public_path('uploads\ads_image\template2\adsTopRight\\' . $name ) );
                 $data = $name;
                 // $adsDB->image=json_encode($data);
                 $adsDB->image=$data;
                 $adsDB->position= "topRight2";
-                $adsDB->template_id = 2;   
-                // dd($adsDB);           
-                $adsDB->save(); 
+                $adsDB->template_id = 2;
+                // dd($adsDB);
+                $adsDB->save();
             }
         }
         Alert::success('Ads Uploading Status', 'Successfully Uploaded');
@@ -346,23 +346,23 @@ class AdsController extends Controller
             foreach($request->file('adsBottomRight2') as $image)
             {
                 $adsDB = new Ads();
-                // $name = time() . '.' . $image->getClientOriginalExtension(); 
-                $name = time().'.'.$image->getClientOriginalName();      
-                // $image->move(public_path('uploads\Test\\'), $name);  
+                // $name = time() . '.' . $image->getClientOriginalExtension();
+                $name = time().'.'.$image->getClientOriginalName();
+                // $image->move(public_path('uploads\Test\\'), $name);
                 $imageCrop = Image::make($image)->resize(640, 480)->save( public_path('uploads\ads_image\template2\adsBottomRight\\' . $name ) );
                 $data = $name;
                 // $adsDB->image=json_encode($data);
                 $adsDB->image=$data;
                 $adsDB->position= "bottomRight2";
-                $adsDB->template_id = 2;   
-                // dd($adsDB);           
-                $adsDB->save(); 
+                $adsDB->template_id = 2;
+                // dd($adsDB);
+                $adsDB->save();
             }
         }
         Alert::success('Ads Uploading Status', 'Successfully Uploaded');
         return response()->json(['success'=>'Images Uploaded Successfully.']);
     }
-    
+
     public function adsMiddleUpload3(Request $request){
         // $ads = Ads::all();
         request()->validate([
@@ -373,17 +373,17 @@ class AdsController extends Controller
             foreach($request->file('adsMiddle3') as $image)
             {
                 $adsDB = new Ads();
-                // $name = time() . '.' . $image->getClientOriginalExtension(); 
-                $name = time().'.'.$image->getClientOriginalName();      
-                // $image->move(public_path('uploads\Test\\'), $name);  
+                // $name = time() . '.' . $image->getClientOriginalExtension();
+                $name = time().'.'.$image->getClientOriginalName();
+                // $image->move(public_path('uploads\Test\\'), $name);
                 $imageCrop = Image::make($image)->resize(1760, 760)->save( public_path('uploads\ads_image\template3\adsMiddle\\' . $name ) );
                 $data = $name;
                 // $adsDB->image=json_encode($data);
                 $adsDB->image=$data;
                 $adsDB->position= "middle3";
-                $adsDB->template_id = 3;   
-                // dd($adsDB);           
-                $adsDB->save(); 
+                $adsDB->template_id = 3;
+                // dd($adsDB);
+                $adsDB->save();
             }
         }
         Alert::success('Ads Uploading Status', 'Successfully Uploaded');

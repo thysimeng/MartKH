@@ -1,7 +1,7 @@
 @extends('layouts.app', ['title' => __('Stock Request History')])
 
 @section('content')
-    @include('layouts.headers.cards')
+    @include('franchise.layouts.headers.cards')
 
     <div class="container-fluid mt--7">
         <div class="row">
@@ -12,7 +12,7 @@
                             <div class="col-4">
                                 <h3 class="mb-0">Request History
                             </div>
-                            <form class="col-4" action="{{route('admin.request_stock.search')}}" method="get" role="search">
+                            <form class="col-4" action="{{route('franchise.searchRequestHistory')}}" method="get" role="search">
                                     {{ csrf_field() }}
                                     <div class="form-group mb-2 mt-2">
                                         <div class="input-group input-group-alternative">
@@ -44,7 +44,6 @@
                             </thead>
                             <tbody>
                                 @foreach ($requestStocks as $requestStock)
-                                    @if($requestStock->franchise_id == $current_franchise->id)
                                     <tr>
                                         <td>{{ $requestStock->id }}</td>
                                         <td>{{ $requestStock->franchise->franchise_name}}</td>
@@ -62,7 +61,6 @@
                                             @endif
                                         </td>
                                     </tr>
-                                    @endif
                                 @endforeach
                             </tbody>
                         </table>
@@ -75,7 +73,7 @@
                 </div>
             </div>
         </div>
-        @include('layouts.footers.auth')
+        @include('franchise.layouts.footers.auth')
     </div>
     
 @endsection

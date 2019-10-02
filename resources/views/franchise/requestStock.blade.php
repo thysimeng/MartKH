@@ -1,7 +1,7 @@
 @extends('layouts.app', ['title' => __('Request Stock')])
 
 @section('content')
-    @include('layouts.headers.cards')
+    @include('franchise.layouts.headers.cards')
 
     <div class="container-fluid mt--7">
     <div class="row">
@@ -66,7 +66,7 @@
             </div>
         </div>
 
-        @include('layouts.footers.auth')
+        @include('franchise.layouts.footers.auth')
     </div>
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-3-typeahead/4.0.1/bootstrap3-typeahead.min.js"></script>  

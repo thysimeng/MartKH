@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Schema;
 // for no cache
 use Illuminate\Cache\NullStore;
 use Cache;
+use App\Customize;
 use App\Models\Product;
 use App\Franchise;
 use App\Models\Category;
@@ -35,16 +36,18 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Schema::defaultStringLength(191);
-
-        // for no cache
-        Cache::extend( 'none', function( $app ) {
-            return Cache::repository( new NullStore );
-        } );
-
+        $sidebar = Customize::where('name','sidebar')->first();
+        $sidebarValue = $sidebar->data;
+        View::share('sidebar', $sidebarValue);
         View::share('userData', User::all()->count());
         View::share('franchiseData', Franchise::all()->count());
         View::share('categoryData', Category::all()->count());
         View::share('productData', Product::all()->count());
         View::share('requestData', Request_Stock::where('status','pending')->count());
+        // for no cache
+        Cache::extend( 'none', function( $app ) {
+            return Cache::repository( new NullStore );
+        } );
+
     }
 }
