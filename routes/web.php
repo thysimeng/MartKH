@@ -118,10 +118,14 @@ Route::get('/user', function(){
 	return redirect('/');
 })->name('normalUser');
 
+//route for reload vue
 Route::get('/users', 'UsersController\UserHomeController@index')->name('home');
 Route::get('/products/all', 'UsersController\ProductDisplayController@index')->name('productDisplay');
 Route::get('/products/food', 'UsersController\ProductDisplayController@index')->name('productDisplay-food');
+Route::get('/products/filterByPrice', 'UsersController\ProductDisplayController@index')->name('productDisplay-food');
 Route::get('/wishlists', 'UsersController\ProductDisplayController@index')->name('wishlists');
+
+
 Route::post('/searchweithwh', 'UsersController\ProductsController@search')->name('search');
 Route::get('/users/all', 'UsersController\ProductsController@get')->name('productFood');
 Route::get('/users/food', 'UsersController\ProductsController@food')->name('productFood');

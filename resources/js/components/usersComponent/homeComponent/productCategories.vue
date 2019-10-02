@@ -16,20 +16,25 @@ import productAll from "./productAll.vue";
 
 export default {
   name: "productFood",
+  data: function() {
+    return {
+        productshomecateProps: this.productshomecate
+    };
+  },
   props: {
     productshomecate: Array,
     showmodal: Boolean
   },
   methods: {
     sendDatatoApp() {
-      this.productshomecate = this.productsCategory;
+      this.productshomecateProps = this.productsCategory;
       this.showmodal = false;
-      this.$emit("senddata", this.productshomecate);
+      this.$emit("senddata", this.productshomecateProps);
       this.$emit("senddatashowmodal", this.showmodal);
     },
     sendDatatoAppAll() {
-      this.productshomecate = this.productsCategory1;
-      this.$emit("senddata", this.productshomecate);
+      this.productshomecateProps = this.productsCategory1;
+      this.$emit("senddata", this.productshomecateProps);
       this.$emit("senddatashowmodal", this.showmodal);
     }
   },

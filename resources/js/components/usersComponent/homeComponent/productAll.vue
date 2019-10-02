@@ -64,6 +64,11 @@ import modalQuickView from "../shopComponent/modalQuickView";
 import addTowishList from "../mastercomponent/addTowishList.vue";
 export default {
   name: "productAll",
+  data: function() {
+      return {
+          showmodalProps: this.showmodal
+      };
+  },
   props: {
     showmodal: Boolean,
     productshomecate: Array
@@ -76,7 +81,7 @@ export default {
   },
   methods: {
     quickView(PID, v, name, description) {
-      this.showmodal = false;
+      this.showmodalProps = false;
       this.productid = [PID, v, name, description];
     }
   },

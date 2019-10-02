@@ -12,11 +12,11 @@ export default {
   name: "shop",
   data: function () {
       return {
-        orderBy: Number
+        orderBy: String
       }
   },
   props:{
-      selected: Number
+      selected: String,
   },
   mounted() {
     this.$store.dispatch("fetchPosts");

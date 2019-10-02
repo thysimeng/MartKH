@@ -1,10 +1,10 @@
 <template>
   <!-- modal -->
   <div class="modal fade" id="VUEModal" tabindex="-1" role="dialog" aria-hidden="true">
-    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-      <span class="pe-7s-close" aria-hidden="true"></span>
-    </button>
     <div class="modal-dialog modal-quickview-width" role="document">
+      <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+        <span class="pe-7s-close" aria-hidden="true"></span>
+      </button>
       <div class="modal-content">
         <div class="modal-body">
           <div class="qwick-view-left">
