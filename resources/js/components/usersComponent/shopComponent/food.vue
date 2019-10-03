@@ -16,7 +16,9 @@ export default {
     };
   },
   mounted() {
+    this.$Progress.start();
     this.$store.dispatch("fetchPosts");
+    this.$Progress.finish();
   },
   props: {
     selected: String

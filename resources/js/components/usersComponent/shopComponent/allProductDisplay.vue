@@ -27,7 +27,7 @@
               >
                 <img :src="'/uploads/product_image/'+product.image" alt />
               </a>
-              <span>hot</span>
+              <!-- <span>hot</span> -->
               <div class="product-action">
                 <addTowishList :productID="productID=product.id"></addTowishList>
                 <a class="animate-top" title="Add To Cart" href="#">

@@ -42,7 +42,9 @@ export default {
     };
   },
   mounted() {
+    this.$Progress.start();
     this.$store.dispatch("fetchProductsWishlistDisplay");
+    this.$Progress.finish();
   },
   computed: {
     ...mapGetters(["productWishlistDisplay"]),

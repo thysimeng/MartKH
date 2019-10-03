@@ -42,6 +42,7 @@
 
 <body>
     <div id="app">
+        <vue-progress-bar></vue-progress-bar>
         <!-- header start -->
         {{-- template id getter --}}
         <span style="display:none;">@{{ templateID }}</span>
@@ -60,9 +61,9 @@
                                 <ul>
                                     <li><a href="/">Home</a>
                                         {{-- <router-link to="/users" @click.native="showHomePage()">Home</router-link> --}}
-                                        <ul class="single-dropdown">
-                                            <li><a href="index.html">Fashion</a></li>
-                                            {{-- <li><a href="index-fashion-2.html">Fashion style 2</a></li>
+                                        {{-- <ul class="single-dropdown"> --}}
+                                        {{-- <li><a href="index.html">Fashion</a></li> --}}
+                                        {{-- <li><a href="index-fashion-2.html">Fashion style 2</a></li>
                                             <li><a href="index-fruits.html">fruits</a></li>
                                             <li><a href="index-book.html">book</a></li>
                                             <li><a href="index-electronics.html">electronics</a></li>
@@ -72,7 +73,7 @@
                                             <li><a href="index-handicraft.html">handicraft</a></li>
                                             <li><a target="_blank" href="index-smart-watch.html">smart watch</a></li>
                                             <li><a href="index-sports.html">sports</a></li> --}}
-                                        </ul>
+                                        {{-- </ul> --}}
                                     </li>
                                     {{-- <li><a href="/food">Food</a>
                                         <ul class="single-dropdown">
@@ -133,6 +134,9 @@
                             <li>
                                 <router-link to="/products/food" @click.native="showPage()">Food</router-link>
                             </li>
+                            <li>
+                                <router-link to="/products/drink" @click.native="showPage()">Drink</router-link>
+                            </li>
                             {{-- <li><a href="blog-2-col.html">blog 2 colunm</a></li>
                                             <li><a href="blog-sidebar.html">blog sidebar</a></li>
                                             <li><a href="blog-details.html">blog details</a></li>
@@ -144,17 +148,17 @@
                     v-bind:data="category"
                     v-bind:key="category.key">
                         <router-link :to="category.categories_name">@{{ category.categories_name }}</router-link>
-                        <a href="">@{{ category.categories_name }}</a>
+                    <a href="">@{{ category.categories_name }}</a>
                     </li> --}}
                     </ul>
                     </nav>
                 </div>
                 <div class="header-cart">
-                    <a class="icon-cart-furniture" href="#">
+                    {{-- <a class="icon-cart-furniture" href="#">
                         <i class="ti-shopping-cart"></i>
                         <span class="shop-count-furniture green" style="background-color:red;">02</span>
-                    </a>
-                    <ul class="cart-dropdown">
+                    </a> --}}
+                    {{-- <ul class="cart-dropdown">
                         <li class="single-product-cart">
                             <div class="cart-img">
                                 <a href="#"><img src="{{asset('assets/img/cart/1.jpg')}}" alt=""></a>
@@ -206,7 +210,7 @@
                             <a class="cart-btn btn-hover" href="#">view cart</a>
                             <a class="cart-btn btn-hover" href="#">checkout</a>
                         </li>
-                    </ul>
+                    </ul> --}}
                 </div>
             </div>
             <div class="row">
@@ -290,22 +294,24 @@
                         @auth
                         @if (Route::has('login'))
                         <span class="avatar avatar-sm rounded-circle" style="width: 24px; height:24px">
-                            <a href="{{ route('userProfile') }}"><img style="width: 24px; height:24px" alt="Image" src="{{ asset('uploads') }}/avatar/{{ auth()->user()->avatar}}"></a>
+                            <a href="{{ route('userProfile') }}"><img style="width: 24px; height:24px" alt="Image"
+                                    src="{{ asset('uploads') }}/avatar/{{ auth()->user()->avatar}}"></a>
                         </span>
                         <div class="media-body ml-2">
-                        <li>
-                            <a href="{{ route('userProfile') }}">{{auth()->user()->name}}</a>
-                        </li>
-                        <li>
-                            <a href="{{ route('logout') }}" onclick="event.preventDefault();
+                            <li>
+                                <a href="{{ route('userProfile') }}">{{auth()->user()->name}}</a>
+                            </li>
+                            <li>
+                                <a href="{{ route('logout') }}" onclick="event.preventDefault();
                                                     document.getElementById('logout-form').submit();">
-                                {{ __('Logout') }}
-                            </a>
+                                    {{ __('Logout') }}
+                                </a>
 
-                            <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                @csrf
-                            </form>
-                        </li>
+                                <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                    style="display: none;">
+                                    @csrf
+                                </form>
+                            </li>
                         </div>
 
                         @endif
@@ -322,10 +328,13 @@
                 {{-- <product-Search :show="show" @changeshowbyemit="show = $event"></product-Search> --}}
                 <div class="furniture-wishlist">
                     <ul>
-                        <li><a data-toggle="modal" data-target="#exampleCompare" href="#"><i class="ti-reload"></i>
-                                Compare</a></li>
+                        {{-- <li><a data-toggle="modal" data-target="#exampleCompare" href="#"><i class="ti-reload"></i>
+                                Compare</a></li> --}}
                         {{-- <li><a href="{{ route('add-wishlist') }}"><i class="ti-heart"></i> Wishlist</a></li> --}}
-                        <li><router-link to="/wishlists" @click.native="showPage()"><i class="ti-heart"></i> Wishlist</router-link></li>
+                        <li>
+                            <router-link to="/wishlists" @click.native="showPage()"><i class="ti-heart"></i> Wishlist
+                            </router-link>
+                        </li>
                     </ul>
                 </div>
             </div>
@@ -420,41 +429,41 @@
     <!-- all js here -->
     <script src="{{asset('/js/app.js')}}"></script>
     {{-- <script src="{{asset('/js/all.js')}}"></script> --}}
-<<<<<<< HEAD
-    {{-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script> --}}
-    <script src="{{asset('assets/js/vendor/jquery-1.12.0.min.js')}}"></script>
-=======
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-    {{-- <script src="{{asset('assets/js/vendor/jquery-1.12.0.min.js')}}"></script> --}}
->>>>>>> f6a6680296cee53252f7c823f6b46d2b07fea575
-    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script> --}}
-    <script src="{{asset('assets/js/popper.js')}}"></script>
-    <script src="{{asset('assets/js/bootstrap.min.js')}}"></script>
-    <script src="{{asset('assets/js/jquery.magnific-popup.min.js')}}"></script>
-    <script src="{{asset('assets/js/isotope.pkgd.min.js')}}"></script>
-    <script src="{{asset('assets/js/imagesloaded.pkgd.min.js')}}"></script>
-    <script src="{{asset('assets/js/jquery.counterup.min.js')}}"></script>
-    {{-- <script src="{{asset('assets/js/waypoints.min.js')}}"></script> --}}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
-    <script src="{{asset('assets/js/ajax-mail.js')}}"></script>
-    <script src="{{asset('assets/js/owl.carousel.min.js')}}"></script>
-    <script src="{{asset('assets/js/plugins.js')}}"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/zxcvbn/1.0/zxcvbn.min.js"></script>
-    <script src="{{asset('assets/js/zxcvbn-bootstrap4-strength-meter.js')}}"></script>
-    <script src="{{asset('assets/js/main.js')}}"></script>
+    <<<<<<< HEAD {{-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script> --}} <script
+        src="{{asset('assets/js/vendor/jquery-1.12.0.min.js')}}">
+        </script>
+        =======
+        <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+        {{-- <script src="{{asset('assets/js/vendor/jquery-1.12.0.min.js')}}"></script> --}}
+        >>>>>>> f6a6680296cee53252f7c823f6b46d2b07fea575
+        {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script> --}}
+        <script src="{{asset('assets/js/popper.js')}}"></script>
+        <script src="{{asset('assets/js/bootstrap.min.js')}}"></script>
+        <script src="{{asset('assets/js/jquery.magnific-popup.min.js')}}"></script>
+        <script src="{{asset('assets/js/isotope.pkgd.min.js')}}"></script>
+        <script src="{{asset('assets/js/imagesloaded.pkgd.min.js')}}"></script>
+        <script src="{{asset('assets/js/jquery.counterup.min.js')}}"></script>
+        {{-- <script src="{{asset('assets/js/waypoints.min.js')}}"></script> --}}
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
+        <script src="{{asset('assets/js/ajax-mail.js')}}"></script>
+        <script src="{{asset('assets/js/owl.carousel.min.js')}}"></script>
+        <script src="{{asset('assets/js/plugins.js')}}"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/zxcvbn/1.0/zxcvbn.min.js"></script>
+        <script src="{{asset('assets/js/zxcvbn-bootstrap4-strength-meter.js')}}"></script>
+        <script src="{{asset('assets/js/main.js')}}"></script>
 
-    {{-- <script src="{{asset('assets/js/password-score.js')}}"></script>
-    <script src="{{asset('assets/js/password-score-options.js')}}"></script>
-    <script src="{{asset('assets/js/bootstrap-strength-meter.js')}}"></script> --}}
+        {{-- <script src="{{asset('assets/js/password-score.js')}}"></script>
+        <script src="{{asset('assets/js/password-score-options.js')}}"></script>
+        <script src="{{asset('assets/js/bootstrap-strength-meter.js')}}"></script> --}}
 
-    @include('sweetalert::alert')
-    @yield('script')
+        @include('sweetalert::alert')
+        @yield('script')
 </body>
 
 </html>
 
 <script>
-        $(document).ready(function(){
+    $(document).ready(function(){
             $("#StrengthProgressBar").zxcvbnProgressBar({
 			  passwordInput: "#password",
 			//   userInputs: userInputs,

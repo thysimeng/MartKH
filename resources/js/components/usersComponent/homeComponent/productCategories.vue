@@ -39,8 +39,10 @@ export default {
     }
   },
   mounted() {
+    this.$Progress.start();
     this.$store.dispatch("fetchProductsFood");
     this.$store.dispatch("fetchProductsCategories1");
+    this.$Progress.finish();
   },
   computed: {
     ...mapGetters(["productsFoodHome"]),

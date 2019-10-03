@@ -116,7 +116,7 @@
                 </ul>
               </div>
             </div>-->
-            <div class="sidebar-widget mb-40">
+            <!-- <div class="sidebar-widget mb-40">
               <h3 class="sidebar-title">tag</h3>
               <div class="product-tags">
                 <ul>
@@ -137,7 +137,7 @@
                   </li>
                 </ul>
               </div>
-            </div>
+            </div> -->
             <!-- <div class="sidebar-widget mb-50">
               <h3 class="sidebar-title">Top rated products</h3>
               <div class="sidebar-top-rated-all">
@@ -345,6 +345,8 @@
 
               <food v-else-if="categories=='food'&show!=3" :selected="selected"></food>
 
+              <drink v-else-if="categories=='drink'&show!=3" :selected="selected"></drink>
+
               <shop v-else-if="categories=='all'&show!=3" :selected="selected"></shop>
 
               <allProductDisplay
@@ -394,6 +396,7 @@
 <script>
 import shop from "./shop.vue";
 import food from "./food.vue";
+import drink from "./drink.vue";
 import allProductDisplay from "./allProductDisplay.vue";
 import categories from "./categories.vue";
 import filterByPrice from "./filterByPrice.vue";
@@ -425,7 +428,8 @@ export default {
     food: food,
     allProductDisplay: allProductDisplay,
     categories,
-    filterByPrice
+    filterByPrice,
+    drink
   }
 };
 </script>
