@@ -420,8 +420,8 @@
     <!-- all js here -->
     <script src="{{asset('/js/app.js')}}"></script>
     {{-- <script src="{{asset('/js/all.js')}}"></script> --}}
-    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-    {{-- <script src="{{asset('assets/js/vendor/jquery-1.12.0.min.js')}}"></script> --}}
+    {{-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script> --}}
+    <script src="{{asset('assets/js/vendor/jquery-1.12.0.min.js')}}"></script>
     {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script> --}}
     <script src="{{asset('assets/js/popper.js')}}"></script>
     <script src="{{asset('assets/js/bootstrap.min.js')}}"></script>
@@ -429,8 +429,8 @@
     <script src="{{asset('assets/js/isotope.pkgd.min.js')}}"></script>
     <script src="{{asset('assets/js/imagesloaded.pkgd.min.js')}}"></script>
     <script src="{{asset('assets/js/jquery.counterup.min.js')}}"></script>
-    {{-- <script src="{{asset('assets/js/waypoints.min.js')}}"></script> --}}
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script>
+    <script src="{{asset('assets/js/waypoints.min.js')}}"></script>
+    {{-- <script src="https://cdnjs.cloudflare.com/ajax/libs/waypoints/4.0.1/jquery.waypoints.min.js"></script> --}}
     <script src="{{asset('assets/js/ajax-mail.js')}}"></script>
     <script src="{{asset('assets/js/owl.carousel.min.js')}}"></script>
     <script src="{{asset('assets/js/plugins.js')}}"></script>
