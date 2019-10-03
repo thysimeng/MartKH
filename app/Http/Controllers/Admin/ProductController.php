@@ -66,7 +66,7 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        dd(Cookie::has('godark'));
+        // dd(Cookie::has('godark'));
         $this-> validate($request,[
             'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
             'code' => 'required|unique:products',

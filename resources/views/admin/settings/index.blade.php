@@ -38,16 +38,6 @@
                                     <div class="col-md-2"></div>
                                     <div class="col-md-5">
                         @endif
-                        {{-- <div class="card-header">
-                            <h2>Dark Mode</h2>
-                        </div>
-                        <div class="card-body align-items-center text-center">
-                            <div class="row">
-                                <div class="col-md-5">
-                                    <span>Go Dark</span>
-                                </div>
-                                <div class="col-md-2"></div>
-                                <div class="col-md-5"> --}}
                                     <label class="switch text-right">
                                         {{-- <input type='checkbox' onclick='godark(0)'> --}}
                                         <span class="slider round"></span>
@@ -58,6 +48,78 @@
                     </div>
                 </div>
                 <div class="col-lg-4">
+                    <div class="card">
+                        <!-- Card image -->
+                        {{-- <img class="card-img-top" src="https://argon-dashboard-pro-laravel.creative-tim.com/argon/img/theme/img-1-1000x900.jpg" alt="Image placeholder"> --}}
+                        <!-- Card body -->
+                        @if($sidebar==1)
+                            <div class="card-header bg-dark">
+                                <h2 class="text-white">Header Basic Color</h2>
+                            </div>
+                            <form method="post" action="{{ route('settings.basicColor') }}" autocomplete="off">
+                                @csrf
+                                <div class="card-body bg-dark align-items-center text-center border-top" style="border-radius:7px !important;">
+                                    <div class="row">
+                                        <div class="col-md-2 mt-2">
+                                            <span class="text-white">Hex</span>
+                                        </div>
+                                        {{-- <div class="col-md-2"></div> --}}
+                                        <div class="col-md-5">
+                                            <input type="text" class="form-control form-control-alternative{{ $errors->has('basicColor') ? ' is-invalid' : '' }}" placeholder="Hex Code" id="basicColorValue" value="{{$res = preg_replace("/#/", "", $basicColor)}}" name="basicColor">
+                                            @if ($errors->has('basicColor'))
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $errors->first('basicColor') }}</strong>
+                                                </span>
+                                            @endif
+                                        </div>
+                                        <div class="col-md-5">
+                                            <input type="button" id="previewBasicColorButton" value="Color Palette" class="btn bg-gradient-red shadow-none--hover shadow-none text-white">
+                                        </div>
+                                    </div>
+                                    <div class="row mt-3 ml-4 mr-3">
+                                    <div class="col-md-12" id="basicColor" style="border:2px solid white;width:100%;min-height:100px;background:{{$basicColor}}">
+                                        </div>
+                                    </div>
+                                    <div class="row mt-3 ml-4 mr-3">
+                                        <input type="submit" value="Apply" class="btn btn-info shadow-none--hover shadow-none" style="width:100%;">
+                                    </div>
+                                </div>
+                            </form>
+                        @else
+                            <div class="card-header">
+                                <h2>Header Basic Color</h2>
+                            </div>
+                            <form method="post" action="{{ route('settings.basicColor') }}" autocomplete="off">
+                                @csrf
+                                <div class="card-body align-items-center text-center" style="border-radius:7px !important;">
+                                    <div class="row">
+                                        <div class="col-md-2 mt-2">
+                                            <span>Hex</span>
+                                        </div>
+                                        {{-- <div class="col-md-2"></div> --}}
+                                        <div class="col-md-5">
+                                            <input type="text" class="form-control form-control-alternative{{ $errors->has('basicColor') ? ' is-invalid' : '' }}" placeholder="Hex Code" id="basicColorValue" value="{{$res = preg_replace("/#/", "", $basicColor)}}" name="basicColor">
+                                            @if ($errors->has('basicColor'))
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $errors->first('basicColor') }}</strong>
+                                                </span>
+                                            @endif
+                                        </div>
+                                        <div class="col-md-5">
+                                            <input type="button" id="previewBasicColorButton" value="Color Palette" class="btn bg-gradient-red shadow-none--hover shadow-none text-white">
+                                        </div>
+                                    </div>
+                                    <div class="row mt-3 ml-4 mr-3">
+                                        <div class="col-md-12" id="basicColor" style="border:2px solid rgba(0, 0, 0, .05);width:100%;min-height:100px;background:{{$basicColor}}">
+                                        </div>
+                                    </div>
+                                    <div class="row mt-3 ml-4 mr-3">
+                                        <input type="submit" value="Apply" class="btn btn-info shadow-none--hover shadow-none" style="width:100%;">
+                                    </div>
+                                </div>
+                            </form>
+                        @endif
+                    </div>
                     <!-- Calendar widget -->
                     <!--* Card header *-->
                     <!--* Card body *-->
@@ -600,6 +662,24 @@
             else if($godarkVal == 0){
                 $(".switch").prepend("<input type='checkbox' onclick='godark(1)'>");
             }
+        });
+        $("#basicColorValue").on("keyup", function(){
+            var basicColorVal = $("#basicColorValue").val();
+            $("#basicColor").css("background",'#'+basicColorVal);
+        });
+        $('#previewBasicColorButton').on("click", function(){
+            $('#previewBasicColorButton').ColorPicker({
+                onChange: function(hsb, hex, rgb, el) {
+                    $("#basicColorValue").val(hex);
+                    $("#basicColor").css("background",'#'+hex);
+                    $(el).ColorPickerHide();
+                },
+                onSubmit: function(hsb, hex, rgb, el) {
+                    $("#basicColorValue").val(hex);
+                    $("#basicColor").css("background",'#'+hex);
+                    $(el).ColorPickerHide();
+                },
+            });
         });
     </script>
 

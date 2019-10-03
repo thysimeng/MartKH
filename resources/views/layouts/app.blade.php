@@ -15,6 +15,7 @@
         <link href="{{ asset('argon') }}/vendor/@fortawesome/fontawesome-free/css/all.min.css" rel="stylesheet">
         <!-- Argon CSS -->
         <link type="text/css" href="{{ asset('css') }}/all.css" rel="stylesheet">
+        <link media="screen" type="text/css" href="{{ asset('argon') }}/css/colorpicker.css" rel="stylesheet">
         {{-- <link type="text/css" href="{{ asset('argon') }}/css/argon.css?v=1.0.0" rel="stylesheet"> --}}
         {{-- Dropzone  --}}
         {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/dropzone.css"> --}}
@@ -54,6 +55,7 @@
         <script src="https://gitcdn.github.io/bootstrap-toggle/2.2.2/js/bootstrap-toggle.min.js"></script>
         <script src="{{ asset('argon')}}/js/main.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/js-cookie@2/src/js.cookie.min.js"></script>
+        <script src="{{ asset('argon')}}/js/colorpicker.js"></script>
         @stack('js')
 
         <!-- Argon JS -->

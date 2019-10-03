@@ -1,5 +1,5 @@
 <!-- Top navbar -->
-<nav class="navbar navbar-top navbar-expand-md navbar-dark d-none d-md-flex" id="navbar-main">
+<nav class="navbar navbar-top navbar-expand-md navbar-dark d-none d-md-flex" id="navbar-main" style="background:{{$basicColor}};">
     <div class="container-fluid">
         {{-- nav  --}}
         {{-- <button class="navbar-toggler"  type="button" data-toggle="collapse" data-target="#sidenav-main">Hello</button> --}}
