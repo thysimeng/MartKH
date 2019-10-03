@@ -1,5 +1,13 @@
 <template>
   <div class="shop-product-content tab-content">
+    <div class="shop-found">
+      <p>
+        <span v-show="orderedProducts.length==0">0</span>
+        <span v-show="orderedProducts.length<seeMore">{{ orderedProducts.length }}</span>
+        <span v-show="orderedProducts.length>seeMore">{{ seeMore }}</span> Product Found of
+        <span>{{ orderedProducts.length }}</span>
+      </p>
+    </div>
     <div id="grid-sidebar1" class="tab-pane fade active show">
       <div class="row">
         <div
@@ -55,7 +63,10 @@
           v-bind:data="product"
           v-bind:key="product.key"
         >
-          <div v-if="index<seeMore" class="product-wrapper mb-30 single-product-list product-list-right-pr mb-60">
+          <div
+            v-if="index<seeMore"
+            class="product-wrapper mb-30 single-product-list product-list-right-pr mb-60"
+          >
             <div class="product-img list-img-width">
               <a
                 href
@@ -104,7 +115,7 @@
         </div>
       </div>
     </div>
-    <button class="btn-hover list-btn-style" @click="seeMore++">See more</button>
+    <button class="btn-hover list-btn-style" @click="seeMore+4">See more</button>
     <modalQuickView :productid="productid" @clearData="productid = $event"></modalQuickView>
   </div>
 </template>
@@ -118,7 +129,7 @@ export default {
   name: "productsFood",
   data: function() {
     return {
-      seeMore: 1,
+      seeMore: 12,
       productid: [],
       add: Number,
       productID: Number,
@@ -129,7 +140,7 @@ export default {
   //   To use props, they must be declared
   props: {
     products: Array,
-    orderBy: Number
+    orderBy: String
   },
   methods: {
     quickView(PID, v, name, description) {
@@ -141,15 +152,17 @@ export default {
     addTowishList
   },
   computed: {
-    orderedProducts: function () {
-      if (this.orderBy==1){
-        return _.orderBy(this.products, 'name')
+    orderedProducts: function() {
+      if (this.orderBy == "1") {
+        return _.orderBy(this.products, "name");
+      } else if (this.orderBy == "2") {
+        return _.orderBy(this.products, "name").reverse();
+      } else if (this.orderBy == "3") {
+        return _.orderBy(this.products, "price");
+      } else if (this.orderBy == "4") {
+        return _.orderBy(this.products, "price").reverse();
       }
-
-      else if (this.orderBy==2){
-        return _.orderBy(this.products, 'name').reverse()
-      }
-  }
+    }
   }
 };
 </script>

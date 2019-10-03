@@ -43,7 +43,7 @@ const app = new Vue({
         show: 1,
         showmodal: true,
         products: [],
-        productsShop: [],
+        productsshop: [],
         productshomecate: [],
         producthome: [],
         productid: [],

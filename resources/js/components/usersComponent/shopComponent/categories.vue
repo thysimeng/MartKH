@@ -8,7 +8,7 @@
           <router-link
             :to="'/products/'+category.categories_name"
             @click.native="showCategoryData(category.categories_name, index)"
-            v-if="index!=0"
+            v-if="index!=0&index<5"
           >
             {{ category.categories_name }}
             <span>{{ category.count }}</span>

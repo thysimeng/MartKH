@@ -1,4 +1,4 @@
-@import url(https://fonts.googleapis.com/css?family=Nunito);
+@import url(https://fonts.googleapis.com/css?family=Nunito);@charset "UTF-8";
 
 /*!
  * Bootstrap v4.3.1 (https://getbootstrap.com/)
@@ -28244,7 +28244,7 @@ a.btn-icon-only
 .main-content
 {
     position: relative;
-    transition: margin-left 0.2s;
+    transition: margin-left 0.5s;
 }
 .main-content .navbar-top
 {
@@ -32641,7 +32641,7 @@ html:not([dir='rtl']) .noUi-horizontal .noUi-handle
 }
 
 .trasition-left{
-    transition: 0.5s;
+    transition: 5s;
     z-index: 1;
     overflow-x: hidden;
 }
