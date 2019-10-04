@@ -339,30 +339,28 @@
         },
         {
             "name": "doctrine/lexer",
-            "version": "1.1.0",
+            "version": "1.0.2",
             "source": {
                 "type": "git",
                 "url": "https://github.com/doctrine/lexer.git",
-                "reference": "e17f069ede36f7534b95adec71910ed1b49c74ea"
+                "reference": "1febd6c3ef84253d7c815bed85fc622ad207a9f8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/doctrine/lexer/zipball/e17f069ede36f7534b95adec71910ed1b49c74ea",
-                "reference": "e17f069ede36f7534b95adec71910ed1b49c74ea",
+                "url": "https://api.github.com/repos/doctrine/lexer/zipball/1febd6c3ef84253d7c815bed85fc622ad207a9f8",
+                "reference": "1febd6c3ef84253d7c815bed85fc622ad207a9f8",
                 "shasum": ""
             },
             "require": {
-                "php": "^7.2"
+                "php": ">=5.3.2"
             },
             "require-dev": {
-                "doctrine/coding-standard": "^6.0",
-                "phpstan/phpstan": "^0.11.8",
-                "phpunit/phpunit": "^8.2"
+                "phpunit/phpunit": "^4.5"
             },
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.1.x-dev"
+                    "dev-master": "1.0.x-dev"
                 }
             },
             "autoload": {
@@ -376,12 +374,12 @@
             ],
             "authors": [
                 {
-                    "name": "Guilherme Blanco",
-                    "email": "guilhermeblanco@gmail.com"
-                },
-                {
                     "name": "Roman Borschel",
                     "email": "roman@code-factory.org"
+                },
+                {
+                    "name": "Guilherme Blanco",
+                    "email": "guilhermeblanco@gmail.com"
                 },
                 {
                     "name": "Johannes Schmitt",
@@ -397,7 +395,7 @@
                 "parser",
                 "php"
             ],
-            "time": "2019-07-30T19:33:28+00:00"
+            "time": "2019-06-08T11:03:04+00:00"
         },
         {
             "name": "dragonmantank/cron-expression",
@@ -958,20 +956,20 @@
         },
         {
             "name": "laravel-frontend-presets/argon",
-            "version": "1.0.11",
+            "version": "1.0.12",
             "source": {
                 "type": "git",
                 "url": "https://github.com/laravel-frontend-presets/argon.git",
-                "reference": "59dfa1f26d23cd6d4aecbe426fb6d6665013ce65"
+                "reference": "ff48f7561ef3d58ae702ed08c72eaa4fedbe99cd"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/laravel-frontend-presets/argon/zipball/59dfa1f26d23cd6d4aecbe426fb6d6665013ce65",
-                "reference": "59dfa1f26d23cd6d4aecbe426fb6d6665013ce65",
+                "url": "https://api.github.com/repos/laravel-frontend-presets/argon/zipball/ff48f7561ef3d58ae702ed08c72eaa4fedbe99cd",
+                "reference": "ff48f7561ef3d58ae702ed08c72eaa4fedbe99cd",
                 "shasum": ""
             },
             "require": {
-                "laravel/framework": "^5.5"
+                "laravel/framework": "^5.5 || ^6.0"
             },
             "type": "library",
             "extra": {
@@ -997,7 +995,7 @@
                 "laravel",
                 "preset"
             ],
-            "time": "2019-05-29T13:51:21+00:00"
+            "time": "2019-09-23T10:02:11+00:00"
         },
         {
             "name": "laravel/framework",
@@ -2165,21 +2163,21 @@
         },
         {
             "name": "realrashid/sweet-alert",
-            "version": "v2.0.2",
+            "version": "v2.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/realrashid/sweet-alert.git",
-                "reference": "79412ca91857de578253585270abbf23397d5a67"
+                "reference": "53bb75c83a4ceb3263ae7cbd71404b86285a5b5b"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/realrashid/sweet-alert/zipball/79412ca91857de578253585270abbf23397d5a67",
-                "reference": "79412ca91857de578253585270abbf23397d5a67",
+                "url": "https://api.github.com/repos/realrashid/sweet-alert/zipball/53bb75c83a4ceb3263ae7cbd71404b86285a5b5b",
+                "reference": "53bb75c83a4ceb3263ae7cbd71404b86285a5b5b",
                 "shasum": ""
             },
             "require": {
-                "laravel/framework": "~5.4.0|~5.8.0|~5.9.0|^6.0",
-                "php": "^7.2"
+                "laravel/framework": "~5.4.0|~5.8.0|~5.9.0",
+                "php": "~5.6|~7.0|~7.1.3"
             },
             "type": "library",
             "extra": {
@@ -2207,9 +2205,9 @@
             "authors": [
                 {
                     "name": "Rashid Ali",
+                    "role": "Developer",
                     "email": "realrashid05@gmail.com",
-                    "homepage": "https://realrashid.com",
-                    "role": "Developer"
+                    "homepage": "https://realrashid.com"
                 }
             ],
             "description": "A BEAUTIFUL, RESPONSIVE, CUSTOMIZABLE, ACCESSIBLE (WAI-ARIA) REPLACEMENT FOR JAVASCRIPT'S POPUP BOXES FOR LARAVEL BY RASHID ALI",
@@ -2224,7 +2222,7 @@
                 "sweet-alert2",
                 "toast"
             ],
-            "time": "2019-09-08T19:50:05+00:00"
+            "time": "2019-06-14T12:04:23+00:00"
         },
         {
             "name": "socialiteproviders/facebook",
@@ -2265,16 +2263,16 @@
         },
         {
             "name": "socialiteproviders/manager",
-            "version": "v3.4.2",
+            "version": "v3.4.3",
             "source": {
                 "type": "git",
                 "url": "https://github.com/SocialiteProviders/Manager.git",
-                "reference": "e3e8e78b9a3060801cd008941a0894a0a0c479e1"
+                "reference": "09903d33429f9f6c0da32c545c036a3e18964bbf"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/SocialiteProviders/Manager/zipball/e3e8e78b9a3060801cd008941a0894a0a0c479e1",
-                "reference": "e3e8e78b9a3060801cd008941a0894a0a0c479e1",
+                "url": "https://api.github.com/repos/SocialiteProviders/Manager/zipball/09903d33429f9f6c0da32c545c036a3e18964bbf",
+                "reference": "09903d33429f9f6c0da32c545c036a3e18964bbf",
                 "shasum": ""
             },
             "require": {
@@ -2318,7 +2316,7 @@
                 }
             ],
             "description": "Easily add new or override built-in providers in Laravel Socialite.",
-            "time": "2019-09-09T03:07:52+00:00"
+            "time": "2019-09-25T06:06:35+00:00"
         },
         {
             "name": "swiftmailer/swiftmailer",
@@ -3798,16 +3796,16 @@
         },
         {
             "name": "yajra/laravel-datatables-oracle",
-            "version": "v9.6.0",
+            "version": "v9.7.0",
             "source": {
                 "type": "git",
                 "url": "https://github.com/yajra/laravel-datatables.git",
-                "reference": "d8a965ab91662216956288cafcc4c60306af7b3f"
+                "reference": "bb6ff7b76bd6253396cb7a5a7b6c51c5ab14b1a8"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/yajra/laravel-datatables/zipball/d8a965ab91662216956288cafcc4c60306af7b3f",
-                "reference": "d8a965ab91662216956288cafcc4c60306af7b3f",
+                "url": "https://api.github.com/repos/yajra/laravel-datatables/zipball/bb6ff7b76bd6253396cb7a5a7b6c51c5ab14b1a8",
+                "reference": "bb6ff7b76bd6253396cb7a5a7b6c51c5ab14b1a8",
                 "shasum": ""
             },
             "require": {
@@ -3865,7 +3863,7 @@
                 "jquery",
                 "laravel"
             ],
-            "time": "2019-09-04T05:02:17+00:00"
+            "time": "2019-10-02T05:58:48+00:00"
         }
     ],
     "packages-dev": [
@@ -4147,16 +4145,16 @@
         },
         {
             "name": "mockery/mockery",
-            "version": "1.2.3",
+            "version": "1.2.4",
             "source": {
                 "type": "git",
                 "url": "https://github.com/mockery/mockery.git",
-                "reference": "4eff936d83eb809bde2c57a3cea0ee9643769031"
+                "reference": "b3453f75fd23d9fd41685f2148f4abeacabc6405"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/mockery/mockery/zipball/4eff936d83eb809bde2c57a3cea0ee9643769031",
-                "reference": "4eff936d83eb809bde2c57a3cea0ee9643769031",
+                "url": "https://api.github.com/repos/mockery/mockery/zipball/b3453f75fd23d9fd41685f2148f4abeacabc6405",
+                "reference": "b3453f75fd23d9fd41685f2148f4abeacabc6405",
                 "shasum": ""
             },
             "require": {
@@ -4170,7 +4168,7 @@
             "type": "library",
             "extra": {
                 "branch-alias": {
-                    "dev-master": "1.0.x-dev"
+                    "dev-master": "1.2.x-dev"
                 }
             },
             "autoload": {
@@ -4208,7 +4206,7 @@
                 "test double",
                 "testing"
             ],
-            "time": "2019-08-07T15:01:07+00:00"
+            "time": "2019-09-30T08:30:27+00:00"
         },
         {
             "name": "myclabs/deep-copy",
@@ -4842,16 +4840,16 @@
         },
         {
             "name": "phpunit/php-token-stream",
-            "version": "3.1.0",
+            "version": "3.1.1",
             "source": {
                 "type": "git",
                 "url": "https://github.com/sebastianbergmann/php-token-stream.git",
-                "reference": "e899757bb3df5ff6e95089132f32cd59aac2220a"
+                "reference": "995192df77f63a59e47f025390d2d1fdf8f425ff"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/sebastianbergmann/php-token-stream/zipball/e899757bb3df5ff6e95089132f32cd59aac2220a",
-                "reference": "e899757bb3df5ff6e95089132f32cd59aac2220a",
+                "url": "https://api.github.com/repos/sebastianbergmann/php-token-stream/zipball/995192df77f63a59e47f025390d2d1fdf8f425ff",
+                "reference": "995192df77f63a59e47f025390d2d1fdf8f425ff",
                 "shasum": ""
             },
             "require": {
@@ -4887,7 +4885,7 @@
             "keywords": [
                 "tokenizer"
             ],
-            "time": "2019-07-25T05:29:42+00:00"
+            "time": "2019-09-17T06:23:10+00:00"
         },
         {
             "name": "phpunit/phpunit",

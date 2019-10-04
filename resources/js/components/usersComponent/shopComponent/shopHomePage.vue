@@ -35,19 +35,15 @@
                 </form>
               </div>
             </div>
-            <div class="sidebar-widget mb-40">
-              <h3 class="sidebar-title">Filter by Price</h3>
-              <div class="price_filter">
-                <div id="slider-range"></div>
-                <div class="price_slider_amount">
-                  <div class="label-input">
-                    <label>price :</label>
-                    <input type="text" id="amount" name="price" placeholder="Add Your Price" />
-                  </div>
-                  <button type="button">Filter</button>
-                </div>
-              </div>
-            </div>
+
+            <!-- <div class="slidecontainer">
+              <input type="range" min="1" max="100" value="50" class="slider" id="myRange" />
+              <p>
+                Value:
+                <span id="demo"></span>
+              </p>
+            </div>-->
+            <filterByPrice :productsAllFromParent="productsAllFromParent" @updatedDataTOparent="productsAllFromParent=$event"></filterByPrice>
             <!-- <div class="sidebar-widget mb-45">
               <h3 class="sidebar-title">Categories</h3>
               <div class="sidebar-categories">
@@ -97,7 +93,7 @@
                   <li class="purple">g</li>
                 </ul>
               </div>
-            </div> -->
+            </div>-->
             <!-- <div class="sidebar-widget mb-40">
               <h3 class="sidebar-title">size</h3>
               <div class="product-size">
@@ -119,8 +115,8 @@
                   </li>
                 </ul>
               </div>
-            </div> -->
-            <div class="sidebar-widget mb-40">
+            </div>-->
+            <!-- <div class="sidebar-widget mb-40">
               <h3 class="sidebar-title">tag</h3>
               <div class="product-tags">
                 <ul>
@@ -141,7 +137,7 @@
                   </li>
                 </ul>
               </div>
-            </div>
+            </div> -->
             <!-- <div class="sidebar-widget mb-50">
               <h3 class="sidebar-title">Top rated products</h3>
               <div class="sidebar-top-rated-all">
@@ -283,10 +279,12 @@
                 </div>
               </div>
             </div>-->
-            <categories :showCategory="showCategory"
-            @showCategoryUpdated="showCategory=$event"
-            :productsAllFromParent="productsAllFromParent"
-            @productsCategoryUpdated="productsAllFromParent=$event"></categories>
+            <categories
+              :showCategory="showCategory"
+              @showCategoryUpdated="showCategory=$event"
+              :productsAllFromParent="productsAllFromParent"
+              @productsCategoryUpdated="productsAllFromParent=$event"
+            ></categories>
           </div>
         </div>
         <div class="col-lg-9">
@@ -296,8 +294,8 @@
                 <div class="shop-found-selector">
                   <div class="shop-found">
                     <p>
-                      <span>23</span> Product Found of
-                      <span>50</span>
+                      <span></span>You can find display product
+                      <span></span>
                     </p>
                   </div>
                   <div class="shop-selector">
@@ -306,6 +304,8 @@
                       <option value="1">Default</option>
                       <option value="1">A to Z</option>
                       <option value="2">Z to A</option>
+                      <option value="3">price 1 to 9</option>
+                      <option value="4">price 9 to 1</option>
                       <!-- <option value=3>In stock</option> -->
                     </select>
                   </div>
@@ -331,15 +331,30 @@
                 v-if="categories==showCategory&show!=3"
                 :products="products=productsAllFromParent"
                 :orderBy="orderBy= selected"
-              >
-              </allProductDisplay>
-              <food v-else-if="categories=='food'&show!=3" :selected="selected"></food>
-              <shop v-else-if="categories=='all'&show!=3" :selected="selected"></shop>
+              ></allProductDisplay>
+
+                <div v-else-if="categories=='filterByPrice'&show!=3&productsAllFromParent.length==0">
+                    <h1>No product match your rang price</h1>
+                </div>
+
               <allProductDisplay
-                v-else-if="show==3"
-                :products="products"
+                v-else-if="categories=='filterByPrice'&show!=3&productsAllFromParent.length!=0"
+                :products="products=productsAllFromParent"
                 :orderBy="orderBy= selected"
               ></allProductDisplay>
+
+              <food v-else-if="categories=='food'&show!=3" :selected="selected"></food>
+
+              <drink v-else-if="categories=='drink'&show!=3" :selected="selected"></drink>
+
+              <shop v-else-if="categories=='all'&show!=3" :selected="selected"></shop>
+
+              <allProductDisplay
+                v-else-if="show==3"
+                :products="products = productsshop"
+                :orderBy="orderBy= selected"
+              ></allProductDisplay>
+
             </div>
           </div>
           <!-- <div class="pagination-style mt-30 text-center">
@@ -381,22 +396,26 @@
 <script>
 import shop from "./shop.vue";
 import food from "./food.vue";
+import drink from "./drink.vue";
 import allProductDisplay from "./allProductDisplay.vue";
 import categories from "./categories.vue";
+import filterByPrice from "./filterByPrice.vue";
 export default {
   name: "shopHomePage",
   data() {
     return {
       categories: this.$route.params.categories,
-      selected: 1,
+      selected: '1',
       orderBy: Number,
-      showCategory: '',
-      productsAllFromParent:[],
-      products: this.productsShop
+      showCategory: "",
+      productsAllFromParent: [],
+      products: this.productsshop,
+      priceMin: 1,
+      priceMax: 999
     };
   },
   props: {
-    productsShop: Array,
+    productsshop: Array,
     show: Number
   },
   watch: {
@@ -408,7 +427,9 @@ export default {
     shop: shop,
     food: food,
     allProductDisplay: allProductDisplay,
-    categories
+    categories,
+    filterByPrice,
+    drink
   }
 };
 </script>

@@ -39,6 +39,9 @@ class AppServiceProvider extends ServiceProvider
         $sidebar = Customize::where('name','sidebar')->first();
         $sidebarValue = $sidebar->data;
         View::share('sidebar', $sidebarValue);
+        $basicColor = Customize::where('name','basicColor')->first();
+        $basicColorValue = $basicColor->data;
+        View::share('basicColor', $basicColorValue);
         View::share('userData', User::all()->count());
         View::share('franchiseData', Franchise::all()->count());
         View::share('categoryData', Category::all()->count());

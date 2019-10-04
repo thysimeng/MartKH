@@ -172,7 +172,7 @@
                     <div class="product-wrapper">
                         <div class="product-img">
                             <a href title="Quick View" data-toggle="modal" data-target="#VUEModal"
-                                @click="quickView({{ $productValue->id }}, '{{ $productValue->image }}', '{{ $productValue->name }}', '{{ $productValue->description }}')">
+                                @click="quickView({{ $productValue->id }}, '{{ $productValue->image }}', '{{ $productValue->name }}', '{{ $productValue->description }}', {{ $productValue->price }})">
                                 <img src="{{ asset('uploads/product_image/'.$productValue->image)}}" alt="">
                             </a>
                             <div class="product-action">
@@ -190,14 +190,14 @@
                                 </a>
                                 <a href class="animate-right" title="Quick View" data-toggle="modal"
                                     data-target="#VUEModal"
-                                    @click="quickView({{ $productValue->id }}, '{{ $productValue->image }}', '{{ $productValue->name }}', '{{ $productValue->description }}')">
+                                    @click="quickView({{ $productValue->id }}, '{{ $productValue->image }}', '{{ $productValue->name }}', '{{ $productValue->description }}', {{ $productValue->price }})">
                                     <i class="pe-7s-look"></i>
                                 </a>
                             </div>
                         </div>
                         <div class="funiture-product-content text-center">
                             <h4><a href="product-details.html">{{$productValue->name}}</a></h4>
-                            <span>${{$productValue->price}}</span>
+                            <span>${{ $productValue->price }}</span>
                         </div>
                     </div>
                     @endforeach
@@ -221,20 +221,20 @@
             <product-Food :productshomecate="productshomecate" @senddata="productshomecate = $event"
                 @senddatashowmodal="showmodal = $event"></product-Food>
             {{-- Passed to productall component for view --}}
-            <product-All :productshomecate="productsCategory" :showmodal="showmodal" v-if="showmodal"></product-All>
-            <product-All :productshomecate="productshomecate" :showmodal="showmodal"></product-All>
+            <product-All :productshomecate="productshomecate" :showmodal="showmodal" @hidequickviewhome="showmodal = $event" v-if="showmodal"></product-All>
+            <product-All :productshomecate="productshomecate" :showmodal="showmodal" @hidequickviewhome="showmodal = $event" v-if="!showmodal"></product-All>
             <div class="view-all-product text-center">
                 <router-link to="/products/all" @click.native="showPage()">View All Product</router-link>
             </div>
         </div>
     </div>
-    <modal-Quick-View :productid="producthome"></modal-Quick-View>
+    <modal-Quick-View :productid="producthome" v-if="showmodal"></modal-Quick-View>
 </div>
 {{-- End home page section --}}
 
 {{-- Vue route --}}
 <router-view v-if="show==2"></router-view>
-<shop-Home-Page :productsShop="productsShop" :show="show" v-if="show==3"></shop-Home-Page>
+<shop-Home-Page :productsshop="productsshop = products" :show="show" v-if="show==3"></shop-Home-Page>
 <router-view name="userProfile"></router-view>
 <router-view name="wishlistDisplay"></router-view>
 {{--End  Vue route --}}

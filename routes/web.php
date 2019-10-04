@@ -98,7 +98,8 @@ Route::group(['middleware' => ['web','auth','checkUserRole']], function () {
 	Route::post('admin/edit_notification', 'Admin\RequestController@edit')->name('admin.manage_stock');
 	Route::get('admin/request_stock/search', 'Admin\RequestController@search')->name('admin.request_stock.search');
     Route::get('admin/settings', ['as' => 'settings.index', 'uses' => 'Admin\SettingController@index']);
-	Route::get('admin/settings/godark', ['as' => 'settings.godark', 'uses' => 'Admin\SettingController@godark']);
+    Route::get('admin/settings/godark', ['as' => 'settings.godark', 'uses' => 'Admin\SettingController@godark']);
+	Route::post('admin/settings/basicColor', ['as' => 'settings.basicColor', 'uses' => 'Admin\SettingController@basicColor']);
 });
 
 // franchise-related routes
@@ -123,10 +124,14 @@ Route::get('/user', function(){
 	return redirect('/');
 })->name('normalUser');
 
+//route for reload vue
 Route::get('/users', 'UsersController\UserHomeController@index')->name('home');
 Route::get('/products/all', 'UsersController\ProductDisplayController@index')->name('productDisplay');
 Route::get('/products/food', 'UsersController\ProductDisplayController@index')->name('productDisplay-food');
+Route::get('/products/filterByPrice', 'UsersController\ProductDisplayController@index')->name('productDisplay-food');
 Route::get('/wishlists', 'UsersController\ProductDisplayController@index')->name('wishlists');
+
+
 Route::post('/searchweithwh', 'UsersController\ProductsController@search')->name('search');
 Route::get('/users/all', 'UsersController\ProductsController@get')->name('productFood');
 Route::get('/users/food', 'UsersController\ProductsController@food')->name('productFood');

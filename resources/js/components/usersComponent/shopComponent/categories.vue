@@ -8,7 +8,7 @@
           <router-link
             :to="'/products/'+category.categories_name"
             @click.native="showCategoryData(category.categories_name, index)"
-            v-if="index!=0"
+            v-if="index!=0&index<5"
           >
             {{ category.categories_name }}
             <span>{{ category.count }}</span>
@@ -48,7 +48,9 @@ export default {
     }
   },
   mounted() {
+    this.$Progress.start();
     this.$store.dispatch("fetchPosts");
+    this.$Progress.finish();
   },
   computed: {
     ...mapGetters(["productsAll"]),

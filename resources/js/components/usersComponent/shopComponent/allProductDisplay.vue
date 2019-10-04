@@ -1,5 +1,14 @@
 <template>
   <div class="shop-product-content tab-content">
+    <div class="shop-found">
+      <p>
+        <span v-if="orderedProducts.length==0">0</span>
+        <span v-else-if="orderedProducts.length<seeMore">{{ orderedProducts.length }}</span>
+        <span v-else-if="orderedProducts.length>seeMore">{{ seeMore }}</span>
+        <span v-else>{{ seeMore }}</span> Product Found of
+        <span>{{ orderedProducts.length }}</span>
+      </p>
+    </div>
     <div id="grid-sidebar1" class="tab-pane fade active show">
       <div class="row">
         <div
@@ -15,11 +24,11 @@
                 title="Quick View"
                 data-toggle="modal"
                 data-target="#VUEModal"
-                @click="quickView(product.id, product.image, product.name, product.description)"
+                @click="quickView(product.id, product.image, product.name, product.description, product.price)"
               >
                 <img :src="'/uploads/product_image/'+product.image" alt />
               </a>
-              <span>hot</span>
+              <!-- <span>hot</span> -->
               <div class="product-action">
                 <addTowishList :productID="productID=product.id"></addTowishList>
                 <a class="animate-top" title="Add To Cart" href="#">
@@ -31,7 +40,7 @@
                   title="Quick View"
                   data-toggle="modal"
                   data-target="#VUEModal"
-                  @click="quickView(product.id, product.image, product.name, product.description)"
+                  @click="quickView(product.id, product.image, product.name, product.description, product.price)"
                 >
                   <i class="pe-7s-look"></i>
                 </a>
@@ -55,14 +64,17 @@
           v-bind:data="product"
           v-bind:key="product.key"
         >
-          <div v-if="index<seeMore" class="product-wrapper mb-30 single-product-list product-list-right-pr mb-60">
+          <div
+            v-if="index<seeMore"
+            class="product-wrapper mb-30 single-product-list product-list-right-pr mb-60"
+          >
             <div class="product-img list-img-width">
               <a
                 href
                 title="Quick View"
                 data-toggle="modal"
                 data-target="#VUEModal"
-                @click="quickView(product.id, product.image, product.name, product.description)"
+                @click="quickView(product.id, product.image, product.name, product.description, product.price)"
               >
                 <img :src="'/uploads/product_image/'+product.image" alt />
               </a>
@@ -74,7 +86,7 @@
                   title="Quick View"
                   data-toggle="modal"
                   data-target="#VUEModal"
-                  @click="quickView(product.id, product.image, product.name, product.description)"
+                  @click="quickView(product.id, product.image, product.name, product.description, product.price)"
                 >
                   <i class="pe-7s-look"></i>
                 </a>
@@ -86,7 +98,7 @@
                   <a href="#">{{ product.name }}</a>
                 </h4>
                 <span>${{ product.price }}</span>
-                <p>Lorem ipsum dolor sit amet, mana consectetur adipisicing elit, sed do eiusmod tempor labore.</p>
+                <p>{{ product.description }}</p>
               </div>
               <div class="product-list-cart-wishlist">
                 <div class="product-list-cart">
@@ -104,7 +116,7 @@
         </div>
       </div>
     </div>
-    <button class="btn-hover list-btn-style" @click="seeMore++">See more</button>
+    <button class="btn-hover list-btn-style" @click="seeMore+4">See more</button>
     <modalQuickView :productid="productid" @clearData="productid = $event"></modalQuickView>
   </div>
 </template>
@@ -118,7 +130,7 @@ export default {
   name: "productsFood",
   data: function() {
     return {
-      seeMore: 1,
+      seeMore: 12,
       productid: [],
       add: Number,
       productID: Number,
@@ -129,11 +141,11 @@ export default {
   //   To use props, they must be declared
   props: {
     products: Array,
-    orderBy: Number
+    orderBy: String
   },
   methods: {
-    quickView(PID, v, name, description) {
-      return this.productid.push(PID, v, name, description);
+    quickView(PID, image, name, description, price) {
+      return this.productid.push(PID, image, name, description, price);
     }
   },
   components: {
@@ -141,15 +153,17 @@ export default {
     addTowishList
   },
   computed: {
-    orderedProducts: function () {
-      if (this.orderBy==1){
-        return _.orderBy(this.products, 'name')
+    orderedProducts: function() {
+      if (this.orderBy == "1") {
+        return _.orderBy(this.products, "name");
+      } else if (this.orderBy == "2") {
+        return _.orderBy(this.products, "name").reverse();
+      } else if (this.orderBy == "3") {
+        return _.orderBy(this.products, "price");
+      } else if (this.orderBy == "4") {
+        return _.orderBy(this.products, "price").reverse();
       }
-
-      else if (this.orderBy==2){
-        return _.orderBy(this.products, 'name').reverse()
-      }
-  }
+    }
   }
 };
 </script>

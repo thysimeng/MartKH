@@ -10,16 +10,18 @@ import allProductDisplay from "./allProductDisplay.vue";
 
 export default {
   name: "shop",
-  data: function () {
-      return {
-        orderBy: Number
-      }
+  data: function() {
+    return {
+      orderBy: String
+    };
   },
-  props:{
-      selected: Number
+  props: {
+    selected: String
   },
   mounted() {
+    this.$Progress.start();
     this.$store.dispatch("fetchPosts");
+    this.$Progress.finish();
   },
   computed: {
     ...mapGetters(["productsAll"]),

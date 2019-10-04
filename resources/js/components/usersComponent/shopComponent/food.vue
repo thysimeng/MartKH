@@ -12,14 +12,16 @@ export default {
   name: "productsFood",
   data: function() {
     return {
-      orderBy: Number
+      orderBy: String
     };
   },
   mounted() {
+    this.$Progress.start();
     this.$store.dispatch("fetchPosts");
+    this.$Progress.finish();
   },
   props: {
-    selected: Number
+    selected: String
   },
   computed: {
     ...mapGetters(["productsFood"]),

@@ -147,7 +147,7 @@
 
 {{-- Vue route --}}
 <router-view v-if="show==2"></router-view>
-<shop-Home-Page :products="products" :show="show" v-if="show==3"></shop-Home-Page>
+<shop-Home-Page :productsshop="productsshop = products" :show="show" v-if="show==3"></shop-Home-Page>
 <router-view name="userProfile"></router-view>
 <router-view name="wishlistDisplay"></router-view>
 {{--End  Vue route --}}

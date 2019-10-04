@@ -7228,7 +7228,8 @@ h5.panel-title {
     text-transform: capitalize;
 }
 .label-input input {
-    background: transparent none repeat scroll 0 0;
+    /* background: transparent none repeat scroll 0 0; */
+    background: #f1f1f1 none repeat scroll 0 0;
     border: medium none;
     box-shadow: none;
     color: #575757;
@@ -7236,7 +7237,7 @@ h5.panel-title {
     font-weight: 600;
     height: inherit;
     padding-left: 5px;
-    width: 99px;
+    width: 49px;
 }
 .price_slider_amount > button {
     background-color: transparent;
@@ -7936,7 +7937,7 @@ a.bundle-btn {
     font-size: 50px;
     font-weight: bold;
     line-height: 1;
-    margin-right: 50px;
+    /* margin-right: 50px; */
     opacity: 1;
     text-shadow: 0 1px 0 #fff;
 }

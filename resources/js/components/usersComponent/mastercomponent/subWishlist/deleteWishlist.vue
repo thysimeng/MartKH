@@ -37,15 +37,18 @@ export default {
     addToWishList(e) {
       e.preventDefault();
       let currentObj = this;
+      currentObj.$Progress.start();
       axios
         .post("/users/wishlist", {
           productID: this.productID
         })
         .then(function(response) {
           currentObj.showwishlish = response.data;
+          currentObj.$Progress.finish();
         })
         .catch(function(error) {
           currentObj.showwishlish = error;
+          currentObj.$Progress.fail();
         });
     }
   }

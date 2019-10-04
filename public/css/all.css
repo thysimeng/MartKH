@@ -1,4 +1,4 @@
-@import url(https://fonts.googleapis.com/css?family=Nunito);
+@import url(https://fonts.googleapis.com/css?family=Nunito);@charset "UTF-8";
 
 /*!
  * Bootstrap v4.3.1 (https://getbootstrap.com/)
@@ -10658,7 +10658,7 @@ a.text-dark:focus {
 
 @media (min-width: 1200px) {
   .modal-xxl {
-    max-width: 1400px !important;
+    max-width: 1250px !important;
   }
 }
 
@@ -12883,7 +12883,7 @@ pre code
 .table-dark
 {
     color: #f8f9fe;
-    background-color: #172b4d;
+    background-color: #212529 !important;
 }
 .table-dark th,
 .table-dark td,
@@ -28244,7 +28244,7 @@ a.btn-icon-only
 .main-content
 {
     position: relative;
-    transition: margin-left 0.2s;
+    transition: margin-left 0.5s;
 }
 .main-content .navbar-top
 {
@@ -32641,7 +32641,7 @@ html:not([dir='rtl']) .noUi-horizontal .noUi-handle
 }
 
 .trasition-left{
-    transition: 0.5s;
+    transition: 5s;
     z-index: 1;
     overflow-x: hidden;
 }

@@ -3,19 +3,27 @@
 @section('content')
     @include('layouts.headers.cards')
 
-    @if($sidebar==0)
-        <div class="container-fluid mt--7">
-    @elseif($sidebar==1)
+    @if($sidebar==1)
         <div class="container-fluid bg-dark mt--7">
+            <div class="row">
+                <div class="col">
+                    <div class="card bg-dark shadow border">
+                        <div class="card-header bg-transparent border-0">
+                            <div class="row align-items-center">
+                                <div class="col-4">
+                                    <h3 class="mb-0 text-white">Franchise Stock</h3>
+                                </div>
+    @else
+        <div class="container-fluid mt--7">
+            <div class="row">
+                <div class="col">
+                    <div class="card shadow">
+                        <div class="card-header border-0">
+                            <div class="row align-items-center">
+                                <div class="col-4">
+                                    <h3 class="mb-0">Franchise Stock</h3>
+                                </div>
     @endif
-        <div class="row">
-            <div class="col">
-                <div class="card shadow">
-                    <div class="card-header border-0">
-                        <div class="row align-items-center">
-                                    <div class="col-4">
-                                        <h3 class="mb-0">Franchise Stock</h3>
-                                    </div>
                                     <form class="col-4" method="get" action="{{route('admin.franchiseStockSearch')}}">
                                         <div class="input-group input-group-alternative">
                                                 <input class="form-control" placeholder="Search" type="text" name="search" id="search" value="" style="border: 1px solid #11cdef">
@@ -41,7 +49,11 @@
                     </div>
 
                     <div class="table-responsive">
-                        <table class="table align-items-center table-flush table-hover">
+                        @if($sidebar==1)
+                            <table class="table align-items-center table-flush table-hover table-dark">
+                        @else
+                            <table class="table align-items-center table-flush table-hover">
+                        @endif
                             <thead class="thead-light">
                                 <tr>
                                     <th scope="col">{{ __('ID') }}</th>
@@ -70,7 +82,11 @@
                             </tbody>
                         </table>
                     </div>
-                    <div class="card-footer py-4">
+                    @if($sidebar==1)
+                        <div class="card-footer bg-dark py-4 border">
+                    @else
+                        <div class="card-footer py-4">
+                    @endif
                         <nav class="d-flex justify-content-end" aria-label="...">
                             {{ $stock_franchises->links() }}
                         </nav>
