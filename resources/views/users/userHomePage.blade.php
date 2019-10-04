@@ -185,14 +185,14 @@
                                 </a>
                                 </form> --}}
                                 <add-Towish-List :product-i-d="{{ $productValue->id }}"></add-Towish-List>
-                                <a class="animate-top" title="Add To Cart" href="#">
+                                {{-- <a class="animate-top" title="Add To Cart" href="#">
                                     <i class="pe-7s-cart"></i>
-                                </a>
-                                <a href class="animate-right" title="Quick View" data-toggle="modal"
+                                </a> --}}
+                                {{-- <a href class="animate-right" title="Quick View" data-toggle="modal"
                                     data-target="#VUEModal"
                                     @click="quickView({{ $productValue->id }}, '{{ $productValue->image }}', '{{ $productValue->name }}', '{{ $productValue->description }}', {{ $productValue->price }})">
                                     <i class="pe-7s-look"></i>
-                                </a>
+                                </a> --}}
                             </div>
                         </div>
                         <div class="funiture-product-content text-center">
@@ -231,6 +231,15 @@
     <modal-Quick-View :productid="producthome" v-if="showmodal"></modal-Quick-View>
 </div>
 {{-- End home page section --}}
+
+{{-- Use for reload home page --}}
+<product-Food
+v-show="false"
+:productshomecate="productshomecate"
+@senddata="productshomecate = $event"
+@senddatashowmodal="showmodal = $event"
+>
+</product-Food>
 
 {{-- Vue route --}}
 <router-view v-if="show==2"></router-view>

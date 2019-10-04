@@ -2024,6 +2024,13 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       this.$emit("senddata", this.productshomecateProps);
     }
   }),
+  watch: {
+    $route: function $route(to, from) {
+      if (to.path === "/" | to.path === "/users" | to.path === "/users/profile") {
+        this.$router.go();
+      }
+    }
+  },
   components: {
     productAll: _productAll_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
   }
@@ -2759,6 +2766,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "filterByPrice",
@@ -2877,6 +2885,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 
 "use strict";
 __webpack_require__.r(__webpack_exports__);
+/* harmony import */ var _mastercomponent_addTowishList_vue__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../mastercomponent/addTowishList.vue */ "./resources/js/components/usersComponent/mastercomponent/addTowishList.vue");
 //
 //
 //
@@ -2973,9 +2982,22 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+
 /* harmony default export */ __webpack_exports__["default"] = ({
+  name: "modal",
+  data: function data() {
+    return {
+      //   showmodalProps: this.showmodal,
+      //   productid: [],
+      productID: Number
+    };
+  },
   props: {
     productid: Array
+  },
+  components: {
+    addTowishList: _mastercomponent_addTowishList_vue__WEBPACK_IMPORTED_MODULE_0__["default"]
   }
 });
 
@@ -7960,7 +7982,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, "\n.price-slider[data-v-6035fc83] {\r\n  position: relative;\r\n  width: 100%;\r\n  margin: 0 auto 20px;\r\n  height: 35px;\r\n  text-align: center;\n}\n.price-slider input[data-v-6035fc83] {\r\n  pointer-events: none;\r\n  position: absolute;\r\n  left: 0;\r\n  top: 15px;\r\n  width: 100%;\r\n  outline: none;\r\n  height: 18px;\r\n  margin: 0;\r\n  padding: 0;\r\n  border-radius: 8px;\n}\n.price-slider input[data-v-6035fc83]::-webkit-slider-thumb {\r\n  pointer-events: all;\r\n  position: relative;\r\n  z-index: 1;\r\n  outline: 0;\r\n  -webkit-appearance: none;\r\n  height: 24px;\r\n  width: 24px;\r\n  border-radius: 12px;\r\n  background-color: white;\r\n  border: 2px solid black;\n}\r\n", ""]);
+exports.push([module.i, "\n.customerStyle[data-v-6035fc83] {\n  background-color: #626262;\n  border: none;\n  color: white;\n  padding: 3px 4px;\n  text-align: center;\n  text-decoration: none;\n  display: inline-block;\n  font-size: 16px;\n  /* margin: 4px 2px; */\n  cursor: pointer;\n}\n.price-slider[data-v-6035fc83] {\n  position: relative;\n  width: 100%;\n  margin: 0 auto 20px;\n  height: 35px;\n  text-align: center;\n}\n.price-slider input[data-v-6035fc83] {\n  pointer-events: none;\n  position: absolute;\n  left: 0;\n  top: 15px;\n  width: 100%;\n  outline: none;\n  height: 18px;\n  margin: 0;\n  padding: 0;\n  border-radius: 8px;\n}\n.price-slider input[data-v-6035fc83]::-webkit-slider-thumb {\n  pointer-events: all;\n  position: relative;\n  z-index: 1;\n  outline: 0;\n  -webkit-appearance: none;\n  height: 24px;\n  width: 24px;\n  border-radius: 12px;\n  background-color: white;\n  border: 2px solid black;\n}\n", ""]);
 
 // exports
 
@@ -39551,34 +39573,7 @@ var render = function() {
                           _c("addTowishList", {
                             staticClass: "animate-left",
                             attrs: { productID: (_vm.productID = product.id) }
-                          }),
-                          _vm._v(" "),
-                          _vm._m(0, true),
-                          _vm._v(" "),
-                          _c(
-                            "a",
-                            {
-                              staticClass: "animate-right",
-                              attrs: {
-                                href: "",
-                                title: "Quick View",
-                                "data-toggle": "modal",
-                                "data-target": "#VUEModal"
-                              },
-                              on: {
-                                click: function($event) {
-                                  return _vm.quickView(
-                                    product.id,
-                                    product.image,
-                                    product.name,
-                                    product.description,
-                                    product.price
-                                  )
-                                }
-                              }
-                            },
-                            [_c("i", { staticClass: "pe-7s-look" })]
-                          )
+                          })
                         ],
                         1
                       )
@@ -39613,21 +39608,7 @@ var render = function() {
     1
   )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "a",
-      {
-        staticClass: "animate-top",
-        attrs: { title: "Add To Cart", href: "#" }
-      },
-      [_c("i", { staticClass: "pe-7s-cart" })]
-    )
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -40065,34 +40046,7 @@ var render = function() {
                                 attrs: {
                                   productID: (_vm.productID = product.id)
                                 }
-                              }),
-                              _vm._v(" "),
-                              _vm._m(0, true),
-                              _vm._v(" "),
-                              _c(
-                                "a",
-                                {
-                                  staticClass: "animate-right",
-                                  attrs: {
-                                    href: "",
-                                    title: "Quick View",
-                                    "data-toggle": "modal",
-                                    "data-target": "#VUEModal"
-                                  },
-                                  on: {
-                                    click: function($event) {
-                                      return _vm.quickView(
-                                        product.id,
-                                        product.image,
-                                        product.name,
-                                        product.description,
-                                        product.price
-                                      )
-                                    }
-                                  }
-                                },
-                                [_c("i", { staticClass: "pe-7s-look" })]
-                              )
+                              })
                             ],
                             1
                           )
@@ -40180,36 +40134,9 @@ var render = function() {
                               _vm._v(" "),
                               _c("span", [_vm._v("hot")]),
                               _vm._v(" "),
-                              _c(
-                                "div",
-                                { staticClass: "product-action-list-style" },
-                                [
-                                  _c(
-                                    "a",
-                                    {
-                                      staticClass: "animate-right",
-                                      attrs: {
-                                        href: "",
-                                        title: "Quick View",
-                                        "data-toggle": "modal",
-                                        "data-target": "#VUEModal"
-                                      },
-                                      on: {
-                                        click: function($event) {
-                                          return _vm.quickView(
-                                            product.id,
-                                            product.image,
-                                            product.name,
-                                            product.description,
-                                            product.price
-                                          )
-                                        }
-                                      }
-                                    },
-                                    [_c("i", { staticClass: "pe-7s-look" })]
-                                  )
-                                ]
-                              )
+                              _c("div", {
+                                staticClass: "product-action-list-style"
+                              })
                             ]
                           ),
                           _vm._v(" "),
@@ -40230,8 +40157,6 @@ var render = function() {
                               "div",
                               { staticClass: "product-list-cart-wishlist" },
                               [
-                                _vm._m(1, true),
-                                _vm._v(" "),
                                 _c(
                                   "div",
                                   { staticClass: "product-list-wishlist" },
@@ -40285,33 +40210,7 @@ var render = function() {
     1
   )
 }
-var staticRenderFns = [
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c(
-      "a",
-      {
-        staticClass: "animate-top",
-        attrs: { title: "Add To Cart", href: "#" }
-      },
-      [_c("i", { staticClass: "pe-7s-cart" })]
-    )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "product-list-cart" }, [
-      _c(
-        "a",
-        { staticClass: "btn-hover list-btn-style", attrs: { href: "#" } },
-        [_vm._v("add to cart")]
-      )
-    ])
-  }
-]
+var staticRenderFns = []
 render._withStripped = true
 
 
@@ -40501,7 +40400,7 @@ var render = function() {
           [
             _c("div", { staticClass: "label-input" }, [
               _c("label", [_vm._v("price :")]),
-              _vm._v(" "),
+              _vm._v("\n        Min$"),
               _c("input", {
                 directives: [
                   {
@@ -40522,7 +40421,7 @@ var render = function() {
                   }
                 }
               }),
-              _vm._v(" "),
+              _vm._v("\n        Max$"),
               _c("input", {
                 directives: [
                   {
@@ -40548,6 +40447,7 @@ var render = function() {
             _c(
               "router-link",
               {
+                staticClass: "customerStyle",
                 attrs: { to: "/products/filterByPrice", tag: "button" },
                 nativeOn: {
                   click: function($event) {
@@ -40718,7 +40618,26 @@ var render = function() {
                   _vm._v(" "),
                   _vm._m(4),
                   _vm._v(" "),
-                  _vm._m(5)
+                  _c("div", { staticClass: "quickview-plus-minus" }, [
+                    _vm._m(5),
+                    _vm._v(" "),
+                    _vm._m(6),
+                    _vm._v(" "),
+                    _c(
+                      "div",
+                      { staticClass: "quickview-btn-wishlist" },
+                      [
+                        _c("addTowishList", {
+                          staticClass: "btn-hover",
+                          attrs: {
+                            productID: (_vm.productID =
+                              _vm.productid[_vm.productid.length - 5])
+                          }
+                        })
+                      ],
+                      1
+                    )
+                  ])
                 ])
               ])
             ])
@@ -40844,24 +40763,20 @@ var staticRenderFns = [
     var _vm = this
     var _h = _vm.$createElement
     var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "quickview-plus-minus" }, [
-      _c("div", { staticClass: "cart-plus-minus" }, [
-        _c("input", {
-          staticClass: "cart-plus-minus-box",
-          attrs: { type: "text", value: "02", name: "qtybutton" }
-        })
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "quickview-btn-cart" }, [
-        _c("a", { staticClass: "btn-hover-black", attrs: { href: "#" } }, [
-          _vm._v("add to cart")
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "quickview-btn-wishlist" }, [
-        _c("a", { staticClass: "btn-hover", attrs: { href: "#" } }, [
-          _c("i", { staticClass: "pe-7s-like" })
-        ])
+    return _c("div", { staticClass: "cart-plus-minus" }, [
+      _c("input", {
+        staticClass: "cart-plus-minus-box",
+        attrs: { type: "text", value: "02", name: "qtybutton" }
+      })
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "quickview-btn-cart" }, [
+      _c("a", { staticClass: "btn-hover-black", attrs: { href: "#" } }, [
+        _vm._v("add to cart")
       ])
     ])
   }

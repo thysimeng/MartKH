@@ -24,10 +24,10 @@
                   <i class="pe-7s-like"></i>
                 </a>-->
                 <addTowishList :productID="productID = product.id" class="animate-left"></addTowishList>
-                <a class="animate-top" title="Add To Cart" href="#">
+                <!-- <a class="animate-top" title="Add To Cart" href="#">
                   <i class="pe-7s-cart"></i>
-                </a>
-                <a
+                </a> -->
+                <!-- <a
                   href
                   class="animate-right"
                   title="Quick View"
@@ -36,7 +36,7 @@
                   @click="quickView(product.id, product.image, product.name, product.description, product.price)"
                 >
                   <i class="pe-7s-look"></i>
-                </a>
+                </a> -->
               </div>
             </div>
             <div class="funiture-product-content text-center">

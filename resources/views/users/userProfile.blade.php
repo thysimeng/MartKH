@@ -151,4 +151,13 @@
 <router-view name="userProfile"></router-view>
 <router-view name="wishlistDisplay"></router-view>
 {{--End  Vue route --}}
+
+{{-- Use for reload home page --}}
+<product-Food
+v-show="false"
+:productshomecate="productshomecate"
+@senddata="productshomecate = $event"
+@senddatashowmodal="showmodal = $event"
+>
+</product-Food>
 @endsection

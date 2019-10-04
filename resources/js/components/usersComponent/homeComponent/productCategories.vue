@@ -77,6 +77,13 @@ export default {
       this.$emit("senddata", this.productshomecateProps);
     }
   },
+  watch: {
+    $route(to, from) {
+      if (to.path === "/"|to.path === "/users"|to.path === "/users/profile") {
+        this.$router.go();
+      }
+    }
+  },
   components: {
     productAll: productAll
   }

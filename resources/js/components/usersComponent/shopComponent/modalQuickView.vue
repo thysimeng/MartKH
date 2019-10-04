@@ -51,7 +51,7 @@
                 <div class="quick-view-number">
                   <span>2 Ratting (S)</span>
                 </div>
-              </div> -->
+              </div>-->
               <p>Description : {{ productid[productid.length-2] }}</p>
               <div class="quick-view-select">
                 <div class="select-option-part">
@@ -80,9 +80,10 @@
                   <a class="btn-hover-black" href="#">add to cart</a>
                 </div>
                 <div class="quickview-btn-wishlist">
-                  <a class="btn-hover" href="#">
+                  <!-- <a class="btn-hover" href="#">
                     <i class="pe-7s-like"></i>
-                  </a>
+                  </a>-->
+                  <addTowishList :productID="productID = productid[productid.length-5]" class="btn-hover"></addTowishList>
                 </div>
               </div>
             </div>
@@ -95,9 +96,21 @@
 </template>
 
 <script>
+import addTowishList from "../mastercomponent/addTowishList.vue";
 export default {
+  name: "modal",
+  data: function() {
+    return {
+    //   showmodalProps: this.showmodal,
+    //   productid: [],
+      productID: Number
+    };
+  },
   props: {
     productid: Array
+  },
+  components: {
+    addTowishList
   }
 };
 </script>
