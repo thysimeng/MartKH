@@ -1840,10 +1840,6 @@ module.exports = {
 __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var _shopComponent_modalQuickView__WEBPACK_IMPORTED_MODULE_0__ = __webpack_require__(/*! ../shopComponent/modalQuickView */ "./resources/js/components/usersComponent/shopComponent/modalQuickView.vue");
 /* harmony import */ var _mastercomponent_addTowishList_vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! ../mastercomponent/addTowishList.vue */ "./resources/js/components/usersComponent/mastercomponent/addTowishList.vue");
-var _name$data$props$data;
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 //
 //
 //
@@ -1907,31 +1903,32 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 
 
-/* harmony default export */ __webpack_exports__["default"] = (_name$data$props$data = {
+/* harmony default export */ __webpack_exports__["default"] = ({
   name: "productAll",
   data: function data() {
     return {
-      showmodalProps: this.showmodal
+      showmodalProps: this.showmodal,
+      productid: [],
+      productID: Number
     };
   },
   props: {
     showmodal: Boolean,
     productshomecate: Array
+  },
+  methods: {
+    quickView: function quickView(PID, image, name, description, price) {
+      //   this.showmodalProps = false;
+      this.showmodalProps = false;
+      this.productid = [PID, image, name, description, price];
+      this.$emit("hidequickviewhome", this.showmodalProps);
+    }
+  },
+  components: {
+    modalQuickView: _shopComponent_modalQuickView__WEBPACK_IMPORTED_MODULE_0__["default"],
+    addTowishList: _mastercomponent_addTowishList_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
   }
-}, _defineProperty(_name$data$props$data, "data", function data() {
-  return {
-    productid: [],
-    productID: Number
-  };
-}), _defineProperty(_name$data$props$data, "methods", {
-  quickView: function quickView(PID, v, name, description) {
-    this.showmodalProps = false;
-    this.productid = [PID, v, name, description];
-  }
-}), _defineProperty(_name$data$props$data, "components", {
-  modalQuickView: _shopComponent_modalQuickView__WEBPACK_IMPORTED_MODULE_0__["default"],
-  addTowishList: _mastercomponent_addTowishList_vue__WEBPACK_IMPORTED_MODULE_1__["default"]
-}), _name$data$props$data);
+});
 
 /***/ }),
 
@@ -1964,13 +1961,29 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
   name: "productFood",
   data: function data() {
     return {
-      productshomecateProps: this.productshomecate
+      productshomecateProps: this.productshomecate,
+      displayData: 1
     };
   },
   props: {
@@ -1979,15 +1992,10 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   },
   methods: {
     sendDatatoApp: function sendDatatoApp() {
-      this.productshomecateProps = this.productsCategory;
-      this.showmodal = false;
-      this.$emit("senddata", this.productshomecateProps);
-      this.$emit("senddatashowmodal", this.showmodal);
+      this.displayData = 1;
     },
     sendDatatoAppAll: function sendDatatoAppAll() {
-      this.productshomecateProps = this.productsCategory1;
-      this.$emit("senddata", this.productshomecateProps);
-      this.$emit("senddatashowmodal", this.showmodal);
+      this.displayData = 2;
     }
   },
   mounted: function mounted() {
@@ -2002,6 +2010,18 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     },
     productsCategory1: function productsCategory1() {
       return this.$store.getters.productsCategories1;
+    },
+    updatedData: function updatedData() {
+      this.showmodal = false;
+      this.$emit("senddatashowmodal", this.showmodal);
+      this.productshomecateProps = this.productsCategory;
+      this.$emit("senddata", this.productshomecateProps);
+    },
+    updatedData1: function updatedData1() {
+      this.showmodal = false;
+      this.$emit("senddatashowmodal", this.showmodal);
+      this.productshomecateProps = this.productsCategory1;
+      this.$emit("senddata", this.productshomecateProps);
     }
   }),
   components: {
@@ -2460,6 +2480,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
 
 
 
@@ -2481,8 +2502,8 @@ __webpack_require__.r(__webpack_exports__);
     orderBy: String
   },
   methods: {
-    quickView: function quickView(PID, v, name, description) {
-      return this.productid.push(PID, v, name, description);
+    quickView: function quickView(PID, image, name, description, price) {
+      return this.productid.push(PID, image, name, description, price);
     }
   },
   components: {
@@ -7920,7 +7941,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, "\n.backgroundred[data-v-0dfa003e] {\n  background: red;\n}\n", ""]);
+exports.push([module.i, "\n.backgroundred[data-v-0dfa003e] {\r\n  background: red;\n}\r\n", ""]);
 
 // exports
 
@@ -7939,7 +7960,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, "\n.price-slider[data-v-6035fc83] {\n  position: relative;\n  width: 100%;\n  margin: 0 auto 20px;\n  height: 35px;\n  text-align: center;\n}\n.price-slider input[data-v-6035fc83] {\n  pointer-events: none;\n  position: absolute;\n  left: 0;\n  top: 15px;\n  width: 100%;\n  outline: none;\n  height: 18px;\n  margin: 0;\n  padding: 0;\n  border-radius: 8px;\n}\n.price-slider input[data-v-6035fc83]::-webkit-slider-thumb {\n  pointer-events: all;\n  position: relative;\n  z-index: 1;\n  outline: 0;\n  -webkit-appearance: none;\n  height: 24px;\n  width: 24px;\n  border-radius: 12px;\n  background-color: white;\n  border: 2px solid black;\n}\n", ""]);
+exports.push([module.i, "\n.price-slider[data-v-6035fc83] {\r\n  position: relative;\r\n  width: 100%;\r\n  margin: 0 auto 20px;\r\n  height: 35px;\r\n  text-align: center;\n}\n.price-slider input[data-v-6035fc83] {\r\n  pointer-events: none;\r\n  position: absolute;\r\n  left: 0;\r\n  top: 15px;\r\n  width: 100%;\r\n  outline: none;\r\n  height: 18px;\r\n  margin: 0;\r\n  padding: 0;\r\n  border-radius: 8px;\n}\n.price-slider input[data-v-6035fc83]::-webkit-slider-thumb {\r\n  pointer-events: all;\r\n  position: relative;\r\n  z-index: 1;\r\n  outline: 0;\r\n  -webkit-appearance: none;\r\n  height: 24px;\r\n  width: 24px;\r\n  border-radius: 12px;\r\n  background-color: white;\r\n  border: 2px solid black;\n}\r\n", ""]);
 
 // exports
 
@@ -39507,7 +39528,8 @@ var render = function() {
                                 product.id,
                                 product.image,
                                 product.name,
-                                product.description
+                                product.description,
+                                product.price
                               )
                             }
                           }
@@ -39549,7 +39571,8 @@ var render = function() {
                                     product.id,
                                     product.image,
                                     product.name,
-                                    product.description
+                                    product.description,
+                                    product.price
                                   )
                                 }
                               }
@@ -39670,6 +39693,12 @@ var render = function() {
               ])
             ]
           )
+        : _vm._e(),
+      _vm._v(" "),
+      _vm.displayData == 1
+        ? _c("div", [_vm._v(_vm._s(_vm.updatedData))])
+        : _vm.displayData == 2
+        ? _c("div", [_vm._v(_vm._s(_vm.updatedData1))])
         : _vm._e()
     ]
   )
@@ -39962,50 +39991,13 @@ var render = function() {
     [
       _c("div", { staticClass: "shop-found" }, [
         _c("p", [
-          _c(
-            "span",
-            {
-              directives: [
-                {
-                  name: "show",
-                  rawName: "v-show",
-                  value: _vm.orderedProducts.length == 0,
-                  expression: "orderedProducts.length==0"
-                }
-              ]
-            },
-            [_vm._v("0")]
-          ),
-          _vm._v(" "),
-          _c(
-            "span",
-            {
-              directives: [
-                {
-                  name: "show",
-                  rawName: "v-show",
-                  value: _vm.orderedProducts.length < _vm.seeMore,
-                  expression: "orderedProducts.length<seeMore"
-                }
-              ]
-            },
-            [_vm._v(_vm._s(_vm.orderedProducts.length))]
-          ),
-          _vm._v(" "),
-          _c(
-            "span",
-            {
-              directives: [
-                {
-                  name: "show",
-                  rawName: "v-show",
-                  value: _vm.orderedProducts.length > _vm.seeMore,
-                  expression: "orderedProducts.length>seeMore"
-                }
-              ]
-            },
-            [_vm._v(_vm._s(_vm.seeMore))]
-          ),
+          _vm.orderedProducts.length == 0
+            ? _c("span", [_vm._v("0")])
+            : _vm.orderedProducts.length < _vm.seeMore
+            ? _c("span", [_vm._v(_vm._s(_vm.orderedProducts.length))])
+            : _vm.orderedProducts.length > _vm.seeMore
+            ? _c("span", [_vm._v(_vm._s(_vm.seeMore))])
+            : _c("span", [_vm._v(_vm._s(_vm.seeMore))]),
           _vm._v(" Product Found of\n      "),
           _c("span", [_vm._v(_vm._s(_vm.orderedProducts.length))])
         ])
@@ -40048,7 +40040,8 @@ var render = function() {
                                     product.id,
                                     product.image,
                                     product.name,
-                                    product.description
+                                    product.description,
+                                    product.price
                                   )
                                 }
                               }
@@ -40092,7 +40085,8 @@ var render = function() {
                                         product.id,
                                         product.image,
                                         product.name,
-                                        product.description
+                                        product.description,
+                                        product.price
                                       )
                                     }
                                   }
@@ -40166,7 +40160,8 @@ var render = function() {
                                         product.id,
                                         product.image,
                                         product.name,
-                                        product.description
+                                        product.description,
+                                        product.price
                                       )
                                     }
                                   }
@@ -40205,7 +40200,8 @@ var render = function() {
                                             product.id,
                                             product.image,
                                             product.name,
-                                            product.description
+                                            product.description,
+                                            product.price
                                           )
                                         }
                                       }
@@ -40227,11 +40223,7 @@ var render = function() {
                               _vm._v(" "),
                               _c("span", [_vm._v("$" + _vm._s(product.price))]),
                               _vm._v(" "),
-                              _c("p", [
-                                _vm._v(
-                                  "Lorem ipsum dolor sit amet, mana consectetur adipisicing elit, sed do eiusmod tempor labore."
-                                )
-                              ])
+                              _c("p", [_vm._v(_vm._s(product.description))])
                             ]),
                             _vm._v(" "),
                             _c(
@@ -40682,7 +40674,7 @@ var render = function() {
                             attrs: {
                               src:
                                 "/uploads/product_image/" +
-                                _vm.productid[_vm.productid.length - 3],
+                                _vm.productid[_vm.productid.length - 4],
                               alt: ""
                             }
                           })
@@ -40702,20 +40694,31 @@ var render = function() {
               _c("div", { staticClass: "qwick-view-right" }, [
                 _c("div", { staticClass: "qwick-view-content" }, [
                   _c("h3", [
-                    _vm._v(_vm._s(_vm.productid[_vm.productid.length - 2]))
+                    _vm._v(
+                      "Name : " +
+                        _vm._s(_vm.productid[_vm.productid.length - 3])
+                    )
+                  ]),
+                  _vm._v(" "),
+                  _c("div", { staticClass: "price" }, [
+                    _c("span", { staticClass: "new" }, [
+                      _vm._v(
+                        "Price : $" +
+                          _vm._s(_vm.productid[_vm.productid.length - 1])
+                      )
+                    ])
+                  ]),
+                  _vm._v(" "),
+                  _c("p", [
+                    _vm._v(
+                      "Description : " +
+                        _vm._s(_vm.productid[_vm.productid.length - 2])
+                    )
                   ]),
                   _vm._v(" "),
                   _vm._m(4),
                   _vm._v(" "),
-                  _vm._m(5),
-                  _vm._v(" "),
-                  _c("p", [
-                    _vm._v(_vm._s(_vm.productid[_vm.productid.length - 1]))
-                  ]),
-                  _vm._v(" "),
-                  _vm._m(6),
-                  _vm._v(" "),
-                  _vm._m(7)
+                  _vm._m(5)
                 ])
               ])
             ])
@@ -40804,38 +40807,6 @@ var staticRenderFns = [
         )
       ]
     )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "price" }, [
-      _c("span", { staticClass: "new" }, [_vm._v("$90.00")]),
-      _vm._v(" "),
-      _c("span", { staticClass: "old" }, [_vm._v("$120.00")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "rating-number" }, [
-      _c("div", { staticClass: "quick-view-rating" }, [
-        _c("i", { staticClass: "pe-7s-star" }),
-        _vm._v(" "),
-        _c("i", { staticClass: "pe-7s-star" }),
-        _vm._v(" "),
-        _c("i", { staticClass: "pe-7s-star" }),
-        _vm._v(" "),
-        _c("i", { staticClass: "pe-7s-star" }),
-        _vm._v(" "),
-        _c("i", { staticClass: "pe-7s-star" })
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "quick-view-number" }, [
-        _c("span", [_vm._v("2 Ratting (S)")])
-      ])
-    ])
   },
   function() {
     var _vm = this
@@ -58436,8 +58407,8 @@ var app = new Vue({
     showHomePage: function showHomePage() {
       return this.show = true;
     },
-    quickView: function quickView(PID, v, name, description) {
-      return this.producthome.push(PID, v, name, description), this.showmodal = true;
+    quickView: function quickView(PID, image, name, description, price) {
+      return this.producthome.push(PID, image, name, description, price), this.showmodal = true;
     },
     datachange: function datachange() {
       this.shownitification = true;

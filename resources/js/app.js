@@ -66,8 +66,8 @@ const app = new Vue({
         showHomePage() {
             return this.show = true
         },
-        quickView(PID, v, name, description) {
-            return this.producthome.push(PID, v, name, description), this.showmodal = true;
+        quickView(PID, image, name, description, price) {
+            return this.producthome.push(PID, image, name, description, price), this.showmodal = true;
         },
         datachange(){
             this.shownitification = true;

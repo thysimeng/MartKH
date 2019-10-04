@@ -15,7 +15,7 @@
                 title="Quick View"
                 data-toggle="modal"
                 data-target="#VUEModal"
-                @click="quickView(product.id, product.image, product.name, product.description)"
+                @click="quickView(product.id, product.image, product.name, product.description, product.price)"
               >
                 <img :src="'/uploads/product_image/'+ product.image" alt />
               </a>
@@ -33,7 +33,7 @@
                   title="Quick View"
                   data-toggle="modal"
                   data-target="#VUEModal"
-                  @click="quickView(product.id, product.image, product.name, product.description)"
+                  @click="quickView(product.id, product.image, product.name, product.description, product.price)"
                 >
                   <i class="pe-7s-look"></i>
                 </a>
@@ -50,7 +50,7 @@
                 <i class="pe-7s-star"></i>
                 <i class="pe-7s-star"></i>
                 <i class="pe-7s-star"></i>
-              </div> -->
+              </div>-->
             </div>
           </div>
         </div>
@@ -65,24 +65,22 @@ import addTowishList from "../mastercomponent/addTowishList.vue";
 export default {
   name: "productAll",
   data: function() {
-      return {
-          showmodalProps: this.showmodal
-      };
+    return {
+      showmodalProps: this.showmodal,
+      productid: [],
+      productID: Number
+    };
   },
   props: {
     showmodal: Boolean,
     productshomecate: Array
   },
-  data: function() {
-    return {
-      productid: [],
-      productID: Number
-    };
-  },
   methods: {
-    quickView(PID, v, name, description) {
+    quickView(PID, image, name, description, price) {
+    //   this.showmodalProps = false;
       this.showmodalProps = false;
-      this.productid = [PID, v, name, description];
+      this.productid = [PID, image, name, description, price];
+      this.$emit("hidequickviewhome", this.showmodalProps);
     }
   },
   components: {
