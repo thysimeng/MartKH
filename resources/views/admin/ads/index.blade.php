@@ -88,7 +88,11 @@
                         <div class="card-body p-0 pt-3">
                 @endif
                             <div class="row align-items-center">
-                                <div class="col-3 border-right-0" style="border:2px solid #f7931e; border-radius:5px;position:relative;">
+                                @if($gradientColor===NULL)
+                                <div class="col-3 border-right-0" style="border:2px solid {{$basicColor}}; border-radius:5px;position:relative;">
+                                @else
+                                <div class="col-3 border-right-0" style="border:2px solid;border-image-source: {{$gradientColor}};border-image-slice: 1; border-radius:5px;position:relative;">
+                                @endif
                                     <form action="{{ route('adsLeft1.upload') }}" method="post" enctype="multipart/form-data" id="submitFormLeft1">
                                         @csrf
                                         <input type="file" id="adsLeft1" style="display: none;" name="adsLeft1[]" multiple/>
@@ -111,7 +115,12 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-6" style="border:2px solid #f7931e;border-radius:5px;position:relative;">
+                                {{-- <div class="col-6" style="border:2px solid #f7931e;border-radius:5px;position:relative;"> --}}
+                                @if($gradientColor===NULL)
+                                <div class="col-6" style="border:2px solid {{$basicColor}};border-radius:5px;position:relative;">
+                                @else
+                                <div class="col-6" style="border:2px solid;border-radius:5px;border-image-source: {{$gradientColor}};border-image-slice: 1;position:relative;">
+                                @endif
                                     <form action="{{ route('adsMiddle1.upload') }}" method="post" enctype="multipart/form-data" id="submitFormMiddle1">
                                         @csrf
                                         <input type="file" id="adsMiddle1" style="display: none;" name="adsMiddle1[]" multiple/>
@@ -134,7 +143,11 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-3 border-left-0" style="height:750px;border:2px solid #f7931e;border-radius:5px;position:relative;">
+                                @if($gradientColor===NULL)
+                                <div class="col-3 border-left-0" style="height:750px;border:2px solid {{$basicColor}};border-radius:5px;position:relative;">
+                                @else
+                                <div class="col-3 border-left-0" style="height:750px;border:2px solid;border-radius:5px;border-image-source: {{$gradientColor}};border-image-slice: 1;position:relative;">
+                                @endif
                                     <div class="row">
                                         <div class="col-12">
                                             <form action="{{ route('adsTopRight1.upload') }}" method="post" enctype="multipart/form-data" id="submitFormTopRight1">
@@ -147,7 +160,11 @@
                                                 @endif
                                                 <input type="submit" id="submitTopRight1" class="btn btn-success" style="width:100%;" name='submitImage' value="Upload Image"/>
                                             </form>
-                                            <div style="overflow:auto;max-height:350px;border-bottom:2px solid #f7931e;">
+                                            @if($gradientColor===NULL)
+                                            <div style="overflow:auto;max-height:350px;border-bottom:2px solid {{$basicColor}};">
+                                            @else
+                                            <div style="overflow:auto;max-height:350px;border-bottom:2px solid;border-image-source: {{$gradientColor}};border-image-slice: 1;">
+                                            @endif
                                                 <div class="ads-container mt-1" style="overflow-y:scroll;height:250px;">
                                                     <div id="imageTopRightPreview1"></div>
                                                     @foreach ($adsTopRight1 as $adTopRight1)
@@ -172,7 +189,11 @@
                                                 @endif
                                                 <input type="submit" id="submitBottomRight1" class="btn btn-success" style="width:100%;" name='submitImage' value="Upload Image"/>
                                             </form>
-                                            <div style="overflow:auto;max-height:350px;border-bottom:2px solid #f7931e;">
+                                            @if($gradientColor===NULL)
+                                            <div style="overflow:auto;max-height:350px;border-bottom:2px solid {{$basicColor}};">
+                                            @else
+                                            <div style="overflow:auto;max-height:350px;border-bottom:2px solid;border-image-source: {{$gradientColor}};border-image-slice: 1;">
+                                            @endif
                                                 <div class="ads-container mt-1" style="overflow-y:scroll;height:250px;">
                                                     <div id="imageBottomRightPreview1"></div>
                                                     @foreach ($adsBottomRight1 as $adBottomRight1)
@@ -220,7 +241,11 @@
                 @endif
                         <div class="card-body p-0 pt-3">
                             <div class="row align-items-center">
-                                <div class="col-8" style="border:2px solid #f7931e;border-radius:5px;">
+                                @if($gradientColor===NULL)
+                                <div class="col-8" style="border:2px solid {{$basicColor}};border-radius:5px;">
+                                @else
+                                <div class="col-8" style="border:2px solid;border-radius:5px;border-image-source: {{$gradientColor}};border-image-slice: 1;">
+                                @endif
                                     <form action="{{ route('adsLeft2.upload') }}" method="post" enctype="multipart/form-data" id="submitFormLeft2">
                                         @csrf
                                         <input type="file" id="adsLeft2" style="display: none;" name="adsLeft2[]" multiple/>
@@ -243,7 +268,11 @@
                                         </div>
                                     </div>
                                 </div>
-                                <div class="col-4 border-left-0" style="height:960px;border:2px solid #f7931e;border-radius:5px;position:relative;">
+                                @if($gradientColor===NULL)
+                                <div class="col-4 border-left-0" style="height:960px;border:2px solid {{$basicColor}};border-radius:5px;position:relative;">
+                                @else
+                                <div class="col-4 border-left-0" style="height:960px;border:2px solid;border-image-source: {{$gradientColor}};border-image-slice: 1;border-radius:5px;position:relative;">
+                                @endif
                                     <div class="row">
                                         <div class="col-12">
                                             <form action="{{ route('adsTopRight2.upload') }}" method="post" enctype="multipart/form-data" id="submitFormTopRight2">
@@ -256,7 +285,11 @@
                                                 @endif
                                                 <input type="submit" id="submitTopRight2" class="btn btn-success" style="width:100%;" name='submitImage' value="Upload Image"/>
                                             </form>
-                                            <div style="max-height:360px;overflow:auto;border-bottom:2px solid #f7931e">
+                                            @if($gradientColor===NULL)
+                                            <div style="max-height:360px;overflow:auto;border-bottom:2px solid {{$basicColor}}">
+                                            @else
+                                            <div style="max-height:360px;overflow:auto;border-bottom:2px solid;border-image-source: {{$gradientColor}};border-image-slice: 1;">
+                                            @endif
                                                 <div class="ads-container mt-1" style="overflow-y:scroll;height:715px;">
                                                     <div id="imageTopRightPreview2"></div>
                                                     @foreach ($adsTopRight2 as $adTopRight2)
@@ -281,7 +314,11 @@
                                                 @endif
                                                 <input type="submit" id="submitBottomRight" class="btn btn-success" style="width:100%;" name='submitImage' value="Upload Image"/>
                                             </form>
-                                            <div style="max-height:360px;overflow:auto;border-bottom:2px solid #f7931e">
+                                            @if($gradientColor===NULL)
+                                            <div style="max-height:360px;overflow:auto;border-bottom:2px solid {{$basicColor}}">
+                                            @else
+                                            <div style="max-height:360px;overflow:auto;border-bottom:2px solid;border-image-source: {{$gradientColor}};border-image-slice: 1;">
+                                            @endif
                                                 <div class="ads-container mt-1" style="overflow-y:scroll;height:715px;">
                                                     <div id="imageBottomRightPreview2"></div>
                                                     @foreach ($adsBottomRight2 as $adBottomRight2)
@@ -330,7 +367,11 @@
                 @endif
                         <div class="card-body p-0 pt-3">
                             <div class="row align-items-center">
-                                <div class="col-12" style="border:2px solid #f7931e;border-radius:5px;position:relative;">
+                                @if($gradientColor===NULL)
+                                <div class="col-12" style="border:2px solid {{$basicColor}};border-radius:5px;position:relative;">
+                                @else
+                                <div class="col-12" style="border:2px solid;border-radius:5px;border-image-source: {{$gradientColor}};border-image-slice: 1;position:relative;">
+                                @endif
                                     <form action="{{ route('adsMiddle3.upload') }}" method="post" enctype="multipart/form-data" id="submitFormMiddle3" class="form-inline justify-content-center">
                                         @csrf
                                         <input type="file" id="adsMiddle3" style="display: none;" name="adsMiddle3[]" multiple/>

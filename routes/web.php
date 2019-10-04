@@ -97,7 +97,9 @@ Route::group(['middleware' => ['web','auth','checkUserRole']], function () {
 	Route::get('admin/request_stock/search', 'Admin\RequestController@search')->name('admin.request_stock.search');
     Route::get('admin/settings', ['as' => 'settings.index', 'uses' => 'Admin\SettingController@index']);
     Route::get('admin/settings/godark', ['as' => 'settings.godark', 'uses' => 'Admin\SettingController@godark']);
-	Route::post('admin/settings/basicColor', ['as' => 'settings.basicColor', 'uses' => 'Admin\SettingController@basicColor']);
+    Route::post('admin/settings/basicColor', ['as' => 'settings.basicColor', 'uses' => 'Admin\SettingController@basicColor']);
+	Route::post('admin/settings/logo', ['as' => 'settings.logo', 'uses' => 'Admin\SettingController@logo']);
+    Route::post('admin/settings/gradientColor', ['as' => 'settings.gradientColor', 'uses' => 'Admin\SettingController@gradientColor']);
 });
 
 // franchise-related routes

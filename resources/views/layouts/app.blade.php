@@ -21,10 +21,14 @@
         {{-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/dropzone/5.5.1/dropzone.css"> --}}
         {{-- jquery --}}
         <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        {{-- <script src="{{ asset('argon')}}/js/jquery-inline-svg.min.js"></script> --}}
         <!-- SweetAlert2 -->
         <script src="https://cdn.jsdelivr.net/npm/sweetalert2@8"></script>
         {{-- <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script> --}}
         <link href="https://gitcdn.github.io/bootstrap-toggle/2.2.2/css/bootstrap-toggle.min.css" rel="stylesheet">
+        <style>
+
+        </style>
     </head>
     <body class="{{ $class ?? '' }}">
         @auth()
@@ -101,3 +105,35 @@
         </script>
     </body>
 </html>
+
+<script>
+    // $('[data-inline-svg]').inlineSvg();
+    // $('img.svg').each(function(){
+    //         var $img = jQuery(this);
+    //         var imgID = $img.attr('id');
+    //         var imgClass = $img.attr('class');
+    //         var imgURL = $img.attr('src');
+
+    //         jQuery.get(imgURL, function(data) {
+    //             // Get the SVG tag, ignore the rest
+    //             var $svg = jQuery(data).find('svg');
+
+    //             // Add replaced image's ID to the new SVG
+    //             if(typeof imgID !== 'undefined') {
+    //                 $svg = $svg.attr('id', imgID);
+    //             }
+    //             // Add replaced image's classes to the new SVG
+    //             if(typeof imgClass !== 'undefined') {
+    //                 $svg = $svg.attr('class', imgClass+' replaced-svg');
+    //             }
+
+    //             // Remove any invalid XML tags as per http://validator.w3.org
+    //             $svg = $svg.removeAttr('xmlns:a');
+
+    //             // Replace image with new SVG
+    //             $img.replaceWith($svg);
+
+    //         }, 'xml');
+
+    //     });
+</script>

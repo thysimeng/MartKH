@@ -11,8 +11,10 @@
         </button>
         <!-- Brand -->
         <a class="navbar-brand pt-0" href="{{ route('home') }}">
+        {{-- <a class="navbar-brand pt-0" href="{{ route('home') }}"> --}}
             {{-- <img src="{{ asset('argon') }}/img/brand/blue.png" class="navbar-brand-img" alt="..."> --}}
-            <img src="{{ asset('icon') }}/mkh-logo.png" class="navbar-brand-img img-fluid" alt="...">
+            <img src="{{ asset('uploads') }}/logo/{{$logo}}" class="navbar-brand-img img-fluid" alt="...">
+            {{-- <img src="{{ asset('icon') }}/mkh.svg" class="navbar-brand-img img-fluid svg social-link" alt="..."> --}}
             {{-- <span class="text-danger">MartKH</span>  --}}
         </a>
         <!-- User -->
@@ -140,7 +142,7 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('admin.category') }}">
                         {{-- <i class="ni ni-tv-2 text-primary"></i>  --}}
-                        <i class="fas fa-store-alt" style="color:#1a8a6b;"></i>{{ __('Category') }}
+                        <i class="fas fa-store-alt" style="color:#3cb44b;"></i>{{ __('Category') }}
                     </a>
                 </li>
 
@@ -153,7 +155,7 @@
 
                 <li class="nav-item">
                     <a class="nav-link " data-toggle="collapse" data-target="#collapse_stock" aria-expanded="false" aria-controls="collapse_user">
-                        <i class="fas fa-cubes" style="color: #ffd600;"></i>
+                        <i class="fas fa-cubes" style="color: #FF4500;"></i>
                         <span class="nav-link-text">{{ __('Stock') }}</span>
                     </a>
                     <div class="collapse" id="collapse_stock">
@@ -170,19 +172,28 @@
 
                 {{-- <li class="nav-item">
                     <a class="nav-link" href="{{ route('admin.request') }}">
-                        <i class="ni ni-tv-2 text-primary"></i> 
+                        <i class="ni ni-tv-2 text-primary"></i>
                         <i class="fas fa-envelope" style="color: #de6800;"></i> {{ __('Stock Requests') }}
                     </a>
                 </li> --}}
                 <li class="nav-item">
                     <a class="nav-link " data-toggle="collapse" data-target="#collapse_request" aria-expanded="false" aria-controls="collapse_user">
-                        <i class="fas fa-envelope" style="color: #de6800;"></i>
-                        <span class="nav-link-text">{{ __('Stock Requests') }}</span> @if($requestData>0)<span class="badge badge-danger text-white ml-2" style="background-color:#fd0202">new</span>@endif
+                        <i class="fas fa-envelope" style="color: #f49628;"></i>
+                        @if($gradientColor===NULL)
+                        <span class="nav-link-text">{{ __('Stock Requests') }}</span> @if($requestData>0)<span class="badge badge-danger text-white ml-2" style="background-color:{{$basicColor}}">new</span>@endif
+                        @else
+                        <span class="nav-link-text">{{ __('Stock Requests') }}</span> @if($requestData>0)<span class="badge badge-danger text-white ml-2" style="background:{{$gradientColor}}">new</span>@endif
+                        @endif
+                        {{-- <span class="nav-link-text">{{ __('Stock Requests') }}</span> @if($requestData>0)<span class="badge badge-danger text-white ml-2" style="background-color:#fd0202">new</span>@endif --}}
                     </a>
                     <div class="collapse" id="collapse_request">
                         <ul class="nav nav-sm flex-column">
                         <li class="nav-item">
-                            <a href="{{ route('admin.request') }}" class="nav-link">{{ __('Requests') }} @if($requestData>0)<span class="badge badge-danger text-white ml-2" style="background-color:#fd0202">{{$requestData}}</span>@endif</a>
+                            @if($gradientColor===NULL)
+                                <a href="{{ route('admin.request') }}" class="nav-link">{{ __('Requests') }} @if($requestData>0)<span class="badge badge-danger text-white ml-2" style="background-color:{{$basicColor}}">{{$requestData}}</span>@endif</a>
+                            @else
+                                <a href="{{ route('admin.request') }}" class="nav-link">{{ __('Requests') }} @if($requestData>0)<span class="badge badge-danger text-white ml-2" style="background:{{$gradientColor}}">{{$requestData}}</span>@endif</a>
+                            @endif
                         </li>
                         <!-- <li class="nav-item">
                             <a href="{{ route('admin.stock.approved_request') }}" class="nav-link">{{ __('Approved Requests') }}</a>
@@ -197,12 +208,12 @@
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('franchises.index') }}">
                         {{-- <i class="ni ni-tv-2 text-primary"></i>  --}}
-                        <i class="fas fa-map-marked-alt" style="color:#f4645f;"></i> {{ __('Franchise') }}
+                        <i class="fas fa-map-marked-alt" style="color:#FF69B4;"></i> {{ __('Franchise') }}
                     </a>
                 </li>
                 <li class="nav-item">
                         <a class="nav-link" href="{{ route('ads.index') }}">
-                            <i class="fas fa-ad text-red"></i> {{ __('Ads') }}
+                            <i class="fas fa-ad" style="color:turquoise;"></i> {{ __('Ads') }}
                         </a>
                 </li>
                 <li class="nav-item">

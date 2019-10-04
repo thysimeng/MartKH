@@ -46,6 +46,50 @@
                             </div>
                         </div>
                     </div>
+                    <div class="card mt-4">
+                        <!-- Card image -->
+                        {{-- <img class="card-img-top" src="https://argon-dashboard-pro-laravel.creative-tim.com/argon/img/theme/img-1-1000x900.jpg" alt="Image placeholder"> --}}
+                        <!-- Card body -->
+                        @if($sidebar==1)
+                        <div class="card-header bg-dark">
+                            <h2 class="text-white">Website Logo</h2>
+                        </div>
+                            <div class="card-body bg-dark align-items-center text-center border-top" style="border-radius:7px !important;">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <form action="{{route('settings.logo')}}" method="POST" enctype="multipart/form-data" id="logoForm">
+                                            @csrf
+                                            <input type="file" id="logo" style="display: none;" name="logo" />
+                                            <button class="btn shadow-none--hover shadow-none text-white" id="logobutton" style="width:100%;background:transparent;"><i class="fas fa-plus-circle text-success"></i> Choose logo</button>
+                                            <div style="border:2px solid white;width:100%;min-height:100px;">
+                                                <img src="{{asset('uploads')}}//logo/{{$logo}}" class="img-fluid" alt="" id="logoPreview">
+                                            </div>
+                                            <input type="submit" id="logoSubmit" class="btn btn-success mt-2" style="width:100%;" name='submitImage' value="Upload Image"/>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        @else
+                        <div class="card-header">
+                                <h2>Website Logo</h2>
+                        </div>
+                            <div class="card-body align-items-center text-center border-top" style="border-radius:7px !important;">
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <form action="{{route('settings.logo')}}" method="POST" enctype="multipart/form-data" id="logoForm">
+                                            @csrf
+                                            <input type="file" id="logo" style="display: none;" name="logo" />
+                                            <button class="btn shadow-none--hover shadow-none" id="logobutton" style="width:100%;background:transparent;"><i class="fas fa-plus-circle text-success"></i> Choose logo</button>
+                                            <div style="border:2px solid white;width:100%;min-height:100px;">
+                                                <img src="{{asset('uploads')}}//logo/{{$logo}}" class="img-fluid" alt="" id="logoPreview">
+                                            </div>
+                                            <input type="submit" id="logoSubmit" class="btn btn-success mt-2" style="width:100%;" name='submitImage' value="Upload Image"/>
+                                        </form>
+                                    </div>
+                                </div>
+                            </div>
+                        @endif
+                    </div>
                 </div>
                 <div class="col-lg-4">
                     <div class="card">
@@ -54,7 +98,7 @@
                         <!-- Card body -->
                         @if($sidebar==1)
                             <div class="card-header bg-dark">
-                                <h2 class="text-white">Header Basic Color</h2>
+                                <h2 class="text-white">Basic Color Theme</h2>
                             </div>
                             <form method="post" action="{{ route('settings.basicColor') }}" autocomplete="off">
                                 @csrf
@@ -77,7 +121,7 @@
                                         </div>
                                     </div>
                                     <div class="row mt-3 ml-4 mr-3">
-                                    <div class="col-md-12" id="basicColor" style="border:2px solid white;width:100%;min-height:100px;background:{{$basicColor}}">
+                                        <div class="col-md-12" id="basicColor" style="border:2px solid white;width:100%;min-height:100px;background:{{$basicColor}}">
                                         </div>
                                     </div>
                                     <div class="row mt-3 ml-4 mr-3">
@@ -87,7 +131,7 @@
                             </form>
                         @else
                             <div class="card-header">
-                                <h2>Header Basic Color</h2>
+                                <h2>Basic Color Theme</h2>
                             </div>
                             <form method="post" action="{{ route('settings.basicColor') }}" autocomplete="off">
                                 @csrf
@@ -318,272 +362,152 @@
                     </div> --}}
                 </div>
                 <div class="col-lg-4">
-                    <!-- Vector map -->
-                    <!--* Card header *-->
-                    <!--* Card body *-->
-                    <!--* Card init *-->
-                    {{-- <div class="card widget-calendar">
-                        <!-- Card header -->
-                        <div class="card-header">
-                            <div class="row align-items-center">
-                                <div class="col-8">
-                                    <!-- Title -->
-                                    <h5 class="h3 mb-0">Real time</h5>
-                                </div>
-                                <div class="col-4 text-right">
-                                    <a href="#!" class="btn btn-sm btn-neutral">Action</a>
-                                </div>
-                            </div>
-                        </div>
-                        <!-- Card body -->
-                        <div class="card-body">
-                            <!-- Vector map -->
-
-                            <!-- List group -->
-                            <ul class="list-group list-group-flush list my--3">
-                                <li class="list-group-item px-0">
-                                    <div class="row align-items-center">
-                                        <div class="col-auto">
-                                            <!-- Country flag -->
-                                            <img src="https://argon-dashboard-pro-laravel.creative-tim.com/argon/img/icons/flags/US.png" alt="Country flag">
-                                        </div>
-                                        <div class="col">
-                                            <small>Country:</small>
-                                            <h5 class="mb-0">United States</h5>
-                                        </div>
-                                        <div class="col">
-                                            <small>Visits:</small>
-                                            <h5 class="mb-0">2500</h5>
-                                        </div>
-                                        <div class="col">
-                                            <small>Bounce:</small>
-                                            <h5 class="mb-0">30%</h5>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="list-group-item px-0">
-                                    <div class="row align-items-center">
-                                        <div class="col-auto">
-                                            <!-- Country flag -->
-                                            <img src="https://argon-dashboard-pro-laravel.creative-tim.com/argon/img/icons/flags/DE.png" alt="Country flag">
-                                        </div>
-                                        <div class="col">
-                                            <small>Country:</small>
-                                            <h5 class="mb-0">Germany</h5>
-                                        </div>
-                                        <div class="col">
-                                            <small>Visits:</small>
-                                            <h5 class="mb-0">2500</h5>
-                                        </div>
-                                        <div class="col">
-                                            <small>Bounce:</small>
-                                            <h5 class="mb-0">30%</h5>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="list-group-item px-0">
-                                    <div class="row align-items-center">
-                                        <div class="col-auto">
-                                            <!-- Country flag -->
-                                            <img src="https://argon-dashboard-pro-laravel.creative-tim.com/argon/img/icons/flags/GB.png" alt="Country flag">
-                                        </div>
-                                        <div class="col">
-                                            <small>Country:</small>
-                                            <h5 class="mb-0">Great Britain</h5>
-                                        </div>
-                                        <div class="col">
-                                            <small>Visits:</small>
-                                            <h5 class="mb-0">2500</h5>
-                                        </div>
-                                        <div class="col">
-                                            <small>Bounce:</small>
-                                            <h5 class="mb-0">30%</h5>
-                                        </div>
-                                    </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div> --}}
-                    {{-- <!-- Visa card -->
-                    <div class="card bg-gradient-primary">
-                        <!-- Card body -->
-                        <div class="card-body">
-                            <div class="row justify-content-between align-items-center">
-                                <div class="col">
-                                    <img src="https://argon-dashboard-pro-laravel.creative-tim.com/argon/img/icons/cards/visa.png" alt="Image placeholder">
-                                </div>
-                                <div class="col-auto">
-                                    <span class="badge badge-lg badge-success">Active</span>
-                                </div>
-                            </div>
-                            <div class="my-4">
-                                <span class="h6 surtitle text-light">
-                                Card number
-                            </span>
-                                <div class="card-serial-number h1 text-white">
-                                    <div>4358</div>
-                                    <div>7421</div>
-                                    <div>9256</div>
-                                    <div>6682</div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col">
-                                    <span class="h6 surtitle text-light">Name</span>
-                                    <span class="d-block h3 text-white">John Snow</span>
-                                </div>
-                                <div class="col">
-                                    <span class="h6 surtitle text-light">Expiry date</span>
-                                    <span class="d-block h3 text-white">11/23</span>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                    <!-- Card stats -->
-                    <div class="card bg-gradient-default">
-                        <!-- Card body -->
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col">
-                                    <h5 class="card-title text-uppercase text-muted mb-0 text-white">Total traffic</h5>
-                                    <span class="h2 font-weight-bold mb-0 text-white">350,897</span>
-                                </div>
-                                <div class="col-auto">
-                                    <div class="icon icon-shape bg-white text-dark rounded-circle shadow">
-                                        <i class="ni ni-active-40"></i>
-                                    </div>
-                                </div>
-                            </div>
-                            <p class="mt-3 mb-0 text-sm">
-                                <span class="text-white mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
-                                <span class="text-nowrap text-light">Since last month</span>
-                            </p>
-                        </div>
-                    </div>
-                    <div class="card bg-gradient-primary">
-                        <!-- Card body -->
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col">
-                                    <h5 class="card-title text-uppercase text-muted mb-0 text-white">New users</h5>
-                                    <span class="h2 font-weight-bold mb-0 text-white">2,356</span>
-                                </div>
-                                <div class="col-auto">
-                                    <div class="icon icon-shape bg-white text-dark rounded-circle shadow">
-                                        <i class="ni ni-atom"></i>
-                                    </div>
-                                </div>
-                            </div>
-                            <p class="mt-3 mb-0 text-sm">
-                                <span class="text-white mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
-                                <span class="text-nowrap text-light">Since last month</span>
-                            </p>
-                        </div>
-                    </div>
-                    <div class="card bg-gradient-danger">
-                        <!-- Card body -->
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col">
-                                    <h5 class="card-title text-uppercase text-muted mb-0 text-white">Performance</h5>
-                                    <span class="h2 font-weight-bold mb-0 text-white">49,65%</span>
-                                </div>
-                                <div class="col-auto">
-                                    <div class="icon icon-shape bg-white text-dark rounded-circle shadow">
-                                        <i class="ni ni-spaceship"></i>
-                                    </div>
-                                </div>
-                            </div>
-                            <p class="mt-3 mb-0 text-sm">
-                                <span class="text-white mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
-                                <span class="text-nowrap text-light">Since last month</span>
-                            </p>
-                        </div>
-                    </div>
-                    <!-- Checklist -->
                     <div class="card">
-                        <!-- Card header -->
-                        <div class="card-header">
-                            <!-- Title -->
-                            <h5 class="h3 mb-0">To do list</h5>
-                        </div>
+                        <!-- Card image -->
+                        {{-- <img class="card-img-top" src="https://argon-dashboard-pro-laravel.creative-tim.com/argon/img/theme/img-1-1000x900.jpg" alt="Image placeholder"> --}}
                         <!-- Card body -->
-                        <div class="card-body p-0">
-                            <!-- List group -->
-                            <ul class="list-group list-group-flush" data-toggle="checklist">
-                                <li class="checklist-entry list-group-item flex-column align-items-start py-4 px-4">
-                                    <div class="checklist-item checklist-item-success checklist-item-checked">
-                                        <div class="checklist-info">
-                                            <h5 class="checklist-title mb-0">Call with Dave</h5>
-                                            <small>10:30 AM</small>
+                        @if($sidebar==1)
+                            <div class="card-header bg-dark">
+                                <h2 class="text-white">Two Colors Linear Gradient Theme</h2>
+                            </div>
+                            <form method="post" action="{{route('settings.gradientColor')}}" autocomplete="off">
+                                @csrf
+                                <div class="card-body bg-dark align-items-center text-center border-top" style="border-radius:7px !important;">
+                                    <div class="row">
+                                        <div class="col-md-2 mt-2">
+                                            <span class="text-white">Hex</span>
                                         </div>
-                                        <div>
-                                            <div class="custom-control custom-checkbox custom-checkbox-success">
-                                                <input class="custom-control-input" id="chk-todo-task-1" type="checkbox" checked="">
-                                                <label class="custom-control-label" for="chk-todo-task-1"></label>
-                                            </div>
+                                        {{-- <div class="col-md-2"></div> --}}
+                                        <div class="col-md-5">
+                                            <input type="text" class="form-control form-control-alternative{{ $errors->has('gradientColor1') ? ' is-invalid' : '' }}" placeholder="Hex Code" id="gradientColorValue1" value="{{substr($gradientColor, strpos($gradientColor,', #') +3,6) }}" name="gradientColor1">
+                                            @if ($errors->has('gradientColor1'))
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $errors->first('gradientColor1') }}</strong>
+                                                </span>
+                                            @endif
                                         </div>
-                                    </div>
-                                </li>
-                                <li class="checklist-entry list-group-item flex-column align-items-start py-4 px-4">
-                                    <div class="checklist-item checklist-item-warning">
-                                        <div class="checklist-info">
-                                            <h5 class="checklist-title mb-0">Lunch meeting</h5>
-                                            <small>10:30 AM</small>
-                                        </div>
-                                        <div>
-                                            <div class="custom-control custom-checkbox custom-checkbox-warning">
-                                                <input class="custom-control-input" id="chk-todo-task-2" type="checkbox">
-                                                <label class="custom-control-label" for="chk-todo-task-2"></label>
-                                            </div>
+                                        <div class="col-md-5">
+                                            <input type="button" id="previewGradientColorButton1" value="Color Palette" class="btn bg-gradient-red shadow-none--hover shadow-none text-white">
                                         </div>
                                     </div>
-                                </li>
-                                <li class="checklist-entry list-group-item flex-column align-items-start py-4 px-4">
-                                    <div class="checklist-item checklist-item-info">
-                                        <div class="checklist-info">
-                                            <h5 class="checklist-title mb-0">Argon Dashboard Launch</h5>
-                                            <small>10:30 AM</small>
+                                    <div class="row mt-3">
+                                        <div class="col-md-5 mt-2">
+                                            <span class="text-white">Color Percentage</span>
                                         </div>
-                                        <div>
-                                            <div class="custom-control custom-checkbox custom-checkbox-info">
-                                                <input class="custom-control-input" id="chk-todo-task-3" type="checkbox">
-                                                <label class="custom-control-label" for="chk-todo-task-3"></label>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </li>
-                                <li class="checklist-entry list-group-item flex-column align-items-start py-4 px-4">
-                                    <div class="checklist-item checklist-item-danger checklist-item-checked">
-                                        <div class="checklist-info">
-                                            <h5 class="checklist-title mb-0">Winter Hackaton</h5>
-                                            <small>10:30 AM</small>
-                                        </div>
-                                        <div>
-                                            <div class="custom-control custom-checkbox custom-checkbox-danger">
-                                                <input class="custom-control-input" id="chk-todo-task-4" type="checkbox" checked="">
-                                                <label class="custom-control-label" for="chk-todo-task-4"></label>
-                                            </div>
+                                        {{-- <div class="col-md-2"></div> --}}
+                                        <div class="col-md-7">
+                                            <input type="text" class="form-control form-control-alternative{{ $errors->has('percent1') ? ' is-invalid' : '' }}" placeholder="Number of Percent" id="percentValue1" value="0" name="percent1">
+                                            @if ($errors->has('percent1'))
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $errors->first('percent1') }}</strong>
+                                                </span>
+                                            @endif
                                         </div>
                                     </div>
-                                </li>
-                                <li class="checklist-entry list-group-item flex-column align-items-start py-4 px-4">
-                                    <div class="checklist-item checklist-item-success checklist-item-checked">
-                                        <div class="checklist-info">
-                                            <h5 class="checklist-title mb-0">Dinner with Family</h5>
-                                            <small>10:30 AM</small>
+                                    <div class="row mt-3">
+                                        <div class="col-md-2 mt-2">
+                                            <span class="text-white">Hex</span>
                                         </div>
-                                        <div>
-                                            <div class="custom-control custom-checkbox custom-checkbox-success">
-                                                <input class="custom-control-input" id="chk-todo-task-5" type="checkbox" checked="">
-                                                <label class="custom-control-label" for="chk-todo-task-5"></label>
-                                            </div>
+                                        {{-- <div class="col-md-2"></div> --}}
+                                        <div class="col-md-5">
+                                            <input type="text" class="form-control form-control-alternative{{ $errors->has('gradientColor2') ? ' is-invalid' : '' }}" placeholder="Hex Code" id="gradientColorValue2" value="{{substr($gradientColor, strpos($gradientColor,',#') +2,6) }}" name="gradientColor2">
+                                            @if ($errors->has('gradientColor2'))
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $errors->first('gradientColor2') }}</strong>
+                                                </span>
+                                            @endif
+                                        </div>
+                                        <div class="col-md-5">
+                                            <input type="button" id="previewGradientColorButton2" value="Color Palette" class="btn bg-gradient-red shadow-none--hover shadow-none text-white">
                                         </div>
                                     </div>
-                                </li>
-                            </ul>
-                        </div>
-                    </div> --}}
+                                    <div class="row mt-3">
+                                        <div class="col-md-5 mt-2">
+                                            <label class="text-white">Color Percentage</label>
+                                        </div>
+                                        {{-- <div class="col-md-2"></div> --}}
+                                        <div class="col-md-7">
+                                            <input type="text" class="form-control form-control-alternative{{ $errors->has('percent2') ? ' is-invalid' : '' }}" placeholder="Number of Percent" id="percentValue2" value="100" name="percent2">
+                                            @if ($errors->has('percent2'))
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $errors->first('percent2') }}</strong>
+                                                </span>
+                                            @endif
+                                        </div>
+                                    </div>
+                                    {{-- <div class="form-group">
+                                        <div class="col-md-3 mt-2">
+                                            <label class="form-control-label text-white">Direction</label>
+                                        </div>
+                                        <div class="col-md-9 mt-2">
+                                            <select class="form-control">
+                                                <option>Mustard</option>
+                                                <option>Ketchup</option>
+                                                <option>Barbecue</option>
+                                            </select>
+                                        </div>
+                                    </div> --}}
+                                    <div class="row mt-3">
+                                        <div class="col-md-3 mt-2">
+                                            <label class="form-control-label text-white">Direction</label>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <select class="form-control" id="selectGradientDirection" name="direction">
+                                                <option value="to top">Top</option>
+                                                <option value="to bottom">Bottom</option>
+                                                <option value="to left">Left</option>
+                                                <option value="to right">Right</option>
+                                                <option value="to top left">Top Left</option>
+                                                <option value="to top right">Top Right</option>
+                                                <option value="to bottom left">Bottom Left</option>
+                                                <option value="to bottom right">Bottom Right</option>
+                                            </select>
+                                        </div>
+                                    </div>
+                                    <div class="row mt-3 ml-4 mr-3">
+                                        <div class="col-md-12" id="gradientColor" style="border:2px solid white;width:100%;min-height:100px;">
+                                        </div>
+                                    </div>
+                                    <div class="row mt-3 ml-4 mr-3">
+                                        <input type="submit" value="Apply" class="btn btn-info shadow-none--hover shadow-none" style="width:100%;">
+                                    </div>
+                                </div>
+                            </form>
+                        @else
+                            <div class="card-header">
+                                <h2>Two Colors Linear Gradient Theme</h2>
+                            </div>
+                            <form method="post" action="{{ route('settings.basicColor') }}" autocomplete="off">
+                                @csrf
+                                <div class="card-body align-items-center text-center" style="border-radius:7px !important;">
+                                    <div class="row">
+                                        <div class="col-md-2 mt-2">
+                                            <span>Hex</span>
+                                        </div>
+                                        {{-- <div class="col-md-2"></div> --}}
+                                        <div class="col-md-5">
+                                            <input type="text" class="form-control form-control-alternative{{ $errors->has('basicColor') ? ' is-invalid' : '' }}" placeholder="Hex Code" id="basicColorValue" value="{{$res = preg_replace("/#/", "", $basicColor)}}" name="basicColor">
+                                            @if ($errors->has('basicColor'))
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $errors->first('basicColor') }}</strong>
+                                                </span>
+                                            @endif
+                                        </div>
+                                        <div class="col-md-5">
+                                            <input type="button" id="previewBasicColorButton" value="Color Palette" class="btn bg-gradient-red shadow-none--hover shadow-none text-white">
+                                        </div>
+                                    </div>
+                                    <div class="row mt-3 ml-4 mr-3">
+                                        <div class="col-md-12" id="basicColor" style="border:2px solid rgba(0, 0, 0, .05);width:100%;min-height:100px;background:{{$basicColor}}">
+                                        </div>
+                                    </div>
+                                    <div class="row mt-3 ml-4 mr-3">
+                                        <input type="submit" value="Apply" class="btn btn-info shadow-none--hover shadow-none" style="width:100%;">
+                                    </div>
+                                </div>
+                            </form>
+                        @endif
+                    </div>
                 </div>
             </div>
             <!-- Footer -->
@@ -663,9 +587,21 @@
                 $(".switch").prepend("<input type='checkbox' onclick='godark(1)'>");
             }
         });
+        var bgGradient,bg1,bg2,p1,p2,dir;
         $("#basicColorValue").on("keyup", function(){
             var basicColorVal = $("#basicColorValue").val();
             $("#basicColor").css("background",'#'+basicColorVal);
+        });
+        $("#gradientColorValue1").on("keyup", function(){
+            var gradientColorVal1 = $("#gradientColorValue1").val();
+            bg1 = '#'+gradientColorVal1;
+            // console.log($('#selectGradientDirection').val());
+            // $("#gradientColor1").css("background",'#'+gradientColorVal1);
+        });
+        $("#gradientColorValue2").on("keyup", function(){
+            var gradientColorVal2 = $("#gradientColorValue2").val();
+            bg2 = '#'+gradientColorVal2;
+            // $("#gradientColor2").css("background",'#'+gradientColorVal1);
         });
         $('#previewBasicColorButton').on("click", function(){
             $('#previewBasicColorButton').ColorPicker({
@@ -680,6 +616,116 @@
                     $(el).ColorPickerHide();
                 },
             });
+        });
+
+        $(document).ready(function(){
+            //default
+            dir = $('#selectGradientDirection').val();
+            p1 = $('#percentValue1').val();
+            p2 = $('#percentValue2').val();
+            //selected
+            $('#selectGradientDirection').on("click",function(){
+                dir = $('#selectGradientDirection').val();
+            });
+            $('#gradientColorValue1').on("keyup", function(e){
+                e.preventDefault();
+                bg = 'linear-gradient('+dir+','+bg1+' '+p1+'%,'+bg2+' '+p2+'%'+')';
+                // console.log(bg);
+                $('#gradientColor').css("background",bg);
+            });
+            $('#previewGradientColorButton1').on("click", function(){
+                $('#previewGradientColorButton1').ColorPicker({
+                    onChange: function(hsb, hex, rgb, el) {
+                        $("#gradientColorValue1").val(hex);
+                        bg1 = '#'+hex;
+                        bg = 'linear-gradient('+dir+','+bg1+' '+p1+'%,'+bg2+' '+p2+'%'+')';
+                        $('#gradientColor').css("background",bg);
+                        // $("#gradientColor1").css("background",'#'+hex);
+                        $(el).ColorPickerHide();
+                    },
+                    onSubmit: function(hsb, hex, rgb, el) {
+                        $("#gradientColorValue1").val(hex);
+                        bg1 = '#'+hex;
+                        bg = 'linear-gradient('+dir+','+bg1+' '+p1+'%,'+bg2+' '+p2+'%'+')';
+                        $('#gradientColor').css("background",bg);
+                        // $("#gradientColor1").css("background",'#'+hex);
+                        $(el).ColorPickerHide();
+                    },
+                });
+            });
+            $('#gradientColorValue2').on("keyup", function(e){
+                e.preventDefault();
+                bg = 'linear-gradient('+dir+','+bg1+' '+p1+'%,'+bg2+' '+p2+'%'+')';
+                // console.log(bg);
+                $('#gradientColor').css("background",bg);
+            });
+            $('#previewGradientColorButton2').on("click", function(){
+                $('#previewGradientColorButton2').ColorPicker({
+                    onChange: function(hsb, hex, rgb, el) {
+                        $("#gradientColorValue2").val(hex);
+                        bg2 = '#'+hex;
+                        bg = 'linear-gradient('+dir+','+bg1+' '+p1+'%,'+bg2+' '+p2+'%'+')';
+                        // console.log(bg);
+                        $('#gradientColor').css("background",bg);
+                        // $("#gradientColor2").css("background",'#'+hex);
+                        $(el).ColorPickerHide();
+                    },
+                    onSubmit: function(hsb, hex, rgb, el) {
+                        $("#gradientColorValue2").val(hex);
+                        bg2 = '#'+hex;
+                        bg = 'linear-gradient('+dir+','+bg1+' '+p1+'%,'+bg2+' '+p2+'%'+')';
+                        $('#gradientColor').css("background",bg);
+                        // $("#gradientColor2").css("background",'#'+hex);
+                        $(el).ColorPickerHide();
+                    },
+                });
+            });
+            //change percentage of color 1
+            $('#percentValue1').on("keyup",function(e){
+                e.preventDefault();
+                p1 = $('#percentValue1').val();
+                bg = 'linear-gradient('+dir+','+bg1+' '+p1+'%,'+bg2+' '+p2+'%'+')';
+                // console.log(bg);
+                $('#gradientColor').css("background",bg);
+                // console.log(p1);
+            });
+            //change percentage of color 2
+            $('#percentValue2').on("keyup",function(e){
+                e.preventDefault();
+                p2 = $('#percentValue2').val();
+                bg = 'linear-gradient('+dir+','+bg1+' '+p1+'%,'+bg2+' '+p2+'%'+')';
+                console.log(bg);
+                $('#gradientColor').css("background",bg);
+                // console.log(p2);
+            });
+            //change select option Preview
+            $('#selectGradientDirection').on("change",function(e){
+                e.preventDefault();
+                dir = $('#selectGradientDirection').val();
+                bg = 'linear-gradient('+dir+','+bg1+' '+p1+'%,'+bg2+' '+p2+'%'+')';
+                // bg = 'linear-gradient('+dir+','+bg1+','+bg2+')';
+                $('#gradientColor').css("background",bg);
+                // console.log(bg);
+            });
+        });
+        $(document).ready(function(){
+                // click hidden upload button
+                $("#logobutton").click(function(e){
+                    e.preventDefault();
+                    $("#logo").click();
+                });
+                function preview(input) {
+                    if (input.files && input.files[0]) {
+                        var reader = new FileReader();
+                        reader.onload = function (e) {
+                            $('#logoPreview').attr('src', e.target.result);
+                        }
+                        reader.readAsDataURL(input.files[0]);
+                    }
+                }
+                $("#logo").change(function(){
+                    preview(this);
+                });
         });
     </script>
 
