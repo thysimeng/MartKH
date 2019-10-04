@@ -72,6 +72,8 @@ Route::group(['middleware' => ['web','auth','checkUserRole']], function () {
 	Route::post('/admin/sub_category/delete', 'Admin\SubCategoryController@destroy')->name('admin.category.delete_sub_category');
 	Route::post('/admin/sub_category/edit', 'Admin\SubCategoryController@edit')->name('admin.category.edit_sub_category');
 
+	Route::get('admin/stock/log/search', 'Admin\StockController@logSearch')->name('admin.stock.logSearch');
+	Route::get('admin/stock/log', 'Admin\StockController@log')->name('admin.stock.log');
 	Route::get('admin/stock', 'Admin\StockController@index')->name('admin.stock');
 	Route::get('admin/stock/search', 'Admin\StockController@stockSearch')->name('admin.stock.search');
 	Route::post('admin/stock/create', 'Admin\StockController@create')->name('admin.create_stock');
@@ -97,7 +99,9 @@ Route::group(['middleware' => ['web','auth','checkUserRole']], function () {
 	Route::get('admin/request_stock/search', 'Admin\RequestController@search')->name('admin.request_stock.search');
     Route::get('admin/settings', ['as' => 'settings.index', 'uses' => 'Admin\SettingController@index']);
     Route::get('admin/settings/godark', ['as' => 'settings.godark', 'uses' => 'Admin\SettingController@godark']);
-	Route::post('admin/settings/basicColor', ['as' => 'settings.basicColor', 'uses' => 'Admin\SettingController@basicColor']);
+    Route::post('admin/settings/basicColor', ['as' => 'settings.basicColor', 'uses' => 'Admin\SettingController@basicColor']);
+	Route::post('admin/settings/logo', ['as' => 'settings.logo', 'uses' => 'Admin\SettingController@logo']);
+    Route::post('admin/settings/gradientColor', ['as' => 'settings.gradientColor', 'uses' => 'Admin\SettingController@gradientColor']);
 });
 
 // franchise-related routes

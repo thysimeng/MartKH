@@ -161,7 +161,13 @@
     <div class="popular-product-area wrapper-padding-3 pt-115 pb-115">
         <div class="container-fluid">
             <div class="section-title-6 text-center mb-50">
-                <h2>Popular Product</h2>
+                @if($gradientColor===NULL)
+                <h2 style="color:{{$basicColor}}">Popular Product</h2>
+                @else
+                <h2 style="background: {{$gradientColor}};
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;">Popular Product</h2>
+                @endif
                 <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
                     the
                     industry's standard dummy text</p>
@@ -212,7 +218,13 @@
     <div class="product-style-area pt-120">
         <div class="coustom-container-fluid">
             <div class="section-title-7 text-center">
-                <h2>All Products</h2>
+                @if($gradientColor===NULL)
+                <h2 style="color:{{$basicColor}}">All Products</h2>
+                @else
+                <h2 style="background: {{$gradientColor}};
+                -webkit-background-clip: text;
+                -webkit-text-fill-color: transparent;">All Products</h2>
+                @endif
                 <p>Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been
                     the
                     industry's standard dummy text</p>

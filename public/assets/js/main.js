@@ -435,31 +435,32 @@
     })
 
 
-    /* popular-product-active active */
-    $('.popular-product-active').owlCarousel({
-        loop: true,
-        nav: true,
-        dots: true,
-        autoplay: false,
-        autoplayTimeout: 5000,
-        item: 1,
-        margin: 57,
-        navText: ['<img src="assets/img/icon-img/left-red.png">', '<img src="assets/img/icon-img/right-red.png">'],
-        responsive: {
-            0: {
-                items: 1
-            },
-            768: {
-                items: 2
-            },
-            1000: {
-                items: 3
-            },
-            1200: {
-                items: 4
-            }
-        }
-    })
+    // /* popular-product-active active */
+    // $('.popular-product-active').owlCarousel({
+    //     loop: true,
+    //     nav: true,
+    //     dots: true,
+    //     autoplay: false,
+    //     autoplayTimeout: 5000,
+    //     item: 1,
+    //     margin: 57,
+    //     navText: ['<i class="fas fa-chevron-circle-left fa-5x" style="color:#000;"></i>', '<i class="fas fa-chevron-circle-right fa-5x" style="color:#000;"></i>'],
+    //     // navText: ['<img src="assets/img/icon-img/left.png">', '<img src="assets/img/icon-img/right.png">'],
+    //     responsive: {
+    //         0: {
+    //             items: 1
+    //         },
+    //         768: {
+    //             items: 2
+    //         },
+    //         1000: {
+    //             items: 3
+    //         },
+    //         1200: {
+    //             items: 4
+    //         }
+    //     }
+    // })
 
 
     /* popular-product-active-2 active */

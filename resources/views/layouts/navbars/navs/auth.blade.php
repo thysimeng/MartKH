@@ -1,5 +1,9 @@
 <!-- Top navbar -->
+@if($gradientColor===NULL)
 <nav class="navbar navbar-top navbar-expand-md navbar-dark d-none d-md-flex" id="navbar-main" style="background:{{$basicColor}};">
+@else
+<nav class="navbar navbar-top navbar-expand-md navbar-dark d-none d-md-flex" id="navbar-main" style="background:{{$gradientColor}};">
+@endif
     <div class="container-fluid">
         {{-- nav  --}}
         {{-- <button class="navbar-toggler"  type="button" data-toggle="collapse" data-target="#sidenav-main">Hello</button> --}}

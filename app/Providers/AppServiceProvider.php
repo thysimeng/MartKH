@@ -42,6 +42,12 @@ class AppServiceProvider extends ServiceProvider
         $basicColor = Customize::where('name','basicColor')->first();
         $basicColorValue = $basicColor->data;
         View::share('basicColor', $basicColorValue);
+        $logo = Customize::where('name','logo')->first();
+        $logoName = $logo->data;
+        View::share('logo', $logoName);
+        $gradientColor = Customize::where('name','gradientColor')->first();
+        $gradientColorValue = $gradientColor->data;
+        View::share('gradientColor', $gradientColorValue);
         View::share('userData', User::all()->count());
         View::share('franchiseData', Franchise::all()->count());
         View::share('categoryData', Category::all()->count());

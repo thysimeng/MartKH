@@ -9,7 +9,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <meta name="csrf-token" content="{{ csrf_token() }}">
     <!-- Favicon -->
-    <link rel="shortcut icon" type="{{asset('image/x-icon')}}" href="{{asset('icon/mkh.png')}}">
+    <link rel="shortcut icon" type="{{asset('image/x-icon')}}" href="{{asset('uploads')}}/logo/{{$logo}}">
 
     <!-- all css here -->
     <link rel="stylesheet" href="{{asset('/css/app.css')}}">
@@ -53,13 +53,19 @@
                         <div class="logo-2 furniture-logo ptb-30">
                             <a href="/">
                                 {{-- <img src="{{asset('assets/img/logo/2.png')}}" alt=""> --}}
-                                <img src="{{asset('icon/mkh-logo.png')}}" alt="" style="width:250px;height:78px;">
+                                <img src="{{asset('uploads')}}/logo/{{$logo}}" alt="" style="width:250px;height:78px;">
                             </a>
                         </div>
                         <div class="menu-style-2 furniture-menu menu-hover">
                             <nav>
                                 <ul>
-                                    <li><a href="/">Home</a>
+                                    @if($gradientColor===NULL)
+                                    <li><a href="/" style="color:{{$basicColor}}">Home</a>
+                                    @else
+                                    <li><a href="/" style="background: {{$gradientColor}};
+                                        -webkit-background-clip: text;
+                                        -webkit-text-fill-color: transparent;">Home</a>
+                                    @endif
                                         {{-- <router-link to="/users" @click.native="showHomePage()">Home</router-link> --}}
                                         {{-- <ul class="single-dropdown"> --}}
                                         {{-- <li><a href="index.html">Fashion</a></li> --}}
@@ -129,7 +135,13 @@
                     </div>
                     </li> --}}
                     <li>
-                        <router-link to="/products/all" @click.native="showPage()">Shop</router-link>
+                        @if($gradientColor===NULL)
+                        <router-link to="/products/all" @click.native="showPage()" style="color:{{$basicColor}}">Shop</router-link>
+                        @else
+                        <router-link to="/products/all" @click.native="showPage()" style="background: {{$gradientColor}};
+                        -webkit-background-clip: text;
+                        -webkit-text-fill-color: transparent;">Shop</router-link>
+                        @endif
                         <ul class="single-dropdown">
                             <li>
                                 <router-link to="/products/food" @click.native="showPage()">Food</router-link>
@@ -156,9 +168,13 @@
                 <div class="header-cart">
                     {{-- <a class="icon-cart-furniture" href="#">
                         <i class="ti-shopping-cart"></i>
-                        <span class="shop-count-furniture green" style="background-color:red;">02</span>
-                    </a> --}}
-                    {{-- <ul class="cart-dropdown">
+                        @if($gradientColor===NULL)
+                        <span class="shop-count-furniture green" style="background-color:{{$basicColor}};">02</span>
+                        @else
+                        <span class="shop-count-furniture green" style="background:{{$gradientColor}};">02</span>
+                        @endif
+                    </a>
+                    <ul class="cart-dropdown">
                         <li class="single-product-cart">
                             <div class="cart-img">
                                 <a href="#"><img src="{{asset('assets/img/cart/1.jpg')}}" alt=""></a>
@@ -298,11 +314,12 @@
                                     src="{{ asset('uploads') }}/avatar/{{ auth()->user()->avatar}}"></a>
                         </span>
                         <div class="media-body ml-2">
-                            <li>
-                                <a href="{{ route('userProfile') }}">{{auth()->user()->name}}</a>
-                            </li>
-                            <li>
-                                <a href="{{ route('logout') }}" onclick="event.preventDefault();
+                        <li>
+                            {{-- <a style="color:{{$basicColor}}" href="{{ route('userProfile') }}">{{auth()->user()->name}}</a> --}}
+                            <a href="{{ route('userProfile') }}">{{auth()->user()->name}}</a>
+                        </li>
+                        <li>
+                            <a href="{{ route('logout') }}" onclick="event.preventDefault();
                                                     document.getElementById('logout-form').submit();">
                                     {{ __('Logout') }}
                                 </a>
@@ -349,13 +366,19 @@
             <div class="container-fluid">
                 <div class="widget-wrapper">
                     <div class="footer-widget mb-30">
-                        <a href="#"><img src="{{asset('icon/mkh-logo.png')}}" alt="" style="width:250px;"></a>
+                        <a href="#"><img src="{{asset('uploads')}}/logo/{{$logo}}" alt="" style="width:250px;"></a>
                         <div class="footer-about-2">
                             <p>MartKh provide you everything<br>Food, drink and shop place<br>Find what you want</p>
                         </div>
                     </div>
                     <div class="footer-widget mb-30">
-                        <h3 class="footer-widget-title-5">Contact Info</h3>
+                        @if($gradientColor===NULL)
+                        <h3 class="footer-widget-title-5" style="color:{{$basicColor}}">Contact Info</h3>
+                        @else
+                        <h3 class="footer-widget-title-5" style="background: {{$gradientColor}};
+                        -webkit-background-clip: text;
+                        -webkit-text-fill-color: transparent;">Contact Info</h3>
+                        @endif
                         <div class="footer-info-wrapper-3">
                             <div class="footer-address-furniture">
                                 <div class="footer-info-icon3">
@@ -384,7 +407,13 @@
                         </div>
                     </div>
                     <div class="footer-widget mb-30">
-                        <h3 class="footer-widget-title-5">Newsletter</h3>
+                        @if($gradientColor===NULL)
+                        <h3 class="footer-widget-title-5" style="color:{{$basicColor}}">Newsletter</h3>
+                        @else
+                        <h3 class="footer-widget-title-5" style="background: {{$gradientColor}};
+                        -webkit-background-clip: text;
+                        -webkit-text-fill-color: transparent;">Newsletter</h3>
+                        @endif
                         <div class="footer-newsletter-2">
                             <p>Send us your mail or next updates</p>
                             <div id="mc_embed_signup" class="subscribe-form-5">
@@ -457,22 +486,47 @@
 
 </html>
 
-<script>
-    $(document).ready(function(){
+<script type="text/javascript">
+        $(document).ready(function(){
             $("#StrengthProgressBar").zxcvbnProgressBar({
 			  passwordInput: "#password",
 			//   userInputs: userInputs,
 			  ratings: ["Very Weak", "Weak", "OK", "Strong", "Very strong"]
              });
         });
-</script>
-<script type="text/javascript">
-    $(document).ready(function(){
-    $('#imgProfile').click(function() {
-        $('#upload-avatar').trigger('click');
+        $(document).ready(function(){
+        $('#imgProfile').click(function() {
+            $('#upload-avatar').trigger('click');
+        });
+        $('#upload-avatar').change(function() {
+            $(this).parents().submit();
+        });
     });
-    $('#upload-avatar').change(function() {
-        $(this).parents().submit();
-    });
-});
+
+    /* popular-product-active active */
+    $('.popular-product-active').owlCarousel({
+        loop: true,
+        nav: true,
+        dots: true,
+        autoplay: false,
+        autoplayTimeout: 5000,
+        item: 1,
+        margin: 57,
+        navText: ['<i class="fas fa-chevron-circle-left fa-5x" style="color:{{$basicColor}};"></i>', '<i class="fas fa-chevron-circle-right fa-5x" style="color:{{$basicColor}};"></i>'],
+        // navText: ['<img src="assets/img/icon-img/left.png">', '<img src="assets/img/icon-img/right.png">'],
+        responsive: {
+            0: {
+                items: 1
+            },
+            768: {
+                items: 2
+            },
+            1000: {
+                items: 3
+            },
+            1200: {
+                items: 4
+            }
+        }
+    })
 </script>

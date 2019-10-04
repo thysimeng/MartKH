@@ -247,7 +247,7 @@
     <div class="modal fade" id="viewProduct" tabindex="-1" role="dialog" aria-labelledby="viewProductTitle" aria-hidden="true">
             <div class="modal-dialog modal-xxl modal-dialog-centered" role="document">
               <div class="modal-content">
-                <div class="modal-header red-brown">
+                <div class="modal-header" style="background:{{$basicColor}}">
                 <h3 class="modal-title text-white">Product Information :</h3>
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true" class="text-white">&times;</span>
