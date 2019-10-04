@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use App\Products;
 use App\Stock_Franchise;
 use App\Request_Stock;
+use App\Models\Stock;
 use DB;
 use Auth;
 use Image;

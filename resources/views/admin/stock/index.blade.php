@@ -26,9 +26,11 @@
                                                         </div>
                                                     </div>
                                             </form>
+                                        
                                         <div class="col-4 text-right">
-                                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addStock">{{ __('Add Stock') }}</button>
-                                            </div>
+                                            <a href="{{ route('admin.stock.log') }}" class="btn btn-md btn-primary">{{ __('Log') }}</a>
+                                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addStock">{{ __('Add Stock') }}</button>
+                                        </div>
                             </div>
 
 
@@ -119,8 +121,7 @@
                                                                     <a onclick="edit({{$item->id}}, '{{$item->amount}}')" class="dropdown-item" data-toggle="modal" data-target="#editModalCenter" href="">{{ __('Edit') }}</a>
 
                                                                     {{-- <a class="dropdown-item" href="">{{ __('View') }}</a> --}}
-                                                                    <a onclick="delet({{$item->id}})" class="dropdown-item" data-toggle="modal" data-target="#deleteModalCenter" href="">{{ __('Delete') }}</a>
-                                                                    {{-- <a class="dropdown-item" href="/admin/delete_stock/{{ $item->id }}">{{ __('Delete') }}</a> --}}
+                                                                    {{-- <a onclick="delet({{$item->id}})" class="dropdown-item" data-toggle="modal" data-target="#deleteModalCenter" href="">{{ __('Delete') }}</a> --}}
                                                                 </div>
                                                             </div>
                                                         </td>
@@ -166,6 +167,10 @@
                                                                         <div class="modal-body">
                                                                             <label for="exampleFormControlSelect1">New Stocks</label>
                                                                             <input type="text" class="form-control" name="new-amount" value="" required placeholder="">
+                                                                        </div>
+                                                                        <div class="modal-body">
+                                                                            <label for="exampleFormControlSelect1">Reason</label>
+                                                                            <input type="text" class="form-control" name="reason" value="" required placeholder="Provide reason for editing">
                                                                         </div>
                                                                         <div  class="modal-footer">
                                                                             <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
