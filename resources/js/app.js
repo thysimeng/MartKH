@@ -5,6 +5,7 @@ import VueRouter from 'vue-router';
 import VueCarousel from 'vue-carousel';
 import { routes } from './routes';
 import Notifications from 'vue-notification';
+import VueProgressBar from 'vue-progressbar'
 
 import { mapGetters } from "vuex";
 import modalQuickView from "./components/usersComponent/shopComponent/modalQuickView.vue";
@@ -31,6 +32,11 @@ import store from './components/usersComponent/mainAPI/productsReader';
 Vue.use(VueRouter);
 Vue.use(VueCarousel);
 Vue.use(Notifications);
+Vue.use(VueProgressBar, {
+    color: 'blue',
+    failedColor: 'red',
+    height: '2px'
+  })
 
 const router = new VueRouter({
     routes,
@@ -60,8 +66,8 @@ const app = new Vue({
         showHomePage() {
             return this.show = true
         },
-        quickView(PID, v, name, description) {
-            return this.producthome.push(PID, v, name, description), this.showmodal = true;
+        quickView(PID, image, name, description, price) {
+            return this.producthome.push(PID, image, name, description, price), this.showmodal = true;
         },
         datachange(){
             this.shownitification = true;

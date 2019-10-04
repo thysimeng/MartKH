@@ -33,15 +33,18 @@ export default {
     searchProduct(e) {
       e.preventDefault();
       let currentObj = this;
+      currentObj.$Progress.start()
       axios
         .post("/searchweithwh", {
           searchInput: this.searchInput
         })
         .then(function(response) {
           currentObj.productsProps = response.data;
+          currentObj.$Progress.finish()
         })
         .catch(function(error) {
           currentObj.productsProps = error;
+          currentObj.$Progress.fail()
         });
     }
   },
