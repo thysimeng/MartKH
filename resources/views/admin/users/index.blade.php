@@ -40,7 +40,19 @@
                                     </li> -->
 
                                     <!-- Search -->
-                                    <form class="col-4" id="search-user" method="get" action="{{ route('user.search') }}">
+                                    <form class="col-4 mb-2 mt-2" method="get" id="search-user" action="{{ route('user.search') }}" autocomplete="off">
+                                        <div class="input-group input-group-alternative">
+                                            {{-- <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="fas fa-search"></i></span>
+                                            </div> --}}
+                                        <input class="form-control" placeholder="Search" type="text" name="search" id="search" value="" style="border: 1px solid #11cdef">
+                                        <span class="form-clear d-none"><i class="fas fa-times-circle">clear</i></span>
+                                        <div class="input-group-append">
+                                            <button class="btn btn-info" type="submit"><i class="fa fa-search"></i></button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                    {{-- <form class="col-4" id="search-user" method="get" action="{{ route('user.search') }}">
                                             <div class="form-group mb-2 mt-2">
                                                 <div class="input-group input-group-alternative">
                                                     <div class="input-group-prepend">
@@ -49,7 +61,7 @@
                                                     <input class="form-control" placeholder="Search" type="search" name="search">
                                                 </div>
                                             </div>
-                                    </form>
+                                    </form> --}}
 
                                     <!-- Add users -->
                                     <div class="col-4 text-right">

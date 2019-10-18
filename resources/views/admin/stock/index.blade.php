@@ -24,18 +24,31 @@
                                         <h3 class="mb-0">Main Stock<h3>
                                     </div>
     @endif
-                                    <form class="col-4 mt-2" id="search-stocks" method="get" action="{{ route('admin.search_stock') }}" autocomplete="off">
-                                            <div class="form-group mb-2">
-                                                <div class="input-group input-group-alternative">
-                                                    <div class="input-group-prepend">
-                                                        <span class="input-group-text"><i class="fas fa-search"></i></span>
-                                                    </div>
-                                            </form>
-                                        
-                                        <div class="col-4 text-right">
-                                            <a href="{{ route('admin.stock.log') }}" class="btn btn-md btn-primary">{{ __('Log') }}</a>
-                                            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addStock">{{ __('Add Stock') }}</button>
+                                    <form class="col-4 mb-2 mt-2" method="get" id="search-stocks" action="{{ route('admin.search_stock') }}" autocomplete="off">
+                                        <div class="input-group input-group-alternative">
+                                            {{-- <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="fas fa-search"></i></span>
+                                            </div> --}}
+                                        <input class="form-control" placeholder="Search" type="text" name="search" id="search" value="" style="border: 1px solid #11cdef">
+                                        <span class="form-clear d-none"><i class="fas fa-times-circle">clear</i></span>
+                                        <div class="input-group-append">
+                                            <button class="btn btn-info" type="submit"><i class="fa fa-search"></i></button>
+                                            </div>
                                         </div>
+                                    </form>
+                                    {{-- <form class="col-4 mt-2" id="search-stocks" method="get" action="{{ route('admin.search_stock') }}" autocomplete="off">
+                                        <div class="form-group mb-2">
+                                            <div class="input-group input-group-alternative">
+                                                <div class="input-group-prepend">
+                                                    <span class="input-group-text"><i class="fas fa-search"></i></span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </form> --}}
+                                    <div class="col-4 text-right">
+                                        <a href="{{ route('admin.stock.log') }}" class="btn btn-md btn-primary">{{ __('Log') }}</a>
+                                        <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#addStock">{{ __('Add Stock') }}</button>
+                                    </div>
                             </div>
                             <!-- Add stocks -->
                             <form class="form-horizontal" action="{{ route('admin.create_stock') }}" enctype="multipart/form-data" method="post">

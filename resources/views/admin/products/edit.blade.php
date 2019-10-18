@@ -66,7 +66,7 @@
                                     @else
                                         <label class="form-control-label" for="input-code">{{ __('Upload Image') }}</label>
                                     @endif
-                                    <input type="hidden" id=imgDB name="imgDB" value="{{$product->image}}">
+                                    <input type="hidden" id="imgDB" name="imgDB" value="{{$product->image}}">
                                     <div class="input-group">
                                         <span class="input-group-btn">
                                             <span class="btn btn-default btn-file">
