@@ -31,10 +31,10 @@
               <!-- <span>hot</span> -->
               <div class="product-action">
                 <addTowishList :productID="productID=product.id"></addTowishList>
-                <a class="animate-top" title="Add To Cart" href="#">
+                <!-- <a class="animate-top" title="Add To Cart" href="#">
                   <i class="pe-7s-cart"></i>
-                </a>
-                <a
+                </a> -->
+                <!-- <a
                   href
                   class="animate-right"
                   title="Quick View"
@@ -43,7 +43,7 @@
                   @click="quickView(product.id, product.image, product.name, product.description, product.price)"
                 >
                   <i class="pe-7s-look"></i>
-                </a>
+                </a> -->
               </div>
             </div>
             <div class="product-content">
@@ -80,7 +80,7 @@
               </a>
               <span>hot</span>
               <div class="product-action-list-style">
-                <a
+                <!-- <a
                   href
                   class="animate-right"
                   title="Quick View"
@@ -89,7 +89,7 @@
                   @click="quickView(product.id, product.image, product.name, product.description, product.price)"
                 >
                   <i class="pe-7s-look"></i>
-                </a>
+                </a> -->
               </div>
             </div>
             <div class="product-content-list">
@@ -101,9 +101,9 @@
                 <p>{{ product.description }}</p>
               </div>
               <div class="product-list-cart-wishlist">
-                <div class="product-list-cart">
+                <!-- <div class="product-list-cart">
                   <a class="btn-hover list-btn-style" href="#">add to cart</a>
-                </div>
+                </div> -->
                 <div class="product-list-wishlist">
                   <addTowishList
                     class="btn-hover list-btn-wishlist"

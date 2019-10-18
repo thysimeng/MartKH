@@ -13,10 +13,11 @@
       <div class="price_slider_amount">
         <div class="label-input">
           <label>price :</label>
-          <input type="number" v-model="priceMin" name="price" placeholder="Min" />
-          <input type="number" v-model="priceMax" name="price" placeholder="Max" />
+          Min$<input type="number" v-model="priceMin" name="price" placeholder="Min" />
+          Max$<input type="number" v-model="priceMax" name="price" placeholder="Max" />
         </div>
         <router-link
+          class="customerStyle"
           to="/products/filterByPrice"
           tag="button"
           @click.native="filterByPrice(priceMin, priceMax)"
@@ -87,6 +88,18 @@ export default {
 };
 </script>
 <style scoped>
+.customerStyle {
+  background-color: #626262;
+  border: none;
+  color: white;
+  padding: 3px 4px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  /* margin: 4px 2px; */
+  cursor: pointer;
+}
 .price-slider {
   position: relative;
   width: 100%;
