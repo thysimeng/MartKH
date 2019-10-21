@@ -575,9 +575,12 @@
         $(document).ready(function(){
             // console.log('ready');
             $godarkVal = Cookies.get('godark');
-            console.log(Cookies.get('godark'));
+            // console.log(Cookies.get('godark'));
+            $setCookiesGoDark = <?php echo $sidebar?>;
+            console.log($setCookiesGoDark);
             if(typeof $godarkVal==='undefined'){
-                Cookies.set('godark',0);
+                $godarkVal = $setCookiesGoDark;
+                // Cookies.set('godark',0);
                 // console.log(Cookies.get('godark'));
             }
             if($godarkVal == 1){

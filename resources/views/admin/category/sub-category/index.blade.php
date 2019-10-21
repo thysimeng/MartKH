@@ -5,74 +5,95 @@
 
     @if($sidebar==1)
         <div class="container-fluid bg-dark mt--7">
+            <div class="row">
+                    <div class="col">
+                        <div class="card bg-dark shadow text-white border">
+                            <div class="card-header border-0 bg-transparent">
+                                <ul class="nav nav-tabs card-header-tabs" id="bologna-list" role="tablist">
+                                    <div class="col-4 text-left">
+                                        <button type="button" class="btn " ><a href="/category" class="text-white">{{ __('Back') }}</a></button>
+                                    </div>
     @else
         <div class="container-fluid mt--7">
-    @endif
-        <div class="row">
-            <div class="col">
-                <div class="card shadow">
+            <div class="row">
+                <div class="col">
+                    <div class="card shadow">
                         <div class="card-header border-0">
-                                <ul class="nav nav-tabs card-header-tabs" id="bologna-list" role="tablist">
-                                            <div class="col-2 text-left">
-                                                <button type="button" class="btn " ><a href="/category">{{ __('Back') }}</a></button>
+                            <ul class="nav nav-tabs card-header-tabs" id="bologna-list" role="tablist">
+                                <div class="col-4 text-left">
+                                    <button type="button" class="btn " ><a href="/category">{{ __('Back') }}</a></button>
+                                </div>
+    @endif
+                            <form class="col-4" method="get" action="/admin/create_sub_category/search" autocomplete="off">
+                                {{ csrf_field() }}
+                                <div class="input-group input-group-alternative">
+                                    {{-- <div class="input-group-prepend">
+                                        <span class="input-group-text"><i class="fas fa-search"></i></span>
+                                    </div> --}}
+                                <input class="form-control" placeholder="Search" type="text" name="search" id="search" value="" style="border: 1px solid #11cdef">
+                                <span class="form-clear d-none"><i class="fas fa-times-circle">clear</i></span>
+                                <div class="input-group-append">
+                                    <button class="btn btn-info" type="submit"><i class="fa fa-search"></i></button>
+                                    </div>
+                                </div>
+                            </form>
+                            {{-- <form class="col-4" action="/admin/create_sub_category/search" method="get" role="search">
+                                {{ csrf_field() }}
+                                    <div class="form-group mb-4">
+                                        <div class="input-group input-group-alternative">
+                                            <div class="input-group-prepend">
+                                                <span class="input-group-text"><i class="fas fa-search"></i></span>
                                             </div>
+                                            <input class="form-control" placeholder="Search" type="text" name="search">
+                                        </div>
+                                    </div>
+                            </form> --}}
 
-                                            <form class="col-4" action="/admin/create_sub_category/search" method="get" role="search">
-                                                {{ csrf_field() }}
-                                                    <div class="form-group mb-4">
-                                                        <div class="input-group input-group-alternative">
-                                                            <div class="input-group-prepend">
-                                                                <span class="input-group-text"><i class="fas fa-search"></i></span>
-                                                            </div>
-                                                            <input class="form-control" placeholder="Search" type="text" name="search">
-                                                            {{-- <span class="form-group-btn">
-                                                                <button  type="submit" class="btn btn-primary">Search</button>
-                                                            </span> --}}
-                                                        </div>
-                                                    </div>
-                                            </form>
+                            <div class="col-4 text-right">
+                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">{{ __('Add Sub Category') }}</button>
 
-                                            <div class="col-6 text-right">
-                                                <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModalCenter">{{ __('Add Sub Category') }}</button>
-
-                                            </div>
-                                            <form class="form-horizontal" action="/admin/create_sub_category" enctype="multipart/form-data" method="post">
-                                                @csrf
-                                                <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                                                    <div class="modal-dialog modal-dialog-centered" role="document">
-                                                        <div class="modal-content">
-                                                            <div class="modal-header">
-                                                                <h5 class="modal-title" id="exampleModalCenterTitle">Add Sub Category</h5>
-                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                <span aria-hidden="true">&times;</span>
-                                                                </button>
-                                                            </div>
-                                                            <div class="modal-body">
-                                                                <label for="exampleFormControlSelect1">Category select</label>
-
-                                                                <select class="form-control" id="exampleFormControlSelect1" name="category_id">
-                                                                    @foreach($categories_data as $sub_item)
-                                                                        <option @if(old('category_id') == $sub_item->id) selected @endif value="{{$sub_item->id}}">{{$sub_item->categories_name}}</option>
-                                                                    @endforeach
-                                                                </select>
-                                                              </div>
-                                                            <div class="modal-body">
-                                                                <input type="text" class="form-control" name="sub_category" id="" value="" required placeholder="sub category">
-                                                            </div>
-                                                            <div class="modal-footer">
-                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                                <button type="submit" class="btn btn-primary">Save changes</button>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </div>
-                                            </form>
-
-                                </ul>
                             </div>
+                            <form class="form-horizontal" action="/admin/create_sub_category" enctype="multipart/form-data" method="post">
+                                @csrf
+                                <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                    <div class="modal-dialog modal-dialog-centered" role="document">
+                                        <div class="modal-content">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title" id="exampleModalCenterTitle">Add Sub Category</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body">
+                                                <label for="exampleFormControlSelect1">Category select</label>
+
+                                                <select class="form-control" id="exampleFormControlSelect1" name="category_id">
+                                                    @foreach($categories_data as $sub_item)
+                                                        <option @if(old('category_id') == $sub_item->id) selected @endif value="{{$sub_item->id}}">{{$sub_item->categories_name}}</option>
+                                                    @endforeach
+                                                </select>
+                                                </div>
+                                            <div class="modal-body">
+                                                <input type="text" class="form-control" name="sub_category" id="" value="" required placeholder="sub category">
+                                            </div>
+                                            <div class="modal-footer">
+                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                <button type="submit" class="btn btn-primary">Save changes</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </form>
+
+                        </ul>
+                    </div>
 
                     <div class="table-responsive">
-                        <table class="table align-items-center table-flush">
+                        @if($sidebar==1)
+                            <table class="table align-items-center table-flush table-hover table-dark">
+                        @else
+                            <table class="table align-items-center table-flush table-hover">
+                        @endif
                             <thead class="thead-light">
                                 <tr>
                                     <th scope="col">{{ __('Sub Category ID') }}</th>
@@ -127,10 +148,34 @@
                                             </div>
                                         </form>
                                     </div>
-
-                                    <div class="modal fade" id="editModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
-                                        <form action="/admin/sub_category/edit" method="post">
-                                            <div class="modal-dialog modal-dialog-centered" role="document">
+                                    @if($sidebar==1)
+                                        <div class="modal fade" id="editModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                            <form action="/admin/sub_category/edit" method="post">
+                                                <div class="modal-dialog modal-dialog-centered" role="document">
+                                                    <div class="modal-content bg-dark">
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title text-white" id="exampleModalCenterTitle">Edit Sub Category</h5>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true" class="text-white">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <input type="hidden" name="sub_category_id" value="" >
+                                                        @csrf
+                                                        <div class="modal-body">
+                                                            <input type="text" class="form-control" name="sub_category_name" value="" required placeholder="">
+                                                        </div>
+                                                        <div  class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                            <button onclick="saveEdit()"  class="btn btn-primary">Save changes</button>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </form>
+                                        </div>
+                                    @else
+                                        <div class="modal fade" id="editModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+                                            <form action="/admin/sub_category/edit" method="post">
+                                                <div class="modal-dialog modal-dialog-centered" role="document">
                                                     <div class="modal-content">
                                                         <div class="modal-header">
                                                             <h5 class="modal-title" id="exampleModalCenterTitle">Edit Sub Category</h5>
@@ -149,8 +194,9 @@
                                                         </div>
                                                     </div>
                                                 </div>
-                                        </form>
-                                    </div>
+                                            </form>
+                                        </div>
+                                    @endif
                                     @endforeach
                             </tbody>
                         </table>

@@ -7982,7 +7982,7 @@ exports = module.exports = __webpack_require__(/*! ../../../../../node_modules/c
 
 
 // module
-exports.push([module.i, "\n.customerStyle[data-v-6035fc83] {\n  background-color: #626262;\n  border: none;\n  color: white;\n  padding: 3px 4px;\n  text-align: center;\n  text-decoration: none;\n  display: inline-block;\n  font-size: 16px;\n  /* margin: 4px 2px; */\n  cursor: pointer;\n}\n.price-slider[data-v-6035fc83] {\n  position: relative;\n  width: 100%;\n  margin: 0 auto 20px;\n  height: 35px;\n  text-align: center;\n}\n.price-slider input[data-v-6035fc83] {\n  pointer-events: none;\n  position: absolute;\n  left: 0;\n  top: 15px;\n  width: 100%;\n  outline: none;\n  height: 18px;\n  margin: 0;\n  padding: 0;\n  border-radius: 8px;\n}\n.price-slider input[data-v-6035fc83]::-webkit-slider-thumb {\n  pointer-events: all;\n  position: relative;\n  z-index: 1;\n  outline: 0;\n  -webkit-appearance: none;\n  height: 24px;\n  width: 24px;\n  border-radius: 12px;\n  background-color: white;\n  border: 2px solid black;\n}\n", ""]);
+exports.push([module.i, "\n.customerStyle[data-v-6035fc83] {\r\n  background-color: #626262;\r\n  border: none;\r\n  color: white;\r\n  padding: 3px 4px;\r\n  text-align: center;\r\n  text-decoration: none;\r\n  display: inline-block;\r\n  font-size: 16px;\r\n  /* margin: 4px 2px; */\r\n  cursor: pointer;\n}\n.price-slider[data-v-6035fc83] {\r\n  position: relative;\r\n  width: 100%;\r\n  margin: 0 auto 20px;\r\n  height: 35px;\r\n  text-align: center;\n}\n.price-slider input[data-v-6035fc83] {\r\n  pointer-events: none;\r\n  position: absolute;\r\n  left: 0;\r\n  top: 15px;\r\n  width: 100%;\r\n  outline: none;\r\n  height: 18px;\r\n  margin: 0;\r\n  padding: 0;\r\n  border-radius: 8px;\n}\n.price-slider input[data-v-6035fc83]::-webkit-slider-thumb {\r\n  pointer-events: all;\r\n  position: relative;\r\n  z-index: 1;\r\n  outline: 0;\r\n  -webkit-appearance: none;\r\n  height: 24px;\r\n  width: 24px;\r\n  border-radius: 12px;\r\n  background-color: white;\r\n  border: 2px solid black;\n}\r\n", ""]);
 
 // exports
 
@@ -59699,8 +59699,8 @@ var routes = [{
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
-__webpack_require__(/*! E:\Project_IP\MartKH\MartKH Git\MartKH\resources\js\app.js */"./resources/js/app.js");
-module.exports = __webpack_require__(/*! E:\Project_IP\MartKH\MartKH Git\MartKH\resources\sass\app.scss */"./resources/sass/app.scss");
+__webpack_require__(/*! C:\Users\lyhea\Documents\GitHub\MartKH\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! C:\Users\lyhea\Documents\GitHub\MartKH\resources\sass\app.scss */"./resources/sass/app.scss");
 
 
 /***/ })
