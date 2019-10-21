@@ -474,31 +474,93 @@
                                 </div>
                             </form>
                         @else
-                            <div class="card-header">
+                        <div class="card-header">
                                 <h2>Two Colors Linear Gradient Theme</h2>
                             </div>
-                            <form method="post" action="{{ route('settings.basicColor') }}" autocomplete="off">
+                            <form method="post" action="{{route('settings.gradientColor')}}" autocomplete="off">
                                 @csrf
-                                <div class="card-body align-items-center text-center" style="border-radius:7px !important;">
+                                <div class="card-body align-items-center text-center border-top" style="border-radius:7px !important;">
                                     <div class="row">
                                         <div class="col-md-2 mt-2">
                                             <span>Hex</span>
                                         </div>
                                         {{-- <div class="col-md-2"></div> --}}
                                         <div class="col-md-5">
-                                            <input type="text" class="form-control form-control-alternative{{ $errors->has('basicColor') ? ' is-invalid' : '' }}" placeholder="Hex Code" id="basicColorValue" value="{{$res = preg_replace("/#/", "", $basicColor)}}" name="basicColor">
-                                            @if ($errors->has('basicColor'))
+                                            <input type="text" class="form-control form-control-alternative{{ $errors->has('gradientColor1') ? ' is-invalid' : '' }}" placeholder="Hex Code" id="gradientColorValue1" value="{{substr($gradientColor, strpos($gradientColor,', #') +3,6) }}" name="gradientColor1">
+                                            @if ($errors->has('gradientColor1'))
                                                 <span class="invalid-feedback" role="alert">
-                                                    <strong>{{ $errors->first('basicColor') }}</strong>
+                                                    <strong>{{ $errors->first('gradientColor1') }}</strong>
                                                 </span>
                                             @endif
                                         </div>
                                         <div class="col-md-5">
-                                            <input type="button" id="previewBasicColorButton" value="Color Palette" class="btn bg-gradient-red shadow-none--hover shadow-none text-white">
+                                            <input type="button" id="previewGradientColorButton1" value="Color Palette" class="btn bg-gradient-red shadow-none--hover shadow-none text-white">
+                                        </div>
+                                    </div>
+                                    <div class="row mt-3">
+                                        <div class="col-md-5 mt-2">
+                                            <span>Color Percentage</span>
+                                        </div>
+                                        {{-- <div class="col-md-2"></div> --}}
+                                        <div class="col-md-7">
+                                            <input type="text" class="form-control form-control-alternative{{ $errors->has('percent1') ? ' is-invalid' : '' }}" placeholder="Number of Percent" id="percentValue1" value="0" name="percent1">
+                                            @if ($errors->has('percent1'))
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $errors->first('percent1') }}</strong>
+                                                </span>
+                                            @endif
+                                        </div>
+                                    </div>
+                                    <div class="row mt-3">
+                                        <div class="col-md-2 mt-2">
+                                            <span >Hex</span>
+                                        </div>
+                                        {{-- <div class="col-md-2"></div> --}}
+                                        <div class="col-md-5">
+                                            <input type="text" class="form-control form-control-alternative{{ $errors->has('gradientColor2') ? ' is-invalid' : '' }}" placeholder="Hex Code" id="gradientColorValue2" value="{{substr($gradientColor, strpos($gradientColor,',#') +2,6) }}" name="gradientColor2">
+                                            @if ($errors->has('gradientColor2'))
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $errors->first('gradientColor2') }}</strong>
+                                                </span>
+                                            @endif
+                                        </div>
+                                        <div class="col-md-5">
+                                            <input type="button" id="previewGradientColorButton2" value="Color Palette" class="btn bg-gradient-red shadow-none--hover shadow-none text-white">
+                                        </div>
+                                    </div>
+                                    <div class="row mt-3">
+                                        <div class="col-md-5 mt-2">
+                                            <label>Color Percentage</label>
+                                        </div>
+                                        {{-- <div class="col-md-2"></div> --}}
+                                        <div class="col-md-7">
+                                            <input type="text" class="form-control form-control-alternative{{ $errors->has('percent2') ? ' is-invalid' : '' }}" placeholder="Number of Percent" id="percentValue2" value="100" name="percent2">
+                                            @if ($errors->has('percent2'))
+                                                <span class="invalid-feedback" role="alert">
+                                                    <strong>{{ $errors->first('percent2') }}</strong>
+                                                </span>
+                                            @endif
+                                        </div>
+                                    </div>
+                                    <div class="row mt-3">
+                                        <div class="col-md-3 mt-2">
+                                            <label class="form-control-label text-white">Direction</label>
+                                        </div>
+                                        <div class="col-md-9">
+                                            <select class="form-control" id="selectGradientDirection" name="direction">
+                                                <option value="to top">Top</option>
+                                                <option value="to bottom">Bottom</option>
+                                                <option value="to left">Left</option>
+                                                <option value="to right">Right</option>
+                                                <option value="to top left">Top Left</option>
+                                                <option value="to top right">Top Right</option>
+                                                <option value="to bottom left">Bottom Left</option>
+                                                <option value="to bottom right">Bottom Right</option>
+                                            </select>
                                         </div>
                                     </div>
                                     <div class="row mt-3 ml-4 mr-3">
-                                        <div class="col-md-12" id="basicColor" style="border:2px solid rgba(0, 0, 0, .05);width:100%;min-height:100px;background:{{$basicColor}}">
+                                        <div class="col-md-12" id="gradientColor" style="border:2px solid rgba(0, 0, 0, .05);width:100%;min-height:100px;">
                                         </div>
                                     </div>
                                     <div class="row mt-3 ml-4 mr-3">
