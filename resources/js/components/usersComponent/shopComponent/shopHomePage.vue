@@ -304,8 +304,8 @@
                       <option value="1">Default</option>
                       <option value="1">A to Z</option>
                       <option value="2">Z to A</option>
-                      <option value="3">price 1 to 9</option>
-                      <option value="4">price 9 to 1</option>
+                      <option value="3">price (Low to High)</option>
+                      <option value="4">price (High to Low)</option>
                       <!-- <option value=3>In stock</option> -->
                     </select>
                   </div>

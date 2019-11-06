@@ -8,6 +8,7 @@ use App\Models\Category;
 use App\Models\SubCategory;
 use App\Products;
 use DB;
+use auth;
 use Config;
 use Session;
 use Alert;
@@ -28,7 +29,8 @@ class ProductsController extends Controller
     }
     public function wishlistproducts()
     {
-        $food = DB::table('wishlists')->get();
+        $user_id=auth::user()->id;
+        $food = DB::table('wishlists')->where('user_id','=', $user_id)->get();
         return response()->json($food);
     }
     public function food()
