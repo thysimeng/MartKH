@@ -78,7 +78,7 @@
               >
                 <img :src="'/uploads/product_image/'+product.image" alt />
               </a>
-              <span>hot</span>
+              <!-- <span>hot</span> -->
               <div class="product-action-list-style">
                 <!-- <a
                   href
@@ -116,7 +116,7 @@
         </div>
       </div>
     </div>
-    <button v-if="products.length>12" class="btn-hover list-btn-style" @click="seeMoreUpdate">See more</button>
+    <button v-if="products.length>12" class="btn-hover list-btn-style" @click="seeMore+4">See more</button>
     <modalQuickView :productid="productid" @clearData="productid = $event"></modalQuickView>
   </div>
 </template>

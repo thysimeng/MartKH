@@ -53,7 +53,7 @@
                 </div>
               </div>-->
               <p>Description : {{ productid[productid.length-2] }}</p>
-              <!--<div class="quick-view-select">
+              <!-- <div class="quick-view-select">
                 <div class="select-option-part">
                   <label>Size*</label>
                   <select class="select">
@@ -71,21 +71,21 @@
                     <option value>yellow</option>
                   </select>
                 </div>
-              </div>-->
-              <!--<div class="quickview-plus-minus">
-                <div class="cart-plus-minus">
+              </div> -->
+              <!-- <div class="quickview-plus-minus"> -->
+                <!-- <div class="cart-plus-minus">
                   <input type="text" value="02" name="qtybutton" class="cart-plus-minus-box" />
                 </div>
                 <div class="quickview-btn-cart">
                   <a class="btn-hover-black" href="#">add to cart</a>
-                </div>-->
-                <!--<div class="quickview-btn-wishlist">
-                  <a class="btn-hover" href="#">
+                </div> -->
+                <!-- <div class="quickview-btn-wishlist"> -->
+                  <!-- <a class="btn-hover" href="#">
                     <i class="pe-7s-like"></i>
-                  </a>
-                  <addTowishList :productID="productID = productid[productid.length-5]" class="btn-hover"></addTowishList>
-                </div>-->
-              </div>
+                  </a>-->
+                  <!-- <addTowishList :productID="productID = productid[productid.length-5]" class="btn-hover"></addTowishList> -->
+                <!-- </div> -->
+              <!-- </div> -->
             </div>
           </div>
         </div>
