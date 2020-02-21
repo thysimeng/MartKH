@@ -7,7 +7,7 @@
         <!-- Brand -->
         <a class="navbar-brand pt-0" href="{{ route('home') }}">
             {{-- <img src="{{ asset('argon') }}/img/brand/blue.png" class="navbar-brand-img" alt="..."> --}}
-            <img src="{{ asset('icon') }}/mkh-logo.png" class="navbar-brand-img img-fluid" alt="...">
+            <img src="{{ asset('uploads') }}/logo/{{$logo}}" class="navbar-brand-img img-fluid" alt="...">
             {{-- <span class="text-danger">MartKH</span>  --}}
         </a>
         <!-- User -->
@@ -66,7 +66,7 @@
                     <div class="col-6 collapse-brand">
                         <a href="{{ route('home') }}">
                             {{-- <img src="{{ asset('argon') }}/img/brand/blue.png"> --}}
-                            <span class="text-danger">MartKH</span> 
+                            <span class="text-danger">MartKH</span>
                         </a>
                     </div>
                     <div class="col-6 collapse-close">
@@ -92,7 +92,7 @@
             <ul class="navbar-nav">
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('franchise') }}">
-                        <i class="ni ni-tv-2 text-primary"></i> {{ __('Dashboard') }}
+                        <i class="ni ni-tv-2 text-red"></i> {{ __('Dashboard') }}
                     </a>
                 </li>
 
@@ -102,11 +102,11 @@
                         <i class="fas fa-shopping-bag text-info"></i> {{ __('Product') }}
                     </a>
                 </li>
-                
+
                 <li class="nav-item">
                     <a class="nav-link" href="{{ route('franchise.stock') }}">
                         {{-- <i class="ni ni-tv-2 text-primary"></i>  --}}
-                        <i class="fas fa-cubes" style="color:#ffd600;"></i> {{ __('Stock') }}
+                        <i class="fas fa-cubes" style="color:orange;"></i> {{ __('Stock') }}
                     </a>
                 </li>
             </ul>

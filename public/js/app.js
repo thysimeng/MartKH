@@ -2511,6 +2511,9 @@ __webpack_require__.r(__webpack_exports__);
   methods: {
     quickView: function quickView(PID, image, name, description, price) {
       return this.productid.push(PID, image, name, description, price);
+    },
+    seeMoreUpdate: function seeMoreUpdate() {
+      this.seeMore = this.seeMore + 4;
     }
   },
   components: {
@@ -40185,18 +40188,16 @@ var render = function() {
         ]
       ),
       _vm._v(" "),
-      _c(
-        "button",
-        {
-          staticClass: "btn-hover list-btn-style",
-          on: {
-            click: function($event) {
-              _vm.seeMore + 4
-            }
-          }
-        },
-        [_vm._v("See more")]
-      ),
+      _vm.products.length > 12
+        ? _c(
+            "button",
+            {
+              staticClass: "btn-hover list-btn-style",
+              on: { click: _vm.seeMoreUpdate }
+            },
+            [_vm._v("See more")]
+          )
+        : _vm._e(),
       _vm._v(" "),
       _c("modalQuickView", {
         attrs: { productid: _vm.productid },
@@ -40614,29 +40615,6 @@ var render = function() {
                       "Description : " +
                         _vm._s(_vm.productid[_vm.productid.length - 2])
                     )
-                  ]),
-                  _vm._v(" "),
-                  _vm._m(4),
-                  _vm._v(" "),
-                  _c("div", { staticClass: "quickview-plus-minus" }, [
-                    _vm._m(5),
-                    _vm._v(" "),
-                    _vm._m(6),
-                    _vm._v(" "),
-                    _c(
-                      "div",
-                      { staticClass: "quickview-btn-wishlist" },
-                      [
-                        _c("addTowishList", {
-                          staticClass: "btn-hover",
-                          attrs: {
-                            productID: (_vm.productID =
-                              _vm.productid[_vm.productid.length - 5])
-                          }
-                        })
-                      ],
-                      1
-                    )
                   ])
                 ])
               ])
@@ -40726,59 +40704,6 @@ var staticRenderFns = [
         )
       ]
     )
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "quick-view-select" }, [
-      _c("div", { staticClass: "select-option-part" }, [
-        _c("label", [_vm._v("Size*")]),
-        _vm._v(" "),
-        _c("select", { staticClass: "select" }, [
-          _c("option", { attrs: { value: "" } }, [_vm._v("- Please Select -")]),
-          _vm._v(" "),
-          _c("option", { attrs: { value: "" } }, [_vm._v("900")]),
-          _vm._v(" "),
-          _c("option", { attrs: { value: "" } }, [_vm._v("700")])
-        ])
-      ]),
-      _vm._v(" "),
-      _c("div", { staticClass: "select-option-part" }, [
-        _c("label", [_vm._v("Color*")]),
-        _vm._v(" "),
-        _c("select", { staticClass: "select" }, [
-          _c("option", { attrs: { value: "" } }, [_vm._v("- Please Select -")]),
-          _vm._v(" "),
-          _c("option", { attrs: { value: "" } }, [_vm._v("orange")]),
-          _vm._v(" "),
-          _c("option", { attrs: { value: "" } }, [_vm._v("pink")]),
-          _vm._v(" "),
-          _c("option", { attrs: { value: "" } }, [_vm._v("yellow")])
-        ])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "cart-plus-minus" }, [
-      _c("input", {
-        staticClass: "cart-plus-minus-box",
-        attrs: { type: "text", value: "02", name: "qtybutton" }
-      })
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("div", { staticClass: "quickview-btn-cart" }, [
-      _c("a", { staticClass: "btn-hover-black", attrs: { href: "#" } }, [
-        _vm._v("add to cart")
-      ])
-    ])
   }
 ]
 render._withStripped = true
@@ -40933,11 +40858,11 @@ var render = function() {
                               ]),
                               _vm._v(" "),
                               _c("option", { attrs: { value: "3" } }, [
-                                _vm._v("price 1 to 9")
+                                _vm._v("price (Low to Higt)")
                               ]),
                               _vm._v(" "),
                               _c("option", { attrs: { value: "4" } }, [
-                                _vm._v("price 9 to 1")
+                                _vm._v("price (High to Low)")
                               ])
                             ]
                           )

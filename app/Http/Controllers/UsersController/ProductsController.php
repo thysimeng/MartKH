@@ -11,6 +11,7 @@ use DB;
 use Config;
 use Session;
 use Alert;
+use auth;
 use App\Customize;
 class ProductsController extends Controller
 {
@@ -28,7 +29,14 @@ class ProductsController extends Controller
     }
     public function wishlistproducts()
     {
-        $food = DB::table('wishlists')->get();
+        if (!Auth::user()){
+            return view('auth.login');
+        }
+        else
+        {
+            $user_id=auth::user()->id;
+        }
+        $food = DB::table('wishlists')->where('user_id', '=', $user_id)->get();
         return response()->json($food);
     }
     public function food()

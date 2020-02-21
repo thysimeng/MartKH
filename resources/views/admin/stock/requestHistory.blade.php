@@ -4,7 +4,7 @@
     @include('layouts.headers.cards')
 
     @if($sidebar==1)
-        <div class="container-fluid bg-dark mt--7">
+        <div class="container-fluid bg-dark mt--7" style="min-height:660px;">
             <div class="row">
                 <div class="col">
                     <div class="card bg-dark shadow border">

@@ -144,10 +144,10 @@
                         @endif
                         <ul class="single-dropdown">
                             <li>
-                                <router-link to="/products/food" @click.native="showPage()">Food</router-link>
+                                <router-link to="/products/food" @click.native="showPage()">Baverage</router-link>
                             </li>
                             <li>
-                                <router-link to="/products/drink" @click.native="showPage()">Drink</router-link>
+                                <router-link to="/products/drink" @click.native="showPage()">Dairy</router-link>
                             </li>
                             {{-- <li><a href="blog-2-col.html">blog 2 colunm</a></li>
                                             <li><a href="blog-sidebar.html">blog sidebar</a></li>

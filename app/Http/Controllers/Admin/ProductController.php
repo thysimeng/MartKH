@@ -34,7 +34,7 @@ class ProductController extends Controller
                             ->orWhere('view','like','%'.$keyword.'%')
                             // ->orWhere('created_at','like','%'.$keyword.'%')
                             // ->orWhere('updated_at','like','%'.$keyword.'%')
-            ->paginate(3);
+            ->paginate(5);
         $products->withPath('products');
         $products->appends($request->all());
         if ($request->ajax()) {
@@ -66,9 +66,9 @@ class ProductController extends Controller
      */
     public function store(Request $request)
     {
-        // dd(Cookie::has('godark'));
         $this-> validate($request,[
-            'image' => 'image|mimes:jpeg,png,jpg,gif,svg|max:2048',
+            // 'image' => 'required|image|mimes:jpeg,bmp,png|max:2048',
+            'image' => 'required|image|max:2048',
             'code' => 'required|unique:products',
             'name' => 'required|unique:products',
             //decimal with 2 digits floating point
@@ -98,7 +98,6 @@ class ProductController extends Controller
         $products->subcategory_id = $request->input('subcategory_id');
         $products->save();
         Alert::success('Product Creation', 'Successfully Created');
-        // return redirect()->route('products.index')->withStatus(__('Product successfully created.'));
         return redirect()->route('products.index');
     }
 
@@ -122,11 +121,8 @@ class ProductController extends Controller
      */
     public function edit($id)
     {
-        // $product = Products::where('pid',$id)->get()->first();
         $product = Products::find($id);
         $subcategories = SubCategory::all();
-        // $page = url()->current();
-        // return view('admin.products.edit',compact('product','subcategories','page'));
         return view('admin.products.edit',compact('product','subcategories'));
     }
 
@@ -139,7 +135,6 @@ class ProductController extends Controller
      */
     public function update(Request $request, $id)
     {
-        // dd($request);
         $products = Products::findOrFail($id);
         $this-> validate($request,[
             'imgDB' => '',
@@ -154,8 +149,6 @@ class ProductController extends Controller
             'description' => 'required',
             'page' => '',
         ]);
-        //return $this;
-        // $products = Products::find($id);
         $page = $request->input('page');
         if($request->hasFile('image')){
             // upload a new file
@@ -179,12 +172,9 @@ class ProductController extends Controller
         $products->brand = $request->input('brand');
         $products->country = $request->input('country');
         $products->subcategory_id = $request->input('subcategory_id');
-        // return $products;
         $products->save();
-        // return redirect('/admin/products')->withStatus(__('Product successfully created.'));
         Alert::success('Product Update', 'Successfully Updated');
         return redirect('admin/products?page='.$page);
-        // return redirect()->route('products.index')->withStatus(__('Product successfully updated.'));
     }
 
     /**
@@ -200,8 +190,8 @@ class ProductController extends Controller
         File::delete(public_path('uploads\product_image\\' . $image_path));
         $product->delete();
         return redirect()->route('products.index');
-        // return redirect()->route('products.index')->withStatus(__('Product successfully deleted.'));
     }
+
     // Filter product
     // public function filter()
     // {

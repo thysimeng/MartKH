@@ -4,7 +4,7 @@
     @include('layouts.headers.cards')
 
     @if($sidebar==1)
-        <div class="container-fluid bg-dark mt--7">
+        <div class="container-fluid bg-dark mt--7" style="min-height:660px;">
             <div class="row">
                 <div class="col">
                     <div class="card bg-dark shadow border">
@@ -55,7 +55,17 @@
                                 @csrf
                                 <div class="modal fade" id="addStock" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-centered" role="document">
-                                        <div class="modal-content">
+                                        @if($sidebar==1)
+                                            <div class="modal-content" style="border:1px solid white">
+                                            <div class="modal-header bg-dark text-white">
+                                                <h5 class="modal-title text-white" id="exampleModalCenterTitle">Add New Stock</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                <span class="text-white" aria-hidden="true">&times;</span>
+                                                </button>
+                                            </div>
+                                            <div class="modal-body bg-dark text-white">
+                                        @else
+                                            <div class="modal-content">
                                             <div class="modal-header">
                                                 <h5 class="modal-title" id="exampleModalCenterTitle">Add New Stock</h5>
                                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
@@ -63,6 +73,7 @@
                                                 </button>
                                             </div>
                                             <div class="modal-body">
+                                        @endif
                                                     <label for="exampleFormControlSelect1">Select Product</label>
                                                     <input type="hidden" class="form-control" name="product_id" id="" value="">
                                                     <input type="text" class="typeahead form-control" name="product_name" required placeholder="Search Products" autocomplete="off">
@@ -72,13 +83,24 @@
                                                 <input type="hidden" class="form-control" name="franchise_id" id="" value="">
                                                 <input type="text" class="typeahead form-control" name="franchise_name" required placeholder="Search Franchise">
                                             </div> --}}
-                                            <div class="modal-body">
+                                            @if($sidebar==1)
+                                                <div class="modal-body bg-dark text-white">
+                                            @else
+                                                <div class="modal-body">
+                                            @endif
                                                 <input type="text" class="form-control" name="amount" id="" value="" required placeholder="Amount">
                                             </div>
-                                            <div class="modal-footer">
-                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                <button type="submit" class="btn btn-primary">Save changes</button>
-                                            </div>
+                                            @if($sidebar==1)
+                                                <div class="modal-footer bg-dark">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                    <button type="submit" class="btn btn-primary">Save changes</button>
+                                                </div>
+                                            @else
+                                                <div class="modal-footer">
+                                                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                    <button type="submit" class="btn btn-primary">Save changes</button>
+                                                </div>
+                                            @endif
                                             <input type="hidden" name="enter_by" value="{{auth()->user()->name}}">
                                         </div>
                                     </div>
@@ -169,31 +191,60 @@
                                                     <div class="modal fade" id="editModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                                                         <form action="{{ route('admin.update_stock') }}" method="post">
                                                             <div class="modal-dialog modal-dialog-centered" role="document">
+                                                                @if($sidebar==1)
+                                                                <div class="modal-content" style="border:1px solid white !important">
+                                                                    <div class="modal-header bg-dark">
+                                                                        <h5 class="modal-title text-white" id="exampleModalCenterTitle">Update Stock</h5>
+                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                        <span class="text-white" aria-hidden="true">&times;</span>
+                                                                        </button>
+                                                                    </div>
+                                                                    <div class="modal-body bg-dark">
+                                                                        <label for="exampleFormControlSelect1" class="text-white">Old Stocks</label>
+                                                                @else
                                                                 <div class="modal-content">
-                                                                        <div class="modal-header">
-                                                                            <h5 class="modal-title" id="exampleModalCenterTitle">Update Stock</h5>
-                                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                            <span aria-hidden="true">&times;</span>
-                                                                            </button>
-                                                                        </div>
-                                                                        <div class="modal-body">
-                                                                            <label for="exampleFormControlSelect1">Old Stocks</label>
+                                                                    <div class="modal-header">
+                                                                        <h5 class="modal-title" id="exampleModalCenterTitle">Update Stock</h5>
+                                                                        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                        <span aria-hidden="true">&times;</span>
+                                                                        </button>
+                                                                    </div>
+                                                                    <div class="modal-body">
+                                                                        <label for="exampleFormControlSelect1">Old Stocks</label>
+                                                                @endif
                                                                             <input type="hidden" name="stock_id" value="" >
                                                                             @csrf
                                                                             <input disabled="false" type="text" class="form-control" name="old-amount" value="" required placeholder="">
                                                                         </div>
+                                                                        @if($sidebar==1)
+                                                                        <div class="modal-body bg-dark">
+                                                                            <label for="exampleFormControlSelect1" class="text-white">New Stocks</label>
+                                                                        @else
                                                                         <div class="modal-body">
                                                                             <label for="exampleFormControlSelect1">New Stocks</label>
+                                                                        @endif
                                                                             <input type="text" class="form-control" name="new-amount" value="" required placeholder="">
                                                                         </div>
+                                                                        @if($sidebar==1)
+                                                                        <div class="modal-body bg-dark">
+                                                                            <label for="exampleFormControlSelect1" class="text-white">Reason</label>
+                                                                        @else
                                                                         <div class="modal-body">
                                                                             <label for="exampleFormControlSelect1">Reason</label>
+                                                                        @endif
                                                                             <input type="text" class="form-control" name="reason" value="" required placeholder="Provide reason for editing">
                                                                         </div>
-                                                                        <div  class="modal-footer">
-                                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                                            <button onclick="saveEdit()"  class="btn btn-primary">Save changes</button>
-                                                                        </div>
+                                                                        @if($sidebar==1)
+                                                                            <div class="modal-footer bg-dark">
+                                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                                <button onclick="saveEdit()"  class="btn btn-primary">Save changes</button>
+                                                                            </div>
+                                                                        @else
+                                                                            <div class="modal-footer">
+                                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                                <button onclick="saveEdit()"  class="btn btn-primary">Save changes</button>
+                                                                            </div>
+                                                                        @endif
                                                                 </div>
                                                             </div>
                                                         </form>

@@ -7,7 +7,7 @@
         <meta name="csrf-token" content="{{ csrf_token() }}">
         <title>{{ config('app.name', 'MartKH DashBoard') }}</title>
         <!-- Favicon -->
-        <link href="{{ asset('icon') }}/mkh.png" rel="icon" type="image/png">
+        <link href="{{ asset('uploads') }}/logo/{{$logo}}" rel="icon" type="image/png">
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,600,700" rel="stylesheet">
         <!-- Icons -->
