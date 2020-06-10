@@ -4,25 +4,25 @@
     @include('layouts.headers.cards')
 
     @if($sidebar==1)
-        <div class="container-fluid bg-dark mt--7">
+        <div class="container-fluid bg-dark mt--7" style="min-height:660px;">
             <div class="row">
-                    <div class="col">
-                        <div class="card bg-dark shadow text-white border">
-                            <div class="card-header bg-transparent">
-                                <div class="row align-items-center">
-                                    <div class="col-4">
-                                        <h3 class="mb-0 text-white">Products</h3>
-                                    </div>
+                <div class="col">
+                    <div class="card bg-dark shadow text-white border">
+                        <div class="card-header bg-transparent">
+                            <div class="row align-items-center">
+                                <div class="col-4">
+                                    <h3 class="mb-0 text-white">Products</h3>
+                                </div>
     @else
         <div class="container-fluid mt--7">
             <div class="row">
-                    <div class="col">
-                        <div class="card shadow">
-                            <div class="card-header border-0">
-                                <div class="row align-items-center">
-                                    <div class="col-4">
-                                        <h3 class="mb-0">Products</h3>
-                                    </div>
+                <div class="col">
+                    <div class="card shadow">
+                        <div class="card-header border-0">
+                            <div class="row align-items-center">
+                                <div class="col-4">
+                                    <h3 class="mb-0">Products</h3>
+                                </div>
     @endif
                                     <form class="col-4 mb-2 mt-2" method="get" action="{{ route('products.index') }}">
                                                 <div class="input-group input-group-alternative">
@@ -198,56 +198,60 @@
                 });
             }
         </script>
-
-    <script>
-        //view modal
-        $(document).ready(function(){
-            $(function() {
-                $('#viewProduct').on("show.bs.modal", function (e) {
-                    $("#id").html($(e.relatedTarget).data('id'));
-                    $("#name").html($(e.relatedTarget).data('name'));
-                    $("#code").html($(e.relatedTarget).data('code'));
-                    $("#brand").html($(e.relatedTarget).data('brand'));
-                    $("#price").html($(e.relatedTarget).data('price'));
-                    $("#size").html($(e.relatedTarget).data('size'));
-                    $("#country").html($(e.relatedTarget).data('country'));
-                    $("#description").html($(e.relatedTarget).data('description'));
-                    $("#subcategory_id").html($(e.relatedTarget).data('subcategory_id'));
-                    $("#created_at").html($(e.relatedTarget).data('created_at'));
-                    // $("#update").html($(e.relatedTarget).data('updated_at'));
-                    // $('#imagesrc').attr('src',$("#image").html($(e.relatedTarget).data('image'));
+        <script>
+            //view modal
+            $(document).ready(function(){
+                $(function() {
+                    $('#viewProduct').on("show.bs.modal", function (e) {
+                        $("#id").html($(e.relatedTarget).data('id'));
+                        $("#name").html($(e.relatedTarget).data('name'));
+                        $("#code").html($(e.relatedTarget).data('code'));
+                        $("#brand").html($(e.relatedTarget).data('brand'));
+                        $("#price").html($(e.relatedTarget).data('price'));
+                        $("#size").html($(e.relatedTarget).data('size'));
+                        $("#country").html($(e.relatedTarget).data('country'));
+                        $("#description").html($(e.relatedTarget).data('description'));
+                        $("#subcategory_id").html($(e.relatedTarget).data('subcategory_id'));
+                        $("#created_at").html($(e.relatedTarget).data('created_at'));
+                        // $("#update").html($(e.relatedTarget).data('updated_at'));
+                        // $('#imagesrc').attr('src',$("#image").html($(e.relatedTarget).data('image'));
+                    });
                 });
             });
-        });
-        $(document).on("click", ".openImageDialog", function () {
-            var imgsrc = $(this).data('image');
-            var imgsrc_path = '/uploads/product_image/'.concat(imgsrc);
-            $('#imagesrc').attr('src',imgsrc_path);
-            // console.log(imgsrc);
-        });
-        $('.delete-btn').click(function(e){
-            e.preventDefault();
-            Swal.fire({
-                title: 'Warning',
-                text: "Are you sure you want to delete this product?",
-                type: 'warning',
-                showCancelButton: true,
-                confirmButtonColor: '#3085d6',
-                cancelButtonColor: '#d33',
-                confirmButtonText: 'Yes'
-            }).then((result) => {
-            if (result.value) {
-                this.parentElement.submit()
-            }
-            })
-        });
-    </script>
-        @include('layouts.footers.auth')
-    </div>
+            $(document).on("click", ".openImageDialog", function () {
+                var imgsrc = $(this).data('image');
+                var imgsrc_path = '/uploads/product_image/'.concat(imgsrc);
+                $('#imagesrc').attr('src',imgsrc_path);
+                // console.log(imgsrc);
+            });
+            $('.delete-btn').click(function(e){
+                e.preventDefault();
+                Swal.fire({
+                    title: 'Warning',
+                    text: "Are you sure you want to delete this product?",
+                    type: 'warning',
+                    showCancelButton: true,
+                    confirmButtonColor: '#3085d6',
+                    cancelButtonColor: '#d33',
+                    confirmButtonText: 'Yes'
+                }).then((result) => {
+                if (result.value) {
+                    this.parentElement.submit()
+                }
+                })
+            });
+        </script>
+            @include('layouts.footers.auth')
+            </div>
+        </div>
     <div class="modal fade" id="viewProduct" tabindex="-1" role="dialog" aria-labelledby="viewProductTitle" aria-hidden="true">
             <div class="modal-dialog modal-xxl modal-dialog-centered" role="document">
               <div class="modal-content">
+                @if($gradientColor===NULL)
                 <div class="modal-header" style="background:{{$basicColor}}">
+                @else
+                <div class="modal-header" style="background:{{$gradientColor}}">
+                @endif
                 <h3 class="modal-title text-white">Product Information :</h3>
                   <button type="button" class="close" data-dismiss="modal" aria-label="Close">
                     <span aria-hidden="true" class="text-white">&times;</span>
@@ -342,9 +346,9 @@
                         </div>
                     </div>
                 </div>
-              </div>
             </div>
         </div>
+    </div>
 @endsection
 
 

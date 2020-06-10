@@ -4,7 +4,7 @@
     @include('layouts.headers.cards')
 
     @if($sidebar==1)
-        <div class="container-fluid bg-dark mt--7">
+        <div class="container-fluid bg-dark mt--7" style="min-height:660px;">
             <div class="row">
                 <div class="col">
                     <div class="card bg-dark shadow border">
@@ -28,10 +28,11 @@
                                     {{ csrf_field() }}
                                     <div class="form-group mb-2 mt-2">
                                         <div class="input-group input-group-alternative">
-                                            <div class="input-group-prepend">
-                                                <span class="input-group-text"><i class="fas fa-search"></i></span>
+                                            <input class="form-control" placeholder="Search" type="text" name="search" id="search" value="" style="border: 1px solid #11cdef">
+                                            <span class="form-clear d-none"><i class="fas fa-times-circle">clear</i></span>
+                                            <div class="input-group-append">
+                                                <button class="btn btn-info" type="submit"><i class="fa fa-search"></i></button>
                                             </div>
-                                            <input class="form-control" placeholder="Search" type="text" name="search">
                                         </div>
                                     </div>
                             </form>

@@ -52,9 +52,11 @@
                         <div class="slider-area">
                             <div class="slider-active-3 owl-carousel owl-theme">
                                 @foreach ($adsTopRight1 as $adTopRight1)
-                                <img src="{{ asset('uploads/ads_image/template1/adsTopRight/'.$adTopRight1->image)}}"
+                                <div data-dot="<span></span>">
+                                    <img src="{{ asset('uploads/ads_image/template1/adsTopRight/'.$adTopRight1->image)}}"
                                     style="object-fit:scale-down;max-height:350px" class="img-fluid float-right mt-2"
                                     alt="">
+                                </div>
                                 @endforeach
                             </div>
                         </div>
@@ -63,8 +65,10 @@
                         <div class="slider-area">
                             <div class="slider-active-3 owl-carousel owl-theme">
                                 @foreach ($adsBottomRight1 as $adBottomRight1)
-                                <img src="{{ asset('uploads/ads_image/template1/adsBottomRight/'.$adBottomRight1->image)}}"
+                                <div data-dot="<span></span>">
+                                    <img src="{{ asset('uploads/ads_image/template1/adsBottomRight/'.$adBottomRight1->image)}}"
                                     style="object-fit:scale-down;max-height:350px" class="img-fluid float-right" alt="">
+                                </div>
                                 @endforeach
                             </div>
                         </div>

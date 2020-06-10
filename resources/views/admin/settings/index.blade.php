@@ -104,10 +104,10 @@
                                 @csrf
                                 <div class="card-body bg-dark align-items-center text-center border-top" style="border-radius:7px !important;">
                                     <div class="row">
-                                        <div class="col-md-2 mt-2">
+                                        <div class="col-md-2 mt-2 ml-3">
                                             <span class="text-white">Hex</span>
                                         </div>
-                                        {{-- <div class="col-md-2"></div> --}}
+                                        <!-- {{-- <div class="col-md-2"></div> --}} -->
                                         <div class="col-md-5">
                                             <input type="text" class="form-control form-control-alternative{{ $errors->has('basicColor') ? ' is-invalid' : '' }}" placeholder="Hex Code" id="basicColorValue" value="{{$res = preg_replace("/#/", "", $basicColor)}}" name="basicColor">
                                             @if ($errors->has('basicColor'))
@@ -116,7 +116,7 @@
                                                 </span>
                                             @endif
                                         </div>
-                                        <div class="col-md-5">
+                                        <div class="col-md-4">
                                             <input type="button" id="previewBasicColorButton" value="Color Palette" class="btn bg-gradient-red shadow-none--hover shadow-none text-white">
                                         </div>
                                     </div>
@@ -137,10 +137,10 @@
                                 @csrf
                                 <div class="card-body align-items-center text-center" style="border-radius:7px !important;">
                                     <div class="row">
-                                        <div class="col-md-2 mt-2">
+                                        <div class="col-md-2 mt-2 ml-3">
                                             <span>Hex</span>
                                         </div>
-                                        {{-- <div class="col-md-2"></div> --}}
+                                        <!-- {{-- <div class="col-md-2"></div> --}} -->
                                         <div class="col-md-5">
                                             <input type="text" class="form-control form-control-alternative{{ $errors->has('basicColor') ? ' is-invalid' : '' }}" placeholder="Hex Code" id="basicColorValue" value="{{$res = preg_replace("/#/", "", $basicColor)}}" name="basicColor">
                                             @if ($errors->has('basicColor'))
@@ -149,7 +149,7 @@
                                                 </span>
                                             @endif
                                         </div>
-                                        <div class="col-md-5">
+                                        <div class="col-md-4">
                                             <input type="button" id="previewBasicColorButton" value="Color Palette" class="btn bg-gradient-red shadow-none--hover shadow-none text-white">
                                         </div>
                                     </div>
@@ -374,10 +374,10 @@
                                 @csrf
                                 <div class="card-body bg-dark align-items-center text-center border-top" style="border-radius:7px !important;">
                                     <div class="row">
-                                        <div class="col-md-2 mt-2">
+                                        <div class="col-md-2 mt-2" style="margin-left:12px">
                                             <span class="text-white">Hex</span>
                                         </div>
-                                        {{-- <div class="col-md-2"></div> --}}
+                                        <!-- {{-- <div class="col-md-2"></div> --}} -->
                                         <div class="col-md-5">
                                             <input type="text" class="form-control form-control-alternative{{ $errors->has('gradientColor1') ? ' is-invalid' : '' }}" placeholder="Hex Code" id="gradientColorValue1" value="{{substr($gradientColor, strpos($gradientColor,', #') +3,6) }}" name="gradientColor1">
                                             @if ($errors->has('gradientColor1'))
@@ -386,7 +386,7 @@
                                                 </span>
                                             @endif
                                         </div>
-                                        <div class="col-md-5">
+                                        <div class="col-md-4">
                                             <input type="button" id="previewGradientColorButton1" value="Color Palette" class="btn bg-gradient-red shadow-none--hover shadow-none text-white">
                                         </div>
                                     </div>
@@ -394,8 +394,8 @@
                                         <div class="col-md-5 mt-2">
                                             <span class="text-white">Color Percentage</span>
                                         </div>
-                                        {{-- <div class="col-md-2"></div> --}}
-                                        <div class="col-md-7">
+                                        <!-- {{-- <div class="col-md-2"></div> --}} -->
+                                        <div class="col-md-7" style="padding-right:2.4rem">
                                             <input type="text" class="form-control form-control-alternative{{ $errors->has('percent1') ? ' is-invalid' : '' }}" placeholder="Number of Percent" id="percentValue1" value="0" name="percent1">
                                             @if ($errors->has('percent1'))
                                                 <span class="invalid-feedback" role="alert">
@@ -405,10 +405,10 @@
                                         </div>
                                     </div>
                                     <div class="row mt-3">
-                                        <div class="col-md-2 mt-2">
+                                        <div class="col-md-2 mt-2" style="margin-left:12px">
                                             <span class="text-white">Hex</span>
                                         </div>
-                                        {{-- <div class="col-md-2"></div> --}}
+                                        <!-- {{-- <div class="col-md-2"></div> --}} -->
                                         <div class="col-md-5">
                                             <input type="text" class="form-control form-control-alternative{{ $errors->has('gradientColor2') ? ' is-invalid' : '' }}" placeholder="Hex Code" id="gradientColorValue2" value="{{substr($gradientColor, strpos($gradientColor,',#') +2,6) }}" name="gradientColor2">
                                             @if ($errors->has('gradientColor2'))
@@ -417,7 +417,7 @@
                                                 </span>
                                             @endif
                                         </div>
-                                        <div class="col-md-5">
+                                        <div class="col-md-4">
                                             <input type="button" id="previewGradientColorButton2" value="Color Palette" class="btn bg-gradient-red shadow-none--hover shadow-none text-white">
                                         </div>
                                     </div>
@@ -425,8 +425,8 @@
                                         <div class="col-md-5 mt-2">
                                             <label class="text-white">Color Percentage</label>
                                         </div>
-                                        {{-- <div class="col-md-2"></div> --}}
-                                        <div class="col-md-7">
+                                        <!-- {{-- <div class="col-md-2"></div> --}} -->
+                                        <div class="col-md-7" style="padding-right:2.4rem">
                                             <input type="text" class="form-control form-control-alternative{{ $errors->has('percent2') ? ' is-invalid' : '' }}" placeholder="Number of Percent" id="percentValue2" value="100" name="percent2">
                                             @if ($errors->has('percent2'))
                                                 <span class="invalid-feedback" role="alert">
@@ -435,7 +435,7 @@
                                             @endif
                                         </div>
                                     </div>
-                                    {{-- <div class="form-group">
+                                    <!-- {{-- <div class="form-group">
                                         <div class="col-md-3 mt-2">
                                             <label class="form-control-label text-white">Direction</label>
                                         </div>
@@ -446,12 +446,13 @@
                                                 <option>Barbecue</option>
                                             </select>
                                         </div>
-                                    </div> --}}
+                                    </div> --}} -->
                                     <div class="row mt-3">
-                                        <div class="col-md-3 mt-2">
-                                            <label class="form-control-label text-white">Direction</label>
+                                        <div class="col-md-3 mt-2" style="margin-left:12px">
+                                            <!-- <label class="form-control-label text-white">Direction</label> -->
+                                            <label class="text-white">Direction</label>
                                         </div>
-                                        <div class="col-md-9">
+                                        <div class="col-md-8" style="padding-right:0.7rem">
                                             <select class="form-control" id="selectGradientDirection" name="direction">
                                                 <option value="to top">Top</option>
                                                 <option value="to bottom">Bottom</option>
@@ -474,17 +475,17 @@
                                 </div>
                             </form>
                         @else
-                        <div class="card-header">
+                            <div class="card-header">
                                 <h2>Two Colors Linear Gradient Theme</h2>
                             </div>
                             <form method="post" action="{{route('settings.gradientColor')}}" autocomplete="off">
                                 @csrf
                                 <div class="card-body align-items-center text-center border-top" style="border-radius:7px !important;">
                                     <div class="row">
-                                        <div class="col-md-2 mt-2">
+                                        <div class="col-md-2 mt-2" style="margin-left:12px">
                                             <span>Hex</span>
                                         </div>
-                                        {{-- <div class="col-md-2"></div> --}}
+                                        <!-- {{-- <div class="col-md-2"></div> --}} -->
                                         <div class="col-md-5">
                                             <input type="text" class="form-control form-control-alternative{{ $errors->has('gradientColor1') ? ' is-invalid' : '' }}" placeholder="Hex Code" id="gradientColorValue1" value="{{substr($gradientColor, strpos($gradientColor,', #') +3,6) }}" name="gradientColor1">
                                             @if ($errors->has('gradientColor1'))
@@ -493,7 +494,7 @@
                                                 </span>
                                             @endif
                                         </div>
-                                        <div class="col-md-5">
+                                        <div class="col-md-4">
                                             <input type="button" id="previewGradientColorButton1" value="Color Palette" class="btn bg-gradient-red shadow-none--hover shadow-none text-white">
                                         </div>
                                     </div>
@@ -501,8 +502,8 @@
                                         <div class="col-md-5 mt-2">
                                             <span>Color Percentage</span>
                                         </div>
-                                        {{-- <div class="col-md-2"></div> --}}
-                                        <div class="col-md-7">
+                                        <!-- {{-- <div class="col-md-2"></div> --}} -->
+                                        <div class="col-md-7" style="padding-right:2.4rem">
                                             <input type="text" class="form-control form-control-alternative{{ $errors->has('percent1') ? ' is-invalid' : '' }}" placeholder="Number of Percent" id="percentValue1" value="0" name="percent1">
                                             @if ($errors->has('percent1'))
                                                 <span class="invalid-feedback" role="alert">
@@ -512,10 +513,10 @@
                                         </div>
                                     </div>
                                     <div class="row mt-3">
-                                        <div class="col-md-2 mt-2">
-                                            <span >Hex</span>
+                                        <div class="col-md-2 mt-2" style="margin-left:12px">
+                                            <span>Hex</span>
                                         </div>
-                                        {{-- <div class="col-md-2"></div> --}}
+                                        <!-- {{-- <div class="col-md-2"></div> --}} -->
                                         <div class="col-md-5">
                                             <input type="text" class="form-control form-control-alternative{{ $errors->has('gradientColor2') ? ' is-invalid' : '' }}" placeholder="Hex Code" id="gradientColorValue2" value="{{substr($gradientColor, strpos($gradientColor,',#') +2,6) }}" name="gradientColor2">
                                             @if ($errors->has('gradientColor2'))
@@ -524,7 +525,7 @@
                                                 </span>
                                             @endif
                                         </div>
-                                        <div class="col-md-5">
+                                        <div class="col-md-4">
                                             <input type="button" id="previewGradientColorButton2" value="Color Palette" class="btn bg-gradient-red shadow-none--hover shadow-none text-white">
                                         </div>
                                     </div>
@@ -532,8 +533,8 @@
                                         <div class="col-md-5 mt-2">
                                             <label>Color Percentage</label>
                                         </div>
-                                        {{-- <div class="col-md-2"></div> --}}
-                                        <div class="col-md-7">
+                                        <!-- {{-- <div class="col-md-2"></div> --}} -->
+                                        <div class="col-md-7" style="padding-right:2.4rem">
                                             <input type="text" class="form-control form-control-alternative{{ $errors->has('percent2') ? ' is-invalid' : '' }}" placeholder="Number of Percent" id="percentValue2" value="100" name="percent2">
                                             @if ($errors->has('percent2'))
                                                 <span class="invalid-feedback" role="alert">
@@ -542,11 +543,24 @@
                                             @endif
                                         </div>
                                     </div>
-                                    <div class="row mt-3">
+                                    <!-- {{-- <div class="form-group">
                                         <div class="col-md-3 mt-2">
                                             <label class="form-control-label text-white">Direction</label>
                                         </div>
-                                        <div class="col-md-9">
+                                        <div class="col-md-9 mt-2">
+                                            <select class="form-control">
+                                                <option>Mustard</option>
+                                                <option>Ketchup</option>
+                                                <option>Barbecue</option>
+                                            </select>
+                                        </div>
+                                    </div> --}} -->
+                                    <div class="row mt-3">
+                                        <div class="col-md-3 mt-2" style="margin-left:12px">
+                                            <!-- <label class="form-control-label text-white">Direction</label> -->
+                                            <label>Direction</label>
+                                        </div>
+                                        <div class="col-md-8" style="padding-right:0.7rem">
                                             <select class="form-control" id="selectGradientDirection" name="direction">
                                                 <option value="to top">Top</option>
                                                 <option value="to bottom">Bottom</option>
@@ -609,15 +623,12 @@
 
     <script>
         function godark(val){
-            // console.log(val)
             if(val==1){
                 Cookies.set('godark',1);
             }
             else if(val==0){
                 Cookies.set('godark',0);
             }
-            // Cookies.set('godark',0);
-            // console.log(Cookies.get('godark'));
             let URL = '<?php echo URL::to('/') ?>';
             let token = '<?php echo csrf_token() ?>';
             $.ajax({
@@ -625,7 +636,6 @@
                 url: `${URL}/admin/settings/godark`,
                 data: { _token: token ,dark:val},
                 success:function(data) {
-                    // alert();
                     console.log(data);
                     window.location.href = `${URL}/admin/settings`;
                 },
@@ -635,15 +645,11 @@
             });
         }
         $(document).ready(function(){
-            // console.log('ready');
             $godarkVal = Cookies.get('godark');
-            // console.log(Cookies.get('godark'));
             $setCookiesGoDark = <?php echo $sidebar?>;
             console.log($setCookiesGoDark);
             if(typeof $godarkVal==='undefined'){
                 $godarkVal = $setCookiesGoDark;
-                // Cookies.set('godark',0);
-                // console.log(Cookies.get('godark'));
             }
             if($godarkVal == 1){
                 $(".switch").prepend("<input type='checkbox' onclick='godark(0)' checked>");
@@ -653,10 +659,12 @@
             }
         });
         var bgGradient,bg1,bg2,p1,p2,dir;
+
         $("#basicColorValue").on("keyup", function(){
             var basicColorVal = $("#basicColorValue").val();
             $("#basicColor").css("background",'#'+basicColorVal);
         });
+
         $("#gradientColorValue1").on("keyup", function(){
             var gradientColorVal1 = $("#gradientColorValue1").val();
             bg1 = '#'+gradientColorVal1;
@@ -668,6 +676,7 @@
             bg2 = '#'+gradientColorVal2;
             // $("#gradientColor2").css("background",'#'+gradientColorVal1);
         });
+
         $('#previewBasicColorButton').on("click", function(){
             $('#previewBasicColorButton').ColorPicker({
                 onChange: function(hsb, hex, rgb, el) {

@@ -25,12 +25,10 @@ class SettingController extends Controller
         if(isset($_GET['dark'])){
             $dark = $_GET['dark'];
         }
-        // $cookie = Cookie::queue(Cookie::make('godark', 1));
         $sidebar = Customize::where('name','sidebar')->first();
         $sidebar->data = $dark;
         $sidebar->save();
         return json_encode($sidebar);
-        // return response('sucess')->cookie($cookie);
     }
 
     public function basicColor(Request $request){

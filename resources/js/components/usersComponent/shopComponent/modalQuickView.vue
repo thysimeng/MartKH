@@ -52,7 +52,20 @@
                   <span>2 Ratting (S)</span>
                 </div>
               </div>-->
-              <p>Description : {{ productid[productid.length-2] }}</p>
+              <!-- <p
+                v-for="paragrah in productid[productid.length-2].length"
+                :data="paragrah"
+                :key="paragrah.key"
+              > -->
+                <!-- {{ productid[productid.length-2].length }} -->
+                <!-- {{ productid[productid.length-2][paragrah] }} -->
+                <div>
+                    Description : {{ productid[productid.length-2] }}
+                    <!-- In my younger and more vulnerable years my father gave me some advice that I've been turning over in my mind ever since. 'Whenever you feel like criticizing anyone,' he told me, 'just remember that all the people in this world haven't had the advantages that you've had.' -->
+                </div>
+                <!-- <div v-html="productid[productid.length-2]" class="paragrahStyle">Description : </div> -->
+                <!-- <p></p> -->
+              <!-- </p> -->
               <!-- <div class="quick-view-select">
                 <div class="select-option-part">
                   <label>Size*</label>
@@ -71,20 +84,20 @@
                     <option value>yellow</option>
                   </select>
                 </div>
-              </div> -->
+              </div>-->
               <!-- <div class="quickview-plus-minus"> -->
-                <!-- <div class="cart-plus-minus">
+              <!-- <div class="cart-plus-minus">
                   <input type="text" value="02" name="qtybutton" class="cart-plus-minus-box" />
                 </div>
                 <div class="quickview-btn-cart">
                   <a class="btn-hover-black" href="#">add to cart</a>
-                </div> -->
-                <!-- <div class="quickview-btn-wishlist"> -->
-                  <!-- <a class="btn-hover" href="#">
+              </div>-->
+              <!-- <div class="quickview-btn-wishlist"> -->
+              <!-- <a class="btn-hover" href="#">
                     <i class="pe-7s-like"></i>
-                  </a>-->
-                  <!-- <addTowishList :productID="productID = productid[productid.length-5]" class="btn-hover"></addTowishList> -->
-                <!-- </div> -->
+              </a>-->
+              <!-- <addTowishList :productID="productID = productid[productid.length-5]" class="btn-hover"></addTowishList> -->
+              <!-- </div> -->
               <!-- </div> -->
             </div>
           </div>
@@ -101,8 +114,8 @@ export default {
   name: "modal",
   data: function() {
     return {
-    //   showmodalProps: this.showmodal,
-    //   productid: [],
+      //   showmodalProps: this.showmodal,
+      //   productid: [],
       productID: Number
     };
   },
@@ -114,3 +127,13 @@ export default {
   }
 };
 </script>
+
+<style scoped>
+  .paragrahStyle  {
+  /* border: 1px solid black; */
+  padding: 10px;
+  width: 200px;
+  height: 200px;
+  text-align: justify;
+}
+</style>

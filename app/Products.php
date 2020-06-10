@@ -14,3 +14,5 @@ class Products extends Model
     ];
     public $timestamps = true;
 }
+
+

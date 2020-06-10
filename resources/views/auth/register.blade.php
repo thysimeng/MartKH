@@ -3,7 +3,7 @@
 @section('content')
     @include('layouts.headers.guest') --}}
     <style>
-        .custom-control-label::before, 
+        .custom-control-label::before,
         .custom-control-label::after {
         width: 0.75rem !important;
         height: 0.75rem !important;
@@ -17,7 +17,7 @@
             border-color: #f7931e !important;
             background-color: #f7931e !important;
         }
-        
+
     </style>
 @extends('layouts.users')
 @section('contents')
@@ -121,7 +121,7 @@
                         </form>
                     </div>
                 </div>
-                <div class="row mt-3 mb-3"> 
+                <div class="row mt-3 mb-3">
                     <div class="col-12 text-right">
                         <a href="{{ route('login') }}" >
                             <span>{{ __('Already have account?') }}</span>
@@ -131,5 +131,5 @@
             </div>
         </div>
     </div>
-    
+
 @endsection

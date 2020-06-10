@@ -4,7 +4,7 @@
     @include('layouts.headers.cards')
 
     @if($sidebar==1)
-        <div class="container-fluid bg-dark mt--7">
+        <div class="container-fluid bg-dark mt--7" style="min-height:660px;">
             <div class="row">
                     <div class="col">
                         <div class="card bg-dark shadow text-white border">
@@ -57,11 +57,19 @@
                                 @csrf
                                 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                                     <div class="modal-dialog modal-dialog-centered" role="document">
+                                        @if($sidebar==1)
+                                        <div class="modal-content bg-dark">
+                                            <div class="modal-header">
+                                                <h5 class="modal-title text-white" id="exampleModalCenterTitle">Add Sub Category</h5>
+                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                        <span class="text-white" aria-hidden="true">&times;</span>
+                                        @else
                                         <div class="modal-content">
                                             <div class="modal-header">
                                                 <h5 class="modal-title" id="exampleModalCenterTitle">Add Sub Category</h5>
                                                 <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                <span aria-hidden="true">&times;</span>
+                                                        <span aria-hidden="true">&times;</span>
+                                        @endif
                                                 </button>
                                             </div>
                                             <div class="modal-body">

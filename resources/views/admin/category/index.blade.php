@@ -4,7 +4,7 @@
     @include('layouts.headers.cards')
 
     @if($sidebar==1)
-        <div class="container-fluid bg-dark mt--7">
+        <div class="container-fluid bg-dark mt--7" style="min-height:660px;">
             <div class="row">
                     <div class="col">
                         <div class="card bg-dark shadow text-white border">
@@ -57,6 +57,23 @@
                                                 @csrf
                                                 <div class="modal fade" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                                                     <div class="modal-dialog modal-dialog-centered" role="document">
+                                                        @if($sidebar==1)
+                                                        <div class="modal-content bg-dark" style="border:1px solid white !important">
+                                                            <div class="modal-header text-white">
+                                                                <h5 class="modal-title text-white" id="exampleModalCenterTitle">Add Category</h5>
+                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                                <span class="text-white" aria-hidden="true">&times;</span>
+                                                                </button>
+                                                            </div>
+                                                            <div class="modal-body bg-dark">
+                                                                <input type="text" class="form-control" name="category" id="input_category" value="" required placeholder="category">
+                                                            </div>
+                                                            <div class="modal-footer bg-dark">
+                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                                <button type="submit" class="btn btn-primary">Save changes</button>
+                                                            </div>
+                                                        </div>
+                                                        @else
                                                         <div class="modal-content">
                                                             <div class="modal-header">
                                                                 <h5 class="modal-title" id="exampleModalCenterTitle">Add Category</h5>
@@ -72,6 +89,7 @@
                                                                 <button type="submit" class="btn btn-primary">Save changes</button>
                                                             </div>
                                                         </div>
+                                                        @endif
                                                     </div>
                                                 </div>
                                             </form>
@@ -120,31 +138,39 @@
                                         <div class="modal fade" id="editModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                                             <form action="/edit" method="post">
                                                 <div class="modal-dialog modal-dialog-centered" role="document">
-                                                        <div class="modal-content bg-dark">
-                                                            <div class="modal-header">
-                                                                <h5 class="modal-title text-white" id="exampleModalCenterTitle">Edit Category</h5>
-                                                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                                                <span aria-hidden="true" class="text-white">&times;</span>
-                                                                </button>
-                                                            </div>
-                                                            <input type="hidden" name="category_id" value="" >
-                                                            @csrf
-                                                            <div class="modal-body">
-                                                                <input type="text" class="form-control" name="category_name" value="" required placeholder="">
-                                                            </div>
-                                                            <div  class="modal-footer">
-                                                                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                                                                <button onclick="saveEdit()"  class="btn btn-primary">Save changes</button>
-                                                            </div>
+                                                    @if($sidebar==1)
+                                                    <div class="modal-content bg-dark">
+                                                    @else
+                                                    <div class="modal-content">
+                                                    @endif
+                                                        <div class="modal-header">
+                                                            <h5 class="modal-title text-white" id="exampleModalCenterTitle">Edit Category</h5>
+                                                            <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                                            <span aria-hidden="true" class="text-white">&times;</span>
+                                                            </button>
+                                                        </div>
+                                                        <input type="hidden" name="category_id" value="" >
+                                                        @csrf
+                                                        <div class="modal-body">
+                                                            <input type="text" class="form-control" name="category_name" value="" required placeholder="">
+                                                        </div>
+                                                        <div  class="modal-footer">
+                                                            <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                                                            <button onclick="saveEdit()"  class="btn btn-primary">Save changes</button>
                                                         </div>
                                                     </div>
+                                                </div>
                                             </form>
                                         </div>
                                     @else
                                         <div class="modal fade" id="editModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
                                             <form action="/edit" method="post">
                                                 <div class="modal-dialog modal-dialog-centered" role="document">
+                                                    @if($sidebar==1)
+                                                    <div class="modal-content bg-dark">
+                                                    @else
                                                     <div class="modal-content">
+                                                    @endif
                                                         <div class="modal-header">
                                                             <h5 class="modal-title" id="exampleModalCenterTitle">Edit Category</h5>
                                                             <button type="button" class="close" data-dismiss="modal" aria-label="Close">

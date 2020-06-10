@@ -144,9 +144,9 @@
                                     </div>
                                 </div>
                                 @if($gradientColor===NULL)
-                                <div class="col-3 border-left-0" style="height:750px;border:2px solid {{$basicColor}};border-radius:5px;position:relative;">
+                                <div class="col-3 border-left-0" style="height:730px;border:2px solid {{$basicColor}};border-radius:5px;position:relative;">
                                 @else
-                                <div class="col-3 border-left-0" style="height:750px;border:2px solid;border-radius:5px;border-image-source: {{$gradientColor}};border-image-slice: 1;position:relative;">
+                                <div class="col-3 border-left-0" style="height:730px;border:2px solid;border-radius:5px;border-image-source: {{$gradientColor}};border-image-slice: 1;position:relative;">
                                 @endif
                                     <div class="row">
                                         <div class="col-12">
@@ -269,9 +269,9 @@
                                     </div>
                                 </div>
                                 @if($gradientColor===NULL)
-                                <div class="col-4 border-left-0" style="height:960px;border:2px solid {{$basicColor}};border-radius:5px;position:relative;">
+                                <div class="col-4 border-left-0" style="height:940px;border:2px solid {{$basicColor}};border-radius:5px;position:relative;">
                                 @else
-                                <div class="col-4 border-left-0" style="height:960px;border:2px solid;border-image-source: {{$gradientColor}};border-image-slice: 1;border-radius:5px;position:relative;">
+                                <div class="col-4 border-left-0" style="height:940px;border:2px solid;border-image-source: {{$gradientColor}};border-image-slice: 1;border-radius:5px;position:relative;">
                                 @endif
                                     <div class="row">
                                         <div class="col-12">
@@ -418,7 +418,7 @@
                 e.preventDefault();
                 Swal.fire({
                     title: 'Warning',
-                    text: "Are you sure you want to apply this product?",
+                    text: "Are you sure you want to apply this template?",
                     type: 'warning',
                     showCancelButton: true,
                     confirmButtonColor: '#2dce89',

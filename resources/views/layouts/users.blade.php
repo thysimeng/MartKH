@@ -41,8 +41,10 @@
 </head>
 
 <body>
-    <div id="app">
+    {{-- <div id="app"> --}}
+    <div>
         <vue-progress-bar></vue-progress-bar>
+
         <!-- header start -->
         {{-- template id getter --}}
         <span style="display:none;">@{{ templateID }}</span>
@@ -144,10 +146,10 @@
                         @endif
                         <ul class="single-dropdown">
                             <li>
-                                <router-link to="/products/food" @click.native="showPage()">Food</router-link>
+                                <router-link to="/products/food" @click.native="showPage()">Baverage</router-link>
                             </li>
                             <li>
-                                <router-link to="/products/drink" @click.native="showPage()">Drink</router-link>
+                                <router-link to="/products/drink" @click.native="showPage()">Dairy</router-link>
                             </li>
                             {{-- <li><a href="blog-2-col.html">blog 2 colunm</a></li>
                                             <li><a href="blog-sidebar.html">blog sidebar</a></li>
@@ -300,163 +302,163 @@
                     </div>
                 </div>
             </div>
-    </div>
-    </div>
-    <div class="header-bottom-furniture wrapper-padding-2 border-top-3 border-bottom-3">
-        <div class="container-fluid">
-            <div class="furniture-bottom-wrapper">
-                <div class="furniture-login">
-                    <ul class="media align-items-center">
-                        @auth
-                        @if (Route::has('login'))
-                        <span class="avatar avatar-sm rounded-circle" style="width: 24px; height:24px">
-                            <a href="{{ route('userProfile') }}"><img style="width: 24px; height:24px" alt="Image"
-                                    src="{{ asset('uploads') }}/avatar/{{ auth()->user()->avatar}}"></a>
-                        </span>
-                        <div class="media-body ml-2">
-                        <li>
-                            {{-- <a style="color:{{$basicColor}}" href="{{ route('userProfile') }}">{{auth()->user()->name}}</a> --}}
-                            <a href="{{ route('userProfile') }}">{{auth()->user()->name}}</a>
-                        </li>
-                        <li>
-                            <a href="{{ route('logout') }}" onclick="event.preventDefault();
-                                                    document.getElementById('logout-form').submit();">
-                                    {{ __('Logout') }}
-                                </a>
+            </div>
+            </div>
+            <div class="header-bottom-furniture wrapper-padding-2 border-top-3 border-bottom-3">
+                <div class="container-fluid">
+                    <div class="furniture-bottom-wrapper">
+                        <div class="furniture-login">
+                            <ul class="media align-items-center">
+                                @auth
+                                @if (Route::has('login'))
+                                <span class="avatar avatar-sm rounded-circle" style="width: 24px; height:24px">
+                                    <a href="{{ route('userProfile') }}"><img style="width: 24px; height:24px" alt="Image"
+                                            src="{{ asset('uploads') }}/avatar/{{ auth()->user()->avatar}}"></a>
+                                </span>
+                                <div class="media-body ml-2">
+                                <li>
+                                    {{-- <a style="color:{{$basicColor}}" href="{{ route('userProfile') }}">{{auth()->user()->name}}</a> --}}
+                                    <a href="{{ route('userProfile') }}">{{auth()->user()->name}}</a>
+                                </li>
+                                <li>
+                                    <a href="{{ route('logout') }}" onclick="event.preventDefault();
+                                                            document.getElementById('logout-form').submit();">
+                                            {{ __('Logout') }}
+                                        </a>
 
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                    style="display: none;">
-                                    @csrf
-                                </form>
-                            </li>
+                                        <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                            style="display: none;">
+                                            @csrf
+                                        </form>
+                                    </li>
+                                </div>
+
+                                @endif
+                                @endauth
+
+                                @if ( Auth::guest() )
+                                <li>Get Access: <a href="/login">login</a></li>
+                                <li><a href="/register">register</a></li>
+                                @endif
+                            </ul>
                         </div>
-
-                        @endif
-                        @endauth
-
-                        @if ( Auth::guest() )
-                        <li>Get Access: <a href="/login">login</a></li>
-                        <li><a href="/register">register</a></li>
-                        @endif
-                    </ul>
-                </div>
-                <product-Search :products="products" @changedatabyemit="products = $event" :show="show"
-                    @changeshowbyemit="show = $event"></product-Search>
-                {{-- <product-Search :show="show" @changeshowbyemit="show = $event"></product-Search> --}}
-                <div class="furniture-wishlist">
-                    <ul>
-                        {{-- <li><a data-toggle="modal" data-target="#exampleCompare" href="#"><i class="ti-reload"></i>
-                                Compare</a></li> --}}
-                        {{-- <li><a href="{{ route('add-wishlist') }}"><i class="ti-heart"></i> Wishlist</a></li> --}}
-                        <li>
-                            <router-link to="/wishlists" @click.native="showPage()"><i class="ti-heart"></i> Wishlist
-                            </router-link>
-                        </li>
-                    </ul>
+                        <product-Search :products="products" @changedatabyemit="products = $event" :show="show"
+                            @changeshowbyemit="show = $event"></product-Search>
+                        {{-- <product-Search :show="show" @changeshowbyemit="show = $event"></product-Search> --}}
+                        <div class="furniture-wishlist">
+                            <ul>
+                                {{-- <li><a data-toggle="modal" data-target="#exampleCompare" href="#"><i class="ti-reload"></i>
+                                        Compare</a></li> --}}
+                                {{-- <li><a href="{{ route('add-wishlist') }}"><i class="ti-heart"></i> Wishlist</a></li> --}}
+                                <li>
+                                    <router-link to="/wishlists" @click.native="showPage()"><i class="ti-heart"></i> Wishlist
+                                    </router-link>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
-        </div>
-    </div>
-    </header>
-    <!-- header end -->
-    @yield('contents')
-    {{-- footer start --}}
-    <footer class="footer-area">
-        <div class="footer-top-area pt-70 pb-35 wrapper-padding-5">
-            <div class="container-fluid">
-                <div class="widget-wrapper">
-                    <div class="footer-widget mb-30">
-                        <a href="#"><img src="{{asset('uploads')}}/logo/{{$logo}}" alt="" style="width:250px;"></a>
-                        <div class="footer-about-2">
-                            <p>MartKh provide you everything<br>Food, drink and shop place<br>Find what you want</p>
-                        </div>
-                    </div>
-                    <div class="footer-widget mb-30">
-                        @if($gradientColor===NULL)
-                        <h3 class="footer-widget-title-5" style="color:{{$basicColor}}">Contact Info</h3>
-                        @else
-                        <h3 class="footer-widget-title-5" style="background: {{$gradientColor}};
-                        -webkit-background-clip: text;
-                        -webkit-text-fill-color: transparent;">Contact Info</h3>
-                        @endif
-                        <div class="footer-info-wrapper-3">
-                            <div class="footer-address-furniture">
-                                <div class="footer-info-icon3">
-                                    <span>Address: </span>
-                                </div>
-                                <div class="footer-info-content3">
-                                    <p>Heng Ly<br>Phnom Penh</p>
-                                </div>
-                            </div>
-                            <div class="footer-address-furniture">
-                                <div class="footer-info-icon3">
-                                    <span>Phone: </span>
-                                </div>
-                                <div class="footer-info-content3">
-                                    <p>+8801 (33) 515609735 <br>+8801 (66) 223352333</p>
-                                </div>
-                            </div>
-                            <div class="footer-address-furniture">
-                                <div class="footer-info-icon3">
-                                    <span>E-mail: </span>
-                                </div>
-                                <div class="footer-info-content3">
-                                    <p><a href="#"> email@domain.com</a> <br><a href="#"> domain@mail.info</a></p>
-                                </div>
+        </header>
+        <!-- header end -->
+        @yield('contents')
+
+        {{-- footer start --}}
+        <footer class="footer-area">
+            <div class="footer-top-area pt-70 pb-35 wrapper-padding-5">
+                <div class="container-fluid">
+                    <div class="widget-wrapper">
+                        <div class="footer-widget mb-30">
+                            <a href="#"><img src="{{asset('uploads')}}/logo/{{$logo}}" alt="" style="width:250px;"></a>
+                            <div class="footer-about-2">
+                                <p>MartKh provide you everything<br>Food, drink and shop place<br>Find what you want</p>
                             </div>
                         </div>
-                    </div>
-                    <div class="footer-widget mb-30">
-                        @if($gradientColor===NULL)
-                        <h3 class="footer-widget-title-5" style="color:{{$basicColor}}">Newsletter</h3>
-                        @else
-                        <h3 class="footer-widget-title-5" style="background: {{$gradientColor}};
-                        -webkit-background-clip: text;
-                        -webkit-text-fill-color: transparent;">Newsletter</h3>
-                        @endif
-                        <div class="footer-newsletter-2">
-                            <p>Send us your mail or next updates</p>
-                            <div id="mc_embed_signup" class="subscribe-form-5">
-                                <form
-                                    action="http://devitems.us11.list-manage.com/subscribe/post?u=6bbb9b6f5827bd842d9640c82&amp;id=05d85f18ef"
-                                    method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form"
-                                    class="validate" target="_blank" novalidate>
-                                    <div id="mc_embed_signup_scroll" class="mc-form">
-                                        <input type="email" value="" name="EMAIL" class="email"
-                                            placeholder="Enter mail address" required>
-                                        <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
-                                        <div class="mc-news" aria-hidden="true"><input type="text"
-                                                name="b_6bbb9b6f5827bd842d9640c82_05d85f18ef" tabindex="-1" value="">
-                                        </div>
-                                        <div class="clear"><input type="submit" value="Subscribe" name="subscribe"
-                                                id="mc-embedded-subscribe" class="button"></div>
+                        <div class="footer-widget mb-30">
+                            @if($gradientColor===NULL)
+                            <h3 class="footer-widget-title-5" style="color:{{$basicColor}}">Contact Info</h3>
+                            @else
+                            <h3 class="footer-widget-title-5" style="background: {{$gradientColor}};
+                            -webkit-background-clip: text;
+                            -webkit-text-fill-color: transparent;">Contact Info</h3>
+                            @endif
+                            <div class="footer-info-wrapper-3">
+                                <div class="footer-address-furniture">
+                                    <div class="footer-info-icon3">
+                                        <span>Address: </span>
                                     </div>
-                                </form>
+                                    <div class="footer-info-content3">
+                                        <p>Heng Ly<br>Phnom Penh</p>
+                                    </div>
+                                </div>
+                                <div class="footer-address-furniture">
+                                    <div class="footer-info-icon3">
+                                        <span>Phone: </span>
+                                    </div>
+                                    <div class="footer-info-content3">
+                                        <p>+8801 (33) 515609735 <br>+8801 (66) 223352333</p>
+                                    </div>
+                                </div>
+                                <div class="footer-address-furniture">
+                                    <div class="footer-info-icon3">
+                                        <span>E-mail: </span>
+                                    </div>
+                                    <div class="footer-info-content3">
+                                        <p><a href="#"> email@domain.com</a> <br><a href="#"> domain@mail.info</a></p>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="footer-widget mb-30">
+                            @if($gradientColor===NULL)
+                            <h3 class="footer-widget-title-5" style="color:{{$basicColor}}">Newsletter</h3>
+                            @else
+                            <h3 class="footer-widget-title-5" style="background: {{$gradientColor}};
+                            -webkit-background-clip: text;
+                            -webkit-text-fill-color: transparent;">Newsletter</h3>
+                            @endif
+                            <div class="footer-newsletter-2">
+                                <p>Send us your mail or next updates</p>
+                                <div id="mc_embed_signup" class="subscribe-form-5">
+                                    <form
+                                        action="http://devitems.us11.list-manage.com/subscribe/post?u=6bbb9b6f5827bd842d9640c82&amp;id=05d85f18ef"
+                                        method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form"
+                                        class="validate" target="_blank" novalidate>
+                                        <div id="mc_embed_signup_scroll" class="mc-form">
+                                            <input type="email" value="" name="EMAIL" class="email"
+                                                placeholder="Enter mail address" required>
+                                            <!-- real people should not fill this in and expect good things - do not remove this or risk form bot signups-->
+                                            <div class="mc-news" aria-hidden="true"><input type="text"
+                                                    name="b_6bbb9b6f5827bd842d9640c82_05d85f18ef" tabindex="-1" value="">
+                                            </div>
+                                            <div class="clear"><input type="submit" value="Subscribe" name="subscribe"
+                                                    id="mc-embedded-subscribe" class="button"></div>
+                                        </div>
+                                    </form>
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-        <div class="footer-bottom ptb-20 gray-bg-8">
-            <div class="container">
-                <div class="row">
-                    <div class="col-12 text-center">
-                        <div class="copyright-furniture">
-                            <p>Copyright © <a href="https://hastech.company/">HasTech</a> 2018 . All Right Reserved.
-                            </p>
+            <div class="footer-bottom ptb-20 gray-bg-8">
+                <div class="container">
+                    <div class="row">
+                        <div class="col-12 text-center">
+                            <div class="copyright-furniture">
+                                <p>Copyright © <a href="https://hastech.company/">HasTech</a> 2018 . All Right Reserved.
+                                </p>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-        </div>
-    </footer>
-    {{-- footer end --}}
+        </footer>
+        {{-- footer end --}}
     </div>
-
 
     <!-- all js here -->
-    <script src="{{asset('/js/app.js')}}"></script>
+    {{-- <script src="{{asset('/js/app.js')}}"></script> --}}
     {{-- <script src="{{asset('/js/all.js')}}"></script> --}}
     {{-- <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script> --}}
     <script src="{{asset('assets/js/vendor/jquery-1.12.0.min.js')}}"></script>
@@ -476,12 +478,12 @@
     <script src="{{asset('assets/js/zxcvbn-bootstrap4-strength-meter.js')}}"></script>
     <script src="{{asset('assets/js/main.js')}}"></script>
 
-        {{-- <script src="{{asset('assets/js/password-score.js')}}"></script>
-        <script src="{{asset('assets/js/password-score-options.js')}}"></script>
-        <script src="{{asset('assets/js/bootstrap-strength-meter.js')}}"></script> --}}
+    {{-- <script src="{{asset('assets/js/password-score.js')}}"></script>
+    <script src="{{asset('assets/js/password-score-options.js')}}"></script>
+    <script src="{{asset('assets/js/bootstrap-strength-meter.js')}}"></script> --}}
 
-        @include('sweetalert::alert')
-        @yield('script')
+    @include('sweetalert::alert')
+    @yield('script')
 </body>
 
 </html>

@@ -36,27 +36,26 @@ class AppServiceProvider extends ServiceProvider
     public function boot()
     {
         Schema::defaultStringLength(191);
-        $sidebar = Customize::where('name','sidebar')->first();
-        $sidebarValue = $sidebar->data;
-        View::share('sidebar', $sidebarValue);
-        $basicColor = Customize::where('name','basicColor')->first();
-        $basicColorValue = $basicColor->data;
-        View::share('basicColor', $basicColorValue);
-        $logo = Customize::where('name','logo')->first();
-        $logoName = $logo->data;
-        View::share('logo', $logoName);
-        $gradientColor = Customize::where('name','gradientColor')->first();
-        $gradientColorValue = $gradientColor->data;
-        View::share('gradientColor', $gradientColorValue);
-        View::share('userData', User::all()->count());
-        View::share('franchiseData', Franchise::all()->count());
-        View::share('categoryData', Category::all()->count());
-        View::share('productData', Product::all()->count());
-        View::share('requestData', Request_Stock::where('status','pending')->count());
-        // for no cache
-        Cache::extend( 'none', function( $app ) {
-            return Cache::repository( new NullStore );
-        } );
-
+        // $sidebar = Customize::where('name','sidebar')->first();
+        // $sidebarValue = $sidebar->data;
+        // View::share('sidebar', $sidebarValue);
+        // $basicColor = Customize::where('name','basicColor')->first();
+        // $basicColorValue = $basicColor->data;
+        // View::share('basicColor', $basicColorValue);
+        // $logo = Customize::where('name','logo')->first();
+        // $logoName = $logo->data;
+        // View::share('logo', $logoName);
+        // $gradientColor = Customize::where('name','gradientColor')->first();
+        // $gradientColorValue = $gradientColor->data;
+        // View::share('gradientColor', $gradientColorValue);
+        // View::share('userData', User::all()->count());
+        // View::share('franchiseData', Franchise::all()->count());
+        // View::share('categoryData', Category::all()->count());
+        // View::share('productData', Product::all()->count());
+        // View::share('requestData', Request_Stock::where('status','pending')->count());
+        // // for no cache
+        // Cache::extend( 'none', function( $app ) {
+        //     return Cache::repository( new NullStore );
+        // } );
     }
 }

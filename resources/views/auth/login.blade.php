@@ -3,7 +3,7 @@
 {{-- @section('content')
     @include('layouts.headers.guest') --}}
     <style>
-        .custom-control-label::before, 
+        .custom-control-label::before,
         .custom-control-label::after {
         width: 0.75rem !important;
         height: 0.75rem !important;
@@ -57,7 +57,7 @@
                     <div class="card-body px-lg-5 py-lg-5" style="border:2px solid #f7931e;border-radius:5px;border-top:transparent;">
                         <div class="text-center mb-4">
                             {{-- <span> --}}
-                                <a href="{{ route('register') }}">{{ __('Create new account') }}</a> 
+                                <a href="{{ route('register') }}">{{ __('Create new account') }}</a>
                                 <br>
                                 <span>{{ __('OR Sign in with these credentials:') }}</span>
                             {{-- </span> --}}

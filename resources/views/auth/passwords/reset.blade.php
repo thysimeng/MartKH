@@ -3,7 +3,7 @@
 @section('content')
     @include('layouts.headers.guest') --}}
     <style>
-        .custom-control-label::before, 
+        .custom-control-label::before,
         .custom-control-label::after {
         width: 0.75rem !important;
         height: 0.75rem !important;
@@ -67,7 +67,7 @@
                                     <div class="input-group-prepend">
                                         <span class="input-group-text"><i class="ni ni-lock-circle-open"></i></span>
                                     </div>
-                                    <input class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" style="font-size:14px !important;" name="password" placeholder="{{ __('Password') }}" type="password" required>
+                                    <input class="form-control{{ $errors->has('password') ? ' is-invalid' : '' }}" style="font-size:14px !important;" name="password" placeholder="{{ __('Password') }}" type="password" id="password" required>
                                 </div>
                                 @if ($errors->has('password'))
                                     <span class="invalid-feedback" style="display: block;" role="alert">
@@ -83,8 +83,11 @@
                                     <input class="form-control" placeholder="{{ __('Confirm Password') }}" style="font-size:14px !important;" type="password" name="password_confirmation" required>
                                 </div>
                             </div>
+                            <div class="progress">
+                                    <div id="StrengthProgressBar" class="progress-bar"></div>
+                            </div>
                             <div class="text-center">
-                                <input type="submit" class="btn my-4 text-white" value="Reset Password">                                                            
+                                <input type="submit" class="btn my-4 text-white" value="Reset Password">
                                 {{-- <button type="submit" class="btn btn-primary my-4">{{ __('Reset Password') }}</button> --}}
                             </div>
                         </form>

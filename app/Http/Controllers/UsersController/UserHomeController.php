@@ -75,7 +75,7 @@ class UserHomeController extends Controller
         ])
             ->get();
                     // dd($ads);
-        return view('users.userHomePage', compact('set_template_data','productPopular', 'adsLeft1','adsMiddle1','adsTopRight1','adsBottomRight1','adsLeft2','adsTopRight2','adsBottomRight2','adsMiddle3'));
+        return view('users.userHomePageUpdate', compact('set_template_data','productPopular', 'adsLeft1','adsMiddle1','adsTopRight1','adsBottomRight1','adsLeft2','adsTopRight2','adsBottomRight2','adsMiddle3'));
     }
 
     // public function get(Request $request)
@@ -124,7 +124,7 @@ class UserHomeController extends Controller
             $product = Product::find($id);
             array_push($data_product, $product);
         }
-        // dd($data_product);
+        dd($data_product);
         return view('users.wishlist')->with(compact('data_product'));
     }
 

@@ -133,13 +133,52 @@ Route::get('/products/food', 'UsersController\ProductDisplayController@index')->
 Route::get('/products/filterByPrice', 'UsersController\ProductDisplayController@index')->name('productDisplay-food');
 Route::get('/wishlists', 'UsersController\ProductDisplayController@index')->name('wishlists');
 
+// route for fetch data
+//Start update section/////////////////////////////////////////////////////////
 
+//route for reload vue
+Route::get('/shop', 'UsersController\UserHomeController@index')->name('allProductReload');
+Route::get('/all', 'UsersController\UserHomeController@index')->name('allProductReload');
+
+// route for test request
+Route::get('/requestTester', 'UsersController\ProductsController@requestTester')->name('requestTester');
+
+// Auth checker
+Route::get('/authCkecker', 'UsersController\ProductsController@authCkecker')->name('authCkecker');
+
+//Retrieve auth token
+Route::get('/authToken', 'UsersController\ProductsController@authToken')->name('authToken');
+
+//request filter by price
+Route::get('/vue/filterByPrice/{min_max}', 'UsersController\ProductsController@filterByPrice')->name('filterByPrice');
+
+//request filter by search
+Route::get('/vue/filtersBySearch/{search}', 'UsersController\ProductsController@filtersBySearch')->name('filtersBySearch');
+
+//retrieve by categories name
+Route::get('/vue/categoriesName', 'UsersController\ProductsController@categoriesName')->name('categoriesName');
+//retrieve for ads Template ID for slide view
+Route::get('/vue/getAdsTemplateID', 'UsersController\ProductsController@getAdsTemplateID')->name('getAdsTemplateID');
+//retrieve for ads Template Data
+Route::get('/vue/getADSData', 'UsersController\ProductsController@getADSData')->name('getADSData');
+
+Route::get('/vue/allProduct', 'UsersController\ProductsController@allProduct')->name('allProduct');
+Route::get('/vue/Products/{category}', 'UsersController\ProductsController@ProductByCategory')->name('ProductByCategory');
+Route::get('/vue/getCategoriesByName/{category}', 'UsersController\ProductsController@getCategoriesByName')->name('getCategoriesByName');
+
+// retrieve wishlist data
+Route::get('/wishlistproducts', 'UsersController\ProductsController@wishlistproducts')->name('wishlistproducts');
+// Add to wishlist data
+Route::post('/users/wishlist', 'UsersController\UserHomeController@wishList')->name('add-wishlist');
+
+// end update section///////////////////////////////////////////////////////////////////////
+
+Route::get('/users/wishlist', 'UsersController\UserHomeController@wishListIndex')->name('list-wishlist');
 Route::post('/searchweithwh', 'UsersController\ProductsController@search')->name('search');
 Route::get('/users/all', 'UsersController\ProductsController@get')->name('productFood');
 Route::get('/users/food', 'UsersController\ProductsController@food')->name('productFood');
 Route::get('/categoriesAll', 'UsersController\ProductsController@categories')->name('categories');
 Route::get('/categories1', 'UsersController\ProductsController@categories1')->name('categories1');
-Route::get('/wishlistproducts', 'UsersController\ProductsController@wishlistproducts')->name('wishlistproducts');
 // route for get slide template ID display
 Route::get('/adsTemplateID', 'UsersController\ProductsController@adsID')->name('ads.id');
 Route::get('/setTemplateID', 'UsersController\ProductsController@setTemplateID')->name('setTemplate.id');
@@ -148,9 +187,7 @@ Route::get('/slidedatadisplay', 'UsersController\ProductsController@slidedatadis
 Route::post('/users/profile/update','UsersController\UserHomeController@updateUserProfile')->name('updateUserProfile');
 Route::post('/users/profile/upload','UsersController\UserHomeController@upload')->name('uploadProfile');
 Route::get('/users/profile','UsersController\UserHomeController@userProfile')->name('userProfile');
-Route::get('/users/wishlist', 'UsersController\UserHomeController@wishListIndex')->name('list-wishlist');
 Route::get('/wishlistdisplay', 'UsersController\UserHomeController@wishlistdisplay')->name('wishlistdisplay');
-Route::post('/users/wishlist', 'UsersController\UserHomeController@wishList')->name('add-wishlist');
 // Google Account
 // Route::get('google', function () {
 //     return view('googleAuth');

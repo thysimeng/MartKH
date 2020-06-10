@@ -41,9 +41,9 @@ class LoginController extends Controller
     public function __construct()
     {
         $this->middleware('guest')->except('logout');
-    
+
     }
-    
+
     // public function redirectToFacebook($provider)
     // {
     //     return Socialite::driver('facebook')->redirect();
@@ -75,7 +75,7 @@ class LoginController extends Controller
     //             $user->role = "user";
     //             $user->avatar = $facebookUser->avatar;
     //             $user->facebook_id = $facebookUser->id;
-    //             dd($user);  
+    //             dd($user);
     //             $user->save();
     //             Auth::loginUsingId($user->id);
     //         }
@@ -91,57 +91,62 @@ class LoginController extends Controller
     {
         // return Socialite::driver('google')->redirect();
         // return 2;
+        // dd($provider);
         return Socialite::driver($provider)->redirect();
     }
 
     public function handleProviderCallback($provider)
     {
-    try {
-        $user = Socialite::driver($provider)->stateless()->user();
-    } catch (Exception $e) {
-        return redirect()->route('login');
-    }
-
-    $existingUser = User::where('email', $user->getEmail())->first();
-    if ($existingUser) {
-        auth()->login($existingUser, true);
-    } else {
-        $newUser                    = new User;
-        $newUser->provider          = $provider;
-        $newUser->provider_id       = $user->getId();
-        $newUser->name              = $user->getName();
-        $newUser->email             = $user->getEmail();
-        $newUser->password             = md5(rand(1,10000));
-        $newUser->email_verified_at = now();
-        // Avatar
-        $avatar                     = $user->getAvatar();
-        if($provider === 'google'){
-            $content                    = file_get_contents($avatar);
-            // strrpos gets the position of the last occurrence of the slash; substr returns everything after that position.
-            $basename                   = basename($avatar);
-            // $ext                        = end(explode('.', $basename));
-            $tmpext                     = explode('.', $basename);
-            $ext                        = end($tmpext);
-            // $filename                   = rename($basename,time().'.'.$ext);
-            $filename                   = time().'.'.$ext;
-            Storage::disk('uploadsAvatar')->put($filename, $content);
+        try {
+            $user = Socialite::driver($provider)->stateless()->user();
+            // dd($user->getID());
+        } catch (Exception $e) {
+            // dd($e);
+            return redirect()->route('login');
         }
-        else if($provider === 'facebook'){
-            $fileContents = file_get_contents($user->getAvatar());
-            $filename = time().'.jpg';
-            File::put(public_path() . '/uploads/avatar/' . $filename, $fileContents);
-            //To show picture 
-            // $picture1 = public_path('uploads/avatar/' . time() . ".jpg");
-        }
-        $newUser->avatar = $filename;    
-        // dd($filename);
-        $newUser->save();
 
-        auth()->login($newUser, true);
+        $existingUser = User::where('email', $user->getEmail())->first();
+        // $existingUser = User::where('provider_id', $user->getID())->first();
+        if ($existingUser) {
+            auth()->login($existingUser, true);
+        } else {
+            $newUser                    = new User;
+            $newUser->provider          = $provider;
+            $newUser->provider_id       = $user->getId();
+            $newUser->name              = $user->getName();
+            $newUser->email             = $user->getEmail();
+            $newUser->password          = md5(rand(1,10000));
+            $newUser->email_verified_at = now();
+            // Avatar
+            $avatar                     = $user->getAvatar();
+            if($provider === 'google'){
+                $content                    = file_get_contents($avatar);
+                // dd($avatar);
+                // strrpos gets the position of the last occurrence of the slash; substr returns everything after that position.
+                $basename                   = basename($avatar);
+                // $ext                        = end(explode('.', $basename));
+                $tmpext                     = explode('.', $basename);
+                $ext                        = end($tmpext);
+                // $filename                   = rename($basename,time().'.'.$ext);
+                $filename                   = time().'.'.$ext;
+                Storage::disk('uploadsAvatar')->put($filename, $content);
+            }
+            else if($provider === 'facebook'){
+                $fileContents = file_get_contents($user->getAvatar());
+                $filename = time().'.jpg';
+                File::put(public_path() . '/uploads/avatar/' . $filename, $fileContents);
+                //To show picture
+                // $picture1 = public_path('uploads/avatar/' . time() . ".jpg");
+            }
+            $newUser->avatar = $filename;
+            // dd($filename);
+            $newUser->save();
+
+            auth()->login($newUser, true);
+        }
+        return redirect()->to('/');
+        // return redirect($this->redirectPath());
     }
-    return redirect()->to('/');
-    // return redirect($this->redirectPath());
-}
 
     // public function handleProviderCallback($provider)
     // {
@@ -162,7 +167,7 @@ class LoginController extends Controller
     //             $user->avatar = $User->avatar;
     //             $user->provider_id = $User->id;
     //             $user->provider_id = $provider;
-    //             dd($user);  
+    //             dd($user);
     //             $user->save();
     //             Auth::loginUsingId($user->id);
     //         }
@@ -172,7 +177,7 @@ class LoginController extends Controller
     //         return 'error';
     //     }
     // }
-        
+
 //     public function handleGoogleCallback()
 // {
 //     try {

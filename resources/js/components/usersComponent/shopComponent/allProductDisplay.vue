@@ -116,7 +116,7 @@
         </div>
       </div>
     </div>
-    <button v-if="products.length>12" class="btn-hover list-btn-style" @click="seeMore+4">See more</button>
+    <button v-if="products.length>4" class="btn-hover list-btn-style" @click="seeMore+4">See more</button>
     <modalQuickView :productid="productid" @clearData="productid = $event"></modalQuickView>
   </div>
 </template>
@@ -130,7 +130,7 @@ export default {
   name: "productsFood",
   data: function() {
     return {
-      seeMore: 12,
+      seeMore: 4,
       productid: [],
       add: Number,
       productID: Number,
@@ -146,6 +146,9 @@ export default {
   methods: {
     quickView(PID, image, name, description, price) {
       return this.productid.push(PID, image, name, description, price);
+    },
+    seeMoreUpdate(){
+        this.seeMore= this.seeMore+4;
     }
   },
   components: {

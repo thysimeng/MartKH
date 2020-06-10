@@ -13,6 +13,10 @@ use Config;
 use Session;
 use Alert;
 use App\Customize;
+use Illuminate\Support\Facades\Auth as FacadesAuth;
+use App\Models\WishList;
+
+
 class ProductsController extends Controller
 {
     function __construct() { $this->template = "1";}
@@ -27,12 +31,20 @@ class ProductsController extends Controller
         ->get();
         return response()->json($product);
     }
-    public function wishlistproducts()
-    {
-        $user_id=auth::user()->id;
-        $food = DB::table('wishlists')->where('user_id','=', $user_id)->get();
-        return response()->json($food);
-    }
+    // public function wishlistproducts()
+    // {
+    //     // if (!Auth::user()){
+    //     //     return view('auth.login');
+    //     // }
+    //     // else
+    //     // {
+    //     //     $user_id=auth::user()->id;
+    //     // }
+    //     // $food = DB::table('wishlists')->where('user_id', '=', $user_id)->get();
+    //     $user_id=auth::user()->id;
+    //     $food = DB::table('wishlists')->where('user_id','=', $user_id)->get();
+    //     return response()->json($food);
+    // }
     public function food()
     {
         $product = DB::table('products')
@@ -201,6 +213,191 @@ class ProductsController extends Controller
     public function categories(){
         $category = Category::all();
         return response()->json($category);
+    }
+
+    // start update section/////////////////////////////////////////////////////////////////////
+
+    public function allProduct()
+    {
+        $product = DB::table('products')
+        ->join('subcategories', 'products.subcategory_id', '=', 'subcategories.id')
+        ->join('categories', 'subcategories.category_id', '=', 'categories.id')
+        ->select('products.*', 'categories.categories_name')
+        ->Paginate(3);
+        // dd($product);
+        return json_encode($product);
+    }
+    public function ProductByCategory($category)
+    {
+        $products = DB::table('products')
+        ->join('subcategories', 'products.subcategory_id', '=', 'subcategories.id')
+        ->join('categories', 'subcategories.category_id', '=', 'categories.id')
+        ->where('categories_name', $category)
+        ->select('products.*', 'categories.*')
+        ->take(8)->get();
+        return json_encode($products);
+    }
+    public function authCkecker(){
+        // $data = $request->all();
+        return json_encode(FacadesAuth::check());
+    }
+    public function requestTester(Request $request){
+    // public function requestTester(){
+        $data = $request->all();
+        return json_encode($data);
+    }
+
+    public function authToken(Request $request){
+        return json_encode($request->session()->token());
+    }
+
+    // fetch wishlist product
+    public function wishlistproducts()
+    {
+        $data_product = [];
+        if(Auth::check()){
+            $user_id=auth::user()->id;
+            $wishlish_pro_id = WishList::where('user_id', $user_id)->pluck('wishlist_id');
+            foreach ($wishlish_pro_id as $id){
+                $product = Products::find($id);
+                array_push($data_product, $product);
+            }
+        }
+        else {
+            $data_product;
+        }
+        return response()->json($data_product);
+    }
+
+    //retriev for filter by price
+    public function filterByPrice($min_max){
+        $min_max_array = explode(', ', $min_max);
+        $min_price = $min_max_array[0];
+        $max_price = $min_max_array[1];
+
+        $products = DB::table('products')
+        ->join('subcategories', 'products.subcategory_id', '=', 'subcategories.id')
+        ->join('categories', 'subcategories.category_id', '=', 'categories.id')
+        ->select('products.*', 'categories.categories_name')
+        ->where('products.price','>=', $min_price)
+        ->where('products.price','<=', $max_price)
+        ->Paginate(3);
+        return json_encode($products);
+    }
+
+    //retriev for filter by search
+    public function filtersBySearch($search){
+        $search;
+        if($search=='all'){
+            $products = DB::table('products')
+            ->join('subcategories', 'products.subcategory_id', '=', 'subcategories.id')
+            ->join('categories', 'subcategories.category_id', '=', 'categories.id')
+            ->select('products.*', 'categories.categories_name')
+            ->Paginate(3);
+            // dd($product);
+            return json_encode($products);
+        }
+        else{
+            $products = DB::table('products')
+            ->where('name','LIKE', '%' . $search . '%')
+            ->join('subcategories', 'products.subcategory_id', '=', 'subcategories.id')
+            ->join('categories', 'subcategories.category_id', '=', 'categories.id')
+            ->select('products.*', 'categories.categories_name')
+            ->Paginate(3);
+            return json_encode($products);
+        }
+    }
+
+    //retrieve categories name
+    public function categoriesName(){
+        // $categories = DB::table('categories')->take(5)->get();
+        $categories = DB::table('products')
+        ->join('subcategories', 'products.subcategory_id', '=', 'subcategories.id')
+        ->join('categories', 'subcategories.category_id', '=', 'categories.id')
+        ->select('products.*', 'categories.categories_name')
+        ->select(DB::raw("*,count(categories_name) as count"))
+        ->groupBy('categories.categories_name')
+        // ->select('*')
+        // ->where('categories.categories_name', $category)
+        ->take(5)->get();
+        return json_encode($categories);
+    }
+
+    //retrieve for categories data by name countCategories
+    public function getCategoriesByName($category){
+        $products = DB::table('products')
+        ->join('subcategories', 'products.subcategory_id', '=', 'subcategories.id')
+        ->join('categories', 'subcategories.category_id', '=', 'categories.id')
+        ->select('products.*', 'categories.categories_name')
+        ->where('categories.categories_name', $category)
+        ->Paginate(3);
+        return json_encode($products);
+    }
+
+    //retrieve for ads Template ID for slide view
+    public function getAdsTemplateID(){
+        $id = DB::table('customize')
+        ->where('name', 'adsTemplate')
+        ->get();
+        return json_encode($id);
+    }
+    //retrieve for ads Template data
+    public function getADSData(){
+        $id = DB::table('customize')
+        ->where('name', 'adsTemplate')
+        ->get();
+        if($id[0]->data==1){
+            $left = DB::table('ads')
+            ->where('template_id',$id[0]->data)
+            ->where('position','left1')
+            ->get();
+            $dataCorrect['left']=$left;
+
+            $middle = DB::table('ads')
+            ->where('template_id',$id[0]->data)
+            ->where('position','middle1')
+            ->get();
+            $dataCorrect['middle']=$middle;
+
+            $topRight = DB::table('ads')
+            ->where('template_id',$id[0]->data)
+            ->where('position','topRight1')
+            ->get();
+            $dataCorrect['topRight']=$topRight;
+
+            $bottomRight = DB::table('ads')
+            ->where('template_id',$id[0]->data)
+            ->where('position','bottomRight1')
+            ->get();
+            $dataCorrect['bottomRight']=$bottomRight;
+
+        }
+        else if($id[0]->data==2){
+            $left = DB::table('ads')
+            ->where('template_id',$id[0]->data)
+            ->where('position','left2')
+            ->get();
+            $dataCorrect['left']=$left;
+
+            $topRight = DB::table('ads')
+            ->where('template_id',$id[0]->data)
+            ->where('position','topRight2')
+            ->get();
+            $dataCorrect['topRight']=$topRight;
+
+            $bottomRight = DB::table('ads')
+            ->where('template_id',$id[0]->data)
+            ->where('position','bottomRight2')
+            ->get();
+            $dataCorrect['bottomRight']=$bottomRight;
+
+        }
+        else if($id[0]->data==3){
+            $dataCorrect = DB::table('ads')->where('template_id',$id[0]->data)->get();
+        }
+        // $dataCorrect['position']='b';
+        // $dataCorrect['position']=$data;
+        return json_encode($dataCorrect);
     }
 }
 
