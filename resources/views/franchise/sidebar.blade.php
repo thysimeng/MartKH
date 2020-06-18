@@ -104,10 +104,20 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" href="{{ route('franchise.stock') }}">
-                        {{-- <i class="ni ni-tv-2 text-primary"></i>  --}}
-                        <i class="fas fa-cubes" style="color:orange;"></i> {{ __('Stock') }}
+                    <a class="nav-link " data-toggle="collapse" data-target="#collapse_stock" aria-expanded="false" aria-controls="collapse_user">
+                        <i class="fas fa-cubes" style="color: #FF4500;"></i>
+                        <span class="nav-link-text">{{ __('Stock') }}</span>
                     </a>
+                    <div class="collapse" id="collapse_stock">
+                        <ul class="nav nav-sm flex-column">
+                        <li class="nav-item">
+                            <a href="{{ route('franchise.stock') }}" class="nav-link">{{ __('Stock') }}</a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('franchise.stock.viewMainStock') }}" class="nav-link">{{ __('Main Stock') }}</a>
+                        </li>
+                        </ul>
+                    </div>
                 </li>
             </ul>
             <!-- Divider -->
