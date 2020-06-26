@@ -308,4 +308,30 @@ class FranchiseController extends Controller
             return back()->withStatus(__('Profile picture successfully updated.'));
         }
     }
+
+    public function viewMainStock(Request $request)
+    {
+        $stocks = Stock::paginate(10);
+        $allStocks = Stock::get();
+        $data = [
+            'stocks_data'=>$stocks,
+            'allStocks_data'=>$allStocks,
+            'queryParams' => [],
+        ];
+        return view('franchise.mainStock')->with($data);
+    }
+
+    public function mainStockSearch(Request $request)
+    {
+        $search = $request->get('search');
+        $stocks= Stock::whereHas('product', function($query) use ($search){
+            $query->where('name', 'like', '%' . $search . '%')
+                ->orWhere('enter_by','like','%'.$search.'%');
+       })->paginate(10);
+        $data = [
+            'stocks_data'=>$stocks,
+            'queryParams' => [],
+        ];
+        return view('franchise.mainStock')->with($data);
+    }
 }

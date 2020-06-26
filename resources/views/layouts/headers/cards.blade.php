@@ -20,8 +20,13 @@
                                     </div>
                                 </div>
                                 <p class="mt-3 mb-0 text-muted text-sm">
-                                    <span class="text-success mr-2"><i class="fa fa-arrow-up"></i> 3.48%</span>
-                                    <span class="text-nowrap">Since last month</span>
+                                    @if($productDataCurrentMonth > 0)
+                                    <span class="text-success mr-2"><i class="fas fa-arrow-up"></i> {{$productDataCurrentMonth}}</span>
+                                    <span class="text-nowrap">New users this month</span>
+                                    @else
+                                    <span class="text mr-2"> {{$productDataCurrentMonth}}</span>
+                                    <span class="text-nowrap">New franchises this month</span>
+                                    @endif
                                 </p>
                             </div>
                         </div>
@@ -41,8 +46,13 @@
                                     </div>
                                 </div>
                                 <p class="mt-3 mb-0 text-muted text-sm">
-                                    <span class="text-danger mr-2"><i class="fas fa-arrow-down"></i> 3.48%</span>
-                                    <span class="text-nowrap">Since last week</span>
+                                    @if($categoryDataCurrentMonth > 0)
+                                    <span class="text-success mr-2"><i class="fas fa-arrow-up"></i> {{$categoryDataCurrentMonth}}</span>
+                                    <span class="text-nowrap">New users this month</span>
+                                    @else
+                                    <span class="text mr-2"> {{$categoryDataCurrentMonth}}</span>
+                                    <span class="text-nowrap">New franchises this month</span>
+                                    @endif
                                 </p>
                             </div>
                         </div>
@@ -62,8 +72,13 @@
                                     </div>
                                 </div>
                                 <p class="mt-3 mb-0 text-muted text-sm">
-                                    <span class="text-warning mr-2"><i class="fas fa-arrow-down"></i> 1.10%</span>
-                                    <span class="text-nowrap">Since yesterday</span>
+                                    @if($userDataCurrentMonth > 0)
+                                    <span class="text-success mr-2"><i class="fas fa-arrow-up"></i> {{$userDataCurrentMonth}}</span>
+                                    <span class="text-nowrap">New users this month</span>
+                                    @else
+                                    <span class="text mr-2"> {{$userDataCurrentMonth}}</span>
+                                    <span class="text-nowrap">New users this month</span>
+                                    @endif
                                 </p>
                             </div>
                         </div>
@@ -83,8 +98,13 @@
                                     </div>
                                 </div>
                                 <p class="mt-3 mb-0 text-muted text-sm">
-                                    <span class="text-success mr-2"><i class="fas fa-arrow-up"></i> 12%</span>
-                                    <span class="text-nowrap">Since last month</span>
+                                    @if($franchiseDataCurrentMonth > 0)
+                                    <span class="text-success mr-2"><i class="fas fa-arrow-up"></i> {{$franchiseDataCurrentMonth}}</span>
+                                    <span class="text-nowrap">New users this month</span>
+                                    @else
+                                    <span class="text mr-2"> {{$franchiseDataCurrentMonth}}</span>
+                                    <span class="text-nowrap">New franchises this month</span>
+                                    @endif
                                 </p>
                             </div>
                         </div>
