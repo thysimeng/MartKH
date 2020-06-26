@@ -237,7 +237,7 @@ class ProductsController extends Controller
         ->join('subcategories', 'products.subcategory_id', '=', 'subcategories.id')
         ->join('categories', 'subcategories.category_id', '=', 'categories.id')
         ->select('products.*', 'categories.categories_name')
-        ->Paginate(3);
+        ->Paginate(12);
         // dd($product);
         return json_encode($product);
     }
@@ -247,7 +247,7 @@ class ProductsController extends Controller
         ->join('subcategories', 'products.subcategory_id', '=', 'subcategories.id')
         ->join('categories', 'subcategories.category_id', '=', 'categories.id')
         ->where('categories_name', $category)
-        ->select('products.*', 'categories.*')
+        ->select('products.*', 'categories.categories_name')
         ->take(8)->get();
         return json_encode($products);
     }
@@ -295,7 +295,7 @@ class ProductsController extends Controller
         ->select('products.*', 'categories.categories_name')
         ->where('products.price','>=', $min_price)
         ->where('products.price','<=', $max_price)
-        ->Paginate(3);
+        ->Paginate(12);
         return json_encode($products);
     }
 
@@ -307,7 +307,7 @@ class ProductsController extends Controller
             ->join('subcategories', 'products.subcategory_id', '=', 'subcategories.id')
             ->join('categories', 'subcategories.category_id', '=', 'categories.id')
             ->select('products.*', 'categories.categories_name')
-            ->Paginate(3);
+            ->Paginate(12);
             // dd($product);
             return json_encode($products);
         }
@@ -317,7 +317,7 @@ class ProductsController extends Controller
             ->join('subcategories', 'products.subcategory_id', '=', 'subcategories.id')
             ->join('categories', 'subcategories.category_id', '=', 'categories.id')
             ->select('products.*', 'categories.categories_name')
-            ->Paginate(3);
+            ->Paginate(12);
             return json_encode($products);
         }
     }
@@ -339,12 +339,22 @@ class ProductsController extends Controller
 
     //retrieve for categories data by name countCategories
     public function getCategoriesByName($category){
-        $products = DB::table('products')
-        ->join('subcategories', 'products.subcategory_id', '=', 'subcategories.id')
-        ->join('categories', 'subcategories.category_id', '=', 'categories.id')
-        ->select('products.*', 'categories.categories_name')
-        ->where('categories.categories_name', $category)
-        ->Paginate(3);
+        if($category=='all'){
+            $products = DB::table('products')
+            ->join('subcategories', 'products.subcategory_id', '=', 'subcategories.id')
+            ->join('categories', 'subcategories.category_id', '=', 'categories.id')
+            ->select('products.*', 'categories.categories_name', 'subcategories.subcategory_name')
+            ->Paginate(12);
+        }
+        else{
+            $products = DB::table('products')
+            ->join('subcategories', 'products.subcategory_id', '=', 'subcategories.id')
+            ->join('categories', 'subcategories.category_id', '=', 'categories.id')
+            ->select('products.*', 'categories.categories_name', 'subcategories.subcategory_name')
+            ->where('categories.categories_name', $category)
+            ->orWhere('subcategories.subcategory_name', $category)
+            ->Paginate(12);
+        }
         return json_encode($products);
     }
 
@@ -412,6 +422,21 @@ class ProductsController extends Controller
         // $dataCorrect['position']='b';
         // $dataCorrect['position']=$data;
         return json_encode($dataCorrect);
+    }
+
+    public function getSubCategories(){
+        // $categories = DB::table('categories')->take(5)->get();
+        $sub_category = DB::table('products')
+        ->join('subcategories', 'products.subcategory_id', '=', 'subcategories.id')
+        ->join('categories', 'subcategories.category_id', '=', 'categories.id')
+        ->select('products.*', 'categories.categories_name')
+        ->select(DB::raw("*,count(categories_name) as count"))
+        ->groupBy('subcategories.subcategory_name')
+        // ->select('*')
+        // ->where('categories.categories_name', $category)
+        ->get();
+        // $sub_category = DB::table('subcategories')->get();
+        return json_encode($sub_category);
     }
 }
 

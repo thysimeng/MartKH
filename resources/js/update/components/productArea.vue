@@ -150,7 +150,7 @@
                                     <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRR4rxQwfBzD63gidHccowwLpYiNDtn70jrjDGPHPg09LDtpCsj" alt="">
                                 </a>
                                 <div class="product-action">
-                                    <a class="animate-left" title="Wishlist" href="#">
+                                    <!-- <a class="animate-left" title="Wishlist" href="#">
                                         <i class="pe-7s-like"></i>
                                     </a>
                                     <a class="animate-top" title="Add To Cart" href="#">
@@ -158,7 +158,7 @@
                                     </a>
                                     <a class="animate-right" title="Quick View" data-toggle="modal" data-target="#exampleModal" href="#">
                                         <i class="pe-7s-look"></i>
-                                    </a>
+                                    </a> -->
                                 </div>
                             </div>
                             <div class="funiture-product-content text-center">
@@ -174,7 +174,7 @@
                                     <img src="https://www.nchsoftware.com/slideshow/images/slider-1.jpg" alt="">
                                 </a>
                                 <div class="product-action">
-                                    <a class="animate-left" title="Wishlist" href="#">
+                                    <!-- <a class="animate-left" title="Wishlist" href="#">
                                         <i class="pe-7s-like"></i>
                                     </a>
                                     <a class="animate-top" title="Add To Cart" href="#">
@@ -182,7 +182,7 @@
                                     </a>
                                     <a class="animate-right" title="Quick View" data-toggle="modal" data-target="#exampleModal" href="#">
                                         <i class="pe-7s-look"></i>
-                                    </a>
+                                    </a> -->
                                 </div>
                             </div>
                             <div class="funiture-product-content text-center">

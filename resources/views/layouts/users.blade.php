@@ -58,16 +58,16 @@
                                 <img src="{{asset('uploads')}}/logo/{{$logo}}" alt="" style="width:250px;height:78px;">
                             </a>
                         </div>
-                        <div class="menu-style-2 furniture-menu menu-hover">
+                        {{-- <div class="menu-style-2 furniture-menu menu-hover">
                             <nav>
-                                <ul>
-                                    @if($gradientColor===NULL)
+                                <ul> --}}
+                                    {{-- @if($gradientColor===NULL)
                                     <li><a href="/" style="color:{{$basicColor}}">Home</a>
                                     @else
                                     <li><a href="/" style="background: {{$gradientColor}};
                                         -webkit-background-clip: text;
                                         -webkit-text-fill-color: transparent;">Home</a>
-                                    @endif
+                                    @endif --}}
                                         {{-- <router-link to="/users" @click.native="showHomePage()">Home</router-link> --}}
                                         {{-- <ul class="single-dropdown"> --}}
                                         {{-- <li><a href="index.html">Fashion</a></li> --}}
@@ -82,7 +82,7 @@
                                             <li><a target="_blank" href="index-smart-watch.html">smart watch</a></li>
                                             <li><a href="index-sports.html">sports</a></li> --}}
                                         {{-- </ul> --}}
-                                    </li>
+                                    {{-- </li> --}}
                                     {{-- <li><a href="/food">Food</a>
                                         <ul class="single-dropdown">
                                             <li>
@@ -133,40 +133,40 @@
                                                 <a href="single-product.html">
                                                     <img src="{{asset('assets/img/banner/18.jpg')}}" alt="">
                                     </a>
-                        </div>
-                    </div>
-                    </li> --}}
-                    <li>
-                        @if($gradientColor===NULL)
-                        <router-link to="/products/all" @click.native="showPage()" style="color:{{$basicColor}}">Shop</router-link>
-                        @else
-                        <router-link to="/products/all" @click.native="showPage()" style="background: {{$gradientColor}};
-                        -webkit-background-clip: text;
-                        -webkit-text-fill-color: transparent;">Shop</router-link>
-                        @endif
-                        <ul class="single-dropdown">
-                            <li>
-                                <router-link to="/products/food" @click.native="showPage()">Baverage</router-link>
-                            </li>
-                            <li>
-                                <router-link to="/products/drink" @click.native="showPage()">Dairy</router-link>
-                            </li>
-                            {{-- <li><a href="blog-2-col.html">blog 2 colunm</a></li>
-                                            <li><a href="blog-sidebar.html">blog sidebar</a></li>
-                                            <li><a href="blog-details.html">blog details</a></li>
-                                            <li><a href="blog-details-sidebar.html">blog details 2</a></li> --}}
-                        </ul>
-                    </li>
-                    {{-- <li
-                    v-for="category in productsCategories"
-                    v-bind:data="category"
-                    v-bind:key="category.key">
-                        <router-link :to="category.categories_name">@{{ category.categories_name }}</router-link>
-                    <a href="">@{{ category.categories_name }}</a>
-                    </li> --}}
-                    </ul>
-                    </nav>
-                </div>
+                                    </div>
+                                    </div>
+                                    </li> --}}
+                                    {{-- <li>
+                                        @if($gradientColor===NULL)
+                                        <router-link to="/products/all" @click.native="showPage()" style="color:{{$basicColor}}">Shop</router-link>
+                                        @else
+                                        <router-link to="/products/all" @click.native="showPage()" style="background: {{$gradientColor}};
+                                        -webkit-background-clip: text;
+                                        -webkit-text-fill-color: transparent;">Shop</router-link>
+                                        @endif
+                                        <ul class="single-dropdown">
+                                            <li>
+                                                <router-link to="/products/food" @click.native="showPage()">Baverage</router-link>
+                                            </li>
+                                            <li>
+                                                <router-link to="/products/drink" @click.native="showPage()">Dairy</router-link>
+                                            </li>
+                                            <li><a href="blog-2-col.html">blog 2 colunm</a></li>
+                                                            <li><a href="blog-sidebar.html">blog sidebar</a></li>
+                                                            <li><a href="blog-details.html">blog details</a></li>
+                                                            <li><a href="blog-details-sidebar.html">blog details 2</a></li>
+                                        </ul>
+                                    </li> --}}
+                                    {{-- <li
+                                    v-for="category in productsCategories"
+                                    v-bind:data="category"
+                                    v-bind:key="category.key">
+                                        <router-link :to="category.categories_name">@{{ category.categories_name }}</router-link>
+                                    <a href="">@{{ category.categories_name }}</a>
+                                    </li> --}}
+                                {{-- </ul>
+                            </nav>
+                        </div> --}}
                 <div class="header-cart">
                     {{-- <a class="icon-cart-furniture" href="#">
                         <i class="ti-shopping-cart"></i>
@@ -350,10 +350,10 @@
                                 {{-- <li><a data-toggle="modal" data-target="#exampleCompare" href="#"><i class="ti-reload"></i>
                                         Compare</a></li> --}}
                                 {{-- <li><a href="{{ route('add-wishlist') }}"><i class="ti-heart"></i> Wishlist</a></li> --}}
-                                <li>
+                                {{-- <li>
                                     <router-link to="/wishlists" @click.native="showPage()"><i class="ti-heart"></i> Wishlist
                                     </router-link>
-                                </li>
+                                </li> --}}
                             </ul>
                         </div>
                     </div>

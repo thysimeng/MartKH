@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/', 'UsersController\UserHomeController@index')->name('home');
+Route::get('/', 'UsersController\UserHomeController@mainView')->name('home');
 
 Auth::routes();
 
@@ -121,24 +121,14 @@ Route::group(['middleware' => ['web','auth','checkUserRoleFranchise']], function
 	Route::put('/franchise/profile','Franchise\FranchiseController@updateProfile')->name('franchise.update.profile');
 });
 
-// test route for redirecting users when they try to access admin pages
-Route::get('/user', function(){
-	return redirect('/');
-})->name('normalUser');
-
-//route for reload vue
-Route::get('/users', 'UsersController\UserHomeController@index')->name('home');
-Route::get('/products/all', 'UsersController\ProductDisplayController@index')->name('productDisplay');
-Route::get('/products/food', 'UsersController\ProductDisplayController@index')->name('productDisplay-food');
-Route::get('/products/filterByPrice', 'UsersController\ProductDisplayController@index')->name('productDisplay-food');
-Route::get('/wishlists', 'UsersController\ProductDisplayController@index')->name('wishlists');
-
 // route for fetch data
 //Start update section/////////////////////////////////////////////////////////
 
 //route for reload vue
-Route::get('/shop', 'UsersController\UserHomeController@index')->name('allProductReload');
-Route::get('/all', 'UsersController\UserHomeController@index')->name('allProductReload');
+Route::get('/shop', 'UsersController\UserHomeController@mainView')->name('allProductReload');
+Route::get('/profile', 'UsersController\UserHomeController@mainView')->name('profileReload');
+Route::get('/wishlist', 'UsersController\UserHomeController@mainView')->name('wishlist');
+// Route::get('/all', 'UsersController\UserHomeController@index')->name('allProductReload');
 
 // route for test request
 Route::get('/requestTester', 'UsersController\ProductsController@requestTester')->name('requestTester');
@@ -171,7 +161,32 @@ Route::get('/wishlistproducts', 'UsersController\ProductsController@wishlistprod
 // Add to wishlist data
 Route::post('/users/wishlist', 'UsersController\UserHomeController@wishList')->name('add-wishlist');
 
+Route::get('/users/userProfile2', 'UsersController\UserHomeController@userProfile2')->name('userProfile2');
+
+// retrieve subcategories data
+Route::get('/getSubCategories', 'UsersController\ProductsController@getSubCategories')->name('getSubCategories');
+
+Route::get('/shop/{any}', function(){
+    return view('users.userHomePageUpdate');
+})->where('any', '^(?!api).*$');
+// Route::get('/{any}', function(){
+//     return view('user');
+// })->where('any', '^(?!api).*$');
+
 // end update section///////////////////////////////////////////////////////////////////////
+
+// test route for redirecting users when they try to access admin pages
+Route::get('/users', function(){
+	return redirect('/');
+})->name('normalUser');
+
+//route for reload vue
+Route::get('/users', 'UsersController\UserHomeController@index')->name('home');
+Route::get('/products/all', 'UsersController\ProductDisplayController@index')->name('productDisplay');
+Route::get('/products/food', 'UsersController\ProductDisplayController@index')->name('productDisplay-food');
+Route::get('/products/filterByPrice', 'UsersController\ProductDisplayController@index')->name('productDisplay-food');
+Route::get('/wishlists', 'UsersController\ProductDisplayController@index')->name('wishlists');
+
 
 Route::get('/users/wishlist', 'UsersController\UserHomeController@wishListIndex')->name('list-wishlist');
 Route::post('/searchweithwh', 'UsersController\ProductsController@search')->name('search');
@@ -197,8 +212,4 @@ Route::get('/auth/{provider}', 'Auth\LoginController@redirectToProvider')->name(
 // Route::get('/auth/facebook/callback', 'Auth\LoginController@handleFacebookCallback');
 // Route::get('/auth/facebook', 'Auth\LoginController@redirectToFacebook')->name('redirectToFacebook');
 Route::post('/users/delete-wishlist', 'UsersController\UserHomeController@deleteWishList')->name('delete-wishlist');
-
-// Route::get('/{any}', function(){
-//     return view('user');
-// })->where('any', '^(?!api).*$');
 Route::get('/usersTest', 'UsersController\temp\testController@index')->name('get');

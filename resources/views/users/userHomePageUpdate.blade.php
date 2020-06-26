@@ -14,7 +14,7 @@
     {{-- end slide area --}}
 
     <!-- product area start -->
-    <router-view name="product-area"></router-view>
+    {{-- <router-view name="product-area"></router-view> --}}
     {{-- <product-area></product-area> --}}
     <!-- product area end -->
 
@@ -24,7 +24,7 @@
     <!-- discount area end -->
 
     <!-- premium area start -->
-    <router-view name="premium-area"></router-view>
+    {{-- <router-view name="premium-area"></router-view> --}}
     {{-- <premium-area></premium-area> --}}
     <!-- premium area end -->
 

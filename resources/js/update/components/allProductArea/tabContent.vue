@@ -8,12 +8,13 @@
                         <img :src="'uploads/product_image/'+Product.image" alt="">
                     </a>
                     <div class="product-action">
-                        <a class="animate-left" title="Wishlist" href="#">
+                        <!-- <a class="animate-left" title="Wishlist" href="#">
                             <i class="pe-7s-like"></i>
-                        </a>
-                        <a class="animate-top" title="Add To Cart" href="#">
+                        </a> -->
+                        <addToWishlist :productID="productID=Product.id" :style1="true"></addToWishlist>
+                        <!-- <a class="animate-top" title="Add To Cart" href="#">
                             <i class="pe-7s-cart"></i>
-                        </a>
+                        </a> -->
                         <!-- <a @click="passModalData(Product.name, Product.image, Product.price,Product.description, Product.size, Product.brand)" class="animate-right" title="Quick View" data-toggle="modal" data-target="#exampleModal" href="#"> -->
                         <a @click="passModalData(Product)" class="animate-right" title="Quick View" data-toggle="modal" data-target="#exampleModal" href="#">
                             <i class="pe-7s-look"></i>
@@ -37,6 +38,7 @@
 </template>
 <script>
 import {mapGetters, mapActions} from 'vuex';
+import addToWishlist from '../wishlist/addTowishlis'
 export default {
     name:'tabContents',
     data(){
@@ -82,7 +84,8 @@ export default {
         }
     },
     components:{
-        // modalView
+        // modalView,
+        addToWishlist
     }
 }
 </script>
