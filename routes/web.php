@@ -130,6 +130,7 @@ Route::group(['middleware' => ['web','auth','checkUserRoleFranchise']], function
 Route::get('/shop', 'UsersController\UserHomeController@mainView')->name('allProductReload');
 Route::get('/profile', 'UsersController\UserHomeController@mainView')->name('profileReload');
 Route::get('/wishlist', 'UsersController\UserHomeController@mainView')->name('wishlist');
+Route::get('/contact', 'UsersController\UserHomeController@mainView')->name('contact');
 // Route::get('/all', 'UsersController\UserHomeController@index')->name('allProductReload');
 
 // route for test request

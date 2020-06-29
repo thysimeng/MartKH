@@ -44444,7 +44444,10 @@ var staticRenderFns = [
         {
           staticClass: "breadcrumb-area pt-205 pb-210",
           staticStyle: {
-            "background-image": "url(assets/img/bg/breadcrumb.jpg)"
+            "background-image":
+              "url(uploads/contact/DJI_20191213_110242_99_pano.jpg)",
+            width: "1900px",
+            height: "500px"
           }
         },
         [

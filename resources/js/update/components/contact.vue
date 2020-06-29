@@ -1,6 +1,6 @@
 <template>
     <div>
-		<div class="breadcrumb-area pt-205 pb-210" style="background-image: url(assets/img/bg/breadcrumb.jpg)">
+		<div class="breadcrumb-area pt-205 pb-210" style="background-image: url(uploads/contact/DJI_20191213_110242_99_pano.jpg);width: 1900px;height: 500px;">
             <div class="container">
                 <div class="breadcrumb-content text-center">
                     <h2>contact us</h2>
