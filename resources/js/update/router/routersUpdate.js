@@ -9,6 +9,7 @@ import profileComponent from '../components/profile.vue';
 import shopComponent from '../components/shop/shop.vue';
 import shopContents from '../components/shop/shopComponent/shopContents.vue';
 
+import contactComponent from '../components/contact'
 import loginArea from '../components/loginArea';
 import registerArea from '../components/registerArea';
 
@@ -48,4 +49,9 @@ export const profile =
     {
         path: '/profile',
         component: profileComponent
+    };
+export const contact =
+    {
+        path: '/contact',
+        component: contactComponent
     };

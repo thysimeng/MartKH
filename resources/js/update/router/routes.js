@@ -16,7 +16,7 @@
 //user profile
 // import userProfile from './components/usersComponent/userProfile/userProfile.vue';
 
-import {routesUpdate, routesShop, login, register, profile} from './routersUpdate';
+import {routesUpdate, routesShop, login, register, profile, contact} from './routersUpdate';
 import { wishlistRoutes } from './wishlist';
 
 export const routes = [
@@ -25,7 +25,8 @@ export const routes = [
     login,
     register,
     wishlistRoutes,
-    profile
+    profile,
+    contact
     // {
     //     path: '/users',
     //     components: {
