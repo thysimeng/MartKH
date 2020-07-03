@@ -70,7 +70,7 @@ class ProfileController extends Controller
             $user = Auth::user();
             if($user->avatar != 'default.png')
             {
-                $userImage = public_path('uploads\avatar\\'.$user->avatar);
+                $userImage = public_path('uploads/avatar/'.$user->avatar);
                 if(file_exists($userImage))
                 {
                     File::delete($userImage);
@@ -78,7 +78,7 @@ class ProfileController extends Controller
             }
             $avatar = $request->file('avatar');
             $fileName = time().'.'.$avatar->getClientOriginalExtension();
-            Image::make($avatar)->resize(400,400)->save( public_path('uploads\avatar\\'.$fileName));
+            Image::make($avatar)->resize(400,400)->save( public_path('uploads/avatar/'.$fileName));
 
             $user->avatar = $fileName;
             $user->save();

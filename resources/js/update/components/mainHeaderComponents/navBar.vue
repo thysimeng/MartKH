@@ -35,7 +35,7 @@
                         <div v-for="(category, index) in categories" :key="category.key" class="category-dropdown-style category-common2 mb-30">
                             <router-link :to="/shop/+category.categories_name"><h4 v-if="index<2" class="categories-subtitle"> {{ category.categories_name }}</h4></router-link>
 
-                            <ul v-for="(subcategory) in subcategories" :key="subcategory.key" >
+                            <ul v-for="subcategory in subcategories" :key="subcategory.key" >
                                 <li v-if="category.id==subcategory.category_id"><router-link :to="'/shop/'+subcategory.subcategory_name"> {{subcategory.subcategory_name}}  {{ subcategory.count }}</router-link></li>
                                 <!-- <li v-if="subindex==3&&category.count>3"><a href="shop-grid-2-col.html"> See more</a></li> -->
                             </ul>
@@ -118,22 +118,8 @@
                 </li> -->
                 <li><router-link to="/shop/all">shop</router-link>
                     <ul>
-                        <li><a href="shop-grid-2-col.html">{{ categories }}</a></li>
-                        <li><a href="shop-grid-3-col.html"> grid 3 column</a></li>
-                        <li><a href="shop.html">grid 4 column</a></li>
-                        <li><a href="shop-grid-box.html">grid box style</a></li>
-                        <li><a href="shop-list-1-col.html"> list 1 column</a></li>
-                        <li><a href="shop-list-2-col.html">list 2 column</a></li>
-                        <li><a href="shop-list-box.html">list box style</a></li>
-                        <li><a href="product-details.html">tab style 1</a></li>
-                        <li><a href="product-details-2.html">tab style 2</a></li>
-                        <li><a href="product-details-3.html"> tab style 3</a></li>
-                        <li><a href="product-details-4.html">sticky style</a></li>
-                        <li><a href="product-details-5.html">sticky style 2</a></li>
-                        <li><a href="product-details-6.html">gallery style</a></li>
-                        <li><a href="product-details-7.html">gallery style 2</a></li>
-                        <li><a href="product-details-8.html">fixed image style</a></li>
-                        <li><a href="product-details-9.html">fixed image style 2</a></li>
+                        <li><router-link to="/shop/Drink">Drink</router-link></li>
+                        <li><router-link to="/shop/Food">Food</router-link></li>
                     </ul>
                 </li>
                 <!-- <li><router-link to="/shop/all">shop</router-link>

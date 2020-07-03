@@ -4421,20 +4421,6 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
-//
 
 
 /* harmony default export */ __webpack_exports__["default"] = ({
@@ -6030,8 +6016,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
       axios.post('/users/wishlist', {
         productID: this.productID
       }).then(function (res) {
-        console.log(res.data);
-
+        // console.log(res.data);
         if (res.data) {
           currentObje.wishlistBG = 'red';
         } else {
@@ -45469,41 +45454,25 @@ var render = function() {
                   ]),
                   _vm._v(" "),
                   _c("ul", [
-                    _c("li", [
-                      _c("a", { attrs: { href: "shop-grid-2-col.html" } }, [
-                        _vm._v(_vm._s(_vm.categories))
-                      ])
-                    ]),
+                    _c(
+                      "li",
+                      [
+                        _c("router-link", { attrs: { to: "/shop/Drink" } }, [
+                          _vm._v("Drink")
+                        ])
+                      ],
+                      1
+                    ),
                     _vm._v(" "),
-                    _vm._m(2),
-                    _vm._v(" "),
-                    _vm._m(3),
-                    _vm._v(" "),
-                    _vm._m(4),
-                    _vm._v(" "),
-                    _vm._m(5),
-                    _vm._v(" "),
-                    _vm._m(6),
-                    _vm._v(" "),
-                    _vm._m(7),
-                    _vm._v(" "),
-                    _vm._m(8),
-                    _vm._v(" "),
-                    _vm._m(9),
-                    _vm._v(" "),
-                    _vm._m(10),
-                    _vm._v(" "),
-                    _vm._m(11),
-                    _vm._v(" "),
-                    _vm._m(12),
-                    _vm._v(" "),
-                    _vm._m(13),
-                    _vm._v(" "),
-                    _vm._m(14),
-                    _vm._v(" "),
-                    _vm._m(15),
-                    _vm._v(" "),
-                    _vm._m(16)
+                    _c(
+                      "li",
+                      [
+                        _c("router-link", { attrs: { to: "/shop/Food" } }, [
+                          _vm._v("Food")
+                        ])
+                      ],
+                      1
+                    )
                   ])
                 ],
                 1
@@ -45586,154 +45555,6 @@ var staticRenderFns = [
       _vm._v(" "),
       _c("li", [
         _c("a", { attrs: { href: "index-sports.html" } }, [_vm._v("sports")])
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", [
-      _c("a", { attrs: { href: "shop-grid-3-col.html" } }, [
-        _vm._v(" grid 3 column")
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", [
-      _c("a", { attrs: { href: "shop.html" } }, [_vm._v("grid 4 column")])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", [
-      _c("a", { attrs: { href: "shop-grid-box.html" } }, [
-        _vm._v("grid box style")
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", [
-      _c("a", { attrs: { href: "shop-list-1-col.html" } }, [
-        _vm._v(" list 1 column")
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", [
-      _c("a", { attrs: { href: "shop-list-2-col.html" } }, [
-        _vm._v("list 2 column")
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", [
-      _c("a", { attrs: { href: "shop-list-box.html" } }, [
-        _vm._v("list box style")
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", [
-      _c("a", { attrs: { href: "product-details.html" } }, [
-        _vm._v("tab style 1")
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", [
-      _c("a", { attrs: { href: "product-details-2.html" } }, [
-        _vm._v("tab style 2")
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", [
-      _c("a", { attrs: { href: "product-details-3.html" } }, [
-        _vm._v(" tab style 3")
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", [
-      _c("a", { attrs: { href: "product-details-4.html" } }, [
-        _vm._v("sticky style")
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", [
-      _c("a", { attrs: { href: "product-details-5.html" } }, [
-        _vm._v("sticky style 2")
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", [
-      _c("a", { attrs: { href: "product-details-6.html" } }, [
-        _vm._v("gallery style")
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", [
-      _c("a", { attrs: { href: "product-details-7.html" } }, [
-        _vm._v("gallery style 2")
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", [
-      _c("a", { attrs: { href: "product-details-8.html" } }, [
-        _vm._v("fixed image style")
-      ])
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("li", [
-      _c("a", { attrs: { href: "product-details-9.html" } }, [
-        _vm._v("fixed image style 2")
       ])
     ])
   }
@@ -48510,7 +48331,16 @@ var render = function() {
             : _vm.styleButton == "modal"
             ? _c(
                 "a",
-                { staticClass: "btn-hover", on: { click: _vm.addToWishlist } },
+                {
+                  staticClass: "btn-hover",
+                  class: {
+                    "animate-left": _vm.style1,
+                    "btn-hover list-btn-wishlist": _vm.style2
+                  },
+                  style: { background: _vm.wishlistBG },
+                  attrs: { title: "Wishlist" },
+                  on: { click: _vm.addToWishlist }
+                },
                 [_c("i", { staticClass: "pe-7s-like" })]
               )
             : _vm.styleButton == "x"
