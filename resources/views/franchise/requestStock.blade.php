@@ -3,7 +3,12 @@
 @section('content')
     @include('franchise.layouts.headers.cards')
 
-    <div class="container-fluid mt--7">
+    @if($franDarkMode==1)
+        <div class="container-fluid bg-dark mt--7" style="min-height:630px;">
+    @else
+        <div class="container-fluid mt--7">
+    @endif
+    {{--<div class="container-fluid mt--7">--}}
     <div class="row">
             <div class="col-xl-12 order-xl-1">
                 <div class="card bg-secondary shadow">

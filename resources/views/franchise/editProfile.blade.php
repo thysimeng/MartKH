@@ -7,8 +7,12 @@
         'class' => 'col-lg-12'
     ])   
     
-
-    <div class="container-fluid mt--7">
+    @if($franDarkMode==1)
+        <div class="container-fluid bg-dark mt--7" style="min-height:630px;">
+    @else
+        <div class="container-fluid mt--7">
+    @endif
+    {{--<div class="container-fluid mt--7">--}}
             <div class="offset-xl-2 col-xl-8">                 
                 <div class="card bg-secondary shadow">
                     <div class="card-header bg-white border-0">

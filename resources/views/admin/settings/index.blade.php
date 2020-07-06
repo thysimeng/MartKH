@@ -3,7 +3,7 @@
 @section('content')
     @include('layouts.headers.cards')
 
-        @if($sidebar==1)
+        @if($franDarkMode==1)
             <div class="container-fluid bg-dark mt--6" style="min-height:630px;">
         @else
             <div class="container-fluid mt--6">
@@ -15,7 +15,7 @@
                         <!-- Card image -->
                         {{-- <img class="card-img-top" src="https://argon-dashboard-pro-laravel.creative-tim.com/argon/img/theme/img-1-1000x900.jpg" alt="Image placeholder"> --}}
                         <!-- Card body -->
-                        @if($sidebar==1)
+                        @if($franDarkMode==1)
                             <div class="card-header bg-dark">
                                 <h2 class="text-white">Dark Mode</h2>
                             </div>
@@ -50,7 +50,7 @@
                         <!-- Card image -->
                         {{-- <img class="card-img-top" src="https://argon-dashboard-pro-laravel.creative-tim.com/argon/img/theme/img-1-1000x900.jpg" alt="Image placeholder"> --}}
                         <!-- Card body -->
-                        @if($sidebar==1)
+                        @if($franDarkMode==1)
                         <div class="card-header bg-dark">
                             <h2 class="text-white">Website Logo</h2>
                         </div>
@@ -96,7 +96,7 @@
                         <!-- Card image -->
                         {{-- <img class="card-img-top" src="https://argon-dashboard-pro-laravel.creative-tim.com/argon/img/theme/img-1-1000x900.jpg" alt="Image placeholder"> --}}
                         <!-- Card body -->
-                        @if($sidebar==1)
+                        @if($franDarkMode==1)
                             <div class="card-header bg-dark">
                                 <h2 class="text-white">Basic Color Theme</h2>
                             </div>
@@ -366,7 +366,7 @@
                         <!-- Card image -->
                         {{-- <img class="card-img-top" src="https://argon-dashboard-pro-laravel.creative-tim.com/argon/img/theme/img-1-1000x900.jpg" alt="Image placeholder"> --}}
                         <!-- Card body -->
-                        @if($sidebar==1)
+                        @if($franDarkMode==1)
                             <div class="card-header bg-dark">
                                 <h2 class="text-white">Two Colors Linear Gradient Theme</h2>
                             </div>
@@ -646,7 +646,7 @@
         }
         $(document).ready(function(){
             $godarkVal = Cookies.get('godark');
-            $setCookiesGoDark = <?php echo $sidebar?>;
+            $setCookiesGoDark = <?php echo $franDarkMode?>;
             console.log($setCookiesGoDark);
             if(typeof $godarkVal==='undefined'){
                 $godarkVal = $setCookiesGoDark;

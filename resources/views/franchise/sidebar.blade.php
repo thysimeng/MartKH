@@ -1,4 +1,9 @@
-<nav class="navbar navbar-vertical fixed-left navbar-expand-md navbar-light bg-white" id="sidenav-main">
+@if($franDarkMode==0)
+    <nav class="navbar navbar-vertical fixed-left navbar-expand-md navbar-light bg-white trasition-left" id="sidenav-main">
+@elseif($franDarkMode==1)
+    <nav class="navbar navbar-vertical fixed-left navbar-expand-md navbar-dark bg-dark trasition-left" id="sidenav-main">
+@endif
+{{--<nav class="navbar navbar-vertical fixed-left navbar-expand-md navbar-light bg-white" id="sidenav-main">--}}
     <div class="container-fluid">
         <!-- Toggler -->
         <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#sidenav-collapse-main" aria-controls="sidenav-main" aria-expanded="false" aria-label="Toggle navigation">
@@ -7,7 +12,8 @@
         <!-- Brand -->
         <a class="navbar-brand pt-0" href="{{ route('home') }}">
             {{-- <img src="{{ asset('argon') }}/img/brand/blue.png" class="navbar-brand-img" alt="..."> --}}
-            <img src="{{ asset('uploads') }}/logo/{{$logo}}" class="navbar-brand-img img-fluid" alt="...">
+            {{--<img src="{{ asset('uploads') }}/logo/{{$logo}}" class="navbar-brand-img img-fluid" alt="...">--}}
+            <img src="{{ asset('uploads') }}/logo/{{$franLogo}}" class="navbar-brand-img img-fluid" alt="...">
             {{-- <span class="text-danger">MartKH</span>  --}}
         </a>
         <!-- User -->
