@@ -84,7 +84,7 @@ class ProductController extends Controller
         if($request->hasFile('image')){
             $image = $request->file('image');
             $filename = time() . '.' . $image->getClientOriginalExtension();
-            Image::make($image)->resize(600, 600)->save( public_path('uploads\product_image\\' . $filename ) );
+            Image::make($image)->resize(600, 600)->save( public_path('uploads/product_image/' . $filename ) );
             $products->image = $filename;
             // $products->save();
         };
@@ -155,8 +155,8 @@ class ProductController extends Controller
             $image = $request->file('image');
             $image_old = $request->input('imgDB');
             $filename = time() . '.' . $image->getClientOriginalExtension();
-            Image::make($image)->resize(600, 600)->save( public_path('uploads\product_image\\' . $filename ) );
-            File::delete(public_path('uploads\product_image\\' . $image_old));
+            Image::make($image)->resize(600, 600)->save( public_path('uploads/product_image/' . $filename ) );
+            File::delete(public_path('uploads/product_image/' . $image_old));
             $products->image = $filename;
             // $products->save();
         }
@@ -187,7 +187,7 @@ class ProductController extends Controller
     {
         $product = Products::findOrFail($id);
         $image_path = $product->image;
-        File::delete(public_path('uploads\product_image\\' . $image_path));
+        File::delete(public_path('uploads/product_image/' . $image_path));
         $product->delete();
         return redirect()->route('products.index');
     }

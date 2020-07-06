@@ -10,17 +10,17 @@
                         <div class="quick-view-learg-img">
                             <div class="quick-view-tab-content tab-content">
                                 <div class="tab-pane active show fade" id="modal1" role="tabpanel">
-                                    <img :src="'uploads/product_image/'+ProductDataModal.image" alt="">
+                                    <img :src="'../uploads/product_image/'+ProductDataModal.image" alt="">
                                 </div>
                                 <div class="tab-pane fade" id="modal2" role="tabpanel">
-                                    <img :src="'uploads/product_image/'+ProductDataModal.image" alt="">
+                                    <img :src="'../uploads/product_image/'+ProductDataModal.image" alt="">
                                 </div>
                                 <div class="tab-pane fade" id="modal3" role="tabpanel">
-                                    <img :src="'uploads/product_image/'+ProductDataModal.image" alt="">
+                                    <img :src="'../uploads/product_image/'+ProductDataModal.image" alt="">
                                 </div>
                             </div>
                         </div>
-                        <div class="quick-view-list nav" role="tablist">
+                        <!-- <div class="quick-view-list nav" role="tablist">
                             <a class="active" href="#modal1" data-toggle="tab" role="tab">
                                 <img :src="'uploads/product_image/'+ProductDataModal.image" alt="" width="100px" heigth="112px">
                             </a>
@@ -30,7 +30,7 @@
                             <a href="#modal3" data-toggle="tab" role="tab">
                                 <img :src="'uploads/product_image/'+ProductDataModal.image" alt="" width="100px" heigth="112px">
                             </a>
-                        </div>
+                        </div> -->
                     </div>
                     <div class="qwick-view-right">
                         <div class="qwick-view-content">
@@ -78,9 +78,10 @@
                                 <div class="quickview-btn-cart">
                                     <a class="btn-hover-black" href="#">add to cart</a>
                                 </div>
-                                <div class="quickview-btn-wishlist">
+                                <!-- <div class="quickview-btn-wishlist">
                                     <a class="btn-hover" href="#"><i class="pe-7s-like"></i></a>
-                                </div>
+                                </div> -->
+                                <addToWishlist :productID="productID=ProductDataModal.id" :styleModal="true" :styleButton="'modal'"></addToWishlist>
                             </div>
                         </div>
                     </div>
@@ -92,7 +93,8 @@
 </template>
 
 <script>
-import {mapGetters} from 'vuex'
+import {mapActions, mapGetters} from 'vuex'
+import addToWishlist from './wishlist/addTowishlis'
 export default {
     name:'modal',
     data(){
@@ -105,10 +107,21 @@ export default {
     //         type: Object
     //     }
     // },
+    methods:{
+        ...mapActions([
+            'passDataModal'
+        ]),
+        passModalData(product){
+            this.$store.dispatch('passDataModal', product);
+        }
+    },
     computed:{
         ...mapGetters([
             'ProductDataModal'
         ])
+    },
+    components:{
+        addToWishlist
     }
 }
 </script>

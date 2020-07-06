@@ -1,6 +1,6 @@
 <template>
     <div class="shop-product-content tab-content">
-        <div v-show="false">{{ fetchProductsAll }}</div>
+        <!-- <div v-show="false">{{ fetchProductsAll }}</div> -->
         <div id="grid-sidebar1" class="tab-pane fade active show">
             <div class="row">
                 <div class="col-lg-6 col-md-6 col-xl-3" v-for="product in allProductData.data" :key="product.key">
@@ -85,7 +85,7 @@ export default {
     },
     computed:{
         ...mapActions([
-            'fetchProductsAll',
+            // 'fetchProductsAll',
         ]),
         ...mapGetters([
             'allProductData'

@@ -139,28 +139,28 @@ class AdsController extends Controller
         $ads = Ads::findOrFail($id);
         $image_name = $ads->image;
         if($ads->position === 'left1'){
-            File::delete(public_path('uploads\ads_image\template1\adsLeft\\' . $image_name));
+            File::delete(public_path('uploads/ads_image/template1/adsLeft/' . $image_name));
         }
         elseif($ads->position === 'middle1'){
-            File::delete(public_path('uploads\ads_image\template1\adsMiddle\\' . $image_name));
+            File::delete(public_path('uploads/ads_image/template1/adsMiddle/' . $image_name));
         }
         elseif($ads->position === 'topRight1'){
-            File::delete(public_path('uploads\ads_image\template1\adsTopRight\\' . $image_name));
+            File::delete(public_path('uploads/ads_image/template1/adsTopRight/' . $image_name));
         }
         elseif($ads->position === 'bottomRight1'){
-            File::delete(public_path('uploads\ads_image\template1\adsBottomRight\\' . $image_name));
+            File::delete(public_path('uploads/ads_image/template1/adsBottomRight/' . $image_name));
         }
         elseif($ads->position === 'left2'){
-            File::delete(public_path('uploads\ads_image\template2\adsLeft\\' . $image_name));
+            File::delete(public_path('uploads/ads_image/template2/adsLeft/' . $image_name));
         }
         elseif($ads->position === 'topRight2'){
-            File::delete(public_path('uploads\ads_image\template2\adsTopRight\\' . $image_name));
+            File::delete(public_path('uploads/ads_image/template2/adsTopRight/' . $image_name));
         }
         elseif($ads->position === 'bottomRight2'){
-            File::delete(public_path('uploads\ads_image\template2\adsBottomRight\\' . $image_name));
+            File::delete(public_path('uploads/ads_image/template2/adsBottomRight/' . $image_name));
         }
         elseif($ads->position === 'middle3'){
-            File::delete(public_path('uploads\ads_image\template3\adsMiddle\\' . $image_name));
+            File::delete(public_path('uploads/ads_image/template3/adsMiddle/' . $image_name));
         }
         $ads->delete();
         // return redirect()->route('ads.index');
@@ -183,7 +183,7 @@ class AdsController extends Controller
                 // $name = time() . '.' . $image->getClientOriginalExtension();
                 $name = time().'.'.$image->getClientOriginalName();
                 // $image->move(public_path('uploads\Test\\'), $name);
-                $imageCrop = Image::make($image)->resize(480, 700)->save( public_path('uploads\ads_image\template1\adsLeft\\' . $name ) );
+                $imageCrop = Image::make($image)->resize(480, 700)->save( public_path('uploads/ads_image/template1/adsLeft/' . $name ) );
                 $data = $name;
                 // $adsDB->image=json_encode($data);
                 $adsDB->image=$data;
@@ -211,7 +211,7 @@ class AdsController extends Controller
                 // $name = time() . '.' . $image->getClientOriginalExtension();
                 $name = time().'.'.$image->getClientOriginalName();
                 // $image->move(public_path('uploads\Test\\'), $name);
-                $imageCrop = Image::make($image)->resize(960, 700)->save( public_path('uploads\ads_image\template1\adsMiddle\\' . $name ) );
+                $imageCrop = Image::make($image)->resize(960, 700)->save( public_path('uploads/ads_image/template1/adsMiddle/' . $name ) );
                 $data = $name;
                 // $adsDB->image=json_encode($data);
                 $adsDB->image=$data;
@@ -239,7 +239,7 @@ class AdsController extends Controller
                 // $name = time() . '.' . $image->getClientOriginalExtension();
                 $name = time().'.'.$image->getClientOriginalName();
                 // $image->move(public_path('uploads\Test\\'), $name);
-                $imageCrop = Image::make($image)->resize(480, 350)->save( public_path('uploads\ads_image\template1\adsTopRight\\' . $name ) );
+                $imageCrop = Image::make($image)->resize(480, 350)->save( public_path('uploads/ads_image/template1/adsTopRight/' . $name ) );
                 $data = $name;
                 // $adsDB->image=json_encode($data);
                 $adsDB->image=$data;
@@ -267,7 +267,7 @@ class AdsController extends Controller
                 // $name = time() . '.' . $image->getClientOriginalExtension();
                 $name = time().'.'.$image->getClientOriginalName();
                 // $image->move(public_path('uploads\Test\\'), $name);
-                $imageCrop = Image::make($image)->resize(480, 350)->save( public_path('uploads\ads_image\template1\adsBottomRight\\' . $name ) );
+                $imageCrop = Image::make($image)->resize(480, 350)->save( public_path('uploads/ads_image/template1/adsBottomRight/' . $name ) );
                 $data = $name;
                 // $adsDB->image=json_encode($data);
                 $adsDB->image=$data;
@@ -295,7 +295,7 @@ class AdsController extends Controller
                 // $name = time() . '.' . $image->getClientOriginalExtension();
                 $name = time().'.'.$image->getClientOriginalName();
                 // $image->move(public_path('uploads\Test\\'), $name);
-                $imageCrop = Image::make($image)->resize(1280, 960)->save( public_path('uploads\ads_image\template2\adsLeft\\' . $name ) );
+                $imageCrop = Image::make($image)->resize(1280, 960)->save( public_path('uploads/ads_image/template2/adsLeft/' . $name ) );
                 $data = $name;
                 // $adsDB->image=json_encode($data);
                 $adsDB->image=$data;
@@ -322,7 +322,7 @@ class AdsController extends Controller
                 // $name = time() . '.' . $image->getClientOriginalExtension();
                 $name = time().'.'.$image->getClientOriginalName();
                 // $image->move(public_path('uploads\Test\\'), $name);
-                $imageCrop = Image::make($image)->resize(640, 480)->save( public_path('uploads\ads_image\template2\adsTopRight\\' . $name ) );
+                $imageCrop = Image::make($image)->resize(640, 480)->save( public_path('uploads/ads_image/template2/adsTopRight/' . $name ) );
                 $data = $name;
                 // $adsDB->image=json_encode($data);
                 $adsDB->image=$data;
@@ -349,7 +349,7 @@ class AdsController extends Controller
                 // $name = time() . '.' . $image->getClientOriginalExtension();
                 $name = time().'.'.$image->getClientOriginalName();
                 // $image->move(public_path('uploads\Test\\'), $name);
-                $imageCrop = Image::make($image)->resize(640, 480)->save( public_path('uploads\ads_image\template2\adsBottomRight\\' . $name ) );
+                $imageCrop = Image::make($image)->resize(640, 480)->save( public_path('uploads/ads_image/template2/adsBottomRight/' . $name ) );
                 $data = $name;
                 // $adsDB->image=json_encode($data);
                 $adsDB->image=$data;
@@ -376,7 +376,7 @@ class AdsController extends Controller
                 // $name = time() . '.' . $image->getClientOriginalExtension();
                 $name = time().'.'.$image->getClientOriginalName();
                 // $image->move(public_path('uploads\Test\\'), $name);
-                $imageCrop = Image::make($image)->resize(1760, 760)->save( public_path('uploads\ads_image\template3\adsMiddle\\' . $name ) );
+                $imageCrop = Image::make($image)->resize(1760, 760)->save( public_path('uploads/ads_image/template3/adsMiddle/' . $name ) );
                 $data = $name;
                 // $adsDB->image=json_encode($data);
                 $adsDB->image=$data;

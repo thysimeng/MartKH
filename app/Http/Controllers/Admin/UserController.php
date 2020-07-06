@@ -31,7 +31,7 @@ class UserController extends Controller
         $admins = User::where('role','admin')->paginate(10);
         $users = User::where('role','user')->paginate(10);
         $franchises = User::where('role','franchise')->paginate(10);
-        
+
         return view('admin.users.index',compact('admins','users','franchises'));
         // return view('admin.users.index', ['users' => $model->paginate(10)]);
     }
@@ -97,13 +97,13 @@ class UserController extends Controller
     {
         if ($user->avatar != 'default.png')
         {
-            $userImage = public_path('uploads\avatar\\'.$user->avatar);
+            $userImage = public_path('uploads/avatar/'.$user->avatar);
                 if(file_exists($userImage))
                 {
                     File::delete($userImage);
                 }
         }
-        
+
         $user->delete();
 
         return redirect()->route('user.index')->withStatus(__('User successfully deleted.'));
@@ -114,7 +114,7 @@ class UserController extends Controller
     public function search(Request $request)
     {
         $search = $request->get('search');
-        
+
         $result = User::whereRaw('LOWER(`name`) LIKE ?', '%'.trim(strtolower($search)).'%')
                     ->orWhereRaw('LOWER(`email`) LIKE ?','%'.trim(strtolower($search)).'%')
                     ->orWhereRaw('LOWER(`role`) LIKE ?','%'.trim(strtolower($search)).'%')
@@ -123,7 +123,7 @@ class UserController extends Controller
         $admins = $result;
         $users = $result;
         $franchises = $result;
-        
+
         return view('admin.users.index',compact('admins','users','franchises'));
     }
 }

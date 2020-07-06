@@ -78,6 +78,10 @@ class UserHomeController extends Controller
         return view('users.userHomePageUpdate', compact('set_template_data','productPopular', 'adsLeft1','adsMiddle1','adsTopRight1','adsBottomRight1','adsLeft2','adsTopRight2','adsBottomRight2','adsMiddle3'));
     }
 
+    public function mainView(){
+        return view('users.userHomePageUpdate');
+    }
+
     // public function get(Request $request)
     // {
     //     $posts = User::orderBy('created_at', 'desc')->get();
@@ -201,6 +205,11 @@ class UserHomeController extends Controller
 
             return back()->withStatus(__('Profile picture successfully updated.'));
         }
+    }
+
+    public function userProfile2(){
+        $user = auth()->user();
+        return json_encode($user);
     }
 
 }

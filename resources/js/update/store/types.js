@@ -24,3 +24,13 @@ export const MUTATIONS_SLIDE_DATA = 'modules/MUTATIONS_SLIDE_DATA';
 //Actions
 export const ACTIONS_SLIDE_ID = 'modules/ACTIONS_SLIDE_ID';
 export const ACTIONS_SLIDE_DATA = 'modules/ACTIONS_SLIDE_DATA';
+
+// categories
+export const GETTERS_CATEGORIES = 'modules/GETTERS_CATEGORIES';
+export const MUTATIONS_CATEGORIES = 'modules/MUTATIONS_CATEGORIES';
+export const ACTIONS_CATEGORIES = 'modules/ACTIONS_CATEGORIES';
+
+// user
+export const GETTERS_USER = 'modules/GETTERS_USER';
+export const MUTATIONS_USER = 'modules/MUTATIONS_USER';
+export const ACTIONS_USER = 'modules/ACTIONS_USER';

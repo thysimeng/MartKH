@@ -7,6 +7,8 @@ import modalStore from './modules/modalStore';
 import authData from './modules/authData';
 import wishlist from './modules/wishlist';
 import slide from './modules/slide';
+import categories from './modules/categories';
+import users from './modules/users'
 
 // import * as getters from './getters';
 // import * as actions from './actions';
@@ -27,7 +29,9 @@ export default new Vuex.Store({
         modalStore,
         authData,
         wishlist,
-        slide
+        slide,
+        categories,
+        users
     },
 
 

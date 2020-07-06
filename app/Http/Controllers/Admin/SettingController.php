@@ -53,12 +53,12 @@ class SettingController extends Controller
         ]);
         $logo = Customize::where('name','logo')->first();
         $oldLogo = $logo->data;
-        File::delete(public_path('uploads\logo\\' . $oldLogo));
+        File::delete(public_path('uploads/logo/' . $oldLogo));
         // store uploads/logo
         if($request->hasFile('logo')){
             $logoFile = $request->file('logo');
             $filename = time() . '.' . $logoFile->getClientOriginalExtension();
-            Image::make($logoFile)->save( public_path('uploads\logo\\' . $filename));
+            Image::make($logoFile)->save( public_path('uploads/logo/' . $filename));
             $logo->data = $filename;
         };
         // dd($logo->data);

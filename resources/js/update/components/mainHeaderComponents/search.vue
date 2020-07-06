@@ -24,9 +24,10 @@ export default {
             filterByPriceActions: types.FILTER_BY_PRICE
         }),
         SubmitfiltersBySearch(e){
-            this.$router.push('/shop');
+            // this.$router.push('/shop');
             e.preventDefault();
             let currentObject=this;
+            currentObject.$router.push('/shop/search');
             if(currentObject.search==''){
                 currentObject.search='all';
             }

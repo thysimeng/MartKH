@@ -89,6 +89,7 @@ export default {
             }).then(function(response){
                 // console.log(response.data);
                 currentObj.$store.dispatch('passDataAuth');
+                currentObj.$$router.push('/');
             }).catch(function(error){
                 console.log(error);
             })

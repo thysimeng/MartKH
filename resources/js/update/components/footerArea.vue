@@ -4,7 +4,8 @@
             <div class="container-fluid">
                 <div class="widget-wrapper">
                     <div class="footer-widget mb-30">
-                        <a href="#"><img src="assets/img/logo/2.png" alt=""></a>
+                        <router-link to="/"><img src="/uploads/logo/1573123194.png" style="width: 250px; height: 78px;" alt=""></router-link>
+                        <!-- <a href="#"><img src="/uploads/logo/1573123194.png" style="width: 250px; height: 78px;" alt=""></a> -->
                         <div class="footer-about-2">
                             <p>There are many variations of passages of Lorem Ipsum <br>the majority have suffered alteration in some form, by <br> injected humour</p>
                         </div>
