@@ -56,7 +56,7 @@ class FranchiseController extends Controller
                     ->where('sf.franchise_id','=',$current_franchise->id)
                     ->select('sf.*','sf.created_at as sf_created','sf.id as sfid','p.*','f.*')
                     ->paginate(10);
-        return view('franchise.index',compact('stock_fran'));
+        return view('franchise.stock',compact('stock_fran'));
     }
 
     /**

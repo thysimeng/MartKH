@@ -52,10 +52,17 @@
                         <span>{{ __('My profile') }}</span>
                     </a>
                     @endif
+                    @if (auth()->user()->role == 'admin')
                     <a href="{{route('settings.index')}}" class="dropdown-item">
                         <i class="ni ni-settings-gear-65"></i>
                         <span>{{ __('Settings') }}</span>
                     </a>
+                    @elseif (auth()->user()->role == 'franchise')
+                    <a href="{{route('franchise.setting')}}" class="dropdown-item">
+                        <i class="ni ni-settings-gear-65"></i>
+                        <span>{{ __('Settings') }}</span>
+                    </a>
+                    @endif
                     {{-- <a href="#" class="dropdown-item">
                         <i class="ni ni-calendar-grid-58"></i>
                         <span>{{ __('Dark Mode') }}</span>

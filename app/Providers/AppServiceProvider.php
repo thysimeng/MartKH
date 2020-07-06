@@ -16,6 +16,7 @@ use App\User;
 use App\Request_Stock;
 use View;
 use DB;
+use App\Customize_Frans;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -52,6 +53,8 @@ class AppServiceProvider extends ServiceProvider
         // Dashboard
         $current_month = date('m');
         $current_year = date('y');
+        View::share('currentYear', $current_year);
+
         View::share('userData', User::all()->count());
         View::share('userDataCurrentMonth', DB::table("users")->whereBetween('created_at',["$current_year-$current_month-1","$current_year-$current_month-31"])->count());
         
@@ -65,9 +68,45 @@ class AppServiceProvider extends ServiceProvider
         View::share('productDataCurrentMonth', DB::table("products")->whereBetween('created_at',["$current_year-$current_month-1","$current_year-$current_month-31"])->count());
 
         View::share('requestData', Request_Stock::where('status','pending')->count());
+        
+        // Franchise Customization
+        $franUserSetting = Customize_Frans::where('user_id', '=', auth()->user()->id)->first();
+            // Dark Mode
+            if ($franUserSetting == NULL){
+                $franDarkMode = $sidebarValue;
+            }
+            else{
+                $franDarkMode = $franUserSetting->franDarkMode;
+            }
+            View::share('franDarkMode', $franDarkMode);
+            // Logo
+            if ($franUserSetting == NULL){
+                $franLogo = $logoName;
+            }
+            else{
+                $franLogo = $franUserSetting->logo;
+            }
+            View::share('franLogo', $franLogo);
+            // Basic Color
+            if ($franUserSetting == NULL){
+                $franBasicColor = $basicColorValue;
+            }
+            else{
+                $franBasicColor = $franUserSetting->basicColor;
+            }
+            View::share('franBasicColor', $franBasicColor);
+            // Gradient Color
+            if ($franUserSetting == NULL){
+                $franGradientColor = $gradientColorValue;
+            }
+            else{
+                $franGradientColor = $franUserSetting->gradientColor;
+            }
+            View::share('franGradientColor', $franGradientColor);
+        
         // for no cache
-        Cache::extend( 'none', function( $app ) {
-            return Cache::repository( new NullStore );
-        } );
+        // Cache::extend( 'none', function( $app ) {
+        //     return Cache::repository( new NullStore );
+        // } );
     }
 }

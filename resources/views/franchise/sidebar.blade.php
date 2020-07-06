@@ -119,6 +119,11 @@
                         </ul>
                     </div>
                 </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ route('franchise.setting') }}">
+                        <i class="fas fa-cog text-purple"></i> {{ __('Settings') }}
+                    </a>
+                </li>
             </ul>
             <!-- Divider -->
                     {{-- <hr class="my-3"> --}}

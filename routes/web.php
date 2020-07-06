@@ -15,16 +15,17 @@ Route::get('/', 'UsersController\UserHomeController@index')->name('home');
 
 Auth::routes();
 
-Route::get('/admin', 'Admin\HomeController@index')->name('admin.home')->middleware('checkUserRole');
+// Route::get('/admin', 'Admin\HomeController@index')->name('admin.home')->middleware('checkUserRole');
 
 // Route::get('admin/user', 'UserController@user');
 // Admin-related routes
 Route::group(['middleware' => ['web','auth','checkUserRole']], function () {
 
-	Route::get('/admin/dashboard', function () {
-		return view('admin/dashboard');
-	})->name('admin.dashboard');
-
+	// Route::get('/admin/dashboard', function () {
+	// 	return view('admin/dashboard');
+	// })->name('admin.dashboard');
+	Route::get('/admin', 'Admin\DashboardController@index')->name('admin.home');
+	Route::get('/admin/dashboard', 'Admin\DashboardController@index')->name('admin.dashboard');
 	Route::get('admin/user/search', ['as' => 'user.search', 'uses' => 'Admin\UserController@search']);
 	Route::resource('admin/user', 'Admin\UserController', ['except' => ['show']]);
 	Route::get('admin/profile', ['as' => 'admin.profile.edit', 'uses' => 'Admin\ProfileController@edit']);
@@ -121,6 +122,11 @@ Route::group(['middleware' => ['web','auth','checkUserRoleFranchise']], function
 	Route::post('franchise/profile/upload','Franchise\FranchiseController@upload')->name('franchise.profile.upload');
 	Route::get('/franchise/profile','Franchise\FranchiseController@editProfile')->name('franchise.edit.profile');
 	Route::put('/franchise/profile','Franchise\FranchiseController@updateProfile')->name('franchise.update.profile');
+	Route::get('/franchise/setting', 'Franchise\SettingFranchiseController@index')->name('franchise.setting');
+	Route::get('/franchise/setting/godark', 'Franchise\SettingFranchiseController@godark')->name('franchise.setting.godark');
+	Route::post('/franchise/setting/basicColor', 'Franchise\SettingFranchiseController@basicColor')->name('franchise.setting.basicColor');
+	Route::post('/franchise/setting/logo', 'Franchise\SettingFranchiseController@logo')->name('franchise.setting.logo');
+	Route::post('/franchise/setting/gradientColor', 'Franchise\SettingFranchiseController@gradientColor')->name('franchise.setting.gradientColor');
 });
 
 // test route for redirecting users when they try to access admin pages
