@@ -1,8 +1,16 @@
 <!-- Top navbar -->
-@if($gradientColor===NULL)
-<nav class="navbar navbar-top navbar-expand-md navbar-dark d-none d-md-flex" id="navbar-main" style="background:{{$basicColor}};">
-@else
-<nav class="navbar navbar-top navbar-expand-md navbar-dark d-none d-md-flex" id="navbar-main" style="background:{{$gradientColor}};">
+@if (auth()->user()->role == 'admin')
+    @if($gradientColor===NULL)
+    <nav class="navbar navbar-top navbar-expand-md navbar-dark d-none d-md-flex" id="navbar-main" style="background:{{$basicColor}};">
+    @else
+    <nav class="navbar navbar-top navbar-expand-md navbar-dark d-none d-md-flex" id="navbar-main" style="background:{{$gradientColor}};">
+    @endif
+@elseif (auth()->user()->role == 'franchise')
+    @if($franGradientColor===NULL)
+    <nav class="navbar navbar-top navbar-expand-md navbar-dark d-none d-md-flex" id="navbar-main" style="background:{{$franBasicColor}};">
+    @else
+    <nav class="navbar navbar-top navbar-expand-md navbar-dark d-none d-md-flex" id="navbar-main" style="background:{{$franGradientColor}};">
+    @endif
 @endif
     <div class="container-fluid">
         {{-- nav  --}}
