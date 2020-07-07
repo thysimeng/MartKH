@@ -68,7 +68,7 @@ class AppServiceProvider extends ServiceProvider
         View::share('productDataCurrentMonth', DB::table("products")->whereBetween('created_at',["$current_year-$current_month-1","$current_year-$current_month-31"])->count());
 
         View::share('requestData', Request_Stock::where('status','pending')->count());
-        
+
         // Franchise Customization
         $franUserSetting = Customize_Frans::where('user_id', '=', auth()->user()->id)->first();
             // Dark Mode
@@ -103,7 +103,7 @@ class AppServiceProvider extends ServiceProvider
                 $franGradientColor = $franUserSetting->gradientColor;
             }
             View::share('franGradientColor', $franGradientColor);
-        
+
         // for no cache
         // Cache::extend( 'none', function( $app ) {
         //     return Cache::repository( new NullStore );

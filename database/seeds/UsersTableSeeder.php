@@ -23,5 +23,23 @@ class UsersTableSeeder extends Seeder
             'role' => 'admin',
             'avatar' => 'default.png'
         ]);
+
+        DB::table('franchises')->insert([
+            'id' => 1,
+            'franchise_name' => 'User1',
+            'address' => 'Default',
+            'lat' => 1,
+            'lng' => 1,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
+
+        DB::table('franchise_user')->insert([
+            'id' => 1,
+            'franchise_id' => 1,
+            'user_id' => 1,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
     }
 }

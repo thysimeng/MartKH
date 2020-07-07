@@ -17,5 +17,16 @@ class customizeSeeder extends Seeder
             'data' => 'template1',
             'created_at' => now(),
         ]);
+
+        DB::table('customize_frans')->insert([
+            'id' => 1,
+            'user_id' => 1,
+            'basicColor' => '#ff0000',
+            'gradientColor' => NULL,
+            'logo' => 'default.png',
+            'darkMode' => 0,
+            'created_at' => now(),
+            'updated_at' => now(),
+        ]);
     }
 }
