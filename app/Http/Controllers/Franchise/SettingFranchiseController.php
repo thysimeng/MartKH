@@ -40,7 +40,6 @@ class SettingFranchiseController extends Controller
         {
             $sidebar = Customize_Frans::where('user_id', '=', auth()->user()->id)->first();
             $sidebar->darkMode = $dark;
-            $sidebar->basicColor = '#ffc000';
             $sidebar->save();
             return json_encode($sidebar);
         }
