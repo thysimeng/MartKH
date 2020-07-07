@@ -19,7 +19,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                {{--<p class="mt-3 mb-0 text-muted text-sm">
+                                <p class="mt-3 mb-0 text-muted text-sm">
                                     @if($productDataCurrentMonth > 0)
                                     <span class="text-success mr-2"><i class="fas fa-arrow-up"></i> {{$productDataCurrentMonth}}</span>
                                     <span class="text-nowrap">New products this month</span>
@@ -27,7 +27,7 @@
                                     <span class="text mr-2"> {{$productDataCurrentMonth}}</span>
                                     <span class="text-nowrap">New products this month</span>
                                     @endif
-                                </p>--}}
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -45,7 +45,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                {{--<p class="mt-3 mb-0 text-muted text-sm">
+                                <p class="mt-3 mb-0 text-muted text-sm">
                                     @if($categoryDataCurrentMonth > 0)
                                     <span class="text-success mr-2"><i class="fas fa-arrow-up"></i> {{$categoryDataCurrentMonth}}</span>
                                     <span class="text-nowrap">New categories this month</span>
@@ -53,7 +53,7 @@
                                     <span class="text mr-2"> {{$categoryDataCurrentMonth}}</span>
                                     <span class="text-nowrap">New categories this month</span>
                                     @endif
-                                </p>--}}
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -71,7 +71,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                {{--<p class="mt-3 mb-0 text-muted text-sm">
+                                <p class="mt-3 mb-0 text-muted text-sm">
                                     @if($userDataCurrentMonth > 0)
                                     <span class="text-success mr-2"><i class="fas fa-arrow-up"></i> {{$userDataCurrentMonth}}</span>
                                     <span class="text-nowrap">New users this month</span>
@@ -79,7 +79,7 @@
                                     <span class="text mr-2"> {{$userDataCurrentMonth}}</span>
                                     <span class="text-nowrap">New users this month</span>
                                     @endif
-                                </p>--}}
+                                </p>
                             </div>
                         </div>
                     </div>
@@ -97,7 +97,7 @@
                                         </div>
                                     </div>
                                 </div>
-                                {{--<p class="mt-3 mb-0 text-muted text-sm">
+                                <p class="mt-3 mb-0 text-muted text-sm">
                                     @if($franchiseDataCurrentMonth > 0)
                                     <span class="text-success mr-2"><i class="fas fa-arrow-up"></i> {{$franchiseDataCurrentMonth}}</span>
                                     <span class="text-nowrap">New franchises this month</span>
@@ -105,7 +105,7 @@
                                     <span class="text mr-2"> {{$franchiseDataCurrentMonth}}</span>
                                     <span class="text-nowrap">New franchises this month</span>
                                     @endif
-                                </p>--}}
+                                </p>
                             </div>
                         </div>
                     </div>

@@ -17,6 +17,7 @@ use App\Request_Stock;
 use View;
 use DB;
 use App\Customize_Frans;
+use Auth;
 
 class AppServiceProvider extends ServiceProvider
 {
@@ -70,14 +71,16 @@ class AppServiceProvider extends ServiceProvider
         View::share('requestData', Request_Stock::where('status','pending')->count());
 
         // Franchise Customization
-        $franUserSetting = Customize_Frans::where('user_id', '=', auth()->user()->id)->first();
+        if (Auth::user() != NULL)
+        {
+            $franUserSetting = Customize_Frans::where('user_id', '=', auth()->user()->id)->first();
             // Dark Mode
-            if ($franUserSetting == NULL){
-                $franDarkMode = $sidebarValue;
-            }
-            else{
-                $franDarkMode = $franUserSetting->franDarkMode;
-            }
+                if ($franUserSetting == NULL){
+                    $franDarkMode = $sidebarValue;
+                }
+                else{
+                    $franDarkMode = $franUserSetting->franDarkMode;
+                }
             View::share('franDarkMode', $franDarkMode);
             // Logo
             if ($franUserSetting == NULL){
@@ -87,7 +90,7 @@ class AppServiceProvider extends ServiceProvider
                 $franLogo = $franUserSetting->logo;
             }
             View::share('franLogo', $franLogo);
-            // Basic Color
+            // // Basic Color
             if ($franUserSetting == NULL){
                 $franBasicColor = $basicColorValue;
             }
@@ -95,7 +98,7 @@ class AppServiceProvider extends ServiceProvider
                 $franBasicColor = $franUserSetting->basicColor;
             }
             View::share('franBasicColor', $franBasicColor);
-            // Gradient Color
+            // // Gradient Color
             if ($franUserSetting == NULL){
                 $franGradientColor = $gradientColorValue;
             }
@@ -103,6 +106,21 @@ class AppServiceProvider extends ServiceProvider
                 $franGradientColor = $franUserSetting->gradientColor;
             }
             View::share('franGradientColor', $franGradientColor);
+        }
+
+        // view()->composer('*', function ($view)
+        // {
+        //     if (Auth::user() != NULL){
+        //     $franUserSetting = Customize_Frans::where('user_id', '=',Auth::user()->id)->first();
+        //     // Dark Mode
+        //     if ($franUserSetting == NULL){
+        //         $franDarkMode = $sidebarValue;
+        //     }
+        //     else{
+        //         $franDarkMode = $franUserSetting->franDarkMode;
+        //     }
+        //     $view->with('franDarkMode', $franDarkMode );
+        // });
 
         // for no cache
         // Cache::extend( 'none', function( $app ) {
